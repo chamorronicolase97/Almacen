@@ -12,7 +12,7 @@ namespace Almacen.Clases
     public class Categoria
     {
         private int _id;
-        private string _descripcion; 
+        private string _descripcion;
         private decimal _utilidad;
 
         #region Constantes
