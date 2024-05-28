@@ -26,15 +26,21 @@ namespace Almacen.Vistas
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-
+            Validar();
         }
 
         private bool Validar()
         {
-            if (txtNombre.Text.Length < 0) 
+            if (txtNombre.Text.Length <= 0) 
             {
                 frmMostrarMensaje.MostrarMensaje("Categoria", "Debe escribir un nombre para la categoria");
             return false;
+            }
+
+            if (txtUtilidad.Text.Length <= 0)
+            {
+                frmMostrarMensaje.MostrarMensaje("Categoria", "Debe escribir una utilidad para la categoria");
+                return false;
             }
             return true;
         }

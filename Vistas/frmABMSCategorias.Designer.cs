@@ -30,10 +30,10 @@
         {
             dgvDatos = new DataGridView();
             splitContainer1 = new SplitContainer();
-            btnCrear = new Button();
-            btnModificar = new Button();
-            btnBorrar = new Button();
             txtFiltro = new TextBox();
+            btnBorrar = new Button();
+            btnModificar = new Button();
+            btnCrear = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvDatos).BeginInit();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
@@ -72,23 +72,12 @@
             splitContainer1.SplitterDistance = 81;
             splitContainer1.TabIndex = 1;
             // 
-            // btnCrear
+            // txtFiltro
             // 
-            btnCrear.Location = new Point(610, 21);
-            btnCrear.Name = "btnCrear";
-            btnCrear.Size = new Size(57, 48);
-            btnCrear.TabIndex = 0;
-            btnCrear.Text = "C";
-            btnCrear.UseVisualStyleBackColor = true;
-            // 
-            // btnModificar
-            // 
-            btnModificar.Location = new Point(673, 21);
-            btnModificar.Name = "btnModificar";
-            btnModificar.Size = new Size(57, 48);
-            btnModificar.TabIndex = 1;
-            btnModificar.Text = "M";
-            btnModificar.UseVisualStyleBackColor = true;
+            txtFiltro.Location = new Point(12, 32);
+            txtFiltro.Name = "txtFiltro";
+            txtFiltro.Size = new Size(188, 27);
+            txtFiltro.TabIndex = 3;
             // 
             // btnBorrar
             // 
@@ -99,12 +88,24 @@
             btnBorrar.Text = "B";
             btnBorrar.UseVisualStyleBackColor = true;
             // 
-            // txtFiltro
+            // btnModificar
             // 
-            txtFiltro.Location = new Point(12, 32);
-            txtFiltro.Name = "txtFiltro";
-            txtFiltro.Size = new Size(188, 27);
-            txtFiltro.TabIndex = 3;
+            btnModificar.Location = new Point(673, 21);
+            btnModificar.Name = "btnModificar";
+            btnModificar.Size = new Size(57, 48);
+            btnModificar.TabIndex = 1;
+            btnModificar.Text = "M";
+            btnModificar.UseVisualStyleBackColor = true;
+            // 
+            // btnCrear
+            // 
+            btnCrear.Location = new Point(610, 21);
+            btnCrear.Name = "btnCrear";
+            btnCrear.Size = new Size(57, 48);
+            btnCrear.TabIndex = 0;
+            btnCrear.Text = "C";
+            btnCrear.UseVisualStyleBackColor = true;
+            btnCrear.Click += btnCrear_Click;
             // 
             // frmABMSCategorias
             // 

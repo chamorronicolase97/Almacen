@@ -10,7 +10,7 @@ namespace Sistema
 {
     public class Conexion
     {
-        string cadena = "Data Source=DESKTOP-KHKJ2OC;Initial Catalog=Almacen;Integrated Security=True;Connect Timeout=30;Encrypt=False";
+        string cadena = "Data Source=HWNOTE163490\\SQLEXPRESS;Initial Catalog=Almacen;Integrated Security=True;Connect Timeout=30;Encrypt=False";
         public SqlConnection conectarbd = new SqlConnection();
 
         public  Conexion()

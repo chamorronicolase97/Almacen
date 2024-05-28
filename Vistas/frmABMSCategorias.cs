@@ -24,5 +24,11 @@ namespace Almacen.Vistas
         {
             dgvDatos.DataSource = Categoria.Listar();
         }
+
+        private void btnCrear_Click(object sender, EventArgs e)
+        {
+            frmAMCCategoria f = new frmAMCCategoria();
+            f.ShowDialog();
+        }
     }
 }

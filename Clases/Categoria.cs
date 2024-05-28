@@ -26,6 +26,8 @@ namespace Almacen.Clases
         public decimal Utilidad { get { return _utilidad; } set { _utilidad = value; } }
         #endregion
 
+
+
         public static DataTable Listar()
         {
             Conexion cn = new Conexion();        
