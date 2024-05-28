@@ -14,9 +14,11 @@ namespace Almacen.Vistas
 {
     public partial class frmABMSCategorias : Form
     {
+        
         public frmABMSCategorias()
         {
             InitializeComponent();
+            
         }
 
         private void frmABMSCategorias_Load(object sender, EventArgs e)
@@ -25,10 +27,16 @@ namespace Almacen.Vistas
             dgvDatos.DataSource = Categoria.Listar();
         }
 
+        private void CargarGrilla()
+        {
+            dgvDatos.DataSource = Categoria.Listar();
+        }
+
         private void btnCrear_Click(object sender, EventArgs e)
         {
             frmAMCCategoria f = new frmAMCCategoria();
             f.ShowDialog();
+            if (f.DialogResult == DialogResult.OK)  CargarGrilla();
         }
     }
 }

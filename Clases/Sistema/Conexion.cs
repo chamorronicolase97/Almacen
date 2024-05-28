@@ -31,6 +31,18 @@ namespace Sistema
             }
         }
 
+        public void Ejecutar(SqlCommand cmd)
+        {
+            try
+            {
+                conectarbd.Open();
+                cmd.Connection = conectarbd;
+                cmd.ExecuteNonQuery();
+
+            }
+            catch (Exception ex) { throw new Exception(ex.Message); }
+        }
+
         public DataTable Consultar(string consulta)
         {
             try 

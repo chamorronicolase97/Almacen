@@ -13,7 +13,7 @@ namespace Almacen.Vistas
 {
     public partial class frmAMCCategoria : Form
     {
-        Categoria Clase = new Categoria();
+        
         public frmAMCCategoria()
         {
             InitializeComponent();
@@ -27,6 +27,11 @@ namespace Almacen.Vistas
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             Validar();
+            Categoria Objeto = new Categoria();
+            Objeto.Descripcion = txtNombre.Text;
+            Objeto.Utilidad = Convert.ToDecimal(txtUtilidad.Text.ToString());
+            Objeto.Insertar();
+            this.DialogResult = DialogResult.OK;
         }
 
         private bool Validar()

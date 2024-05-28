@@ -28,6 +28,19 @@ namespace Almacen.Clases
 
 
 
+        public void Insertar()
+        {
+            Conexion cn = new Conexion();
+            string q = $@"INSERT INTO {Tabla} (Descripcion, Utilidad)
+                        Values(@Descripcion, @Utilidad);";
+            SqlCommand cmd = new SqlCommand(q);
+            cmd.Parameters.Add("@Descripcion", SqlDbType.VarChar).Value = Descripcion;
+            cmd.Parameters.Add("@Utilidad", SqlDbType.Decimal).Value = Utilidad;
+
+            cn.Ejecutar(cmd);
+           
+        }
+
         public static DataTable Listar()
         {
             Conexion cn = new Conexion();        
