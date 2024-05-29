@@ -42,9 +42,10 @@
             // btnAceptar
             // 
             btnAceptar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnAceptar.Location = new Point(270, 187);
+            btnAceptar.Location = new Point(236, 140);
+            btnAceptar.Margin = new Padding(3, 2, 3, 2);
             btnAceptar.Name = "btnAceptar";
-            btnAceptar.Size = new Size(94, 29);
+            btnAceptar.Size = new Size(82, 22);
             btnAceptar.TabIndex = 0;
             btnAceptar.Text = "Aceptar";
             btnAceptar.UseVisualStyleBackColor = true;
@@ -53,9 +54,10 @@
             // btnCancelar
             // 
             btnCancelar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnCancelar.Location = new Point(370, 187);
+            btnCancelar.Location = new Point(324, 140);
+            btnCancelar.Margin = new Padding(3, 2, 3, 2);
             btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(94, 29);
+            btnCancelar.Size = new Size(82, 22);
             btnCancelar.TabIndex = 1;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = true;
@@ -63,66 +65,70 @@
             // 
             // txtNombre
             // 
-            txtNombre.Location = new Point(101, 83);
+            txtNombre.Location = new Point(88, 62);
+            txtNombre.Margin = new Padding(3, 2, 3, 2);
             txtNombre.Name = "txtNombre";
-            txtNombre.Size = new Size(197, 27);
+            txtNombre.Size = new Size(173, 23);
             txtNombre.TabIndex = 2;
             // 
             // txtUtilidad
             // 
-            txtUtilidad.Location = new Point(101, 116);
+            txtUtilidad.Location = new Point(88, 87);
+            txtUtilidad.Margin = new Padding(3, 2, 3, 2);
             txtUtilidad.Name = "txtUtilidad";
-            txtUtilidad.Size = new Size(75, 27);
+            txtUtilidad.Size = new Size(66, 23);
             txtUtilidad.TabIndex = 3;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(31, 86);
+            label1.Location = new Point(27, 64);
             label1.Name = "label1";
-            label1.Size = new Size(64, 20);
+            label1.Size = new Size(51, 15);
             label1.TabIndex = 4;
             label1.Text = "Nombre";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(33, 119);
+            label2.Location = new Point(29, 89);
             label2.Name = "label2";
-            label2.Size = new Size(62, 20);
+            label2.Size = new Size(48, 15);
             label2.TabIndex = 5;
             label2.Text = "Utilidad";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(69, 53);
+            label3.Location = new Point(60, 40);
             label3.Name = "label3";
-            label3.Size = new Size(24, 20);
+            label3.Size = new Size(18, 15);
             label3.TabIndex = 6;
             label3.Text = "ID";
             // 
             // txtID
             // 
-            txtID.Location = new Point(101, 50);
+            txtID.Enabled = false;
+            txtID.Location = new Point(88, 38);
+            txtID.Margin = new Padding(3, 2, 3, 2);
             txtID.Name = "txtID";
-            txtID.Size = new Size(75, 27);
+            txtID.Size = new Size(66, 23);
             txtID.TabIndex = 7;
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(182, 119);
+            label4.Location = new Point(159, 89);
             label4.Name = "label4";
-            label4.Size = new Size(21, 20);
+            label4.Size = new Size(17, 15);
             label4.TabIndex = 8;
             label4.Text = "%";
             // 
             // frmAMCCategoria
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(476, 228);
+            ClientSize = new Size(416, 171);
             Controls.Add(label4);
             Controls.Add(txtID);
             Controls.Add(label3);
@@ -132,8 +138,10 @@
             Controls.Add(txtNombre);
             Controls.Add(btnCancelar);
             Controls.Add(btnAceptar);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "frmAMCCategoria";
             Text = "Categoria";
+            Load += frmAMCCategoria_Load;
             ResumeLayout(false);
             PerformLayout();
         }

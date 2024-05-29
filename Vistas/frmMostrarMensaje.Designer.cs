@@ -40,9 +40,10 @@
             // 
             // btnAceptar
             // 
-            btnAceptar.Location = new Point(495, 192);
+            btnAceptar.Location = new Point(433, 144);
+            btnAceptar.Margin = new Padding(3, 2, 3, 2);
             btnAceptar.Name = "btnAceptar";
-            btnAceptar.Size = new Size(94, 29);
+            btnAceptar.Size = new Size(82, 22);
             btnAceptar.TabIndex = 0;
             btnAceptar.Text = "Aceptar";
             btnAceptar.UseVisualStyleBackColor = true;
@@ -55,7 +56,7 @@
             lblTitulo.Font = new Font("Segoe UI", 25F, FontStyle.Regular, GraphicsUnit.Point);
             lblTitulo.Location = new Point(0, 0);
             lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(130, 57);
+            lblTitulo.Size = new Size(105, 46);
             lblTitulo.TabIndex = 1;
             lblTitulo.Text = "Titulo";
             lblTitulo.TextAlign = ContentAlignment.TopCenter;
@@ -67,7 +68,7 @@
             lblMensaje.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             lblMensaje.Location = new Point(0, 0);
             lblMensaje.Name = "lblMensaje";
-            lblMensaje.Size = new Size(84, 28);
+            lblMensaje.Size = new Size(68, 21);
             lblMensaje.TabIndex = 2;
             lblMensaje.Text = "Mensaje";
             lblMensaje.TextAlign = ContentAlignment.TopCenter;
@@ -76,6 +77,7 @@
             // 
             splitContainer1.Dock = DockStyle.Fill;
             splitContainer1.Location = new Point(0, 0);
+            splitContainer1.Margin = new Padding(3, 2, 3, 2);
             splitContainer1.Name = "splitContainer1";
             splitContainer1.Orientation = Orientation.Horizontal;
             // 
@@ -88,21 +90,24 @@
             // 
             splitContainer1.Panel2.BackColor = Color.NavajoWhite;
             splitContainer1.Panel2.Controls.Add(lblMensaje);
-            splitContainer1.Size = new Size(601, 233);
-            splitContainer1.SplitterDistance = 70;
+            splitContainer1.Size = new Size(526, 175);
+            splitContainer1.SplitterDistance = 52;
+            splitContainer1.SplitterWidth = 3;
             splitContainer1.TabIndex = 3;
             // 
             // frmMostrarMensaje
             // 
             AccessibleRole = AccessibleRole.Alert;
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(601, 233);
+            ClientSize = new Size(526, 175);
             Controls.Add(btnAceptar);
             Controls.Add(splitContainer1);
+            Margin = new Padding(3, 2, 3, 2);
+            MinimizeBox = false;
             Name = "frmMostrarMensaje";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Mensaje";
-            WindowState = FormWindowState.Minimized;
             splitContainer1.Panel1.ResumeLayout(false);
             splitContainer1.Panel1.PerformLayout();
             splitContainer1.Panel2.ResumeLayout(false);

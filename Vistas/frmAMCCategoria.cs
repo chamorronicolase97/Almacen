@@ -13,10 +13,24 @@ namespace Almacen.Vistas
 {
     public partial class frmAMCCategoria : Form
     {
-        
+        public Categoria Clase { get; set; }
+
+        public bool Modificacion { get; set; } = false;
+
         public frmAMCCategoria()
         {
             InitializeComponent();
+
+        }
+
+        private void frmAMCCategoria_Load(object sender, EventArgs e)
+        {
+            if (Modificacion == true)
+            {
+                txtID.Text = Clase.ID.ToString();
+                txtNombre.Text = Clase.Descripcion;
+                txtUtilidad.Text = Clase.Utilidad.ToString();
+            }
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -27,19 +41,28 @@ namespace Almacen.Vistas
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             Validar();
-            Categoria Objeto = new Categoria();
-            Objeto.Descripcion = txtNombre.Text;
-            Objeto.Utilidad = Convert.ToDecimal(txtUtilidad.Text.ToString());
-            Objeto.Insertar();
+
+            Clase.Descripcion = txtNombre.Text;
+            Clase.Utilidad = Convert.ToDecimal(txtUtilidad.Text.ToString());
+            
+            if (Modificacion)
+            {              
+            Clase.Modificar();
             this.DialogResult = DialogResult.OK;
+            }
+            else
+            {            
+            Clase.Insertar();
+            this.DialogResult = DialogResult.OK;
+            }
         }
 
         private bool Validar()
         {
-            if (txtNombre.Text.Length <= 0) 
+            if (txtNombre.Text.Length <= 0)
             {
                 frmMostrarMensaje.MostrarMensaje("Categoria", "Debe escribir un nombre para la categoria");
-            return false;
+                return false;
             }
 
             if (txtUtilidad.Text.Length <= 0)
@@ -49,5 +72,7 @@ namespace Almacen.Vistas
             }
             return true;
         }
+
+
     }
 }
