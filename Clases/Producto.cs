@@ -9,34 +9,38 @@ using System.Threading.Tasks;
 
 namespace Almacen.Clases
 {
-    public class Categoria
+    public class Producto
     {
         private int _id;
         private string _descripcion;
-        private decimal _utilidad;
+        private decimal? _costo;
+        private string _codigoDeBarra;
+        private Categoria _categoria;
 
         #region Constantes
-        const string Tabla = "dbo.Categorias";
-        public const string NombreClase = "Categoria";
+        const string Tabla = "dbo.Productos";
+        public const string NombreClase = "Producto";
         #endregion
 
         #region Propiedades
         public int ID { get { return _id; } set { _id = value; } }
         public string Descripcion { get { return _descripcion; } set { _descripcion = value; } }
-        public decimal Utilidad { get { return _utilidad; } set { _utilidad = value; } }
+        public decimal? Costo { get { return _costo; } set { _costo = value; } }
+        public string CodigoDeBarra { get { return _codigoDeBarra; } set { _codigoDeBarra = value; } }
+        public Categoria Categoria { get { return _categoria; } set { _categoria = value; } }
         #endregion
 
-        public Categoria(int ID)
+        public Producto(int ID)
         {
             this.ID = ID;
             if (ID != 0) Abrir();
         }
-        public Categoria(DataRow dr) => CargaDatos(dr);
+        public Producto(DataRow dr) => CargaDatos(dr);
 
         public void Abrir()
         {
             Conexion cn = new Conexion();
-            string q = @$"Select * from {Tabla} where CategoriaID = {ID}";
+            string q = @$"Select * from {Tabla} where ProductoID = {ID}";
 
            DataTable dt = cn.Consultar(q);
             try
@@ -58,20 +62,25 @@ namespace Almacen.Clases
 
         private void CargaDatos(DataRow dr)
         {
-            ID = Convert.ToInt32(dr["CategoriaID"]);
+            ID = Convert.ToInt32(dr["ProductoID"]);
             _descripcion = Convert.ToString(dr["Descripcion"]);
-            _utilidad = Convert.ToDecimal(dr["Utilidad"]);
+            _costo = Convert.ToDecimal(dr["Costo"]);
+            _codigoDeBarra = Convert.ToString(dr["CodigoDeBarra"]);
+
+            if (dr["CategoriaID"] != DBNull.Value) _categoria = new Categoria(Convert.ToInt32(dr["CategoriaID"]));
         }
 
 
         public void Insertar()
         {
             Conexion cn = new Conexion();
-            string q = $@"INSERT INTO {Tabla} (Descripcion, Utilidad)
-                        Values(@Descripcion, @Utilidad);";
+            string q = $@"INSERT INTO {Tabla} (Descripcion, Costo, CodigoDeBarra, CategoriaID)
+                        Values(@Descripcion, @Costo, @CodigoDeBarra, @CategoriaID);";
             SqlCommand cmd = new SqlCommand(q);
             cmd.Parameters.Add("@Descripcion", SqlDbType.VarChar).Value = Descripcion;
-            cmd.Parameters.Add("@Utilidad", SqlDbType.Decimal).Value = Utilidad;
+            cmd.Parameters.Add("@Costo", SqlDbType.Decimal).Value = Costo;
+            cmd.Parameters.Add("@CodigoDeBarra", SqlDbType.VarChar).Value = CodigoDeBarra;
+            cmd.Parameters.Add("@CategoriaID", SqlDbType.Int).Value = Categoria.ID;
 
             cn.Ejecutar(cmd);
            
@@ -81,11 +90,15 @@ namespace Almacen.Clases
         {
             Conexion cn = new Conexion();
             string q = $@"UPDATE {Tabla} SET Descripcion = @Descripcion, 
-                                             Utilidad = @Utilidad
-                                             WHERE CategoriaID = @ID;";
+                                             Costo = @Costo,
+                                             CodigoDeBarra = @CodigoDeBarra,
+                                             CategoriaID = @CategoriaID
+                                             WHERE ProductoID = @ID;";
             SqlCommand cmd = new SqlCommand(q);
             cmd.Parameters.Add("@Descripcion", SqlDbType.VarChar).Value = Descripcion;
-            cmd.Parameters.Add("@Utilidad", SqlDbType.Decimal).Value = Utilidad;
+            cmd.Parameters.Add("@Costo", SqlDbType.Decimal).Value = Costo;
+            cmd.Parameters.Add("@CodigoDeBarra", SqlDbType.VarChar).Value = CodigoDeBarra;
+            cmd.Parameters.Add("@CategoriaID", SqlDbType.Int).Value = Categoria.ID;
             cmd.Parameters.Add("@ID", SqlDbType.Int).Value = ID;
 
             cn.Ejecutar(cmd);
@@ -95,7 +108,7 @@ namespace Almacen.Clases
         public void Eliminar()
         {
             Conexion cn = new Conexion();
-            string q = $@"DELETE FROM {Tabla} WHERE CategoriaID = @ID;";
+            string q = $@"DELETE FROM {Tabla} WHERE ProductoID = @ID;";
             SqlCommand cmd = new SqlCommand(q);
             cmd.Parameters.Add("@ID", SqlDbType.Int).Value = ID;
 
@@ -108,18 +121,6 @@ namespace Almacen.Clases
             Conexion cn = new Conexion();        
             string q = @$"Select * from {Tabla}";
             return cn.Consultar(q);
-        }
-
-        public static List<Categoria> ListarCategorias()
-        {
-            DataTable dt = new DataTable();
-            List<Categoria> lista = new List<Categoria>();  
-            foreach(DataRow dr in dt.Rows)
-            {
-                lista.Add(new Categoria(dr));
-            }
-
-            return lista;
         }
     }
 }
