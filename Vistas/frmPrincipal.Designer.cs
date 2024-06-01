@@ -37,10 +37,10 @@
             compraToolStripMenuItem = new ToolStripMenuItem();
             ventaToolStripMenuItem = new ToolStripMenuItem();
             administraciónToolStripMenuItem = new ToolStripMenuItem();
-            configuraciónToolStripMenuItem = new ToolStripMenuItem();
             categoriasToolStripMenuItem = new ToolStripMenuItem();
             productosToolStripMenuItem = new ToolStripMenuItem();
             proveedoresToolStripMenuItem = new ToolStripMenuItem();
+            configuraciónToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -105,12 +105,6 @@
             administraciónToolStripMenuItem.Size = new Size(100, 20);
             administraciónToolStripMenuItem.Text = "Administración";
             // 
-            // configuraciónToolStripMenuItem
-            // 
-            configuraciónToolStripMenuItem.Name = "configuraciónToolStripMenuItem";
-            configuraciónToolStripMenuItem.Size = new Size(95, 20);
-            configuraciónToolStripMenuItem.Text = "Configuración";
-            // 
             // categoriasToolStripMenuItem
             // 
             categoriasToolStripMenuItem.Name = "categoriasToolStripMenuItem";
@@ -123,12 +117,19 @@
             productosToolStripMenuItem.Name = "productosToolStripMenuItem";
             productosToolStripMenuItem.Size = new Size(180, 22);
             productosToolStripMenuItem.Text = "Productos";
+            productosToolStripMenuItem.Click += productosToolStripMenuItem_Click;
             // 
             // proveedoresToolStripMenuItem
             // 
             proveedoresToolStripMenuItem.Name = "proveedoresToolStripMenuItem";
             proveedoresToolStripMenuItem.Size = new Size(180, 22);
             proveedoresToolStripMenuItem.Text = "Proveedores";
+            // 
+            // configuraciónToolStripMenuItem
+            // 
+            configuraciónToolStripMenuItem.Name = "configuraciónToolStripMenuItem";
+            configuraciónToolStripMenuItem.Size = new Size(95, 20);
+            configuraciónToolStripMenuItem.Text = "Configuración";
             // 
             // frmPrincipal
             // 

@@ -13,6 +13,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Vistas\Productos\frmABMSProductos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Vistas\Productos\frmAMCProducto.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Vistas\Proveedores\frmABMSProveedores.cs">
       <SubType>Form</SubType>
     </Compile>
