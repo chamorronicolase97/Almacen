@@ -1,4 +1,5 @@
-﻿using Sistema;
+﻿using Almacen.Clases.Sistema;
+using Sistema;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -30,6 +31,7 @@ namespace Almacen.Clases
         public Categoria Categoria { get { return _categoria; } set { _categoria = value; } }
         #endregion
 
+        public Producto() { }
         public Producto(int ID)
         {
             this.ID = ID;
@@ -64,7 +66,7 @@ namespace Almacen.Clases
         {
             ID = Convert.ToInt32(dr["ProductoID"]);
             _descripcion = Convert.ToString(dr["Descripcion"]);
-            _costo = Convert.ToDecimal(dr["Costo"]);
+            _costo = FuncionesAuxiliares.ConvertToNDecimal(dr["Costo"].ToString());
             _codigoDeBarra = Convert.ToString(dr["CodigoDeBarra"]);
 
             if (dr["CategoriaID"] != DBNull.Value) _categoria = new Categoria(Convert.ToInt32(dr["CategoriaID"]));
@@ -78,7 +80,7 @@ namespace Almacen.Clases
                         Values(@Descripcion, @Costo, @CodigoDeBarra, @CategoriaID);";
             SqlCommand cmd = new SqlCommand(q);
             cmd.Parameters.Add("@Descripcion", SqlDbType.VarChar).Value = Descripcion;
-            cmd.Parameters.Add("@Costo", SqlDbType.Decimal).Value = Costo;
+            cmd.Parameters.Add("@Costo", SqlDbType.Decimal).Value = DBNull.Value;
             cmd.Parameters.Add("@CodigoDeBarra", SqlDbType.VarChar).Value = CodigoDeBarra;
             cmd.Parameters.Add("@CategoriaID", SqlDbType.Int).Value = Categoria.ID;
 
@@ -96,7 +98,7 @@ namespace Almacen.Clases
                                              WHERE ProductoID = @ID;";
             SqlCommand cmd = new SqlCommand(q);
             cmd.Parameters.Add("@Descripcion", SqlDbType.VarChar).Value = Descripcion;
-            cmd.Parameters.Add("@Costo", SqlDbType.Decimal).Value = Costo;
+            cmd.Parameters.Add("@Costo", SqlDbType.Decimal).Value = FuncionesAuxiliares.ConvertDBNullIfNull(Costo);
             cmd.Parameters.Add("@CodigoDeBarra", SqlDbType.VarChar).Value = CodigoDeBarra;
             cmd.Parameters.Add("@CategoriaID", SqlDbType.Int).Value = Categoria.ID;
             cmd.Parameters.Add("@ID", SqlDbType.Int).Value = ID;

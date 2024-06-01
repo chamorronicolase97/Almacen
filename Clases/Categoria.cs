@@ -26,6 +26,7 @@ namespace Almacen.Clases
         public decimal Utilidad { get { return _utilidad; } set { _utilidad = value; } }
         #endregion
 
+        public Categoria() { }
         public Categoria(int ID)
         {
             this.ID = ID;
@@ -112,7 +113,7 @@ namespace Almacen.Clases
 
         public static List<Categoria> ListarCategorias()
         {
-            DataTable dt = new DataTable();
+            DataTable dt = Listar();
             List<Categoria> lista = new List<Categoria>();  
             foreach(DataRow dr in dt.Rows)
             {

@@ -40,20 +40,20 @@ namespace Almacen.Vistas
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            Validar();
+            if (!Validar()) return;
 
             Clase.Descripcion = txtNombre.Text;
             Clase.Utilidad = Convert.ToDecimal(txtUtilidad.Text.ToString());
-            
+
             if (Modificacion)
-            {              
-            Clase.Modificar();
-            this.DialogResult = DialogResult.OK;
+            {
+                Clase.Modificar();
+                this.DialogResult = DialogResult.OK;
             }
             else
-            {            
-            Clase.Insertar();
-            this.DialogResult = DialogResult.OK;
+            {
+                Clase.Insertar();
+                this.DialogResult = DialogResult.OK;
             }
         }
 
