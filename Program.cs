@@ -19,7 +19,7 @@ namespace Almacen
                 // To customize application configuration such as set high DPI settings or default font,
                 // see https://aka.ms/applicationconfiguration.
                 ApplicationConfiguration.Initialize();
-                Application.Run(new frmABMSCategorias());
+                Application.Run(new frmPrincipal());
             }
         }
     
