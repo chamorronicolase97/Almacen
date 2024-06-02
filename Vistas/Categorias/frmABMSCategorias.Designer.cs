@@ -44,7 +44,7 @@
             // dgvDatos
             // 
             dgvDatos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvDatos.Location = new Point(0, 2);
+            dgvDatos.Location = new Point(-21, 4);
             dgvDatos.Margin = new Padding(3, 2, 3, 2);
             dgvDatos.Name = "dgvDatos";
             dgvDatos.RowHeadersWidth = 51;

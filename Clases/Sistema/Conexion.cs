@@ -5,17 +5,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Data;
+using System.Configuration;
 
 namespace Sistema
 {
     public class Conexion
     {
-        string cadena = "Data Source=HWNOTE163490\\SQLEXPRESS;Initial Catalog=Almacen;Integrated Security=True;Connect Timeout=30;Encrypt=False";
+
+        string connectionString = ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString;
+
+
+        //string cadena = "Data Source=DESKTOP-KHKJ2OC;Initial Catalog=Almacen;Integrated Security=True;Connect Timeout=30;Encrypt=False";
         public SqlConnection conectarbd = new SqlConnection();
 
         public  Conexion()
         {
-            conectarbd.ConnectionString = cadena;
+            conectarbd.ConnectionString = connectionString;
         }
 
         public void Abrir()
