@@ -27,4 +27,8 @@
     </Compile>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Clases\Base\" />
+  </ItemGroup>
+
 </Project>

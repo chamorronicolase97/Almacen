@@ -1,4 +1,5 @@
 ﻿using Almacen.Clases;
+using Almacen.Clases.Administracion;
 using Sistema;
 using System;
 using System.Collections.Generic;
