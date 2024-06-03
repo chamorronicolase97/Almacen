@@ -66,5 +66,11 @@ namespace Almacen.Vistas
             frmABMSProveedores f = new frmABMSProveedores();
             f.Show();
         }
+
+        private void gruposToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmABMSGrupos f = new frmABMSGrupos();
+            f.Show();
+        }
     }
 }
