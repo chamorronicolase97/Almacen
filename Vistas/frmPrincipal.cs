@@ -61,7 +61,6 @@ namespace Almacen.Vistas
             frmABMSProductos f = new frmABMSProductos();
             f.Show();
         }
-
         private void proveedoresToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmABMSProveedores f = new frmABMSProveedores();
