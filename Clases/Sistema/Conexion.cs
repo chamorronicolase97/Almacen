@@ -58,6 +58,21 @@ namespace Sistema
             catch (Exception ex) { throw new Exception(ex.Message); }
         }
 
+        public DataTable Consultar (SqlCommand cmd)
+        {
+            try
+            {
+                conectarbd.Open();
+                cmd.Connection = conectarbd;
+                DataTable data = new DataTable();
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                adapter.Fill(data);
+                return data;
+
+            }
+            catch (Exception ex) { throw new Exception(ex.Message); }
+        }
+
         public DataTable Consultar(string consulta)
         {
             try 
