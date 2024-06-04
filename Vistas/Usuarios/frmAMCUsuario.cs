@@ -46,6 +46,7 @@ namespace Almacen.Vistas
 
             if (Modificacion == true)
             {
+                lblForm.Text = "Modificar " + Usuario.NombreClase;
                 txtID.Text = Clase.ID.ToString();
                 txtNomApe.Text = Clase.NombreApellido;
                 txtUsuario.Text = Clase.CodUsuario;
@@ -54,8 +55,8 @@ namespace Almacen.Vistas
                 cmbGrupo.Enabled = false;
             }
             else
-            {                
-
+            {
+                lblForm.Text = "Crear " + Usuario.NombreClase;
             }
         }
 
@@ -89,7 +90,20 @@ namespace Almacen.Vistas
         {
             if (txtNomApe.Text.Length <= 0)
             {
-                frmMostrarMensaje.MostrarMensaje("Usuario", "Debe escribir un nombre y apellido para el Usuario");
+                frmMostrarMensaje.MostrarMensaje("Usuario", "Debe escribir un NOMBRE y APELLIDO para el Usuario");
+                return false;
+            }
+
+            List<string> nombre = txtNomApe.Text.Split(" ").ToList();
+            if (nombre.Count < 2)
+            {
+                frmMostrarMensaje.MostrarMensaje("Usuario", "Debe escribir un NOMBRE y APELLIDO para el Usuario");
+                return false;
+            }
+
+            if (txtContraseña.Text.Length <= 0)
+            {
+                frmMostrarMensaje.MostrarMensaje("Usuario", "Debe escribir una contraseña para el Usuario");
                 return false;
             }
 

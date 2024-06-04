@@ -156,12 +156,14 @@
             // 
             // monthCalendar1
             // 
+            monthCalendar1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             monthCalendar1.Location = new Point(534, 282);
             monthCalendar1.Name = "monthCalendar1";
             monthCalendar1.TabIndex = 1;
             // 
             // panel1
             // 
+            panel1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             panel1.BackColor = SystemColors.ActiveCaption;
             panel1.BorderStyle = BorderStyle.FixedSingle;
             panel1.Controls.Add(lblBienvenido);
@@ -189,7 +191,7 @@
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
             Name = "frmPrincipal";
-            Text = "frmPrincipal";
+            Text = "Almacen";
             Load += frmPrincipal_Load;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
@@ -216,8 +218,8 @@
         private ToolStripMenuItem proveedoresToolStripMenuItem;
         private ToolStripMenuItem gruposToolStripMenuItem;
         private ToolStripMenuItem usuariosToolStripMenuItem;
-        private MonthCalendar monthCalendar1;
         private Panel panel1;
         private Label lblBienvenido;
+        protected MonthCalendar monthCalendar1;
     }
 }

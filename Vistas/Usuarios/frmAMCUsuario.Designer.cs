@@ -40,12 +40,15 @@
             txtContraseña = new TextBox();
             label5 = new Label();
             cmbGrupo = new ComboBox();
+            panel1 = new Panel();
+            lblForm = new Label();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // btnAceptar
             // 
             btnAceptar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnAceptar.Location = new Point(236, 193);
+            btnAceptar.Location = new Point(236, 246);
             btnAceptar.Margin = new Padding(3, 2, 3, 2);
             btnAceptar.Name = "btnAceptar";
             btnAceptar.Size = new Size(82, 22);
@@ -57,7 +60,7 @@
             // btnCancelar
             // 
             btnCancelar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnCancelar.Location = new Point(324, 193);
+            btnCancelar.Location = new Point(324, 246);
             btnCancelar.Margin = new Padding(3, 2, 3, 2);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(82, 22);
@@ -68,7 +71,7 @@
             // 
             // txtNomApe
             // 
-            txtNomApe.Location = new Point(141, 61);
+            txtNomApe.Location = new Point(132, 109);
             txtNomApe.Margin = new Padding(3, 2, 3, 2);
             txtNomApe.Name = "txtNomApe";
             txtNomApe.Size = new Size(246, 23);
@@ -76,7 +79,7 @@
             // 
             // txtUsuario
             // 
-            txtUsuario.Location = new Point(141, 89);
+            txtUsuario.Location = new Point(132, 137);
             txtUsuario.Margin = new Padding(3, 2, 3, 2);
             txtUsuario.Name = "txtUsuario";
             txtUsuario.Size = new Size(246, 23);
@@ -85,7 +88,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(27, 64);
+            label1.Location = new Point(18, 112);
             label1.Name = "label1";
             label1.Size = new Size(108, 15);
             label1.TabIndex = 4;
@@ -94,7 +97,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(88, 92);
+            label2.Location = new Point(79, 140);
             label2.Name = "label2";
             label2.Size = new Size(47, 15);
             label2.TabIndex = 5;
@@ -103,7 +106,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(117, 35);
+            label3.Location = new Point(108, 72);
             label3.Name = "label3";
             label3.Size = new Size(18, 15);
             label3.TabIndex = 6;
@@ -112,7 +115,7 @@
             // txtID
             // 
             txtID.Enabled = false;
-            txtID.Location = new Point(141, 32);
+            txtID.Location = new Point(132, 69);
             txtID.Margin = new Padding(3, 2, 3, 2);
             txtID.Name = "txtID";
             txtID.Size = new Size(66, 23);
@@ -121,7 +124,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(68, 119);
+            label4.Location = new Point(59, 167);
             label4.Name = "label4";
             label4.Size = new Size(67, 15);
             label4.TabIndex = 9;
@@ -129,7 +132,7 @@
             // 
             // txtContraseña
             // 
-            txtContraseña.Location = new Point(141, 116);
+            txtContraseña.Location = new Point(132, 164);
             txtContraseña.Margin = new Padding(3, 2, 3, 2);
             txtContraseña.Name = "txtContraseña";
             txtContraseña.PasswordChar = '*';
@@ -139,7 +142,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(95, 149);
+            label5.Location = new Point(86, 197);
             label5.Name = "label5";
             label5.Size = new Size(40, 15);
             label5.TabIndex = 10;
@@ -147,17 +150,40 @@
             // 
             // cmbGrupo
             // 
+            cmbGrupo.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbGrupo.FormattingEnabled = true;
-            cmbGrupo.Location = new Point(141, 146);
+            cmbGrupo.Location = new Point(132, 194);
             cmbGrupo.Name = "cmbGrupo";
             cmbGrupo.Size = new Size(246, 23);
             cmbGrupo.TabIndex = 11;
+            // 
+            // panel1
+            // 
+            panel1.BackColor = SystemColors.ActiveCaption;
+            panel1.Controls.Add(lblForm);
+            panel1.Dock = DockStyle.Top;
+            panel1.Location = new Point(0, 0);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(416, 100);
+            panel1.TabIndex = 12;
+            // 
+            // lblForm
+            // 
+            lblForm.AutoSize = true;
+            lblForm.Dock = DockStyle.Fill;
+            lblForm.Font = new Font("Segoe UI", 20F, FontStyle.Bold, GraphicsUnit.Point);
+            lblForm.Location = new Point(0, 0);
+            lblForm.Name = "lblForm";
+            lblForm.Size = new Size(116, 37);
+            lblForm.TabIndex = 0;
+            lblForm.Text = "Usuario";
             // 
             // frmAMCUsuario
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(416, 224);
+            ClientSize = new Size(416, 277);
+            Controls.Add(panel1);
             Controls.Add(cmbGrupo);
             Controls.Add(label5);
             Controls.Add(label4);
@@ -177,6 +203,8 @@
             Name = "frmAMCUsuario";
             Text = "Usuario";
             Load += frmAMCCategoria_Load;
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -195,5 +223,7 @@
         private TextBox txtContraseña;
         private Label label5;
         private ComboBox cmbGrupo;
+        private Panel panel1;
+        private Label lblForm;
     }
 }

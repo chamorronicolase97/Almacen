@@ -28,8 +28,13 @@ namespace Almacen.Vistas
         {
             if (Modificacion == true)
             {
+                lblForm.Text = "Modificar " + Grupo.NombreClase;
                 txtID.Text = Clase.ID.ToString();
                 txtNombre.Text = Clase.Descripcion;
+            }
+            else
+            {
+                lblForm.Text = "Crear " + Grupo.NombreClase;
             }
         }
 
