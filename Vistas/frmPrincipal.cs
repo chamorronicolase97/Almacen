@@ -27,13 +27,14 @@ namespace Almacen.Vistas
             {
                 this.Show();
                 Usuario = f.Usario;
+                lblBienvenido.Text = lblBienvenido.Text + " " + Usuario.NombreApellido;
             }
             else
             {
                 this.Close();
             }
 
-            lblBienvenido.Text = lblBienvenido.Text + " " +  Usuario.NombreApellido;
+            
         }
 
         private void cambiarUsuarioToolStripMenuItem_Click(object sender, EventArgs e)
