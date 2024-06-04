@@ -56,6 +56,10 @@ namespace Sistema
 
             }
             catch (Exception ex) { throw new Exception(ex.Message); }
+            finally
+            {
+                conectarbd.Close();
+            }
         }
 
         public DataTable Consultar (SqlCommand cmd)
@@ -71,6 +75,10 @@ namespace Sistema
 
             }
             catch (Exception ex) { throw new Exception(ex.Message); }
+            finally
+            {
+                conectarbd.Close();
+            }
         }
 
         public DataTable Consultar(string consulta)
@@ -86,7 +94,11 @@ namespace Sistema
                 return data;
 
             }
-            catch (Exception ex) {throw new Exception(ex.Message); } 
+            catch (Exception ex) {throw new Exception(ex.Message); }
+            finally
+            {
+                conectarbd.Close();
+            }
         }
 
         public void Cerrar()

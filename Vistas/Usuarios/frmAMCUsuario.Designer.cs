@@ -1,6 +1,6 @@
 ﻿namespace Almacen.Vistas
 {
-    partial class frmAMCGrupo
+    partial class frmAMCUsuario
     {
         /// <summary>
         /// Required designer variable.
@@ -30,16 +30,22 @@
         {
             btnAceptar = new Button();
             btnCancelar = new Button();
-            txtNombre = new TextBox();
+            txtNomApe = new TextBox();
+            txtUsuario = new TextBox();
             label1 = new Label();
+            label2 = new Label();
             label3 = new Label();
             txtID = new TextBox();
+            label4 = new Label();
+            txtContraseña = new TextBox();
+            label5 = new Label();
+            cmbGrupo = new ComboBox();
             SuspendLayout();
             // 
             // btnAceptar
             // 
             btnAceptar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnAceptar.Location = new Point(175, 102);
+            btnAceptar.Location = new Point(236, 193);
             btnAceptar.Margin = new Padding(3, 2, 3, 2);
             btnAceptar.Name = "btnAceptar";
             btnAceptar.Size = new Size(82, 22);
@@ -51,7 +57,7 @@
             // btnCancelar
             // 
             btnCancelar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnCancelar.Location = new Point(263, 102);
+            btnCancelar.Location = new Point(324, 193);
             btnCancelar.Margin = new Padding(3, 2, 3, 2);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(82, 22);
@@ -60,27 +66,44 @@
             btnCancelar.UseVisualStyleBackColor = true;
             btnCancelar.Click += btnCancelar_Click;
             // 
-            // txtNombre
+            // txtNomApe
             // 
-            txtNombre.Location = new Point(88, 66);
-            txtNombre.Margin = new Padding(3, 2, 3, 2);
-            txtNombre.Name = "txtNombre";
-            txtNombre.Size = new Size(173, 23);
-            txtNombre.TabIndex = 2;
+            txtNomApe.Location = new Point(141, 61);
+            txtNomApe.Margin = new Padding(3, 2, 3, 2);
+            txtNomApe.Name = "txtNomApe";
+            txtNomApe.Size = new Size(246, 23);
+            txtNomApe.TabIndex = 2;
+            // 
+            // txtUsuario
+            // 
+            txtUsuario.Location = new Point(141, 89);
+            txtUsuario.Margin = new Padding(3, 2, 3, 2);
+            txtUsuario.Name = "txtUsuario";
+            txtUsuario.Size = new Size(246, 23);
+            txtUsuario.TabIndex = 3;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(27, 68);
+            label1.Location = new Point(27, 64);
             label1.Name = "label1";
-            label1.Size = new Size(51, 15);
+            label1.Size = new Size(108, 15);
             label1.TabIndex = 4;
-            label1.Text = "Nombre";
+            label1.Text = "Nombre Y Apellido";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(88, 92);
+            label2.Name = "label2";
+            label2.Size = new Size(47, 15);
+            label2.TabIndex = 5;
+            label2.Text = "Usuario";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(60, 40);
+            label3.Location = new Point(117, 35);
             label3.Name = "label3";
             label3.Size = new Size(18, 15);
             label3.TabIndex = 6;
@@ -89,30 +112,70 @@
             // txtID
             // 
             txtID.Enabled = false;
-            txtID.Location = new Point(88, 38);
+            txtID.Location = new Point(141, 32);
             txtID.Margin = new Padding(3, 2, 3, 2);
             txtID.Name = "txtID";
             txtID.Size = new Size(66, 23);
             txtID.TabIndex = 7;
             // 
-            // frmAMCGrupo
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(68, 119);
+            label4.Name = "label4";
+            label4.Size = new Size(67, 15);
+            label4.TabIndex = 9;
+            label4.Text = "Contraseña";
+            // 
+            // txtContraseña
+            // 
+            txtContraseña.Location = new Point(141, 116);
+            txtContraseña.Margin = new Padding(3, 2, 3, 2);
+            txtContraseña.Name = "txtContraseña";
+            txtContraseña.PasswordChar = '*';
+            txtContraseña.Size = new Size(246, 23);
+            txtContraseña.TabIndex = 8;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(95, 149);
+            label5.Name = "label5";
+            label5.Size = new Size(40, 15);
+            label5.TabIndex = 10;
+            label5.Text = "Grupo";
+            // 
+            // cmbGrupo
+            // 
+            cmbGrupo.FormattingEnabled = true;
+            cmbGrupo.Location = new Point(141, 146);
+            cmbGrupo.Name = "cmbGrupo";
+            cmbGrupo.Size = new Size(246, 23);
+            cmbGrupo.TabIndex = 11;
+            // 
+            // frmAMCUsuario
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(355, 133);
+            ClientSize = new Size(416, 224);
+            Controls.Add(cmbGrupo);
+            Controls.Add(label5);
+            Controls.Add(label4);
+            Controls.Add(txtContraseña);
             Controls.Add(txtID);
             Controls.Add(label3);
+            Controls.Add(label2);
             Controls.Add(label1);
-            Controls.Add(txtNombre);
+            Controls.Add(txtUsuario);
+            Controls.Add(txtNomApe);
             Controls.Add(btnCancelar);
             Controls.Add(btnAceptar);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             Margin = new Padding(3, 2, 3, 2);
             MaximizeBox = false;
-            MdiChildrenMinimizedAnchorBottom = false;
             MinimizeBox = false;
-            Name = "frmAMCGrupo";
-            Text = "Categoria";
+            Name = "frmAMCUsuario";
+            Text = "Usuario";
             Load += frmAMCCategoria_Load;
             ResumeLayout(false);
             PerformLayout();
@@ -122,9 +185,15 @@
 
         private Button btnAceptar;
         private Button btnCancelar;
-        private TextBox txtNombre;
+        private TextBox txtNomApe;
+        private TextBox txtUsuario;
         private Label label1;
+        private Label label2;
         private Label label3;
         private TextBox txtID;
+        private Label label4;
+        private TextBox txtContraseña;
+        private Label label5;
+        private ComboBox cmbGrupo;
     }
 }

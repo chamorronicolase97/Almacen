@@ -31,8 +31,8 @@
             btnCancelar = new Button();
             btnAceptar = new Button();
             chkRecordar = new CheckBox();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
+            txtUsuario = new TextBox();
+            txtPassword = new TextBox();
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
@@ -70,20 +70,20 @@
             chkRecordar.Text = "Recordar";
             chkRecordar.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // txtUsuario
             // 
-            textBox1.Location = new Point(107, 53);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(157, 23);
-            textBox1.TabIndex = 3;
+            txtUsuario.Location = new Point(107, 53);
+            txtUsuario.Name = "txtUsuario";
+            txtUsuario.Size = new Size(157, 23);
+            txtUsuario.TabIndex = 3;
             // 
-            // textBox2
+            // txtPassword
             // 
-            textBox2.Location = new Point(107, 84);
-            textBox2.Name = "textBox2";
-            textBox2.PasswordChar = '*';
-            textBox2.Size = new Size(157, 23);
-            textBox2.TabIndex = 4;
+            txtPassword.Location = new Point(107, 84);
+            txtPassword.Name = "txtPassword";
+            txtPassword.PasswordChar = '*';
+            txtPassword.Size = new Size(157, 23);
+            txtPassword.TabIndex = 4;
             // 
             // label1
             // 
@@ -133,8 +133,8 @@
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
+            Controls.Add(txtPassword);
+            Controls.Add(txtUsuario);
             Controls.Add(chkRecordar);
             Controls.Add(btnAceptar);
             Controls.Add(btnCancelar);
@@ -153,8 +153,8 @@
         private Button btnCancelar;
         private Button btnAceptar;
         private CheckBox chkRecordar;
-        private TextBox textBox1;
-        private TextBox textBox2;
+        private TextBox txtUsuario;
+        private TextBox txtPassword;
         private Label label1;
         private Label label2;
         private Label label3;

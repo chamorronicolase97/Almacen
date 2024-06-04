@@ -60,13 +60,7 @@ namespace Almacen.Vistas
         {
             if (txtNombre.Text.Length <= 0)
             {
-                frmMostrarMensaje.MostrarMensaje("Categoria", "Debe escribir un nombre para la categoria");
-                return false;
-            }
-
-            if (txtUtilidad.Text.Length <= 0)
-            {
-                frmMostrarMensaje.MostrarMensaje("Categoria", "Debe escribir una utilidad para la categoria");
+                frmMostrarMensaje.MostrarMensaje("Grupo", "Debe escribir un nombre para el grupo");
                 return false;
             }
             return true;

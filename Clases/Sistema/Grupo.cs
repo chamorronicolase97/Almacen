@@ -35,7 +35,7 @@ namespace Almacen.Clases.Administracion
         public void Abrir()
         {
             Conexion cn = new Conexion();
-            string q = @$"Select * from {Tabla} where CategoriaID = {ID}";
+            string q = @$"Select * from {Tabla} where GrupoID = {ID}";
 
             DataTable dt = cn.Consultar(q);
             try
@@ -65,8 +65,8 @@ namespace Almacen.Clases.Administracion
         public void Insertar()
         {
             Conexion cn = new Conexion();
-            string q = $@"INSERT INTO {Tabla} (Descripcion, Utilidad)
-                        Values(@Descripcion, @Utilidad);";
+            string q = $@"INSERT INTO {Tabla} (Descripcion)
+                        Values(@Descripcion);";
             SqlCommand cmd = new SqlCommand(q);
             cmd.Parameters.Add("@Descripcion", SqlDbType.VarChar).Value = Descripcion;
 

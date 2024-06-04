@@ -68,7 +68,9 @@ namespace Almacen.Clases.Administracion
             ID = Convert.ToInt32(dr["UsuarioID"]);
             _nombreApellido = Convert.ToString(dr["NombreApellido"]);
             _codUsuario = Convert.ToString(dr["CodUsuario"]);
-           // _contraseña = HASHEAR
+            _contraseña = ""; //no traigo la contraseña
+
+            if (dr["GrupoID"] != DBNull.Value) _grupo = new Grupo(Convert.ToInt32(dr["GrupoID"]));
         }
 
 
@@ -78,10 +80,10 @@ namespace Almacen.Clases.Administracion
             string q = $@"INSERT INTO {Tabla} (NombreApellido, CodUsuario, Contraseña, GrupoID)
                         Values(@NombreApellido, @CodUsuario, @Contraseña, @GrupoID);";
             SqlCommand cmd = new SqlCommand(q);
-            cmd.Parameters.Add("@NombreApellido", SqlDbType.VarChar).Value = NombreApellido;
-            cmd.Parameters.Add("@CodUsuario", SqlDbType.VarChar).Value = CodUsuario;
-            cmd.Parameters.Add("@Contraseña", SqlDbType.VarBinary).Value = Contraseña;
-            cmd.Parameters.Add("@GrupoID", SqlDbType.Int).Value = Grupo.ID;
+            cmd.Parameters.AddWithValue("@NombreApellido", NombreApellido);
+            cmd.Parameters.AddWithValue("@CodUsuario", CodUsuario);
+            cmd.Parameters.Add("@Contraseña", SqlDbType.VarChar).Value = Encrypt.HashString(Contraseña);
+            cmd.Parameters.AddWithValue("@GrupoID", Grupo.ID);
 
             cn.Ejecutar(cmd);
 
@@ -90,15 +92,15 @@ namespace Almacen.Clases.Administracion
         public void Modificar()
         {
             Conexion cn = new Conexion();
-            string q = $@"UPDATE {Tabla} SET NombreApellido = @Descripcion, 
-                                             CodUsuario = @Utilidad,
+            string q = $@"UPDATE {Tabla} SET NombreApellido = @NombreApellido, 
+                                             CodUsuario = @CodUsuario,
                                              Contraseña = @Contraseña,
                                              GrupoID = @GrupoID
                                              WHERE UsuarioID = @ID;";
             SqlCommand cmd = new SqlCommand(q);
             cmd.Parameters.Add("@NombreApellido", SqlDbType.VarChar).Value = NombreApellido;
             cmd.Parameters.Add("@CodUsuario", SqlDbType.VarChar).Value = CodUsuario;
-            cmd.Parameters.Add("@Contraseña", SqlDbType.VarBinary).Value = Encrypt.HashString(Contraseña);
+            cmd.Parameters.Add("@Contraseña", SqlDbType.VarChar).Value = Encrypt.HashString(Contraseña) ;
             cmd.Parameters.Add("@GrupoID", SqlDbType.Int).Value = Grupo.ID;
             cmd.Parameters.Add("@ID", SqlDbType.Int).Value = ID;
 
@@ -143,7 +145,7 @@ namespace Almacen.Clases.Administracion
                         and Contraseña = @Password";
             SqlCommand cmd = new SqlCommand(q);
             cmd.Parameters.Add("@User", SqlDbType.VarChar).Value = User;
-            cmd.Parameters.Add("@Password", SqlDbType.VarBinary).Value = Encrypt.HashString(Password);
+            cmd.Parameters.Add("@Password", SqlDbType.VarChar).Value = Encrypt.HashString(Password);
 
             DataTable dt = new DataTable();
 
