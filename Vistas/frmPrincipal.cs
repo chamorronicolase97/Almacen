@@ -34,7 +34,7 @@ namespace Almacen.Vistas
                 this.Close();
             }
 
-            
+
         }
 
         private void cambiarUsuarioToolStripMenuItem_Click(object sender, EventArgs e)

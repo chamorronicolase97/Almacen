@@ -46,6 +46,7 @@ namespace Almacen.Vistas
 
             if (Modificacion == true)
             {
+                lblForm.Text = "Modificar " + Producto.NombreClase;
                 txtID.Text = Clase.ID.ToString();
                 txtDescripcion.Text = Clase.Descripcion;
                 txtCosto.Text = Clase.Costo.ToString();
@@ -55,6 +56,7 @@ namespace Almacen.Vistas
             }
             else
             {
+                lblForm.Text = "Crear " + Producto.NombreClase;
                 //aqui no vamos a guardar el costo como valor inicial así que este campo lo deshabilito.
                 txtCosto.Enabled = false;
 
@@ -95,13 +97,13 @@ namespace Almacen.Vistas
                 return false;
             }
 
-            if(cmbCategoria.SelectedIndex == 0)
+            if (cmbCategoria.SelectedIndex == 0)
             {
                 frmMostrarMensaje.MostrarMensaje("Producto", "Debe seleccionar una categoria");
                 return false;
             }
 
-            
+
             return true;
         }
 
