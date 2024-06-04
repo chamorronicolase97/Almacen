@@ -141,9 +141,9 @@
             lblForm.Font = new Font("Segoe UI", 20F, FontStyle.Bold, GraphicsUnit.Point);
             lblForm.Location = new Point(0, 0);
             lblForm.Name = "lblForm";
-            lblForm.Size = new Size(96, 37);
+            lblForm.Size = new Size(143, 37);
             lblForm.TabIndex = 0;
-            lblForm.Text = "label6";
+            lblForm.Text = "Categoria";
             // 
             // panel1
             // 

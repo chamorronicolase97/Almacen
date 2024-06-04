@@ -109,9 +109,9 @@
             lblForm.Font = new Font("Segoe UI", 20F, FontStyle.Bold, GraphicsUnit.Point);
             lblForm.Location = new Point(0, 0);
             lblForm.Name = "lblForm";
-            lblForm.Size = new Size(96, 37);
+            lblForm.Size = new Size(97, 37);
             lblForm.TabIndex = 0;
-            lblForm.Text = "label6";
+            lblForm.Text = "Grupo";
             // 
             // panel1
             // 
@@ -141,7 +141,7 @@
             MdiChildrenMinimizedAnchorBottom = false;
             MinimizeBox = false;
             Name = "frmAMCGrupo";
-            Text = "Categoria";
+            Text = "Grupo";
             Load += frmAMCCategoria_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();

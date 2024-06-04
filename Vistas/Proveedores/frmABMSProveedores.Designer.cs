@@ -124,7 +124,7 @@
             Controls.Add(splitContainer1);
             Margin = new Padding(3, 2, 3, 2);
             Name = "frmABMSProveedores";
-            Text = "frmABMSProveedores";
+            Text = "Proveedores";
             Load += frmABMSProveedores_Load;
             ((System.ComponentModel.ISupportInitialize)dgvDatos).EndInit();
             splitContainer1.Panel1.ResumeLayout(false);
