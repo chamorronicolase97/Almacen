@@ -29,12 +29,17 @@ namespace Almacen.Vistas
 
             if (Modificacion == true)
             {
+                lblForm.Text = "Modificar " + Proveedor.NombreClase;
                 txtID.Text = Clase.ID.ToString();
                 txtCUIT.Text = Clase.Cuit;
                 txtRazonSocial.Text = Clase.RazonSocial;
                 txtDireccion.Text = Clase.Direccion;
                 txtMail.Text = Clase.Mail;
                 txtTelefono.Text = Clase.Telefono;
+            }
+            else
+            {
+                lblForm.Text = "Crear " + Proveedor.NombreClase;
             }
         }
 
@@ -73,7 +78,7 @@ namespace Almacen.Vistas
                 return false;
             }
 
-            
+
             return true;
         }
 
