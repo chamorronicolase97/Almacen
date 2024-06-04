@@ -6,21 +6,31 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Data;
 using System.Configuration;
+using Microsoft.VisualBasic.Logging;
 
 namespace Sistema
 {
     public class Conexion
     {
 
-        string connectionString = ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString;
+        string connectionString = ConfigurationManager.ConnectionStrings["NicoConnectionString"].ConnectionString;
+        string connectionString2 = ConfigurationManager.ConnectionStrings["MiltonConnectionString"].ConnectionString;
 
-
-        //string cadena = "Data Source=DESKTOP-KHKJ2OC;Initial Catalog=Almacen;Integrated Security=True;Connect Timeout=30;Encrypt=False";
         public SqlConnection conectarbd = new SqlConnection();
 
         public  Conexion()
         {
-            conectarbd.ConnectionString = connectionString;
+            try
+            {
+                conectarbd.ConnectionString = connectionString2;
+            }
+            catch {}
+            try
+            {
+                conectarbd.ConnectionString = connectionString;
+            }
+            catch { }
+            
         }
 
         public void Abrir()
@@ -46,6 +56,29 @@ namespace Sistema
 
             }
             catch (Exception ex) { throw new Exception(ex.Message); }
+            finally
+            {
+                conectarbd.Close();
+            }
+        }
+
+        public DataTable Consultar (SqlCommand cmd)
+        {
+            try
+            {
+                conectarbd.Open();
+                cmd.Connection = conectarbd;
+                DataTable data = new DataTable();
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                adapter.Fill(data);
+                return data;
+
+            }
+            catch (Exception ex) { throw new Exception(ex.Message); }
+            finally
+            {
+                conectarbd.Close();
+            }
         }
 
         public DataTable Consultar(string consulta)
@@ -61,7 +94,11 @@ namespace Sistema
                 return data;
 
             }
-            catch (Exception ex) {throw new Exception(ex.Message); } 
+            catch (Exception ex) {throw new Exception(ex.Message); }
+            finally
+            {
+                conectarbd.Close();
+            }
         }
 
         public void Cerrar()

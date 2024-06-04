@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Almacen.Clases.Administracion;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +13,7 @@ namespace Almacen.Vistas
 {
     public partial class frmPrincipal : Form
     {
+        public Usuario Usuario { get; set; }
         public frmPrincipal()
         {
             InitializeComponent();
@@ -24,11 +26,14 @@ namespace Almacen.Vistas
             if (f.DialogResult == DialogResult.OK)
             {
                 this.Show();
+                Usuario = f.Usario;
             }
             else
             {
                 this.Close();
             }
+
+            lblBienvenido.Text = lblBienvenido.Text + " " +  Usuario.NombreApellido;
         }
 
         private void cambiarUsuarioToolStripMenuItem_Click(object sender, EventArgs e)
@@ -61,10 +66,21 @@ namespace Almacen.Vistas
             frmABMSProductos f = new frmABMSProductos();
             f.Show();
         }
-
         private void proveedoresToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmABMSProveedores f = new frmABMSProveedores();
+            f.Show();
+        }
+
+        private void gruposToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmABMSGrupos f = new frmABMSGrupos();
+            f.Show();
+        }
+
+        private void usuariosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmABMSUsuarios f = new frmABMSUsuarios();
             f.Show();
         }
     }

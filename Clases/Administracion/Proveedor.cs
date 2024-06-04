@@ -7,12 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Almacen.Clases
+namespace Almacen.Clases.Administracion
 {
     public class Proveedor
     {
         private int _id;
-        private string _cuit; 
+        private string _cuit;
         private string _razonSocial;
         private string _direccion;
         private string _mail;
@@ -126,7 +126,7 @@ namespace Almacen.Clases
 
         public static DataTable Listar()
         {
-            Conexion cn = new Conexion();        
+            Conexion cn = new Conexion();
             string q = @$"Select * from {Tabla}";
             return cn.Consultar(q);
         }

@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Almacen.Clases
+namespace Almacen.Clases.Administracion
 {
     public class Categoria
     {
@@ -39,11 +39,11 @@ namespace Almacen.Clases
             Conexion cn = new Conexion();
             string q = @$"Select * from {Tabla} where CategoriaID = {ID}";
 
-           DataTable dt = cn.Consultar(q);
+            DataTable dt = cn.Consultar(q);
             try
             {
 
-                if(dt.Rows.Count > 0)
+                if (dt.Rows.Count > 0)
                 {
                     CargaDatos(dt.Rows[0]);
                 }
@@ -54,7 +54,7 @@ namespace Almacen.Clases
             }
 
         }
-        
+
 
 
         private void CargaDatos(DataRow dr)
@@ -75,7 +75,7 @@ namespace Almacen.Clases
             cmd.Parameters.Add("@Utilidad", SqlDbType.Decimal).Value = Utilidad;
 
             cn.Ejecutar(cmd);
-           
+
         }
 
         public void Modificar()
@@ -106,7 +106,7 @@ namespace Almacen.Clases
 
         public static DataTable Listar()
         {
-            Conexion cn = new Conexion();        
+            Conexion cn = new Conexion();
             string q = @$"Select * from {Tabla}";
             return cn.Consultar(q);
         }
@@ -114,8 +114,8 @@ namespace Almacen.Clases
         public static List<Categoria> ListarCategorias()
         {
             DataTable dt = Listar();
-            List<Categoria> lista = new List<Categoria>();  
-            foreach(DataRow dr in dt.Rows)
+            List<Categoria> lista = new List<Categoria>();
+            foreach (DataRow dr in dt.Rows)
             {
                 lista.Add(new Categoria(dr));
             }

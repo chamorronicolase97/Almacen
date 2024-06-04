@@ -13,30 +13,30 @@ using System.Windows.Forms;
 
 namespace Almacen.Vistas
 {
-    public partial class frmABMSCategorias : Form
+    public partial class frmABMSGrupos : Form
     {
 
-        public frmABMSCategorias()
+        public frmABMSGrupos()
         {
             InitializeComponent();
 
         }
 
-        private void frmABMSCategorias_Load(object sender, EventArgs e)
+        private void frmABMSGrupos_Load(object sender, EventArgs e)
 
         {
-            dgvDatos.DataSource = Categoria.Listar();
+            dgvDatos.DataSource = Grupo.Listar();
         }
 
         private void CargarGrilla()
         {
-            dgvDatos.DataSource = Categoria.Listar();
+            dgvDatos.DataSource = Grupo.Listar();
         }
 
         private void btnCrear_Click(object sender, EventArgs e)
         {
-            frmAMCCategoria f = new frmAMCCategoria();
-            f.Clase = new Categoria(0);
+            frmAMCGrupo f = new frmAMCGrupo();
+            f.Clase = new Grupo(0);
             f.ShowDialog();
             if (f.DialogResult == DialogResult.OK) CargarGrilla();
         }
@@ -45,11 +45,11 @@ namespace Almacen.Vistas
         {
             if (dgvDatos.CurrentCell == null) return;
 
-            Categoria Clase = new Categoria(Convert.ToInt32(dgvDatos.CurrentRow.Cells["CategoriaID"].Value));
+            Grupo Clase = new Grupo(Convert.ToInt32(dgvDatos.CurrentRow.Cells["GrupoID"].Value));
 
             Clase.Eliminar();
 
-            frmMostrarMensaje.MostrarMensaje($"Baja de {Categoria.NombreClase}", "Correcta.");
+            frmMostrarMensaje.MostrarMensaje($"Baja de {Grupo.NombreClase}", "Correcta.");
 
             CargarGrilla();
 
@@ -59,9 +59,9 @@ namespace Almacen.Vistas
         {
             if (dgvDatos.CurrentCell == null) return;
 
-            Categoria Clase = new Categoria(Convert.ToInt32(dgvDatos.CurrentRow.Cells["CategoriaID"].Value));
+            Grupo Clase = new Grupo(Convert.ToInt32(dgvDatos.CurrentRow.Cells["GrupoID"].Value));
 
-            frmAMCCategoria f = new frmAMCCategoria();
+            frmAMCGrupo f = new frmAMCGrupo();
             f.Clase = Clase;
             f.Modificacion = true;
             f.ShowDialog();

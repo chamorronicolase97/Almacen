@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Almacen.Clases
+namespace Almacen.Clases.Administracion
 {
     public class Producto
     {
@@ -44,11 +44,11 @@ namespace Almacen.Clases
             Conexion cn = new Conexion();
             string q = @$"Select * from {Tabla} where ProductoID = {ID}";
 
-           DataTable dt = cn.Consultar(q);
+            DataTable dt = cn.Consultar(q);
             try
             {
 
-                if(dt.Rows.Count > 0)
+                if (dt.Rows.Count > 0)
                 {
                     CargaDatos(dt.Rows[0]);
                 }
@@ -59,7 +59,7 @@ namespace Almacen.Clases
             }
 
         }
-        
+
 
 
         private void CargaDatos(DataRow dr)
@@ -85,7 +85,7 @@ namespace Almacen.Clases
             cmd.Parameters.Add("@CategoriaID", SqlDbType.Int).Value = Categoria.ID;
 
             cn.Ejecutar(cmd);
-           
+
         }
 
         public void Modificar()
@@ -120,7 +120,7 @@ namespace Almacen.Clases
 
         public static DataTable Listar()
         {
-            Conexion cn = new Conexion();        
+            Conexion cn = new Conexion();
             string q = @$"Select * from {Tabla}";
             return cn.Consultar(q);
         }

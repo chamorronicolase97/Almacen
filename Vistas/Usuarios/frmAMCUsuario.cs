@@ -12,13 +12,13 @@ using System.Windows.Forms;
 
 namespace Almacen.Vistas
 {
-    public partial class frmAMCProducto : Form
+    public partial class frmAMCUsuario : Form
     {
-        public Producto Clase { get; set; }
+        public Usuario Clase { get; set; }
 
         public bool Modificacion { get; set; } = false;
 
-        public frmAMCProducto()
+        public frmAMCUsuario()
         {
             InitializeComponent();
 
@@ -26,37 +26,35 @@ namespace Almacen.Vistas
 
         private void frmAMCCategoria_Load(object sender, EventArgs e)
         {
-            #region Combo Categorias
-            List<Categoria> ListaCategorias = Categoria.ListarCategorias();
+            #region Combo Grupos
+            List<Grupo> ListaGrupos = Grupo.ListarGrupos();
 
-            Categoria cat = new Categoria()
+            Grupo grupo = new Grupo()
             {
                 ID = 0,
                 Descripcion = "Seleccione"
             };
 
-            ListaCategorias.Insert(0, cat);
+            ListaGrupos.Insert(0, grupo);
 
 
-            cmbCategoria.ValueMember = "ID";
-            cmbCategoria.DisplayMember = "Descripcion";
-            cmbCategoria.DataSource = ListaCategorias;
+            cmbGrupo.ValueMember = "ID";
+            cmbGrupo.DisplayMember = "Descripcion";
+            cmbGrupo.DataSource = ListaGrupos;
             #endregion
 
 
             if (Modificacion == true)
             {
                 txtID.Text = Clase.ID.ToString();
-                txtDescripcion.Text = Clase.Descripcion;
-                txtCosto.Text = Clase.Costo.ToString();
-                txtCodBarra.Text = Clase.CodigoDeBarra;
-                cmbCategoria.Text = Clase.Categoria.Descripcion;
-                cmbCategoria.Enabled = false;
+                txtNomApe.Text = Clase.NombreApellido;
+                txtUsuario.Text = Clase.CodUsuario;
+                txtContraseña.Text = Clase.Contraseña;
+                cmbGrupo.Text = Clase.Grupo.Descripcion;
+                cmbGrupo.Enabled = false;
             }
             else
-            {
-                //aqui no vamos a guardar el costo como valor inicial así que este campo lo deshabilito.
-                txtCosto.Enabled = false;
+            {                
 
             }
         }
@@ -70,10 +68,10 @@ namespace Almacen.Vistas
         {
             if (!Validar()) return;
 
-            Clase.Descripcion = txtDescripcion.Text;
-            Clase.Costo = null;
-            Clase.CodigoDeBarra = txtCodBarra.Text;
-            Clase.Categoria = new Categoria(Convert.ToInt32(cmbCategoria.SelectedValue));
+            Clase.NombreApellido = txtNomApe.Text;
+            Clase.CodUsuario = txtUsuario.Text;
+            Clase.Contraseña = txtContraseña.Text;
+            Clase.Grupo = new Grupo(Convert.ToInt32(cmbGrupo.SelectedValue));
 
             if (Modificacion)
             {
@@ -89,19 +87,19 @@ namespace Almacen.Vistas
 
         private bool Validar()
         {
-            if (txtDescripcion.Text.Length <= 0)
+            if (txtNomApe.Text.Length <= 0)
             {
-                frmMostrarMensaje.MostrarMensaje("Producto", "Debe escribir una descripción para el producto");
+                frmMostrarMensaje.MostrarMensaje("Usuario", "Debe escribir un nombre y apellido para el Usuario");
                 return false;
             }
 
-            if(cmbCategoria.SelectedIndex == 0)
+            if (cmbGrupo.SelectedIndex == 0)
             {
-                frmMostrarMensaje.MostrarMensaje("Producto", "Debe seleccionar una categoria");
+                frmMostrarMensaje.MostrarMensaje("Usuario", "Debe seleccionar un grupo");
                 return false;
             }
 
-            
+
             return true;
         }
 

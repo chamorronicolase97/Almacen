@@ -13,30 +13,30 @@ using System.Windows.Forms;
 
 namespace Almacen.Vistas
 {
-    public partial class frmABMSCategorias : Form
+    public partial class frmABMSUsuarios : Form
     {
 
-        public frmABMSCategorias()
+        public frmABMSUsuarios()
         {
             InitializeComponent();
 
         }
 
-        private void frmABMSCategorias_Load(object sender, EventArgs e)
+        private void frmABMSUsuarios_Load(object sender, EventArgs e)
 
         {
-            dgvDatos.DataSource = Categoria.Listar();
+            dgvDatos.DataSource = Usuario.Listar();
         }
 
         private void CargarGrilla()
         {
-            dgvDatos.DataSource = Categoria.Listar();
+            dgvDatos.DataSource = Usuario.Listar();
         }
 
         private void btnCrear_Click(object sender, EventArgs e)
         {
-            frmAMCCategoria f = new frmAMCCategoria();
-            f.Clase = new Categoria(0);
+            frmAMCUsuario f = new frmAMCUsuario();
+            f.Clase = new Usuario(0);
             f.ShowDialog();
             if (f.DialogResult == DialogResult.OK) CargarGrilla();
         }
@@ -45,11 +45,11 @@ namespace Almacen.Vistas
         {
             if (dgvDatos.CurrentCell == null) return;
 
-            Categoria Clase = new Categoria(Convert.ToInt32(dgvDatos.CurrentRow.Cells["CategoriaID"].Value));
+            Usuario Clase = new Usuario(Convert.ToInt32(dgvDatos.CurrentRow.Cells["UsuarioID"].Value));
 
             Clase.Eliminar();
 
-            frmMostrarMensaje.MostrarMensaje($"Baja de {Categoria.NombreClase}", "Correcta.");
+            frmMostrarMensaje.MostrarMensaje($"Baja de {Usuario.NombreClase}", "Correcta.");
 
             CargarGrilla();
 
@@ -59,9 +59,9 @@ namespace Almacen.Vistas
         {
             if (dgvDatos.CurrentCell == null) return;
 
-            Categoria Clase = new Categoria(Convert.ToInt32(dgvDatos.CurrentRow.Cells["CategoriaID"].Value));
+            Usuario Clase = new Usuario(Convert.ToInt32(dgvDatos.CurrentRow.Cells["UsuarioID"].Value));
 
-            frmAMCCategoria f = new frmAMCCategoria();
+            frmAMCUsuario f = new frmAMCUsuario();
             f.Clase = Clase;
             f.Modificacion = true;
             f.ShowDialog();

@@ -12,13 +12,13 @@ using System.Windows.Forms;
 
 namespace Almacen.Vistas
 {
-    public partial class frmAMCProveedor : Form
+    public partial class frmAMCGrupo : Form
     {
-        public Proveedor Clase { get; set; }
+        public Grupo Clase { get; set; }
 
         public bool Modificacion { get; set; } = false;
 
-        public frmAMCProveedor()
+        public frmAMCGrupo()
         {
             InitializeComponent();
 
@@ -26,15 +26,10 @@ namespace Almacen.Vistas
 
         private void frmAMCCategoria_Load(object sender, EventArgs e)
         {
-
             if (Modificacion == true)
             {
                 txtID.Text = Clase.ID.ToString();
-                txtCUIT.Text = Clase.Cuit;
-                txtRazonSocial.Text = Clase.RazonSocial;
-                txtDireccion.Text = Clase.Direccion;
-                txtMail.Text = Clase.Mail;
-                txtTelefono.Text = Clase.Telefono;
+                txtNombre.Text = Clase.Descripcion;
             }
         }
 
@@ -47,11 +42,7 @@ namespace Almacen.Vistas
         {
             if (!Validar()) return;
 
-            Clase.Cuit = txtCUIT.Text;
-            Clase.RazonSocial = txtRazonSocial.Text;
-            Clase.Direccion = txtDireccion.Text;
-            Clase.Mail = txtMail.Text;
-            Clase.Telefono = txtTelefono.Text;
+            Clase.Descripcion = txtNombre.Text;
 
             if (Modificacion)
             {
@@ -67,13 +58,11 @@ namespace Almacen.Vistas
 
         private bool Validar()
         {
-            if (txtCUIT.Text.Length <= 0)
+            if (txtNombre.Text.Length <= 0)
             {
-                frmMostrarMensaje.MostrarMensaje("Proveedor", "El proveedor debe tener un CUIT");
+                frmMostrarMensaje.MostrarMensaje("Grupo", "Debe escribir un nombre para el grupo");
                 return false;
             }
-
-            
             return true;
         }
 
