@@ -26,37 +26,19 @@ namespace Almacen.Vistas
 
         private void frmAMCPermiso_Load(object sender, EventArgs e)
         {
-            #region Combo Grupos
-            List<Grupo> ListaGrupos = Grupo.ListarGrupos();
-
-            Grupo grupo = new Grupo()
-            {
-                ID = 0,
-                Descripcion = "Seleccione"
-            };
-
-            ListaGrupos.Insert(0, grupo);
-
-
-            cmbGrupo.ValueMember = "ID";
-            cmbGrupo.DisplayMember = "Descripcion";
-            cmbGrupo.DataSource = ListaGrupos;
-            #endregion
-
 
             if (Modificacion == true)
             {
                 lblForm.Text = "Modificar " + Permiso.NombreClase;
                 txtID.Text = Clase.ID.ToString();
-                txtNomApe.Text = Clase.NombreApellido;
-                txtPermiso.Text = Clase.CodPermiso;
-                txtContraseña.Text = Clase.Contraseña;
-                cmbGrupo.Text = Clase.Grupo.Descripcion;
-                cmbGrupo.Enabled = false;
+                txtCodPermiso.Text = Clase.CodPermiso;
+                txtDescripcion.Text = Clase.Descripcion;
+                btnAsignar.Enabled = true;
             }
             else
             {
                 lblForm.Text = "Crear " + Permiso.NombreClase;
+                btnAsignar.Enabled = false;
             }
         }
 
@@ -69,10 +51,8 @@ namespace Almacen.Vistas
         {
             if (!Validar()) return;
 
-            Clase.NombreApellido = txtNomApe.Text;
-            Clase.CodPermiso = txtPermiso.Text;
-            Clase.Contraseña = txtContraseña.Text;
-            Clase.Grupo = new Grupo(Convert.ToInt32(cmbGrupo.SelectedValue));
+            Clase.CodPermiso = txtCodPermiso.Text;
+            Clase.Descripcion = txtDescripcion.Text;
 
             if (Modificacion)
             {
@@ -88,31 +68,11 @@ namespace Almacen.Vistas
 
         private bool Validar()
         {
-            if (txtNomApe.Text.Length <= 0)
+            if (txtCodPermiso.Text.Length <= 0)
             {
                 frmMostrarMensaje.MostrarMensaje("Permiso", "Debe escribir un NOMBRE y APELLIDO para el Permiso");
                 return false;
             }
-
-            List<string> nombre = txtNomApe.Text.Split(" ").ToList();
-            if (nombre.Count < 2)
-            {
-                frmMostrarMensaje.MostrarMensaje("Permiso", "Debe escribir un NOMBRE y APELLIDO para el Permiso");
-                return false;
-            }
-
-            if (txtContraseña.Text.Length <= 0)
-            {
-                frmMostrarMensaje.MostrarMensaje("Permiso", "Debe escribir una contraseña para el Permiso");
-                return false;
-            }
-
-            if (cmbGrupo.SelectedIndex == 0)
-            {
-                frmMostrarMensaje.MostrarMensaje("Permiso", "Debe seleccionar un grupo");
-                return false;
-            }
-
 
             return true;
         }

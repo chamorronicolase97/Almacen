@@ -57,15 +57,15 @@ namespace Almacen.Vistas
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            //    if (dgvDatos.CurrentCell == null) return;
+            if (dgvDatos.CurrentCell == null) return;
 
-            //    Permiso Clase = new Permiso(Convert.ToInt32(dgvDatos.CurrentRow.Cells["PermisoID"].Value));
+            Permiso Clase = new Permiso(Convert.ToInt32(dgvDatos.CurrentRow.Cells["PermisoID"].Value));
 
-            //    frmAMCPermiso f = new frmAMCPermiso();
-            //    f.Clase = Clase;
-            //    f.Modificacion = true;
-            //    f.ShowDialog();
-            //    if (f.DialogResult == DialogResult.OK) CargarGrilla();
+            frmAMCPermiso f = new frmAMCPermiso();
+            f.Clase = Clase;
+            f.Modificacion = true;
+            f.ShowDialog();
+            if (f.DialogResult == DialogResult.OK) CargarGrilla();
         }
     }
 }

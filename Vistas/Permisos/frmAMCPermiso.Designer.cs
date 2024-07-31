@@ -30,8 +30,8 @@
         {
             btnAceptar = new Button();
             btnCancelar = new Button();
-            txtNomApe = new TextBox();
-            txtUsuario = new TextBox();
+            txtCodPermiso = new TextBox();
+            txtDescripcion = new TextBox();
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
@@ -64,25 +64,25 @@
             btnCancelar.UseVisualStyleBackColor = true;
             btnCancelar.Click += btnCancelar_Click;
             // 
-            // txtNomApe
+            // txtCodPermiso
             // 
-            txtNomApe.Location = new Point(151, 145);
-            txtNomApe.Name = "txtNomApe";
-            txtNomApe.Size = new Size(281, 27);
-            txtNomApe.TabIndex = 2;
+            txtCodPermiso.Location = new Point(151, 169);
+            txtCodPermiso.Name = "txtCodPermiso";
+            txtCodPermiso.Size = new Size(281, 27);
+            txtCodPermiso.TabIndex = 2;
             // 
-            // txtUsuario
+            // txtDescripcion
             // 
-            txtUsuario.Location = new Point(151, 186);
-            txtUsuario.Multiline = true;
-            txtUsuario.Name = "txtUsuario";
-            txtUsuario.Size = new Size(281, 55);
-            txtUsuario.TabIndex = 3;
+            txtDescripcion.Location = new Point(151, 204);
+            txtDescripcion.Multiline = true;
+            txtDescripcion.Name = "txtDescripcion";
+            txtDescripcion.Size = new Size(281, 55);
+            txtDescripcion.TabIndex = 3;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(31, 148);
+            label1.Location = new Point(31, 172);
             label1.Name = "label1";
             label1.Size = new Size(114, 20);
             label1.TabIndex = 4;
@@ -91,7 +91,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(58, 186);
+            label2.Location = new Point(58, 204);
             label2.Name = "label2";
             label2.Size = new Size(87, 20);
             label2.TabIndex = 5;
@@ -100,7 +100,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(123, 96);
+            label3.Location = new Point(123, 139);
             label3.Name = "label3";
             label3.Size = new Size(24, 20);
             label3.TabIndex = 6;
@@ -109,7 +109,7 @@
             // txtID
             // 
             txtID.Enabled = false;
-            txtID.Location = new Point(151, 92);
+            txtID.Location = new Point(151, 135);
             txtID.Name = "txtID";
             txtID.Size = new Size(75, 27);
             txtID.TabIndex = 7;
@@ -152,15 +152,15 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(475, 313);
             Controls.Add(btnAsignar);
-            Controls.Add(panel1);
             Controls.Add(txtID);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
-            Controls.Add(txtUsuario);
-            Controls.Add(txtNomApe);
+            Controls.Add(txtDescripcion);
+            Controls.Add(txtCodPermiso);
             Controls.Add(btnCancelar);
             Controls.Add(btnAceptar);
+            Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             MaximizeBox = false;
             MinimizeBox = false;
@@ -177,8 +177,8 @@
 
         private Button btnAceptar;
         private Button btnCancelar;
-        private TextBox txtNomApe;
-        private TextBox txtUsuario;
+        private TextBox txtCodPermiso;
+        private TextBox txtDescripcion;
         private Label label1;
         private Label label2;
         private Label label3;
