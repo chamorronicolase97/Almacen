@@ -20,13 +20,14 @@ namespace Almacen.Vistas
         public static void MostrarMensaje(string Titulo, string Descripcion)
         {
             frmMostrarMensaje mensaje = new frmMostrarMensaje();
-            mensaje.lblTitulo.Text = Titulo;
-            mensaje.lblMensaje.Text = Descripcion;
+            mensaje.Text = Titulo;
+            mensaje.lblDescripcion.Text = Descripcion;
             mensaje.ShowDialog();
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
+            DialogResult = DialogResult.OK;
             Close();
         }
     }

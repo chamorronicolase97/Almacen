@@ -29,8 +29,7 @@
         private void InitializeComponent()
         {
             btnAceptar = new Button();
-            lblTitulo = new Label();
-            lblMensaje = new Label();
+            lblDescripcion = new Label();
             splitContainer1 = new SplitContainer();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
@@ -40,7 +39,7 @@
             // 
             // btnAceptar
             // 
-            btnAceptar.Location = new Point(433, 144);
+            btnAceptar.Location = new Point(276, 39);
             btnAceptar.Margin = new Padding(3, 2, 3, 2);
             btnAceptar.Name = "btnAceptar";
             btnAceptar.Size = new Size(82, 22);
@@ -49,33 +48,19 @@
             btnAceptar.UseVisualStyleBackColor = true;
             btnAceptar.Click += btnAceptar_Click;
             // 
-            // lblTitulo
+            // lblDescripcion
             // 
-            lblTitulo.AutoSize = true;
-            lblTitulo.Dock = DockStyle.Fill;
-            lblTitulo.Font = new Font("Segoe UI", 25F, FontStyle.Regular, GraphicsUnit.Point);
-            lblTitulo.Location = new Point(0, 0);
-            lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(105, 46);
-            lblTitulo.TabIndex = 1;
-            lblTitulo.Text = "Titulo";
-            lblTitulo.TextAlign = ContentAlignment.TopCenter;
-            // 
-            // lblMensaje
-            // 
-            lblMensaje.AutoSize = true;
-            lblMensaje.Dock = DockStyle.Fill;
-            lblMensaje.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            lblMensaje.Location = new Point(0, 0);
-            lblMensaje.Name = "lblMensaje";
-            lblMensaje.Size = new Size(68, 21);
-            lblMensaje.TabIndex = 2;
-            lblMensaje.Text = "Mensaje";
-            lblMensaje.TextAlign = ContentAlignment.TopCenter;
+            lblDescripcion.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            lblDescripcion.AutoSize = true;
+            lblDescripcion.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lblDescripcion.Location = new Point(12, 9);
+            lblDescripcion.Name = "lblDescripcion";
+            lblDescripcion.Size = new Size(52, 21);
+            lblDescripcion.TabIndex = 0;
+            lblDescripcion.Text = "label1";
             // 
             // splitContainer1
             // 
-            splitContainer1.Dock = DockStyle.Fill;
             splitContainer1.Location = new Point(0, 0);
             splitContainer1.Margin = new Padding(3, 2, 3, 2);
             splitContainer1.Name = "splitContainer1";
@@ -84,14 +69,14 @@
             // splitContainer1.Panel1
             // 
             splitContainer1.Panel1.BackColor = Color.Bisque;
-            splitContainer1.Panel1.Controls.Add(lblTitulo);
+            splitContainer1.Panel1.Controls.Add(lblDescripcion);
             // 
             // splitContainer1.Panel2
             // 
             splitContainer1.Panel2.BackColor = Color.NavajoWhite;
-            splitContainer1.Panel2.Controls.Add(lblMensaje);
-            splitContainer1.Size = new Size(526, 175);
-            splitContainer1.SplitterDistance = 52;
+            splitContainer1.Panel2.Controls.Add(btnAceptar);
+            splitContainer1.Size = new Size(444, 135);
+            splitContainer1.SplitterDistance = 39;
             splitContainer1.SplitterWidth = 3;
             splitContainer1.TabIndex = 3;
             // 
@@ -100,10 +85,10 @@
             AccessibleRole = AccessibleRole.Alert;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(526, 175);
-            Controls.Add(btnAceptar);
+            ClientSize = new Size(364, 111);
             Controls.Add(splitContainer1);
             Margin = new Padding(3, 2, 3, 2);
+            MaximumSize = new Size(460, 220);
             MinimizeBox = false;
             Name = "frmMostrarMensaje";
             StartPosition = FormStartPosition.CenterScreen;
@@ -111,7 +96,6 @@
             splitContainer1.Panel1.ResumeLayout(false);
             splitContainer1.Panel1.PerformLayout();
             splitContainer1.Panel2.ResumeLayout(false);
-            splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
             splitContainer1.ResumeLayout(false);
             ResumeLayout(false);
@@ -120,8 +104,7 @@
         #endregion
 
         private Button btnAceptar;
-        private Label lblTitulo;
-        private Label lblMensaje;
+        private Label lblDescripcion;
         private SplitContainer splitContainer1;
     }
 }
