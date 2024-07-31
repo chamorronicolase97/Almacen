@@ -14,7 +14,7 @@ namespace Almacen.Vistas
 {
     public partial class frmLogin : Form
     {
-        public Usuario? Usario { get; set; }
+        public Usuario? Usuario { get; set; }
         public frmLogin()
         {
             InitializeComponent();
@@ -25,16 +25,16 @@ namespace Almacen.Vistas
             if (!ValidarAntesDeAceptar()) return;
             string User = txtUsuario.Text;
             string Password = txtPassword.Text;
-            
-            Usario = Usuario.GetUsuario(User, Password);
 
-            if (Usario != null) 
-            {             
+            Usuario = Usuario.GetUsuario(User, Password);
+
+            if (Usuario != null)
+            {
                 DialogResult = DialogResult.OK;
             }
             else
             {
-                MessageBox.Show("Usuario No encontrado.", "Iniciar Sesión", System.Windows.Forms.MessageBoxButtons.OK , System.Windows.Forms.MessageBoxIcon.Warning);
+                MessageBox.Show("Usuario No encontrado.", "Iniciar Sesión", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Warning);
                 return;
             }
 
@@ -42,19 +42,20 @@ namespace Almacen.Vistas
 
         private bool ValidarAntesDeAceptar()
         {
-            if(txtUsuario.Text.Length <= 0)
-            {
-                MessageBox.Show("Debe Ingresar una contraseña.", "Iniciar Sesión", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Warning);
-                return false;
-            }
-
-            if (txtPassword.Text.Length <= 0)
+            if (txtUsuario.Text.Length == 0)
             {
                 MessageBox.Show("Debe Ingresar un usuario.", "Iniciar Sesión", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Warning);
                 return false;
             }
 
+            if (txtPassword.Text.Length == 0)
+            {
+                MessageBox.Show("Debe Ingresar una contraseña.", "Iniciar Sesión", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Warning);
+                return false;
+            }
+
             return true;
         }
+
     }
 }

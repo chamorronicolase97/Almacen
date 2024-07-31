@@ -25,12 +25,15 @@ namespace Sistema
                 conectarbd.ConnectionString = connectionString2;
             }
             catch {}
-            try
-            {
-                conectarbd.ConnectionString = connectionString;
-            }
-            catch { }
-            
+            //if (conectarbd. != ConnectionState.Connecting)
+            //{
+            //    try
+            //    {
+            //        conectarbd.ConnectionString = connectionString;
+            //    }
+            //    catch { }
+            //}
+
         }
 
         public void Abrir()

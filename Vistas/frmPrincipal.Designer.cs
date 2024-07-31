@@ -56,7 +56,7 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { principalToolStripMenuItem, depositoToolStripMenuItem, compraToolStripMenuItem, ventaToolStripMenuItem, administraciónToolStripMenuItem, configuraciónToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(800, 24);
+            menuStrip1.Size = new Size(804, 24);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -157,7 +157,7 @@
             // monthCalendar1
             // 
             monthCalendar1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            monthCalendar1.Location = new Point(534, 282);
+            monthCalendar1.Location = new Point(538, 283);
             monthCalendar1.Name = "monthCalendar1";
             monthCalendar1.TabIndex = 1;
             // 
@@ -167,7 +167,7 @@
             panel1.BackColor = SystemColors.ActiveCaption;
             panel1.BorderStyle = BorderStyle.FixedSingle;
             panel1.Controls.Add(lblBienvenido);
-            panel1.Location = new Point(534, 141);
+            panel1.Location = new Point(538, 142);
             panel1.Name = "panel1";
             panel1.Size = new Size(248, 100);
             panel1.TabIndex = 2;
@@ -185,11 +185,12 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(804, 451);
             Controls.Add(panel1);
             Controls.Add(monthCalendar1);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
+            MinimumSize = new Size(820, 490);
             Name = "frmPrincipal";
             Text = "Almacen";
             Load += frmPrincipal_Load;
