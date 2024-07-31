@@ -25,7 +25,7 @@ namespace Almacen.Vistas
         private void frmABMSUsuarios_Load(object sender, EventArgs e)
 
         {
-            dgvDatos.DataSource = Usuario.Listar();
+            CargarGrilla();
         }
 
         private void CargarGrilla()
