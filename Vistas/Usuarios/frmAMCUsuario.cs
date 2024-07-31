@@ -24,7 +24,7 @@ namespace Almacen.Vistas
 
         }
 
-        private void frmAMCCategoria_Load(object sender, EventArgs e)
+        private void frmAMCUsuario_Load(object sender, EventArgs e)
         {
             #region Combo Grupos
             List<Grupo> ListaGrupos = Grupo.ListarGrupos();

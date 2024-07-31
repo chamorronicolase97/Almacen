@@ -13,16 +13,16 @@ using System.Windows.Forms;
 
 namespace Almacen.Vistas
 {
-    public partial class frmABMSUsuarios : Form
+    public partial class frmABMSPermisos : Form
     {
 
-        public frmABMSUsuarios()
+        public frmABMSPermisos()
         {
             InitializeComponent();
 
         }
 
-        private void frmABMSUsuarios_Load(object sender, EventArgs e)
+        private void frmABMSPermisos_Load(object sender, EventArgs e)
 
         {
             CargarGrilla();
@@ -30,38 +30,38 @@ namespace Almacen.Vistas
 
         private void CargarGrilla()
         {
-            dgvDatos.DataSource = Usuario.Listar();
+            dgvDatos.DataSource = Permiso.Listar();
         }
 
         private void btnCrear_Click(object sender, EventArgs e)
         {
-            frmAMCUsuario f = new frmAMCUsuario();
-            f.Clase = new Usuario(0);
+            frmAMCPermiso f = new frmAMCPermiso();
+            f.Clase = new Permiso(0);
             f.ShowDialog();
             if (f.DialogResult == DialogResult.OK) CargarGrilla();
         }
 
         private void btnBorrar_Click(object sender, EventArgs e)
         {
-            if (dgvDatos.CurrentRow == null) return;
+            //if (dgvDatos.CurrentCell == null) return;
 
-            Usuario Clase = new Usuario(Convert.ToInt32(dgvDatos.CurrentRow.Cells["UsuarioID"].Value));
+            //Permiso Clase = new Permiso(Convert.ToInt32(dgvDatos.CurrentRow.Cells["PermisoID"].Value));
 
-            Clase.Eliminar();
+            //Clase.Eliminar();
 
-            frmMostrarMensaje.MostrarMensaje($"Baja de {Usuario.NombreClase}", "Correcta.");
+            //frmMostrarMensaje.MostrarMensaje($"Baja de {Permiso.NombreClase}", "Correcta.");
 
-            CargarGrilla();
+            //CargarGrilla();
 
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            if (dgvDatos.CurrentRow == null) return;
+            if (dgvDatos.CurrentCell == null) return;
 
-            Usuario Clase = new Usuario(Convert.ToInt32(dgvDatos.CurrentRow.Cells["UsuarioID"].Value));
+            Permiso Clase = new Permiso(Convert.ToInt32(dgvDatos.CurrentRow.Cells["PermisoID"].Value));
 
-            frmAMCUsuario f = new frmAMCUsuario();
+            frmAMCPermiso f = new frmAMCPermiso();
             f.Clase = Clase;
             f.Modificacion = true;
             f.ShowDialog();

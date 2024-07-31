@@ -84,5 +84,11 @@ namespace Almacen.Vistas
             frmABMSUsuarios f = new frmABMSUsuarios();
             f.Show();
         }
+
+        private void permisosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmABMSPermisos f = new frmABMSPermisos();
+            f.Show();
+        }
     }
 }
