@@ -42,7 +42,7 @@
             // btnCancelar
             // 
             btnCancelar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnCancelar.Location = new Point(248, 145);
+            btnCancelar.Location = new Point(247, 146);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(75, 23);
             btnCancelar.TabIndex = 0;
@@ -52,7 +52,7 @@
             // btnAceptar
             // 
             btnAceptar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnAceptar.Location = new Point(167, 145);
+            btnAceptar.Location = new Point(166, 146);
             btnAceptar.Name = "btnAceptar";
             btnAceptar.Size = new Size(75, 23);
             btnAceptar.TabIndex = 1;
@@ -120,7 +120,7 @@
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(335, 42);
+            panel1.Size = new Size(334, 42);
             panel1.TabIndex = 8;
             // 
             // frmLogin
@@ -129,7 +129,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             CancelButton = btnCancelar;
-            ClientSize = new Size(335, 180);
+            ClientSize = new Size(334, 181);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
@@ -142,6 +142,7 @@
             FormBorderStyle = FormBorderStyle.FixedDialog;
             MaximizeBox = false;
             MinimizeBox = false;
+            MinimumSize = new Size(350, 220);
             Name = "frmLogin";
             Text = "Iniciar Sesión";
             ResumeLayout(false);

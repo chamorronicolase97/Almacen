@@ -57,8 +57,7 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { principalToolStripMenuItem, depositoToolStripMenuItem, compraToolStripMenuItem, ventaToolStripMenuItem, administraciónToolStripMenuItem, configuraciónToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Padding = new Padding(7, 3, 0, 3);
-            menuStrip1.Size = new Size(914, 30);
+            menuStrip1.Size = new Size(804, 24);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -159,8 +158,7 @@
             // monthCalendar1
             // 
             monthCalendar1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            monthCalendar1.Location = new Point(610, 376);
-            monthCalendar1.Margin = new Padding(10, 12, 10, 12);
+            monthCalendar1.Location = new Point(538, 283);
             monthCalendar1.Name = "monthCalendar1";
             monthCalendar1.TabIndex = 1;
             // 
@@ -170,8 +168,7 @@
             panel1.BackColor = SystemColors.ActiveCaption;
             panel1.BorderStyle = BorderStyle.FixedSingle;
             panel1.Controls.Add(lblBienvenido);
-            panel1.Location = new Point(610, 188);
-            panel1.Margin = new Padding(3, 4, 3, 4);
+            panel1.Location = new Point(538, 142);
             panel1.Name = "panel1";
             panel1.Size = new Size(283, 133);
             panel1.TabIndex = 2;
@@ -196,12 +193,12 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(914, 600);
+            ClientSize = new Size(804, 451);
             Controls.Add(panel1);
             Controls.Add(monthCalendar1);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
-            Margin = new Padding(3, 4, 3, 4);
+            MinimumSize = new Size(820, 490);
             Name = "frmPrincipal";
             Text = "Almacen";
             Load += frmPrincipal_Load;

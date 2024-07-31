@@ -35,7 +35,7 @@ namespace Almacen.Vistas
             }
             else
             {
-                lblForm.Text = "Crear " + Grupo.NombreClase;
+                lblForm.Text = "Crear " + Categoria.NombreClase;
             }
         }
 
@@ -65,17 +65,18 @@ namespace Almacen.Vistas
 
         private bool Validar()
         {
-            if (txtNombre.Text.Length <= 0)
+            if (txtNombre.Text.Length == 0)
             {
                 frmMostrarMensaje.MostrarMensaje("Categoria", "Debe escribir un nombre para la categoria");
                 return false;
             }
 
-            if (txtUtilidad.Text.Length <= 0)
+            if (txtUtilidad.Text.Length == 0)
             {
                 frmMostrarMensaje.MostrarMensaje("Categoria", "Debe escribir una utilidad para la categoria");
                 return false;
             }
+
             return true;
         }
 

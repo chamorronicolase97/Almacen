@@ -26,7 +26,7 @@ namespace Almacen.Vistas
             if (f.DialogResult == DialogResult.OK)
             {
                 this.Show();
-                Usuario = f.Usario;
+                Usuario = f.Usuario;
                 lblBienvenido.Text = lblBienvenido.Text + " " + Usuario.NombreApellido;
             }
             else

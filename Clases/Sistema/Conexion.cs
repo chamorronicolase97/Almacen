@@ -18,19 +18,19 @@ namespace Sistema
 
         public SqlConnection conectarbd = new SqlConnection();
 
-        public  Conexion()
+        public Conexion()
         {
             try
             {
                 conectarbd.ConnectionString = connectionString2;
             }
-            catch {}
+            catch { }
+
             try
             {
                 conectarbd.ConnectionString = connectionString;
             }
             catch { }
-            
         }
 
         public void Abrir()
@@ -40,9 +40,9 @@ namespace Sistema
                 conectarbd.Open();
                 Console.WriteLine("Conexion Abierta");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                throw new Exception("Error al Conectar con la BD",ex);  
+                throw new Exception("Error al Conectar con la BD", ex);
             }
         }
 
@@ -62,7 +62,7 @@ namespace Sistema
             }
         }
 
-        public DataTable Consultar (SqlCommand cmd)
+        public DataTable Consultar(SqlCommand cmd)
         {
             try
             {
@@ -83,18 +83,18 @@ namespace Sistema
 
         public DataTable Consultar(string consulta)
         {
-            try 
+            try
             {
                 SqlCommand cmd = new SqlCommand(consulta, conectarbd);
                 DataTable data = new DataTable();
 
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 adapter.Fill(data);
-                
+
                 return data;
 
             }
-            catch (Exception ex) {throw new Exception(ex.Message); }
+            catch (Exception ex) { throw new Exception(ex.Message); }
             finally
             {
                 conectarbd.Close();

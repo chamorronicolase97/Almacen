@@ -43,7 +43,7 @@ namespace Almacen.Vistas
 
         private void btnBorrar_Click(object sender, EventArgs e)
         {
-            if (dgvDatos.CurrentCell == null) return;
+            if (dgvDatos.CurrentRow == null) return;
 
             Proveedor Clase = new Proveedor(Convert.ToInt32(dgvDatos.CurrentRow.Cells["ProveedorID"].Value));
 
@@ -57,7 +57,7 @@ namespace Almacen.Vistas
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            if (dgvDatos.CurrentCell == null) return;
+            if (dgvDatos.CurrentRow == null) return;
 
             Proveedor Clase = new Proveedor(Convert.ToInt32(dgvDatos.CurrentRow.Cells["ProveedorID"].Value));
 

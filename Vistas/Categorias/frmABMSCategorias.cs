@@ -43,13 +43,16 @@ namespace Almacen.Vistas
 
         private void btnBorrar_Click(object sender, EventArgs e)
         {
-            if (dgvDatos.CurrentCell == null) return;
+            if (dgvDatos.CurrentRow == null) return;
 
             Categoria Clase = new Categoria(Convert.ToInt32(dgvDatos.CurrentRow.Cells["CategoriaID"].Value));
 
+            DialogResult = MessageBox.Show("Desea eliminar la categoría " + Clase.Descripcion + "?", "Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (DialogResult == DialogResult.No) return;
+            
             Clase.Eliminar();
 
-            frmMostrarMensaje.MostrarMensaje($"Baja de {Categoria.NombreClase}", "Correcta.");
+            frmMostrarMensaje.MostrarMensaje($"{Categoria.NombreClase}", "Baja exitosa.");
 
             CargarGrilla();
 
@@ -57,7 +60,7 @@ namespace Almacen.Vistas
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            if (dgvDatos.CurrentCell == null) return;
+            if (dgvDatos.CurrentRow == null) return;
 
             Categoria Clase = new Categoria(Convert.ToInt32(dgvDatos.CurrentRow.Cells["CategoriaID"].Value));
 
