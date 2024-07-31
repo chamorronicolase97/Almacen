@@ -19,6 +19,9 @@
     <Compile Update="Vistas\Grupos\frmAMCGrupo.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Vistas\Permisos\frmABMSPermisos.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Vistas\Productos\frmABMSProductos.cs">
       <SubType>Form</SubType>
     </Compile>

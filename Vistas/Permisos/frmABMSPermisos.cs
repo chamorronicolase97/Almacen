@@ -1,0 +1,71 @@
+﻿using Almacen.Clases;
+using Almacen.Clases.Administracion;
+using Sistema;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace Almacen.Vistas
+{
+    public partial class frmABMSPermisos : Form
+    {
+
+        public frmABMSPermisos()
+        {
+            InitializeComponent();
+
+        }
+
+        private void frmABMSPermisos_Load(object sender, EventArgs e)
+
+        {
+            dgvDatos.DataSource = Permiso.Listar();
+        }
+
+        private void CargarGrilla()
+        {
+            dgvDatos.DataSource = Permiso.Listar();
+        }
+
+        private void btnCrear_Click(object sender, EventArgs e)
+        {
+            //frmAMCPermiso f = new frmAMCPermiso();
+            //f.Clase = new Permiso(0);
+            //f.ShowDialog();
+            //if (f.DialogResult == DialogResult.OK) CargarGrilla();
+        }
+
+        private void btnBorrar_Click(object sender, EventArgs e)
+        {
+            if (dgvDatos.CurrentCell == null) return;
+
+            Permiso Clase = new Permiso(Convert.ToInt32(dgvDatos.CurrentRow.Cells["PermisoID"].Value));
+
+            Clase.Eliminar();
+
+            frmMostrarMensaje.MostrarMensaje($"Baja de {Permiso.NombreClase}", "Correcta.");
+
+            CargarGrilla();
+
+        }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        //{
+        //    if (dgvDatos.CurrentCell == null) return;
+
+        //    Permiso Clase = new Permiso(Convert.ToInt32(dgvDatos.CurrentRow.Cells["PermisoID"].Value));
+
+        //    frmAMCPermiso f = new frmAMCPermiso();
+        //    f.Clase = Clase;
+        //    f.Modificacion = true;
+        //    f.ShowDialog();
+        //    if (f.DialogResult == DialogResult.OK) CargarGrilla();
+        }
+    }
+}

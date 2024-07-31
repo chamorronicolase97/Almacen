@@ -81,7 +81,7 @@ namespace Almacen.Vistas
 
         private void usuariosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmABMSUsuarios f = new frmABMSUsuarios();
+            frmABMSPermisos f = new frmABMSUsuarios();
             f.Show();
         }
     }
