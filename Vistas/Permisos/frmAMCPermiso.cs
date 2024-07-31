@@ -12,19 +12,19 @@ using System.Windows.Forms;
 
 namespace Almacen.Vistas
 {
-    public partial class frmAMCUsuario : Form
+    public partial class frmAMCPermiso : Form
     {
-        public Usuario Clase { get; set; }
+        public Permiso Clase { get; set; }
 
         public bool Modificacion { get; set; } = false;
 
-        public frmAMCUsuario()
+        public frmAMCPermiso()
         {
             InitializeComponent();
 
         }
 
-        private void frmAMCUsuario_Load(object sender, EventArgs e)
+        private void frmAMCPermiso_Load(object sender, EventArgs e)
         {
             #region Combo Grupos
             List<Grupo> ListaGrupos = Grupo.ListarGrupos();
@@ -46,17 +46,17 @@ namespace Almacen.Vistas
 
             if (Modificacion == true)
             {
-                lblForm.Text = "Modificar " + Usuario.NombreClase;
+                lblForm.Text = "Modificar " + Permiso.NombreClase;
                 txtID.Text = Clase.ID.ToString();
                 txtNomApe.Text = Clase.NombreApellido;
-                txtUsuario.Text = Clase.CodUsuario;
+                txtPermiso.Text = Clase.CodPermiso;
                 txtContraseña.Text = Clase.Contraseña;
                 cmbGrupo.Text = Clase.Grupo.Descripcion;
                 cmbGrupo.Enabled = false;
             }
             else
             {
-                lblForm.Text = "Crear " + Usuario.NombreClase;
+                lblForm.Text = "Crear " + Permiso.NombreClase;
             }
         }
 
@@ -70,7 +70,7 @@ namespace Almacen.Vistas
             if (!Validar()) return;
 
             Clase.NombreApellido = txtNomApe.Text;
-            Clase.CodUsuario = txtUsuario.Text;
+            Clase.CodPermiso = txtPermiso.Text;
             Clase.Contraseña = txtContraseña.Text;
             Clase.Grupo = new Grupo(Convert.ToInt32(cmbGrupo.SelectedValue));
 
@@ -90,26 +90,26 @@ namespace Almacen.Vistas
         {
             if (txtNomApe.Text.Length <= 0)
             {
-                frmMostrarMensaje.MostrarMensaje("Usuario", "Debe escribir un NOMBRE y APELLIDO para el Usuario");
+                frmMostrarMensaje.MostrarMensaje("Permiso", "Debe escribir un NOMBRE y APELLIDO para el Permiso");
                 return false;
             }
 
             List<string> nombre = txtNomApe.Text.Split(" ").ToList();
             if (nombre.Count < 2)
             {
-                frmMostrarMensaje.MostrarMensaje("Usuario", "Debe escribir un NOMBRE y APELLIDO para el Usuario");
+                frmMostrarMensaje.MostrarMensaje("Permiso", "Debe escribir un NOMBRE y APELLIDO para el Permiso");
                 return false;
             }
 
             if (txtContraseña.Text.Length <= 0)
             {
-                frmMostrarMensaje.MostrarMensaje("Usuario", "Debe escribir una contraseña para el Usuario");
+                frmMostrarMensaje.MostrarMensaje("Permiso", "Debe escribir una contraseña para el Permiso");
                 return false;
             }
 
             if (cmbGrupo.SelectedIndex == 0)
             {
-                frmMostrarMensaje.MostrarMensaje("Usuario", "Debe seleccionar un grupo");
+                frmMostrarMensaje.MostrarMensaje("Permiso", "Debe seleccionar un grupo");
                 return false;
             }
 

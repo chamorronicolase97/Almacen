@@ -25,7 +25,7 @@ namespace Almacen.Vistas
         private void frmABMSPermisos_Load(object sender, EventArgs e)
 
         {
-            dgvDatos.DataSource = Permiso.Listar();
+            CargarGrilla();
         }
 
         private void CargarGrilla()
@@ -35,37 +35,37 @@ namespace Almacen.Vistas
 
         private void btnCrear_Click(object sender, EventArgs e)
         {
-            //frmAMCPermiso f = new frmAMCPermiso();
-            //f.Clase = new Permiso(0);
-            //f.ShowDialog();
-            //if (f.DialogResult == DialogResult.OK) CargarGrilla();
+            frmAMCPermiso f = new frmAMCPermiso();
+            f.Clase = new Permiso(0);
+            f.ShowDialog();
+            if (f.DialogResult == DialogResult.OK) CargarGrilla();
         }
 
         private void btnBorrar_Click(object sender, EventArgs e)
         {
-            if (dgvDatos.CurrentCell == null) return;
+            //if (dgvDatos.CurrentCell == null) return;
 
-            Permiso Clase = new Permiso(Convert.ToInt32(dgvDatos.CurrentRow.Cells["PermisoID"].Value));
+            //Permiso Clase = new Permiso(Convert.ToInt32(dgvDatos.CurrentRow.Cells["PermisoID"].Value));
 
-            Clase.Eliminar();
+            //Clase.Eliminar();
 
-            frmMostrarMensaje.MostrarMensaje($"Baja de {Permiso.NombreClase}", "Correcta.");
+            //frmMostrarMensaje.MostrarMensaje($"Baja de {Permiso.NombreClase}", "Correcta.");
 
-            CargarGrilla();
+            //CargarGrilla();
 
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
-        //{
-        //    if (dgvDatos.CurrentCell == null) return;
+        {
+            //    if (dgvDatos.CurrentCell == null) return;
 
-        //    Permiso Clase = new Permiso(Convert.ToInt32(dgvDatos.CurrentRow.Cells["PermisoID"].Value));
+            //    Permiso Clase = new Permiso(Convert.ToInt32(dgvDatos.CurrentRow.Cells["PermisoID"].Value));
 
-        //    frmAMCPermiso f = new frmAMCPermiso();
-        //    f.Clase = Clase;
-        //    f.Modificacion = true;
-        //    f.ShowDialog();
-        //    if (f.DialogResult == DialogResult.OK) CargarGrilla();
+            //    frmAMCPermiso f = new frmAMCPermiso();
+            //    f.Clase = Clase;
+            //    f.Modificacion = true;
+            //    f.ShowDialog();
+            //    if (f.DialogResult == DialogResult.OK) CargarGrilla();
         }
     }
 }
