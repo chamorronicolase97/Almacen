@@ -34,15 +34,12 @@
             label1 = new Label();
             label3 = new Label();
             txtID = new TextBox();
-            lblForm = new Label();
-            panel1 = new Panel();
-            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // btnAceptar
             // 
             btnAceptar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnAceptar.Location = new Point(175, 163);
+            btnAceptar.Location = new Point(175, 90);
             btnAceptar.Margin = new Padding(3, 2, 3, 2);
             btnAceptar.Name = "btnAceptar";
             btnAceptar.Size = new Size(82, 22);
@@ -54,7 +51,7 @@
             // btnCancelar
             // 
             btnCancelar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnCancelar.Location = new Point(263, 163);
+            btnCancelar.Location = new Point(263, 90);
             btnCancelar.Margin = new Padding(3, 2, 3, 2);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(82, 22);
@@ -66,7 +63,7 @@
             // txtNombre
             // 
             txtNombre.Anchor = AnchorStyles.Bottom;
-            txtNombre.Location = new Point(88, 127);
+            txtNombre.Location = new Point(88, 54);
             txtNombre.Margin = new Padding(3, 2, 3, 2);
             txtNombre.Name = "txtNombre";
             txtNombre.Size = new Size(173, 23);
@@ -76,7 +73,7 @@
             // 
             label1.Anchor = AnchorStyles.Bottom;
             label1.AutoSize = true;
-            label1.Location = new Point(27, 129);
+            label1.Location = new Point(27, 56);
             label1.Name = "label1";
             label1.Size = new Size(51, 15);
             label1.TabIndex = 4;
@@ -86,7 +83,7 @@
             // 
             label3.Anchor = AnchorStyles.Bottom;
             label3.AutoSize = true;
-            label3.Location = new Point(60, 101);
+            label3.Location = new Point(60, 28);
             label3.Name = "label3";
             label3.Size = new Size(18, 15);
             label3.TabIndex = 6;
@@ -96,39 +93,17 @@
             // 
             txtID.Anchor = AnchorStyles.Bottom;
             txtID.Enabled = false;
-            txtID.Location = new Point(88, 99);
+            txtID.Location = new Point(88, 26);
             txtID.Margin = new Padding(3, 2, 3, 2);
             txtID.Name = "txtID";
             txtID.Size = new Size(66, 23);
             txtID.TabIndex = 7;
             // 
-            // lblForm
-            // 
-            lblForm.AutoSize = true;
-            lblForm.Dock = DockStyle.Fill;
-            lblForm.Font = new Font("Segoe UI", 20F, FontStyle.Bold, GraphicsUnit.Point);
-            lblForm.Location = new Point(0, 0);
-            lblForm.Name = "lblForm";
-            lblForm.Size = new Size(97, 37);
-            lblForm.TabIndex = 0;
-            lblForm.Text = "Grupo";
-            // 
-            // panel1
-            // 
-            panel1.BackColor = SystemColors.ActiveCaption;
-            panel1.Controls.Add(lblForm);
-            panel1.Dock = DockStyle.Top;
-            panel1.Location = new Point(0, 0);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(355, 60);
-            panel1.TabIndex = 14;
-            // 
             // frmAMCGrupo
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(355, 194);
-            Controls.Add(panel1);
+            ClientSize = new Size(355, 121);
             Controls.Add(txtID);
             Controls.Add(label3);
             Controls.Add(label1);
@@ -141,10 +116,9 @@
             MdiChildrenMinimizedAnchorBottom = false;
             MinimizeBox = false;
             Name = "frmAMCGrupo";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Grupo";
             Load += frmAMCCategoria_Load;
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -157,7 +131,5 @@
         private Label label1;
         private Label label3;
         private TextBox txtID;
-        private Label lblForm;
-        private Panel panel1;
     }
 }

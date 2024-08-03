@@ -29,7 +29,6 @@ namespace Almacen.Vistas
 
             if (Modificacion == true)
             {
-                lblForm.Text = "Modificar " + Permiso.NombreClase;
                 txtID.Text = Clase.ID.ToString();
                 txtCodPermiso.Text = Clase.CodPermiso;
                 txtDescripcion.Text = Clase.Descripcion;
@@ -37,7 +36,6 @@ namespace Almacen.Vistas
             }
             else
             {
-                lblForm.Text = "Crear " + Permiso.NombreClase;
                 btnAsignar.Enabled = false;
             }
         }

@@ -18,7 +18,7 @@
     <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
     <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
     <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
-    <data name="Color1" type="System.Drawing.Color, System.Drawing"">Blue</data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
     <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
         <value>[base64 mime encoded serialized .NET Framework object]</value>
     </data>
@@ -117,4 +117,49 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="btnBorrar.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
+        DAAACwwBP0AiyAAAAWBJREFUSEvt1rErhHEcx/EHUbrBJlFmptuVxXILspkssvMPXIxikVkm02WySBkx
+        2Y6dUmRgR3h/6obr1/fx+36friz3qVdX13Pv53ruue6K/jKbxDp2EhuYRuVNYAnLJfbxjJ/EKw5gvUbU
+        VLt0K0ijvaJ26Twn/sZXQs9Zx3b788Tdl1qPveC61P+6YcyigfTdR6mhlprZjaGJJ6SfZZQaaqmZXQ1b
+        eIF1k0SooZaa2Y1gFfewYhFqqKVmdoNYwC2sWIQaaqnpWh1XsGIRaqjl3hQuYcUi1FDLvVGcwYpFqKGW
+        e0M4gRWLUEMt93QzHOITVtDjA2q4byxNB+t39h1W1OMNaoROPIBNPMKKejxADbVCW8MdrKhHG2qEt4gb
+        WFGPa6gR3hwuYEU9zqFGeDM4hRX1aEGN8MZxDCvqcQQ1wtOPt76HVtRD/zpdfwCs7cGKeuyi8uaxXZFe
+        219nRfELfxp++9AV7xcAAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="brnModificar.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
+        DAAACwwBP0AiyAAAAnpJREFUSEvN10uIT1EAx/FL3s8hbzYixhQbexsrJIkSUpSNFBYyK7OZrRgs5U3y
+        yiPFyvsR8shjZSsWlJAiz+/3zj23+/+7/tP930t+9Wnm/pvmN/ece849E/2jzMB2LIiv6jIem3EQB7C/
+        gKPwF09BXnbiJ15isR+ETMRFfMFj3MeDAp7hEmYimwmJuXgCy19jPuJswWeswVAMw/ACWjAEvREyHddx
+        Jr6KoiX4Dss7/cAcgnc6ML4qn6m4A0s2oh/CcJ/HJMRxTh1e77RsfJBuw5L16IOu5PosHPo0PiDOlcNW
+        JtNwE5ZsgKXbkuuaOw2potg5tfQT1sHSHbD0AnyAf0vZ4jZcgyU+3WMQ7vQcxsKswrzub7tTpngWrsIS
+        uVzuJt87p2F4XS2P4JpPU6b4CEJplsso+yD54Nrhz6dppngEBsGdyB0pW3oa45CNxffgzpimaLHrfR+O
+        w41jEdz1LD2BmiWTpJLiOfgIi45hK77BOXXPz0slxeGJzTqF+uHNpnRxK14gFL7CbuQNbzali1fAQpdG
+        B2ajF3pK6eLJWJp8LZJK5riZ9IdvrL9e7JJz6xyNkXAHs+Mw0lRdvAyX4Tv+IW4kvmIv0lRZbOl7WGrJ
+        LpyED+Q7LESaqood3ivwLsOadlv197+FK6ImVRU7p0+xJ76KolFwY/mAlX5Qn6qOPj5I3q3nK/dwh9iD
+        ge/h3ITD3oD4qvlYfAu+nVw27ud/LDXt8O2yGoMRjrg9cWqyf6xD65H2B95gORrGNeaRxbO1Q+UJwl2m
+        EafmOfwPwj/WuF59Vhze3DnNi68zD/aeEFzkDlUj/ozv3k0Id90Xa+GS+h8TRb8A0ubPw4w+gAcAAAAA
+        SUVORK5CYII=
+</value>
+  </data>
+  <data name="btnCrear.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
+        DAAACwwBP0AiyAAAAh1JREFUSEvVl01OFEEYQMcdGElAjbDmR68giC4RgxJPIMIp9AaKFyAKLNkoGFeA
+        SlioBzBIdCeIgQ1r3fpeTU9nmHTPVI2QCS95SdfPVFF/XxWV88ANfIxL+Bl/ZPpt3gxa59S4g2/xCPfx
+        DT7HJ5l+r6Jl1lnD29g2l3EZ/+AGPsBLWIZl02jdv7iItpGEU/YNf+KUGYncxz3cwREzYriOB/gBr5nR
+        Jv24ibbVcu37cBfttMuM/8Q2ttA2bbsU18UpalopwymMmcYr+AtfhlQB4+immAip1rzLjGES3aSjIVXH
+        BfTIrIdUHB4hjcX1tg/7yhnGY0zZwZ5njcXjaB9DIZUxh65Dd0jFkdqx5/w3Gv1yDBSvq5/RpHYsRjXD
+        a84XfFb9jGYlM4V5/FT9rPIdjbuNeFxqI2vUadOiMi06ak/RvnI61nHHptrN5V+ZQm1kKbi5jI45s2gw
+        vxhScaR2XDtOPhhyPNRnHUC8q+1jMKQyDGNOg5d4LKkh8z0W1h9DL4m7IdWalEviHtr2zZAqwKvL0OlV
+        1gqPS9GRaeQq2uZCSJXgPeyT5yOmxO0ybGMbfQL1mtEMR+EOt3OfL+0ygK6ro/U5FYUVHblPVq+zVNzB
+        dvgVY5bjBD5NX6EvBy/xh9iDZVhmHUfpb9wvMU+oUnwSedQO0VF4JAx9tQf9C7TcMutYfgtPDaf/ERry
+        6v+FMfaaZ1n0WnaISuUf+iyO9C7vIxMAAAAASUVORK5CYII=
+</value>
+  </data>
 </root>

@@ -44,7 +44,7 @@ namespace Almacen.Clases.Administracion
         public void Abrir()
         {
             Conexion cn = new Conexion();
-            string q = @$"Select * from {Tabla} where CategoriaID = {ID}";
+            string q = @$"Select * from {Tabla} where ProveedorID = {ID}";
 
             DataTable dt = cn.Consultar(q);
             try

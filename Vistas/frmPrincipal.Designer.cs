@@ -43,10 +43,10 @@
             configuraciónToolStripMenuItem = new ToolStripMenuItem();
             gruposToolStripMenuItem = new ToolStripMenuItem();
             usuariosToolStripMenuItem = new ToolStripMenuItem();
+            permisosToolStripMenuItem = new ToolStripMenuItem();
             monthCalendar1 = new MonthCalendar();
             panel1 = new Panel();
             lblBienvenido = new Label();
-            permisosToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -57,7 +57,8 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { principalToolStripMenuItem, depositoToolStripMenuItem, compraToolStripMenuItem, ventaToolStripMenuItem, administraciónToolStripMenuItem, configuraciónToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(804, 24);
+            menuStrip1.Padding = new Padding(5, 2, 0, 2);
+            menuStrip1.Size = new Size(704, 24);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -65,72 +66,72 @@
             // 
             principalToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { cambiarUsuarioToolStripMenuItem, reiniciarToolStripMenuItem, salirToolStripMenuItem });
             principalToolStripMenuItem.Name = "principalToolStripMenuItem";
-            principalToolStripMenuItem.Size = new Size(80, 24);
+            principalToolStripMenuItem.Size = new Size(65, 20);
             principalToolStripMenuItem.Text = "Principal";
             // 
             // cambiarUsuarioToolStripMenuItem
             // 
             cambiarUsuarioToolStripMenuItem.Name = "cambiarUsuarioToolStripMenuItem";
-            cambiarUsuarioToolStripMenuItem.Size = new Size(202, 26);
+            cambiarUsuarioToolStripMenuItem.Size = new Size(162, 22);
             cambiarUsuarioToolStripMenuItem.Text = "Cambiar Usuario";
             cambiarUsuarioToolStripMenuItem.Click += cambiarUsuarioToolStripMenuItem_Click;
             // 
             // reiniciarToolStripMenuItem
             // 
             reiniciarToolStripMenuItem.Name = "reiniciarToolStripMenuItem";
-            reiniciarToolStripMenuItem.Size = new Size(202, 26);
+            reiniciarToolStripMenuItem.Size = new Size(162, 22);
             reiniciarToolStripMenuItem.Text = "Reiniciar";
             // 
             // salirToolStripMenuItem
             // 
             salirToolStripMenuItem.Name = "salirToolStripMenuItem";
-            salirToolStripMenuItem.Size = new Size(202, 26);
+            salirToolStripMenuItem.Size = new Size(162, 22);
             salirToolStripMenuItem.Text = "Salir";
             salirToolStripMenuItem.Click += salirToolStripMenuItem_Click;
             // 
             // depositoToolStripMenuItem
             // 
             depositoToolStripMenuItem.Name = "depositoToolStripMenuItem";
-            depositoToolStripMenuItem.Size = new Size(84, 24);
+            depositoToolStripMenuItem.Size = new Size(66, 20);
             depositoToolStripMenuItem.Text = "Deposito";
             // 
             // compraToolStripMenuItem
             // 
             compraToolStripMenuItem.Name = "compraToolStripMenuItem";
-            compraToolStripMenuItem.Size = new Size(76, 24);
+            compraToolStripMenuItem.Size = new Size(62, 20);
             compraToolStripMenuItem.Text = "Compra";
             // 
             // ventaToolStripMenuItem
             // 
             ventaToolStripMenuItem.Name = "ventaToolStripMenuItem";
-            ventaToolStripMenuItem.Size = new Size(60, 24);
+            ventaToolStripMenuItem.Size = new Size(48, 20);
             ventaToolStripMenuItem.Text = "Venta";
             // 
             // administraciónToolStripMenuItem
             // 
             administraciónToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { categoriasToolStripMenuItem, productosToolStripMenuItem, proveedoresToolStripMenuItem });
             administraciónToolStripMenuItem.Name = "administraciónToolStripMenuItem";
-            administraciónToolStripMenuItem.Size = new Size(123, 24);
+            administraciónToolStripMenuItem.Size = new Size(100, 20);
             administraciónToolStripMenuItem.Text = "Administración";
             // 
             // categoriasToolStripMenuItem
             // 
             categoriasToolStripMenuItem.Name = "categoriasToolStripMenuItem";
-            categoriasToolStripMenuItem.Size = new Size(174, 26);
+            categoriasToolStripMenuItem.Size = new Size(139, 22);
             categoriasToolStripMenuItem.Text = "Categorias";
             categoriasToolStripMenuItem.Click += categoriasToolStripMenuItem_Click;
             // 
             // productosToolStripMenuItem
             // 
             productosToolStripMenuItem.Name = "productosToolStripMenuItem";
-            productosToolStripMenuItem.Size = new Size(174, 26);
+            productosToolStripMenuItem.Size = new Size(139, 22);
             productosToolStripMenuItem.Text = "Productos";
             productosToolStripMenuItem.Click += productosToolStripMenuItem_Click;
             // 
             // proveedoresToolStripMenuItem
             // 
             proveedoresToolStripMenuItem.Name = "proveedoresToolStripMenuItem";
-            proveedoresToolStripMenuItem.Size = new Size(174, 26);
+            proveedoresToolStripMenuItem.Size = new Size(139, 22);
             proveedoresToolStripMenuItem.Text = "Proveedores";
             proveedoresToolStripMenuItem.Click += proveedoresToolStripMenuItem_Click;
             // 
@@ -138,27 +139,35 @@
             // 
             configuraciónToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { gruposToolStripMenuItem, usuariosToolStripMenuItem, permisosToolStripMenuItem });
             configuraciónToolStripMenuItem.Name = "configuraciónToolStripMenuItem";
-            configuraciónToolStripMenuItem.Size = new Size(116, 24);
+            configuraciónToolStripMenuItem.Size = new Size(95, 20);
             configuraciónToolStripMenuItem.Text = "Configuración";
             // 
             // gruposToolStripMenuItem
             // 
             gruposToolStripMenuItem.Name = "gruposToolStripMenuItem";
-            gruposToolStripMenuItem.Size = new Size(224, 26);
+            gruposToolStripMenuItem.Size = new Size(122, 22);
             gruposToolStripMenuItem.Text = "Grupos";
             gruposToolStripMenuItem.Click += gruposToolStripMenuItem_Click;
             // 
             // usuariosToolStripMenuItem
             // 
             usuariosToolStripMenuItem.Name = "usuariosToolStripMenuItem";
-            usuariosToolStripMenuItem.Size = new Size(224, 26);
+            usuariosToolStripMenuItem.Size = new Size(122, 22);
             usuariosToolStripMenuItem.Text = "Usuarios";
             usuariosToolStripMenuItem.Click += usuariosToolStripMenuItem_Click;
+            // 
+            // permisosToolStripMenuItem
+            // 
+            permisosToolStripMenuItem.Name = "permisosToolStripMenuItem";
+            permisosToolStripMenuItem.Size = new Size(122, 22);
+            permisosToolStripMenuItem.Text = "Permisos";
+            permisosToolStripMenuItem.Click += permisosToolStripMenuItem_Click;
             // 
             // monthCalendar1
             // 
             monthCalendar1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            monthCalendar1.Location = new Point(538, 283);
+            monthCalendar1.Location = new Point(456, 210);
+            monthCalendar1.Margin = new Padding(8, 7, 8, 7);
             monthCalendar1.Name = "monthCalendar1";
             monthCalendar1.TabIndex = 1;
             // 
@@ -168,38 +177,34 @@
             panel1.BackColor = SystemColors.ActiveCaption;
             panel1.BorderStyle = BorderStyle.FixedSingle;
             panel1.Controls.Add(lblBienvenido);
-            panel1.Location = new Point(538, 142);
+            panel1.Location = new Point(456, 104);
+            panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(283, 133);
+            panel1.Size = new Size(248, 100);
             panel1.TabIndex = 2;
             // 
             // lblBienvenido
             // 
             lblBienvenido.AutoSize = true;
-            lblBienvenido.Location = new Point(17, 23);
+            lblBienvenido.Location = new Point(15, 17);
             lblBienvenido.Name = "lblBienvenido";
-            lblBienvenido.Size = new Size(88, 20);
+            lblBienvenido.Size = new Size(70, 15);
             lblBienvenido.TabIndex = 0;
             lblBienvenido.Text = "Bienvenid@";
             // 
-            // permisosToolStripMenuItem
-            // 
-            permisosToolStripMenuItem.Name = "permisosToolStripMenuItem";
-            permisosToolStripMenuItem.Size = new Size(224, 26);
-            permisosToolStripMenuItem.Text = "Permisos";
-            permisosToolStripMenuItem.Click += permisosToolStripMenuItem_Click;
-            // 
             // frmPrincipal
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(804, 451);
+            ClientSize = new Size(704, 374);
             Controls.Add(panel1);
             Controls.Add(monthCalendar1);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
-            MinimumSize = new Size(820, 490);
+            Margin = new Padding(3, 2, 3, 2);
+            MinimumSize = new Size(720, 377);
             Name = "frmPrincipal";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Almacen";
             Load += frmPrincipal_Load;
             menuStrip1.ResumeLayout(false);

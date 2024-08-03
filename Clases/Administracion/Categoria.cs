@@ -122,5 +122,18 @@ namespace Almacen.Clases.Administracion
 
             return lista;
         }
+
+        public bool EsVacia()
+        {
+            Conexion cn = new Conexion();
+            string q = $@"SELECT TOP 1 * FROM dbo.Productos WHERE CategoriaID = @ID";
+            SqlCommand cmd = new SqlCommand(q);
+            cmd.Parameters.Add("@ID", SqlDbType.Int).Value = ID;
+
+            DataTable dt = cn.Consultar(cmd);
+            
+            if(dt.Rows.Count > 0) { return false; }
+            else { return true; }
+        }
     }
 }

@@ -26,11 +26,11 @@ namespace Sistema
             }
             catch { }
 
-            try
-            {
-                conectarbd.ConnectionString = connectionString;
-            }
-            catch { }
+            //try
+            //{
+            //    conectarbd.ConnectionString = connectionString;
+            //}
+            //catch { }
         }
 
         public void Abrir()

@@ -28,14 +28,13 @@ namespace Almacen.Vistas
         {
             if (Modificacion == true)
             {
-                lblForm.Text = "Modificar " + Categoria.NombreClase;
                 txtID.Text = Clase.ID.ToString();
                 txtNombre.Text = Clase.Descripcion;
                 txtUtilidad.Text = Clase.Utilidad.ToString();
             }
             else
             {
-                lblForm.Text = "Crear " + Categoria.NombreClase;
+
             }
         }
 
@@ -74,6 +73,12 @@ namespace Almacen.Vistas
             if (txtUtilidad.Text.Length == 0)
             {
                 frmMostrarMensaje.MostrarMensaje("Categoria", "Debe escribir una utilidad para la categoria");
+                return false;
+            }
+
+            if (!int.TryParse(txtUtilidad.Text, out int number))
+            {
+                frmMostrarMensaje.MostrarMensaje("Categoria", "Ingrese una utilidad válida");
                 return false;
             }
 

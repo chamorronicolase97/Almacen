@@ -46,7 +46,6 @@ namespace Almacen.Vistas
 
             if (Modificacion == true)
             {
-                lblForm.Text = "Modificar " + Usuario.NombreClase;
                 txtID.Text = Clase.ID.ToString();
                 txtNomApe.Text = Clase.NombreApellido;
                 txtUsuario.Text = Clase.CodUsuario;
@@ -56,7 +55,7 @@ namespace Almacen.Vistas
             }
             else
             {
-                lblForm.Text = "Crear " + Usuario.NombreClase;
+
             }
         }
 

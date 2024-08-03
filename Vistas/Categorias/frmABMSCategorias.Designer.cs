@@ -55,7 +55,7 @@
             dgvDatos.Name = "dgvDatos";
             dgvDatos.RowHeadersWidth = 51;
             dgvDatos.RowTemplate.Height = 29;
-            dgvDatos.Size = new Size(602, 294);
+            dgvDatos.Size = new Size(602, 295);
             dgvDatos.TabIndex = 0;
             // 
             // splitContainer1
@@ -140,6 +140,7 @@
             Margin = new Padding(3, 2, 3, 2);
             MinimumSize = new Size(600, 400);
             Name = "frmABMSCategorias";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Categorias";
             Load += frmABMSCategorias_Load;
             ((System.ComponentModel.ISupportInitialize)dgvDatos).EndInit();
