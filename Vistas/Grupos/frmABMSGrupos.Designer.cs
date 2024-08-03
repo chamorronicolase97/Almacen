@@ -46,6 +46,9 @@
             // 
             // dgvDatos
             // 
+            dgvDatos.AllowUserToAddRows = false;
+            dgvDatos.AllowUserToDeleteRows = false;
+            dgvDatos.AllowUserToResizeRows = false;
             dgvDatos.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgvDatos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvDatos.Location = new Point(-21, 4);
@@ -53,7 +56,7 @@
             dgvDatos.Name = "dgvDatos";
             dgvDatos.RowHeadersWidth = 51;
             dgvDatos.RowTemplate.Height = 29;
-            dgvDatos.Size = new Size(602, 293);
+            dgvDatos.Size = new Size(602, 296);
             dgvDatos.TabIndex = 0;
             // 
             // splitContainer1
@@ -138,6 +141,7 @@
             Margin = new Padding(3, 2, 3, 2);
             MinimumSize = new Size(600, 400);
             Name = "frmABMSGrupos";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Grupos";
             Load += frmABMSGrupos_Load;
             ((System.ComponentModel.ISupportInitialize)dgvDatos).EndInit();

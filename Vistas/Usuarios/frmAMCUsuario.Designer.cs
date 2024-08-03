@@ -40,17 +40,15 @@
             txtContraseña = new TextBox();
             label5 = new Label();
             cmbGrupo = new ComboBox();
-            panel1 = new Panel();
-            lblForm = new Label();
-            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // btnAceptar
             // 
             btnAceptar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnAceptar.Location = new Point(270, 328);
+            btnAceptar.Location = new Point(236, 198);
+            btnAceptar.Margin = new Padding(3, 2, 3, 2);
             btnAceptar.Name = "btnAceptar";
-            btnAceptar.Size = new Size(94, 29);
+            btnAceptar.Size = new Size(82, 22);
             btnAceptar.TabIndex = 0;
             btnAceptar.Text = "Aceptar";
             btnAceptar.UseVisualStyleBackColor = true;
@@ -59,9 +57,10 @@
             // btnCancelar
             // 
             btnCancelar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnCancelar.Location = new Point(370, 328);
+            btnCancelar.Location = new Point(324, 198);
+            btnCancelar.Margin = new Padding(3, 2, 3, 2);
             btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(94, 29);
+            btnCancelar.Size = new Size(82, 22);
             btnCancelar.TabIndex = 1;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = true;
@@ -69,76 +68,80 @@
             // 
             // txtNomApe
             // 
-            txtNomApe.Location = new Point(151, 145);
+            txtNomApe.Location = new Point(126, 65);
+            txtNomApe.Margin = new Padding(3, 2, 3, 2);
             txtNomApe.Name = "txtNomApe";
-            txtNomApe.Size = new Size(281, 27);
+            txtNomApe.Size = new Size(246, 23);
             txtNomApe.TabIndex = 2;
             // 
             // txtUsuario
             // 
-            txtUsuario.Location = new Point(151, 183);
+            txtUsuario.Location = new Point(126, 93);
+            txtUsuario.Margin = new Padding(3, 2, 3, 2);
             txtUsuario.Name = "txtUsuario";
-            txtUsuario.Size = new Size(281, 27);
+            txtUsuario.Size = new Size(246, 23);
             txtUsuario.TabIndex = 3;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(21, 149);
+            label1.Location = new Point(12, 68);
             label1.Name = "label1";
-            label1.Size = new Size(137, 20);
+            label1.Size = new Size(108, 15);
             label1.TabIndex = 4;
             label1.Text = "Nombre Y Apellido";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(90, 187);
+            label2.Location = new Point(73, 96);
             label2.Name = "label2";
-            label2.Size = new Size(59, 20);
+            label2.Size = new Size(47, 15);
             label2.TabIndex = 5;
             label2.Text = "Usuario";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(123, 96);
+            label3.Location = new Point(102, 28);
             label3.Name = "label3";
-            label3.Size = new Size(24, 20);
+            label3.Size = new Size(18, 15);
             label3.TabIndex = 6;
             label3.Text = "ID";
             // 
             // txtID
             // 
             txtID.Enabled = false;
-            txtID.Location = new Point(151, 92);
+            txtID.Location = new Point(126, 25);
+            txtID.Margin = new Padding(3, 2, 3, 2);
             txtID.Name = "txtID";
-            txtID.Size = new Size(75, 27);
+            txtID.Size = new Size(66, 23);
             txtID.TabIndex = 7;
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(67, 223);
+            label4.Location = new Point(53, 123);
             label4.Name = "label4";
-            label4.Size = new Size(83, 20);
+            label4.Size = new Size(67, 15);
             label4.TabIndex = 9;
             label4.Text = "Contraseña";
             // 
             // txtContraseña
             // 
-            txtContraseña.Location = new Point(151, 219);
+            txtContraseña.Location = new Point(126, 120);
+            txtContraseña.Margin = new Padding(3, 2, 3, 2);
             txtContraseña.Name = "txtContraseña";
             txtContraseña.PasswordChar = '*';
-            txtContraseña.Size = new Size(281, 27);
+            txtContraseña.Size = new Size(246, 23);
             txtContraseña.TabIndex = 8;
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(98, 263);
+            label5.Location = new Point(80, 153);
             label5.Name = "label5";
-            label5.Size = new Size(50, 20);
+            label5.Size = new Size(40, 15);
             label5.TabIndex = 10;
             label5.Text = "Grupo";
             // 
@@ -146,40 +149,16 @@
             // 
             cmbGrupo.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbGrupo.FormattingEnabled = true;
-            cmbGrupo.Location = new Point(151, 259);
-            cmbGrupo.Margin = new Padding(3, 4, 3, 4);
+            cmbGrupo.Location = new Point(126, 150);
             cmbGrupo.Name = "cmbGrupo";
-            cmbGrupo.Size = new Size(281, 28);
+            cmbGrupo.Size = new Size(246, 23);
             cmbGrupo.TabIndex = 11;
-            // 
-            // panel1
-            // 
-            panel1.BackColor = SystemColors.ActiveCaption;
-            panel1.Controls.Add(lblForm);
-            panel1.Dock = DockStyle.Top;
-            panel1.Location = new Point(0, 0);
-            panel1.Margin = new Padding(3, 4, 3, 4);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(475, 133);
-            panel1.TabIndex = 12;
-            // 
-            // lblForm
-            // 
-            lblForm.AutoSize = true;
-            lblForm.Dock = DockStyle.Fill;
-            lblForm.Font = new Font("Segoe UI", 20F, FontStyle.Bold, GraphicsUnit.Point);
-            lblForm.Location = new Point(0, 0);
-            lblForm.Name = "lblForm";
-            lblForm.Size = new Size(144, 46);
-            lblForm.TabIndex = 0;
-            lblForm.Text = "Usuario";
             // 
             // frmAMCUsuario
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(475, 369);
-            Controls.Add(panel1);
+            ClientSize = new Size(416, 229);
             Controls.Add(cmbGrupo);
             Controls.Add(label5);
             Controls.Add(label4);
@@ -193,13 +172,13 @@
             Controls.Add(btnCancelar);
             Controls.Add(btnAceptar);
             FormBorderStyle = FormBorderStyle.FixedDialog;
+            Margin = new Padding(3, 2, 3, 2);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "frmAMCUsuario";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Usuario";
             Load += frmAMCUsuario_Load;
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -218,7 +197,5 @@
         private TextBox txtContraseña;
         private Label label5;
         private ComboBox cmbGrupo;
-        private Panel panel1;
-        private Label lblForm;
     }
 }

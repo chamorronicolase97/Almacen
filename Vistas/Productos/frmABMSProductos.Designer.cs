@@ -48,6 +48,8 @@
             // 
             // dgvDatos
             // 
+            dgvDatos.AllowUserToAddRows = false;
+            dgvDatos.AllowUserToDeleteRows = false;
             dgvDatos.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgvDatos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvDatos.Location = new Point(0, 3);
@@ -55,7 +57,7 @@
             dgvDatos.Name = "dgvDatos";
             dgvDatos.RowHeadersWidth = 51;
             dgvDatos.RowTemplate.Height = 29;
-            dgvDatos.Size = new Size(584, 305);
+            dgvDatos.Size = new Size(610, 307);
             dgvDatos.TabIndex = 0;
             // 
             // splitContainer1
@@ -74,7 +76,7 @@
             // splitContainer1.Panel2
             // 
             splitContainer1.Panel2.Controls.Add(dgvDatos);
-            splitContainer1.Size = new Size(584, 361);
+            splitContainer1.Size = new Size(610, 361);
             splitContainer1.SplitterDistance = 62;
             splitContainer1.SplitterWidth = 3;
             splitContainer1.TabIndex = 1;
@@ -85,7 +87,7 @@
             pnlBotones.Controls.Add(btnBorrar);
             pnlBotones.Controls.Add(brnModificar);
             pnlBotones.Controls.Add(btnCrear);
-            pnlBotones.Location = new Point(425, 7);
+            pnlBotones.Location = new Point(451, 7);
             pnlBotones.Name = "pnlBotones";
             pnlBotones.Size = new Size(151, 45);
             pnlBotones.TabIndex = 12;
@@ -138,11 +140,12 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(584, 361);
+            ClientSize = new Size(610, 361);
             Controls.Add(splitContainer1);
             Margin = new Padding(3, 2, 3, 2);
             MinimumSize = new Size(600, 400);
             Name = "frmABMSProductos";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Productos";
             Load += frmABMSProductos_Load;
             ((System.ComponentModel.ISupportInitialize)dgvDatos).EndInit();

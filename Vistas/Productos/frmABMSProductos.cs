@@ -47,9 +47,11 @@ namespace Almacen.Vistas
 
             Producto Clase = new Producto(Convert.ToInt32(dgvDatos.CurrentRow.Cells["ProductoID"].Value));
 
+            DialogResult = MessageBox.Show("Desea eliminar el Producto " + Clase.Descripcion + "?", "Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (DialogResult == DialogResult.No) return;
             Clase.Eliminar();
 
-            frmMostrarMensaje.MostrarMensaje($"Baja de {Producto.NombreClase}", "Correcta.");
+            frmMostrarMensaje.MostrarMensaje($"{Producto.NombreClase}", "Baja de " + Producto.NombreClase + " exitosa.");
 
             CargarGrilla();
 

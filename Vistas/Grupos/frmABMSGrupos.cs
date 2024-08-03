@@ -47,9 +47,17 @@ namespace Almacen.Vistas
 
             Grupo Clase = new Grupo(Convert.ToInt32(dgvDatos.CurrentRow.Cells["GrupoID"].Value));
 
+            DialogResult = MessageBox.Show("Desea eliminar el Grupo " + Clase.Descripcion + "?", "Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (DialogResult == DialogResult.No) return;
+
+            if (!Clase.EsVacio())
+            {
+                frmMostrarMensaje.MostrarMensaje($"{Categoria.NombreClase}", "El Grupo " + Grupo.NombreClase + " no se encuentra vacio, no puede eliminarse.");
+                return;
+            }
             Clase.Eliminar();
 
-            frmMostrarMensaje.MostrarMensaje($"Baja de {Grupo.NombreClase}", "Correcta.");
+            frmMostrarMensaje.MostrarMensaje($"{Grupo.NombreClase}", "Baja de " + Grupo.NombreClase + " exitosa.");
 
             CargarGrilla();
 

@@ -49,10 +49,15 @@ namespace Almacen.Vistas
 
             DialogResult = MessageBox.Show("Desea eliminar la categoría " + Clase.Descripcion + "?", "Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (DialogResult == DialogResult.No) return;
-            
+
+            if (!Clase.EsVacia())
+            {
+                frmMostrarMensaje.MostrarMensaje($"{Categoria.NombreClase}", "La Categoría " + Categoria.NombreClase + " no se encuentra vacia, no puede eliminarse.");
+                return;
+            }
             Clase.Eliminar();
 
-            frmMostrarMensaje.MostrarMensaje($"{Categoria.NombreClase}", "Baja exitosa.");
+            frmMostrarMensaje.MostrarMensaje($"{Categoria.NombreClase}", "Baja de " + Categoria.NombreClase + " exitosa.");
 
             CargarGrilla();
 

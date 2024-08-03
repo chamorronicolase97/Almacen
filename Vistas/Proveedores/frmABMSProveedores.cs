@@ -47,9 +47,11 @@ namespace Almacen.Vistas
 
             Proveedor Clase = new Proveedor(Convert.ToInt32(dgvDatos.CurrentRow.Cells["ProveedorID"].Value));
 
+            DialogResult = MessageBox.Show("Desea eliminar al Proveedor " + Clase.RazonSocial + "?", "Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (DialogResult == DialogResult.No) return;
             Clase.Eliminar();
 
-            frmMostrarMensaje.MostrarMensaje($"Baja de {Proveedor.NombreClase}", "Correcta.");
+            frmMostrarMensaje.MostrarMensaje($"{Proveedor.NombreClase}", "Baja de " + Proveedor.NombreClase + " exitosa.");
 
             CargarGrilla();
 

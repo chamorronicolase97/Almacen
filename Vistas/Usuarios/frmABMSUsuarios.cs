@@ -47,9 +47,12 @@ namespace Almacen.Vistas
 
             Usuario Clase = new Usuario(Convert.ToInt32(dgvDatos.CurrentRow.Cells["UsuarioID"].Value));
 
+            DialogResult = MessageBox.Show("Desea eliminar el Usuario " + Clase.NombreApellido + "?", "Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (DialogResult == DialogResult.No) return;
+
             Clase.Eliminar();
 
-            frmMostrarMensaje.MostrarMensaje($"Baja de {Usuario.NombreClase}", "Correcta.");
+            frmMostrarMensaje.MostrarMensaje($"{Usuario.NombreClase}", "Baja de " + Usuario.NombreClase + " exitosa.");
 
             CargarGrilla();
 

@@ -144,6 +144,7 @@
             MinimizeBox = false;
             MinimumSize = new Size(350, 220);
             Name = "frmLogin";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Iniciar Sesión";
             ResumeLayout(false);
             PerformLayout();

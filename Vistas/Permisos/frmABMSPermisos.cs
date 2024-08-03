@@ -53,6 +53,19 @@ namespace Almacen.Vistas
 
             //CargarGrilla();
 
+            if (dgvDatos.CurrentRow == null) return;
+
+            Permiso Clase = new Permiso(Convert.ToInt32(dgvDatos.CurrentRow.Cells["PermisoID"].Value));
+
+            DialogResult = MessageBox.Show("Desea eliminar el Permiso " + Clase.Descripcion + "?", "Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (DialogResult == DialogResult.No) return;
+
+            Clase.Eliminar();
+
+            frmMostrarMensaje.MostrarMensaje($"{Permiso.NombreClase}", "Baja de " + Permiso.NombreClase + " exitosa.");
+
+            CargarGrilla();
+
         }
 
         private void btnModificar_Click(object sender, EventArgs e)

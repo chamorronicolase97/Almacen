@@ -28,17 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmABMSPermisos));
             dgvDatos = new DataGridView();
             splitContainer1 = new SplitContainer();
-            txtFiltro = new TextBox();
+            pnlBotones = new Panel();
             btnBorrar = new Button();
-            btnModificar = new Button();
+            brnModificar = new Button();
             btnCrear = new Button();
+            txtFiltro = new TextBox();
             ((System.ComponentModel.ISupportInitialize)dgvDatos).BeginInit();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
             splitContainer1.SuspendLayout();
+            pnlBotones.SuspendLayout();
             SuspendLayout();
             // 
             // dgvDatos
@@ -46,78 +49,97 @@
             dgvDatos.AllowUserToAddRows = false;
             dgvDatos.AllowUserToDeleteRows = false;
             dgvDatos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvDatos.Location = new Point(0, 3);
+            dgvDatos.Location = new Point(0, 2);
+            dgvDatos.Margin = new Padding(3, 2, 3, 2);
             dgvDatos.Name = "dgvDatos";
             dgvDatos.RowHeadersWidth = 51;
             dgvDatos.RowTemplate.Height = 29;
-            dgvDatos.Size = new Size(800, 363);
+            dgvDatos.Size = new Size(584, 272);
             dgvDatos.TabIndex = 0;
             // 
             // splitContainer1
             // 
             splitContainer1.Dock = DockStyle.Fill;
             splitContainer1.Location = new Point(0, 0);
+            splitContainer1.Margin = new Padding(3, 2, 3, 2);
             splitContainer1.Name = "splitContainer1";
             splitContainer1.Orientation = Orientation.Horizontal;
             // 
             // splitContainer1.Panel1
             // 
+            splitContainer1.Panel1.Controls.Add(pnlBotones);
             splitContainer1.Panel1.Controls.Add(txtFiltro);
-            splitContainer1.Panel1.Controls.Add(btnBorrar);
-            splitContainer1.Panel1.Controls.Add(btnModificar);
-            splitContainer1.Panel1.Controls.Add(btnCrear);
             // 
             // splitContainer1.Panel2
             // 
             splitContainer1.Panel2.Controls.Add(dgvDatos);
-            splitContainer1.Size = new Size(800, 451);
-            splitContainer1.SplitterDistance = 78;
+            splitContainer1.Size = new Size(587, 338);
+            splitContainer1.SplitterDistance = 58;
+            splitContainer1.SplitterWidth = 3;
             splitContainer1.TabIndex = 1;
             // 
-            // txtFiltro
+            // pnlBotones
             // 
-            txtFiltro.Location = new Point(11, 32);
-            txtFiltro.Name = "txtFiltro";
-            txtFiltro.Size = new Size(188, 27);
-            txtFiltro.TabIndex = 3;
+            pnlBotones.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            pnlBotones.Controls.Add(btnBorrar);
+            pnlBotones.Controls.Add(brnModificar);
+            pnlBotones.Controls.Add(btnCrear);
+            pnlBotones.Location = new Point(433, 7);
+            pnlBotones.Name = "pnlBotones";
+            pnlBotones.Size = new Size(151, 45);
+            pnlBotones.TabIndex = 14;
             // 
             // btnBorrar
             // 
-            btnBorrar.Location = new Point(736, 21);
+            btnBorrar.Image = (Image)resources.GetObject("btnBorrar.Image");
+            btnBorrar.Location = new Point(103, 4);
+            btnBorrar.Margin = new Padding(3, 2, 3, 2);
             btnBorrar.Name = "btnBorrar";
-            btnBorrar.Size = new Size(57, 48);
-            btnBorrar.TabIndex = 2;
-            btnBorrar.Text = "B";
+            btnBorrar.Size = new Size(41, 36);
+            btnBorrar.TabIndex = 11;
             btnBorrar.UseVisualStyleBackColor = true;
-            btnBorrar.Click += btnBorrar_Click;
+            btnBorrar.Click += btnModificar_Click;
             // 
-            // btnModificar
+            // brnModificar
             // 
-            btnModificar.Location = new Point(673, 21);
-            btnModificar.Name = "btnModificar";
-            btnModificar.Size = new Size(57, 48);
-            btnModificar.TabIndex = 1;
-            btnModificar.Text = "M";
-            btnModificar.UseVisualStyleBackColor = true;
-            btnModificar.Click += btnModificar_Click;
+            brnModificar.Image = (Image)resources.GetObject("brnModificar.Image");
+            brnModificar.Location = new Point(56, 4);
+            brnModificar.Margin = new Padding(3, 2, 3, 2);
+            brnModificar.Name = "brnModificar";
+            brnModificar.Size = new Size(41, 36);
+            brnModificar.TabIndex = 10;
+            brnModificar.UseVisualStyleBackColor = true;
+            brnModificar.Click += btnModificar_Click;
             // 
             // btnCrear
             // 
-            btnCrear.Location = new Point(610, 21);
+            btnCrear.Image = (Image)resources.GetObject("btnCrear.Image");
+            btnCrear.Location = new Point(9, 4);
+            btnCrear.Margin = new Padding(3, 2, 3, 2);
             btnCrear.Name = "btnCrear";
-            btnCrear.Size = new Size(57, 48);
-            btnCrear.TabIndex = 0;
-            btnCrear.Text = "C";
+            btnCrear.Size = new Size(41, 36);
+            btnCrear.TabIndex = 9;
             btnCrear.UseVisualStyleBackColor = true;
             btnCrear.Click += btnCrear_Click;
             // 
+            // txtFiltro
+            // 
+            txtFiltro.Location = new Point(10, 24);
+            txtFiltro.Margin = new Padding(3, 2, 3, 2);
+            txtFiltro.Name = "txtFiltro";
+            txtFiltro.Size = new Size(165, 23);
+            txtFiltro.TabIndex = 3;
+            // 
             // frmABMSPermisos
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 451);
+            ClientSize = new Size(587, 338);
             Controls.Add(splitContainer1);
+            Margin = new Padding(3, 2, 3, 2);
+            MinimumSize = new Size(600, 350);
             Name = "frmABMSPermisos";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Permisos";
             Load += frmABMSPermisos_Load;
             ((System.ComponentModel.ISupportInitialize)dgvDatos).EndInit();
@@ -126,6 +148,7 @@
             splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
             splitContainer1.ResumeLayout(false);
+            pnlBotones.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -133,9 +156,10 @@
 
         private DataGridView dgvDatos;
         private SplitContainer splitContainer1;
-        private Button btnCrear;
-        private Button btnBorrar;
-        private Button btnModificar;
         private TextBox txtFiltro;
+        private Panel pnlBotones;
+        private Button btnBorrar;
+        private Button brnModificar;
+        private Button btnCrear;
     }
 }
