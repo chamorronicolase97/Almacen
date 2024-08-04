@@ -13,34 +13,40 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Vistas\Grupos\frmABMSGrupos.cs">
+    <Compile Update="Vistas\Compras\Pedidos\frmABMSPedidos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Vistas\Grupos\frmAMCGrupo.cs">
+    <Compile Update="Vistas\Compras\Pedidos\frmAMCPedido.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Vistas\Permisos\frmABMSPermisos.cs">
+    <Compile Update="Vistas\Sistema\Grupos\frmABMSGrupos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Vistas\Permisos\frmAMCPermiso.cs">
+    <Compile Update="Vistas\Sistema\Grupos\frmAMCGrupo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Vistas\Productos\frmABMSProductos.cs">
+    <Compile Update="Vistas\Sistema\Permisos\frmABMSPermisos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Vistas\Productos\frmAMCProducto.cs">
+    <Compile Update="Vistas\Sistema\Permisos\frmAMCPermiso.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Vistas\Proveedores\frmABMSProveedores.cs">
+    <Compile Update="Vistas\Administracion\Productos\frmABMSProductos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Vistas\Proveedores\frmAMCProveedor.cs">
+    <Compile Update="Vistas\Administracion\Productos\frmAMCProducto.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Vistas\Usuarios\frmABMSUsuarios.cs">
+    <Compile Update="Vistas\Administracion\Proveedores\frmABMSProveedores.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Vistas\Usuarios\frmAMCUsuario.cs">
+    <Compile Update="Vistas\Administracion\Proveedores\frmAMCProveedor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Vistas\Sistema\Usuarios\frmABMSUsuarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Vistas\Sistema\Usuarios\frmAMCUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
