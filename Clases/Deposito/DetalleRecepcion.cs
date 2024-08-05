@@ -10,44 +10,46 @@ using System.Threading.Tasks;
 
 namespace Almacen.Clases.Compra
 {
-    public class DetallePedido
+    public class DetalleRecepcion
     {
-        private Pedido pedido;
+        private Recepcion _recepcion;
         private Producto producto;
         private Proveedor proveedor;
         private int _cantidad;
         private decimal _costoUnitario;
+        public DateTime _fechaRecepcion;
 
         #region Constantes
-        const string Tabla = "dbo.DetallesPedidos";
-        public const string NombreClase = "DetallePedido";
+        const string Tabla = "dbo.DetallesRecepciones";
+        public const string NombreClase = "DetalleRecepcion";
         #endregion
 
         #region Propiedades
-        public Pedido Pedido { get { return pedido; } set { pedido = value; } }
+        public Recepcion Recepcion { get { return _recepcion; } set { _recepcion = value; } }
         public Producto Producto { get { return producto; } set { producto = value; } }
         public Proveedor Proveedor { get { return proveedor; } set { proveedor = value; } }
         public int Cantidad { get { return _cantidad; } set { _cantidad = value; } }
         public decimal CostoUnitario { get { return _costoUnitario; } set { _costoUnitario = value; } }
+        public DateTime FechaRecepcion { get { return _fechaRecepcion; }set { _fechaRecepcion = value; } }
         #endregion
 
-        public DetallePedido() { }
-        //public DetallePedido(int nroPedido, int productoID, int proveedorID)
+        public DetalleRecepcion() { }
+        //public DetalleRecepcion(int RecepcionID, int productoID, int proveedorID)
         //{
-        //    this.Pedido = nroPedido;
+        //    this.Recepcion = RecepcionID;
         //    if (ID != 0) Abrir();
         //}
-        public DetallePedido(DataRow dr) => CargaDatos(dr);
+        public DetalleRecepcion(DataRow dr) => CargaDatos(dr);
 
         public void Abrir()
         {
             Conexion cn = new Conexion();
-            string q = @$"Select * from {Tabla} where NroPedido = @nroPedido
+            string q = @$"Select * from {Tabla} where RecepcionID = @RecepcionID
                                                 and ProductoID = @productoID
                                                 and ProveedorID = @proveedorID";
 
             SqlCommand cmd = new SqlCommand(q);
-            cmd.Parameters.Add("@nroPedido", SqlDbType.Int).Value = Pedido.ID;
+            cmd.Parameters.Add("@RecepcionID", SqlDbType.Int).Value = Recepcion.ID;
             cmd.Parameters.Add("@productoID", SqlDbType.Int).Value = Producto.ID;
             cmd.Parameters.Add("@proveedorID", SqlDbType.Int).Value = Proveedor.ID;
 
@@ -62,32 +64,33 @@ namespace Almacen.Clases.Compra
             }
             catch (Exception ex)
             {
-                throw new Exception($"Error al abrir el objeto {NombreClase}. Clave {Pedido.ID + Producto.ID + Proveedor.ID}", ex);
+                throw new Exception($"Error al abrir el objeto {NombreClase}. Clave {Recepcion.ID + Producto.ID + Proveedor.ID}", ex);
             }
 
         }
 
         private void CargaDatos(DataRow dr)
         {
-            pedido = new Pedido(Convert.ToInt32(dr["NroPedido"]));
+            Recepcion = new Recepcion(Convert.ToInt32(dr["RecepcionID"]));
             producto = new Producto(Convert.ToInt32(dr["ProductoID"]));
             proveedor = new Proveedor(Convert.ToInt32(dr["ProveedorID"]));
             _cantidad = Convert.ToInt32(dr["Cantidad"]);
             _costoUnitario = Convert.ToDecimal(dr["CostoUnitario"]);
+            _fechaRecepcion = Convert.ToDateTime(dr["FechaRecepcion"]);
         }
 
-        public void Insertar(int nroPedido, int productoID, int proveedorID)
+        public void Insertar()
         {
             Conexion cn = new Conexion();
-            string q = $@"INSERT INTO {Tabla} (NroPedido, ProductoID, ProveedorID, Cantidad, CostoUnitario)
-                        Values(@NroPedido, @ProductoID, @ProveedorID, @cantidad, @costoUnitario);";
+            string q = $@"INSERT INTO {Tabla} (RecepcionID, ProductoID, ProveedorID, Cantidad, CostoUnitario, FechaRecepcion)
+                        Values(@RecepcionID, @ProductoID, @ProveedorID, @cantidad, @costoUnitario, @fechaRecepcion);";
             SqlCommand cmd = new SqlCommand(q);
-            cmd.Parameters.Add("@NroPedido", SqlDbType.Int).Value = nroPedido;
-            cmd.Parameters.Add("@ProductoID", SqlDbType.Int).Value = productoID;
-            cmd.Parameters.Add("@ProveedorID", SqlDbType.Int).Value = proveedorID;
+            cmd.Parameters.Add("@RecepcionID", SqlDbType.Int).Value = Recepcion.ID;
+            cmd.Parameters.Add("@ProductoID", SqlDbType.Int).Value = Producto.ID;
+            cmd.Parameters.Add("@ProveedorID", SqlDbType.Int).Value = Proveedor.ID;
             cmd.Parameters.Add("@cantidad", SqlDbType.Int).Value = Cantidad;
             cmd.Parameters.Add("@costoUnitario", SqlDbType.Decimal).Value = CostoUnitario;
-
+            cmd.Parameters.Add("@fechaRecepcion", SqlDbType.DateTime).Value = FechaRecepcion;
             cn.Ejecutar(cmd);
         }
 
@@ -96,13 +99,13 @@ namespace Almacen.Clases.Compra
             Conexion cn = new Conexion();
             string q = $@"UPDATE {Tabla} SET Cantidad = @cantidad,
                                              CostoUnitario = @costoUnitario
-                                             WHERE NroPedido = @nroPedido
+                                             WHERE RecepcionID = @RecepcionID
                                              and ProductoID = @productoID
                                              and ProveedorID = @proveedorID;";
             SqlCommand cmd = new SqlCommand(q);
             cmd.Parameters.Add("@cantidad", SqlDbType.Int).Value = Cantidad;
             cmd.Parameters.Add("@costoUnitario", SqlDbType.Decimal).Value = CostoUnitario;
-            cmd.Parameters.Add("@nroPedido", SqlDbType.Int).Value = Pedido.ID;
+            cmd.Parameters.Add("@RecepcionID", SqlDbType.Int).Value = Recepcion.ID;
             cmd.Parameters.Add("@productoID", SqlDbType.Int).Value = Producto.ID;
             cmd.Parameters.Add("@proveedorID", SqlDbType.Int).Value = Proveedor.ID;
 
@@ -112,11 +115,11 @@ namespace Almacen.Clases.Compra
         public void Eliminar()
         {
             Conexion cn = new Conexion();
-            string q = $@"DELETE FROM {Tabla} WHERE NroPedido = @nroPedido
+            string q = $@"DELETE FROM {Tabla} WHERE RecepcionID = @RecepcionID
                                               and ProductoID = @productoID
                                               and ProveedorID = @proveedorID";
             SqlCommand cmd = new SqlCommand(q);
-            cmd.Parameters.Add("@nroPedido", SqlDbType.Int).Value = Pedido.ID;
+            cmd.Parameters.Add("@RecepcionID", SqlDbType.Int).Value = Recepcion.ID;
             cmd.Parameters.Add("@productoID", SqlDbType.Int).Value = Producto.ID;
             cmd.Parameters.Add("@proveedorID", SqlDbType.Int).Value = Proveedor.ID;
 
@@ -131,22 +134,13 @@ namespace Almacen.Clases.Compra
             return cn.Consultar(q);
         }
 
-        public static DataTable Listar(int NroPedido)
+        public static List<DetalleRecepcion> ListarDetallesRecepciones()
         {
-            Conexion cn = new Conexion();
-            string q = @$"Select * from {Tabla} where NroPedido = @NroPedido";
-            SqlCommand cmd = new SqlCommand(q);
-            cmd.Parameters.Add("@NroPedido", SqlDbType.Int).Value = NroPedido;
-            return cn.Consultar(cmd);
-        }
-
-        public static List<DetallePedido> ListarDetallesPedidos(int NroPedido)
-        { 
-            DataTable dt = Listar(NroPedido);
-            List<DetallePedido> lista = new List<DetallePedido>();
+            DataTable dt = Listar();
+            List<DetalleRecepcion> lista = new List<DetalleRecepcion>();
             foreach (DataRow dr in dt.Rows)
             {
-                lista.Add(new DetallePedido(dr));
+                lista.Add(new DetalleRecepcion(dr));
             }
 
             return lista;
