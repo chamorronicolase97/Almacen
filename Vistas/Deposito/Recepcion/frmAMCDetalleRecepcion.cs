@@ -40,7 +40,7 @@ namespace Almacen.Vistas
             }
             else
             {
-
+                txtNroPedido.Text = Pedido.CalcularNroPedido().ToString();
             }
         }
 
@@ -78,7 +78,7 @@ namespace Almacen.Vistas
             }
             else
             {
-                int nroPedido = Convert.ToInt32(txtNroPedido.Text);
+                int nroPedido = Pedido.CalcularNroPedido();
                 Clase.Insertar(nroPedido, _producto.ID, _proveedor.ID);
                 this.DialogResult = DialogResult.OK;
                 this.Close();

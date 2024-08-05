@@ -15,7 +15,7 @@ namespace Almacen.Vistas
     public partial class frmAMCRecepcion : Form
     {
         public Recepcion Clase { get; set; }
-
+        public Pedido Pedido { get; set; }
         public bool Modificacion { get; set; } = false;
 
         public frmAMCRecepcion()
@@ -34,7 +34,7 @@ namespace Almacen.Vistas
             }
             else
             {
-
+                txtNroPedido.Text = Pedido.ID.ToString();
             }
         }
 

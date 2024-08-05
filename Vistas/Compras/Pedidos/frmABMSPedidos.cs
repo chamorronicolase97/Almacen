@@ -16,6 +16,8 @@ namespace Almacen.Vistas
     public partial class frmABMSPedidos : Form
     {
 
+        public Pedido Pedido { get; set; }
+
         public frmABMSPedidos()
         {
             InitializeComponent();
@@ -74,6 +76,14 @@ namespace Almacen.Vistas
             f.Modificacion = true;
             f.ShowDialog();
             if (f.DialogResult == DialogResult.OK) CargarGrilla();
+        }
+
+        private void dgvDatos_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (dgvDatos.CurrentRow == null) return;
+            
+            Pedido = new Pedido(Convert.ToInt32(dgvDatos.CurrentRow.Cells["NroPedido"].Value));
+            this.DialogResult = DialogResult.OK;
         }
     }
 }

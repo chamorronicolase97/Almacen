@@ -40,6 +40,8 @@
             dgvDetalles = new DataGridView();
             btnAsignar = new Button();
             dtpFechaEntrega = new DateTimePicker();
+            txtRecepcionID = new TextBox();
+            label2 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvDetalles).BeginInit();
             SuspendLayout();
@@ -95,7 +97,8 @@
             txtNroPedido.Location = new Point(129, 43);
             txtNroPedido.Margin = new Padding(3, 2, 3, 2);
             txtNroPedido.Name = "txtNroPedido";
-            txtNroPedido.Size = new Size(66, 23);
+            txtNroPedido.ReadOnly = true;
+            txtNroPedido.Size = new Size(98, 23);
             txtNroPedido.TabIndex = 7;
             // 
             // panel1
@@ -144,11 +147,34 @@
             dtpFechaEntrega.Size = new Size(98, 23);
             dtpFechaEntrega.TabIndex = 10;
             // 
+            // txtRecepcionID
+            // 
+            txtRecepcionID.Anchor = AnchorStyles.Bottom;
+            txtRecepcionID.Enabled = false;
+            txtRecepcionID.Location = new Point(129, 11);
+            txtRecepcionID.Margin = new Padding(3, 2, 3, 2);
+            txtRecepcionID.Name = "txtRecepcionID";
+            txtRecepcionID.ReadOnly = true;
+            txtRecepcionID.Size = new Size(98, 23);
+            txtRecepcionID.TabIndex = 12;
+            // 
+            // label2
+            // 
+            label2.Anchor = AnchorStyles.Bottom;
+            label2.AutoSize = true;
+            label2.Location = new Point(47, 14);
+            label2.Name = "label2";
+            label2.Size = new Size(76, 15);
+            label2.TabIndex = 11;
+            label2.Text = "Recepción ID";
+            // 
             // frmAMCRecepcion
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(646, 302);
+            Controls.Add(txtRecepcionID);
+            Controls.Add(label2);
             Controls.Add(dtpFechaEntrega);
             Controls.Add(btnAsignar);
             Controls.Add(panel1);
@@ -186,5 +212,7 @@
         private Button btnAsignar;
         private DateTimePicker dtpFechaEntrega;
         private VScrollBar vScrollBar1;
+        private TextBox txtRecepcionID;
+        private Label label2;
     }
 }

@@ -110,6 +110,7 @@
             txtNroPedido.Location = new Point(118, 25);
             txtNroPedido.Margin = new Padding(3, 2, 3, 2);
             txtNroPedido.Name = "txtNroPedido";
+            txtNroPedido.ReadOnly = true;
             txtNroPedido.Size = new Size(66, 23);
             txtNroPedido.TabIndex = 7;
             // 

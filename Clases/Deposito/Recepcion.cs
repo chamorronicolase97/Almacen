@@ -16,7 +16,7 @@ namespace Almacen.Clases.Compra
         private DateTime _fechaEntrega;
 
         #region Constantes
-        const string Tabla = "dbo.Recepcions";
+        const string Tabla = "dbo.Recepciones";
         public const string NombreClase = "Recepcion";
         #endregion
 

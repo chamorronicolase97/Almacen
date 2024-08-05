@@ -55,8 +55,9 @@
             dgvDatos.Name = "dgvDatos";
             dgvDatos.RowHeadersWidth = 51;
             dgvDatos.RowTemplate.Height = 29;
-            dgvDatos.Size = new Size(602, 295);
+            dgvDatos.Size = new Size(602, 296);
             dgvDatos.TabIndex = 0;
+            dgvDatos.CellMouseDoubleClick += dgvDatos_CellMouseDoubleClick;
             // 
             // splitContainer1
             // 

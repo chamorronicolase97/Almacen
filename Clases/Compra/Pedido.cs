@@ -62,9 +62,10 @@ namespace Almacen.Clases.Compra
         public void Insertar()
         {
             Conexion cn = new Conexion();
-            string q = $@"INSERT INTO {Tabla} (FechaEntrega)
-                        Values(@fecha);";
+            string q = $@"INSERT INTO {Tabla} (NroPedido, FechaEntrega)
+                        Values(@NroPedido, @fecha);";
             SqlCommand cmd = new SqlCommand(q);
+            cmd.Parameters.Add("@NroPedido", SqlDbType.Int).Value = ID;
             cmd.Parameters.Add("@fecha", SqlDbType.DateTime).Value = FechaEntrega;
 
             cn.Ejecutar(cmd);
@@ -123,6 +124,16 @@ namespace Almacen.Clases.Compra
             
             if(dt.Rows.Count > 0) { return true; }
             else { return false; }
+        }
+
+        public static int CalcularNroPedido()
+        {
+            Conexion cn = new Conexion();
+            string q = $@"SELECT NroPedido FROM dbo.Pedidos order by 1 desc";
+            SqlCommand cmd = new SqlCommand(q);
+            DataTable dt = cn.Consultar(cmd);
+            if (dt.Rows.Count > 0) { return Convert.ToInt32(dt.Rows[0]["NroPedido"]); }
+            else { return 1; }
         }
     }
 }
