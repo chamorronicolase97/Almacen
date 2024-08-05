@@ -86,9 +86,17 @@ namespace Almacen.Vistas
 
         private void CargarGrillaDetalles()
         {
-            dgvDetalles.DataSource = DetallePedido.ListarDetallesPedidos(_nroPedido);
+            var pedidosview = DetallePedido.ListarDetallesPedidos(_nroPedido).Select(p => new
+            {
+                p.Pedido.ID,
+                p.Pedido.FechaEntrega,
+                p.Producto.Descripcion,
+                p.Cantidad,
+                p.CostoUnitario,
+            }).ToList();
+            dgvDetalles.DataSource = pedidosview;
+            dgvDetalles.Columns["ID"].HeaderText = "Nro. Pedido";
 
-            
         }
 
     }
