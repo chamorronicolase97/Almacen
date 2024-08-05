@@ -90,5 +90,11 @@ namespace Almacen.Vistas
             frmABMSPermisos f = new frmABMSPermisos();
             f.Show();
         }
+
+        private void pedidosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmABMSPedidos f = new frmABMSPedidos();
+            f.Show();
+        }
     }
 }

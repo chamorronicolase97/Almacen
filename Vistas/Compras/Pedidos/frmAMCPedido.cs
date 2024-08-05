@@ -28,8 +28,9 @@ namespace Almacen.Vistas
         {
             if (Modificacion == true)
             {
-                txtID.Text = Clase.ID.ToString();
-                txtFechaEntrega.Text = Convert.ToString(Clase.FechaEntrega);
+                CargarGrillaDetalles();
+                txtNroPedido.Text = Clase.ID.ToString();
+                dtpFechaEntrega.Value = Clase.FechaEntrega;
             }
             else
             {
@@ -46,7 +47,7 @@ namespace Almacen.Vistas
         {
             if (!Validar()) return;
 
-            Clase.FechaEntrega = Convert.ToDateTime(txtFechaEntrega.Text);
+            Clase.FechaEntrega = dtpFechaEntrega.Value;
 
             if (Modificacion)
             {
@@ -62,7 +63,7 @@ namespace Almacen.Vistas
 
         private bool Validar()
         {
-            if (txtFechaEntrega.Text.Length == 0)
+            if (dtpFechaEntrega == null)
             {
                 frmMostrarMensaje.MostrarMensaje("Pedido", "Debe definir una fecha para el Pedido");
                 return false;
@@ -70,5 +71,18 @@ namespace Almacen.Vistas
 
             return true;
         }
+
+        private void btnAsignar_Click(object sender, EventArgs e)
+        {
+            frmAMCDetallePedido f = new frmAMCDetallePedido();
+            f.Show();
+            CargarGrillaDetalles();
+        }
+
+        private void CargarGrillaDetalles()
+        {
+            dgvDetalles.DataSource = DetallePedido.Listar();
+        }
+
     }
 }

@@ -15,9 +15,9 @@ namespace Almacen.Vistas
     public partial class frmAMCProducto : Form
     {
         public Producto Clase { get; set; }
-
+        protected bool _soloLectura;
         public bool Modificacion { get; set; } = false;
-
+        public bool SoloLectura { get { return _soloLectura; } set { _soloLectura = value; } }
         public frmAMCProducto()
         {
             InitializeComponent();
@@ -103,7 +103,7 @@ namespace Almacen.Vistas
 
 
             return true;
-        }
+        }       
 
 
     }

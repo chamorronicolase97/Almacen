@@ -56,7 +56,7 @@ namespace Almacen.Clases.Compra
         private void CargaDatos(DataRow dr)
         {
             ID = Convert.ToInt32(dr["NroPedido"]);
-            _fechaEntrega = Convert.ToDateTime(dr["Descripcion"]);
+            _fechaEntrega = Convert.ToDateTime(dr["FechaEntrega"]);
         }
 
         public void Insertar()

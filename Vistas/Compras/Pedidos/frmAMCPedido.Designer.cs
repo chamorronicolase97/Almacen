@@ -30,16 +30,24 @@
         {
             btnAceptar = new Button();
             btnCancelar = new Button();
-            txtFechaEntrega = new TextBox();
             label1 = new Label();
             label3 = new Label();
-            txtID = new TextBox();
+            txtNroPedido = new TextBox();
+            backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            fontDialog1 = new FontDialog();
+            panel1 = new Panel();
+            vScrollBar1 = new VScrollBar();
+            dgvDetalles = new DataGridView();
+            btnAsignar = new Button();
+            dtpFechaEntrega = new DateTimePicker();
+            panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvDetalles).BeginInit();
             SuspendLayout();
             // 
             // btnAceptar
             // 
             btnAceptar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnAceptar.Location = new Point(175, 113);
+            btnAceptar.Location = new Point(464, 269);
             btnAceptar.Margin = new Padding(3, 2, 3, 2);
             btnAceptar.Name = "btnAceptar";
             btnAceptar.Size = new Size(82, 22);
@@ -51,7 +59,7 @@
             // btnCancelar
             // 
             btnCancelar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnCancelar.Location = new Point(263, 113);
+            btnCancelar.Location = new Point(552, 269);
             btnCancelar.Margin = new Padding(3, 2, 3, 2);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(82, 22);
@@ -60,19 +68,11 @@
             btnCancelar.UseVisualStyleBackColor = true;
             btnCancelar.Click += btnCancelar_Click;
             // 
-            // txtFechaEntrega
-            // 
-            txtFechaEntrega.Anchor = AnchorStyles.Bottom;
-            txtFechaEntrega.Location = new Point(97, 56);
-            txtFechaEntrega.Margin = new Padding(3, 2, 3, 2);
-            txtFechaEntrega.Name = "txtFechaEntrega";
-            txtFechaEntrega.Size = new Size(173, 23);
-            txtFechaEntrega.TabIndex = 2;            // 
             // label1
             // 
             label1.Anchor = AnchorStyles.Bottom;
             label1.AutoSize = true;
-            label1.Location = new Point(12, 59);
+            label1.Location = new Point(44, 73);
             label1.Name = "label1";
             label1.Size = new Size(81, 15);
             label1.TabIndex = 4;
@@ -82,30 +82,77 @@
             // 
             label3.Anchor = AnchorStyles.Bottom;
             label3.AutoSize = true;
-            label3.Location = new Point(71, 34);
+            label3.Location = new Point(53, 46);
             label3.Name = "label3";
-            label3.Size = new Size(18, 15);
+            label3.Size = new Size(70, 15);
             label3.TabIndex = 6;
-            label3.Text = "ID";
+            label3.Text = "Nro. Pedido";
             // 
-            // txtID
+            // txtNroPedido
             // 
-            txtID.Anchor = AnchorStyles.Bottom;
-            txtID.Enabled = false;
-            txtID.Location = new Point(97, 32);
-            txtID.Margin = new Padding(3, 2, 3, 2);
-            txtID.Name = "txtID";
-            txtID.Size = new Size(66, 23);
-            txtID.TabIndex = 7;
-            txtID.TextChanged += this.txtID_TextChanged;
+            txtNroPedido.Anchor = AnchorStyles.Bottom;
+            txtNroPedido.Enabled = false;
+            txtNroPedido.Location = new Point(129, 43);
+            txtNroPedido.Margin = new Padding(3, 2, 3, 2);
+            txtNroPedido.Name = "txtNroPedido";
+            txtNroPedido.Size = new Size(66, 23);
+            txtNroPedido.TabIndex = 7;
+            // 
+            // panel1
+            // 
+            panel1.Controls.Add(vScrollBar1);
+            panel1.Controls.Add(dgvDetalles);
+            panel1.Location = new Point(41, 108);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(544, 144);
+            panel1.TabIndex = 8;
+            // 
+            // vScrollBar1
+            // 
+            vScrollBar1.Location = new Point(525, 0);
+            vScrollBar1.Name = "vScrollBar1";
+            vScrollBar1.Size = new Size(19, 144);
+            vScrollBar1.TabIndex = 1;
+            // 
+            // dgvDetalles
+            // 
+            dgvDetalles.AllowUserToAddRows = false;
+            dgvDetalles.AllowUserToDeleteRows = false;
+            dgvDetalles.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvDetalles.Location = new Point(0, 0);
+            dgvDetalles.Name = "dgvDetalles";
+            dgvDetalles.RowTemplate.Height = 25;
+            dgvDetalles.Size = new Size(571, 137);
+            dgvDetalles.TabIndex = 0;
+            // 
+            // btnAsignar
+            // 
+            btnAsignar.Location = new Point(464, 79);
+            btnAsignar.Name = "btnAsignar";
+            btnAsignar.Size = new Size(121, 23);
+            btnAsignar.TabIndex = 9;
+            btnAsignar.Text = "Añadir Producto";
+            btnAsignar.UseVisualStyleBackColor = true;
+            btnAsignar.Click += btnAsignar_Click;
+            // 
+            // dtpFechaEntrega
+            // 
+            dtpFechaEntrega.CustomFormat = "";
+            dtpFechaEntrega.Format = DateTimePickerFormat.Short;
+            dtpFechaEntrega.Location = new Point(129, 71);
+            dtpFechaEntrega.Name = "dtpFechaEntrega";
+            dtpFechaEntrega.Size = new Size(98, 23);
+            dtpFechaEntrega.TabIndex = 10;
             // 
             // frmAMCPedido
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(355, 144);
-            Controls.Add(txtFechaEntrega);
-            Controls.Add(txtID);
+            ClientSize = new Size(646, 302);
+            Controls.Add(dtpFechaEntrega);
+            Controls.Add(btnAsignar);
+            Controls.Add(panel1);
+            Controls.Add(txtNroPedido);
             Controls.Add(label3);
             Controls.Add(label1);
             Controls.Add(btnCancelar);
@@ -119,6 +166,8 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Pedido";
             Load += frmAMCPedido_Load;
+            panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dgvDetalles).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -127,9 +176,15 @@
 
         private Button btnAceptar;
         private Button btnCancelar;
-        private TextBox txtFechaEntrega;
         private Label label1;
         private Label label3;
-        private TextBox txtID;
+        private TextBox txtNroPedido;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private FontDialog fontDialog1;
+        private Panel panel1;
+        private DataGridView dgvDetalles;
+        private Button btnAsignar;
+        private DateTimePicker dtpFechaEntrega;
+        private VScrollBar vScrollBar1;
     }
 }

@@ -16,6 +16,9 @@
     <Compile Update="Vistas\Compras\Pedidos\frmABMSPedidos.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Vistas\Compras\Pedidos\frmAMCDetallePedido.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Vistas\Compras\Pedidos\frmAMCPedido.cs">
       <SubType>Form</SubType>
     </Compile>
