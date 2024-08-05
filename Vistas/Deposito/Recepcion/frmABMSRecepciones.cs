@@ -13,12 +13,10 @@ using System.Windows.Forms;
 
 namespace Almacen.Vistas
 {
-    public partial class frmABMSPedidos : Form
+    public partial class frmABMSRecepciones : Form
     {
 
-        public Pedido Pedido { get; set; }
-
-        public frmABMSPedidos()
+        public frmABMSRecepciones()
         {
             InitializeComponent();
 
@@ -27,18 +25,25 @@ namespace Almacen.Vistas
         private void frmABMSPedidos_Load(object sender, EventArgs e)
 
         {
-            dgvDatos.DataSource = Pedido.Listar();
+            dgvDatos.DataSource = Recepcion.Listar();
         }
 
         private void CargarGrilla()
         {
-            dgvDatos.DataSource = Pedido.Listar();
+            dgvDatos.DataSource = Recepcion.Listar();
         }
 
         private void btnCrear_Click(object sender, EventArgs e)
         {
-            frmAMCPedido f = new frmAMCPedido();
-            f.Clase = new Pedido(0);
+            frmABMSPedidos pedidos = new frmABMSPedidos();
+            pedidos.ShowDialog();
+            if (pedidos.DialogResult != DialogResult.OK) return;
+            Pedido pedido = pedidos.Pedido;
+            pedidos.Close();
+
+            frmAMCRecepcion f = new frmAMCRecepcion();
+            f.Clase = new Recepcion(0);
+            f.Pedido = pedido;
             f.ShowDialog();
             if (f.DialogResult == DialogResult.OK) CargarGrilla();
         }
@@ -47,19 +52,19 @@ namespace Almacen.Vistas
         {
             if (dgvDatos.CurrentRow == null) return;
 
-            Pedido Clase = new Pedido(Convert.ToInt32(dgvDatos.CurrentRow.Cells["NroPedido"].Value));
+            Recepcion Clase = new Recepcion(Convert.ToInt32(dgvDatos.CurrentRow.Cells["RecepcionID"].Value));
 
             DialogResult = MessageBox.Show("Desea eliminar el Pedido " + Clase.ID + "?", "Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (DialogResult == DialogResult.No) return;
 
             if (Clase.TieneRecepcion())
             {
-                frmMostrarMensaje.MostrarMensaje($"{Pedido.NombreClase}", "El " + Pedido.NombreClase + " posee una recepción, no puede eliminarse.");
+                frmMostrarMensaje.MostrarMensaje($"{Recepcion.NombreClase}", "El " + Recepcion.NombreClase + " posee una recepción, no puede eliminarse.");
                 return;
             }
             Clase.Eliminar();
 
-            frmMostrarMensaje.MostrarMensaje($"{Pedido.NombreClase}", "Baja de " + Pedido.NombreClase + " exitosa.");
+            frmMostrarMensaje.MostrarMensaje($"{Recepcion.NombreClase}", "Baja de " + Recepcion.NombreClase + " exitosa.");
 
             CargarGrilla();
 
@@ -69,21 +74,13 @@ namespace Almacen.Vistas
         {
             if (dgvDatos.CurrentRow == null) return;
 
-            Pedido Clase = new Pedido(Convert.ToInt32(dgvDatos.CurrentRow.Cells["NroPedido"].Value));
+            Recepcion Clase = new Recepcion(Convert.ToInt32(dgvDatos.CurrentRow.Cells["RecepcionID"].Value));
 
-            frmAMCPedido f = new frmAMCPedido();
+            frmAMCRecepcion f = new frmAMCRecepcion();
             f.Clase = Clase;
             f.Modificacion = true;
             f.ShowDialog();
             if (f.DialogResult == DialogResult.OK) CargarGrilla();
-        }
-
-        private void dgvDatos_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            if (dgvDatos.CurrentRow == null) return;
-            
-            Pedido = new Pedido(Convert.ToInt32(dgvDatos.CurrentRow.Cells["NroPedido"].Value));
-            this.DialogResult = DialogResult.OK;
         }
     }
 }

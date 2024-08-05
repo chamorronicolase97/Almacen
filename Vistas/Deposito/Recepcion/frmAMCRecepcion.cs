@@ -12,14 +12,13 @@ using System.Windows.Forms;
 
 namespace Almacen.Vistas
 {
-    public partial class frmAMCPedido : Form
+    public partial class frmAMCRecepcion : Form
     {
-        private int _nroPedido;
-        public Pedido Clase { get; set; }
-
+        public Recepcion Clase { get; set; }
+        public Pedido Pedido { get; set; }
         public bool Modificacion { get; set; } = false;
 
-        public frmAMCPedido()
+        public frmAMCRecepcion()
         {
             InitializeComponent();
 
@@ -27,8 +26,6 @@ namespace Almacen.Vistas
 
         private void frmAMCPedido_Load(object sender, EventArgs e)
         {
-            _nroPedido = Pedido.CalcularNroPedido();
-
             if (Modificacion == true)
             {
                 CargarGrillaDetalles();
@@ -37,8 +34,7 @@ namespace Almacen.Vistas
             }
             else
             {
-                txtNroPedido.Text = _nroPedido.ToString();
-                CargarGrillaDetalles();
+                txtNroPedido.Text = Pedido.ID.ToString();
             }
         }
 
@@ -51,8 +47,7 @@ namespace Almacen.Vistas
         {
             if (!Validar()) return;
 
-            Clase.ID = _nroPedido;
-            Clase.FechaEntrega = dtpFechaEntrega.Value;            
+            Clase.FechaEntrega = dtpFechaEntrega.Value;
 
             if (Modificacion)
             {
@@ -79,16 +74,14 @@ namespace Almacen.Vistas
 
         private void btnAsignar_Click(object sender, EventArgs e)
         {
-            frmAMCDetallePedido f = new frmAMCDetallePedido();
+            frmAMCDetalleRecepcion f = new frmAMCDetalleRecepcion();
             f.Show();
             CargarGrillaDetalles();
         }
 
         private void CargarGrillaDetalles()
         {
-            dgvDetalles.DataSource = DetallePedido.ListarDetallesPedidos(_nroPedido);
-
-            
+            dgvDetalles.DataSource = DetallePedido.Listar();
         }
 
     }

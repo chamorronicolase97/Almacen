@@ -1,6 +1,6 @@
 ﻿namespace Almacen.Vistas
 {
-    partial class frmABMSPedidos
+    partial class frmABMSRecepciones
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmABMSPedidos));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmABMSRecepciones));
             dgvDatos = new DataGridView();
             splitContainer1 = new SplitContainer();
             pnlBotones = new Panel();
@@ -57,7 +57,6 @@
             dgvDatos.RowTemplate.Height = 29;
             dgvDatos.Size = new Size(602, 296);
             dgvDatos.TabIndex = 0;
-            dgvDatos.CellMouseDoubleClick += dgvDatos_CellMouseDoubleClick;
             // 
             // splitContainer1
             // 
@@ -132,7 +131,7 @@
             txtFiltro.Size = new Size(165, 23);
             txtFiltro.TabIndex = 3;
             // 
-            // frmABMSPedidos
+            // frmABMSRecepciones
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -140,9 +139,9 @@
             Controls.Add(splitContainer1);
             Margin = new Padding(3, 2, 3, 2);
             MinimumSize = new Size(600, 400);
-            Name = "frmABMSPedidos";
+            Name = "frmABMSRecepciones";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Pedidos";
+            Text = "Recepciones";
             Load += frmABMSPedidos_Load;
             ((System.ComponentModel.ISupportInitialize)dgvDatos).EndInit();
             splitContainer1.Panel1.ResumeLayout(false);

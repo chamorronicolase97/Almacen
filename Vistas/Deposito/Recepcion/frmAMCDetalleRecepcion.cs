@@ -13,7 +13,7 @@ using System.Windows.Forms;
 
 namespace Almacen.Vistas
 {
-    public partial class frmAMCDetallePedido : Form
+    public partial class frmAMCDetalleRecepcion : Form
     {
         private Producto _producto;
         private Proveedor _proveedor;
@@ -22,7 +22,7 @@ namespace Almacen.Vistas
 
         public bool Modificacion { get; set; } = false;
 
-        public frmAMCDetallePedido()
+        public frmAMCDetalleRecepcion()
         {
             InitializeComponent();
 
@@ -40,7 +40,7 @@ namespace Almacen.Vistas
             }
             else
             {
-
+                txtNroPedido.Text = Pedido.CalcularNroPedido().ToString();
             }
         }
 

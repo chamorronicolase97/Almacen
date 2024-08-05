@@ -35,6 +35,7 @@
             salirToolStripMenuItem = new ToolStripMenuItem();
             depositoToolStripMenuItem = new ToolStripMenuItem();
             compraToolStripMenuItem = new ToolStripMenuItem();
+            pedidosToolStripMenuItem = new ToolStripMenuItem();
             ventaToolStripMenuItem = new ToolStripMenuItem();
             administraciónToolStripMenuItem = new ToolStripMenuItem();
             categoriasToolStripMenuItem = new ToolStripMenuItem();
@@ -47,7 +48,7 @@
             monthCalendar1 = new MonthCalendar();
             panel1 = new Panel();
             lblBienvenido = new Label();
-            pedidosToolStripMenuItem = new ToolStripMenuItem();
+            recepciónToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -92,6 +93,7 @@
             // 
             // depositoToolStripMenuItem
             // 
+            depositoToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { recepciónToolStripMenuItem });
             depositoToolStripMenuItem.Name = "depositoToolStripMenuItem";
             depositoToolStripMenuItem.Size = new Size(66, 20);
             depositoToolStripMenuItem.Text = "Deposito";
@@ -102,6 +104,13 @@
             compraToolStripMenuItem.Name = "compraToolStripMenuItem";
             compraToolStripMenuItem.Size = new Size(62, 20);
             compraToolStripMenuItem.Text = "Compra";
+            // 
+            // pedidosToolStripMenuItem
+            // 
+            pedidosToolStripMenuItem.Name = "pedidosToolStripMenuItem";
+            pedidosToolStripMenuItem.Size = new Size(116, 22);
+            pedidosToolStripMenuItem.Text = "Pedidos";
+            pedidosToolStripMenuItem.Click += pedidosToolStripMenuItem_Click;
             // 
             // ventaToolStripMenuItem
             // 
@@ -194,12 +203,12 @@
             lblBienvenido.TabIndex = 0;
             lblBienvenido.Text = "Bienvenid@";
             // 
-            // pedidosToolStripMenuItem
+            // recepciónToolStripMenuItem
             // 
-            pedidosToolStripMenuItem.Name = "pedidosToolStripMenuItem";
-            pedidosToolStripMenuItem.Size = new Size(180, 22);
-            pedidosToolStripMenuItem.Text = "Pedidos";
-            pedidosToolStripMenuItem.Click += pedidosToolStripMenuItem_Click;
+            recepciónToolStripMenuItem.Name = "recepciónToolStripMenuItem";
+            recepciónToolStripMenuItem.Size = new Size(180, 22);
+            recepciónToolStripMenuItem.Text = "Recepción";
+            recepciónToolStripMenuItem.Click += recepciónToolStripMenuItem_Click;
             // 
             // frmPrincipal
             // 
@@ -246,5 +255,6 @@
         protected MonthCalendar monthCalendar1;
         private ToolStripMenuItem permisosToolStripMenuItem;
         private ToolStripMenuItem pedidosToolStripMenuItem;
+        private ToolStripMenuItem recepciónToolStripMenuItem;
     }
 }
