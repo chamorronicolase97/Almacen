@@ -36,6 +36,7 @@
             brnModificar = new Button();
             btnCrear = new Button();
             txtFiltro = new TextBox();
+            btnSeleccionar = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvDatos).BeginInit();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
@@ -55,7 +56,7 @@
             dgvDatos.Name = "dgvDatos";
             dgvDatos.RowHeadersWidth = 51;
             dgvDatos.RowTemplate.Height = 29;
-            dgvDatos.Size = new Size(611, 295);
+            dgvDatos.Size = new Size(567, 297);
             dgvDatos.TabIndex = 0;
             // 
             // splitContainer1
@@ -73,6 +74,7 @@
             // 
             // splitContainer1.Panel2
             // 
+            splitContainer1.Panel2.Controls.Add(btnSeleccionar);
             splitContainer1.Panel2.Controls.Add(dgvDatos);
             splitContainer1.Size = new Size(596, 361);
             splitContainer1.SplitterDistance = 63;
@@ -131,6 +133,17 @@
             txtFiltro.Size = new Size(165, 23);
             txtFiltro.TabIndex = 3;
             // 
+            // btnSeleccionar
+            // 
+            btnSeleccionar.Image = (Image)resources.GetObject("btnSeleccionar.Image");
+            btnSeleccionar.Location = new Point(549, 4);
+            btnSeleccionar.Margin = new Padding(3, 2, 3, 2);
+            btnSeleccionar.Name = "btnSeleccionar";
+            btnSeleccionar.Size = new Size(41, 36);
+            btnSeleccionar.TabIndex = 13;
+            btnSeleccionar.UseVisualStyleBackColor = true;
+            btnSeleccionar.Click += btnSeleccionar_Click;
+            // 
             // frmABMSProveedores
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -162,5 +175,6 @@
         private Button btnBorrar;
         private Button brnModificar;
         private Button btnCrear;
+        private Button btnSeleccionar;
     }
 }

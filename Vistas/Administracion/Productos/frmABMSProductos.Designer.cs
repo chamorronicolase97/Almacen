@@ -38,6 +38,7 @@
             btnCrear = new Button();
             txtFiltro = new TextBox();
             toolTip1 = new ToolTip(components);
+            btnSeleccionar = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvDatos).BeginInit();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
@@ -54,10 +55,12 @@
             dgvDatos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvDatos.Location = new Point(0, 3);
             dgvDatos.Margin = new Padding(3, 2, 3, 2);
+            dgvDatos.MultiSelect = false;
             dgvDatos.Name = "dgvDatos";
+            dgvDatos.ReadOnly = true;
             dgvDatos.RowHeadersWidth = 51;
             dgvDatos.RowTemplate.Height = 29;
-            dgvDatos.Size = new Size(610, 307);
+            dgvDatos.Size = new Size(554, 293);
             dgvDatos.TabIndex = 0;
             // 
             // splitContainer1
@@ -75,6 +78,7 @@
             // 
             // splitContainer1.Panel2
             // 
+            splitContainer1.Panel2.Controls.Add(btnSeleccionar);
             splitContainer1.Panel2.Controls.Add(dgvDatos);
             splitContainer1.Size = new Size(610, 361);
             splitContainer1.SplitterDistance = 62;
@@ -136,6 +140,18 @@
             txtFiltro.Size = new Size(165, 23);
             txtFiltro.TabIndex = 3;
             // 
+            // btnSeleccionar
+            // 
+            btnSeleccionar.Image = (Image)resources.GetObject("btnSeleccionar.Image");
+            btnSeleccionar.Location = new Point(560, 3);
+            btnSeleccionar.Margin = new Padding(3, 2, 3, 2);
+            btnSeleccionar.Name = "btnSeleccionar";
+            btnSeleccionar.Size = new Size(41, 36);
+            btnSeleccionar.TabIndex = 12;
+            toolTip1.SetToolTip(btnSeleccionar, "Nuevo");
+            btnSeleccionar.UseVisualStyleBackColor = true;
+            btnSeleccionar.Click += btnSeleccionar_Click;
+            // 
             // frmABMSProductos
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -168,5 +184,6 @@
         private Button btnCrear;
         private Panel pnlBotones;
         private ToolTip toolTip1;
+        private Button btnSeleccionar;
     }
 }

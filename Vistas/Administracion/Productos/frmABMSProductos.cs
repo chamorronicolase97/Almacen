@@ -15,12 +15,15 @@ namespace Almacen.Vistas
 {
     public partial class frmABMSProductos : Form
     {
+        private Producto _objetoSeleccionado;
 
         public frmABMSProductos()
         {
             InitializeComponent();
 
         }
+
+        public Producto ObjetoSeleccionado { get { return _objetoSeleccionado; } set { _objetoSeleccionado = value; } }
 
         private void frmABMSProductos_Load(object sender, EventArgs e)
 
@@ -68,6 +71,20 @@ namespace Almacen.Vistas
             f.Modificacion = true;
             f.ShowDialog();
             if (f.DialogResult == DialogResult.OK) CargarGrilla();
+        }
+
+        private void btnSeleccionar_Click(object sender, EventArgs e)
+        {
+            if(dgvDatos.CurrentRow == null)
+            {
+                frmMostrarMensaje.MostrarMensaje($"Seleccionar", "No hay ningún registro seleccionado");
+                return;
+            }
+
+            _objetoSeleccionado = new Producto(Convert.ToInt32(dgvDatos.CurrentRow.Cells["ProductoID"].Value));
+
+            this.DialogResult = DialogResult.OK;
+            this.Close();
         }
     }
 }
