@@ -97,6 +97,7 @@ namespace Almacen.Vistas
         {
             frmABMSProductos f = new frmABMSProductos { };
             f.ObjetoSeleccionado = _producto;
+            f.FiltroProveedor = _proveedor;
             if (DialogResult.OK == f.ShowDialog(this))
             {
                 _producto = f.ObjetoSeleccionado;

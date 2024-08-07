@@ -81,7 +81,9 @@ namespace Almacen.Vistas
 
         private void btnAsignar_Click(object sender, EventArgs e)
         {
+            if (_proveedor == null) return;
             frmAMCDetallePedido f = new frmAMCDetallePedido();
+            f.FiltroProveedor = _proveedor;
             f.Show();
             CargarGrillaDetalles();
         }

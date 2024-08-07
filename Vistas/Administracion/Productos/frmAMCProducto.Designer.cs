@@ -40,12 +40,17 @@
             txtCodBarra = new TextBox();
             label5 = new Label();
             cmbCategoria = new ComboBox();
+            label6 = new Label();
+            txtProveedor = new TextBox();
+            btnQuitarProveedor = new Button();
+            btnConsultarProveedor = new Button();
+            btnAsignarProveedor = new Button();
             SuspendLayout();
             // 
             // btnAceptar
             // 
             btnAceptar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnAceptar.Location = new Point(236, 175);
+            btnAceptar.Location = new Point(340, 202);
             btnAceptar.Margin = new Padding(3, 2, 3, 2);
             btnAceptar.Name = "btnAceptar";
             btnAceptar.Size = new Size(82, 22);
@@ -57,7 +62,7 @@
             // btnCancelar
             // 
             btnCancelar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnCancelar.Location = new Point(324, 175);
+            btnCancelar.Location = new Point(428, 202);
             btnCancelar.Margin = new Padding(3, 2, 3, 2);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(82, 22);
@@ -68,7 +73,6 @@
             // 
             // txtDescripcion
             // 
-            txtDescripcion.Anchor = AnchorStyles.Bottom;
             txtDescripcion.Location = new Point(102, 43);
             txtDescripcion.Margin = new Padding(3, 2, 3, 2);
             txtDescripcion.Name = "txtDescripcion";
@@ -77,7 +81,6 @@
             // 
             // txtCosto
             // 
-            txtCosto.Anchor = AnchorStyles.Bottom;
             txtCosto.Location = new Point(102, 71);
             txtCosto.Margin = new Padding(3, 2, 3, 2);
             txtCosto.Name = "txtCosto";
@@ -86,7 +89,6 @@
             // 
             // label1
             // 
-            label1.Anchor = AnchorStyles.Bottom;
             label1.AutoSize = true;
             label1.Location = new Point(27, 46);
             label1.Name = "label1";
@@ -96,7 +98,6 @@
             // 
             // label2
             // 
-            label2.Anchor = AnchorStyles.Bottom;
             label2.AutoSize = true;
             label2.Location = new Point(58, 74);
             label2.Name = "label2";
@@ -106,7 +107,6 @@
             // 
             // label3
             // 
-            label3.Anchor = AnchorStyles.Bottom;
             label3.AutoSize = true;
             label3.Location = new Point(78, 17);
             label3.Name = "label3";
@@ -116,7 +116,6 @@
             // 
             // txtID
             // 
-            txtID.Anchor = AnchorStyles.Bottom;
             txtID.Enabled = false;
             txtID.Location = new Point(102, 14);
             txtID.Margin = new Padding(3, 2, 3, 2);
@@ -126,7 +125,6 @@
             // 
             // label4
             // 
-            label4.Anchor = AnchorStyles.Bottom;
             label4.AutoSize = true;
             label4.Location = new Point(34, 101);
             label4.Name = "label4";
@@ -136,7 +134,6 @@
             // 
             // txtCodBarra
             // 
-            txtCodBarra.Anchor = AnchorStyles.Bottom;
             txtCodBarra.Location = new Point(102, 98);
             txtCodBarra.Margin = new Padding(3, 2, 3, 2);
             txtCodBarra.Name = "txtCodBarra";
@@ -145,7 +142,6 @@
             // 
             // label5
             // 
-            label5.Anchor = AnchorStyles.Bottom;
             label5.AutoSize = true;
             label5.Location = new Point(38, 131);
             label5.Name = "label5";
@@ -155,7 +151,6 @@
             // 
             // cmbCategoria
             // 
-            cmbCategoria.Anchor = AnchorStyles.Bottom;
             cmbCategoria.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbCategoria.FormattingEnabled = true;
             cmbCategoria.Location = new Point(102, 128);
@@ -163,11 +158,64 @@
             cmbCategoria.Size = new Size(246, 23);
             cmbCategoria.TabIndex = 11;
             // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(34, 159);
+            label6.Name = "label6";
+            label6.Size = new Size(61, 15);
+            label6.TabIndex = 13;
+            label6.Text = "Proveedor";
+            // 
+            // txtProveedor
+            // 
+            txtProveedor.Location = new Point(102, 156);
+            txtProveedor.Margin = new Padding(3, 2, 3, 2);
+            txtProveedor.Name = "txtProveedor";
+            txtProveedor.Size = new Size(246, 23);
+            txtProveedor.TabIndex = 12;
+            // 
+            // btnQuitarProveedor
+            // 
+            btnQuitarProveedor.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnQuitarProveedor.Location = new Point(411, 152);
+            btnQuitarProveedor.Margin = new Padding(3, 2, 3, 2);
+            btnQuitarProveedor.Name = "btnQuitarProveedor";
+            btnQuitarProveedor.Size = new Size(31, 28);
+            btnQuitarProveedor.TabIndex = 23;
+            btnQuitarProveedor.UseVisualStyleBackColor = true;
+            // 
+            // btnConsultarProveedor
+            // 
+            btnConsultarProveedor.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnConsultarProveedor.Location = new Point(382, 152);
+            btnConsultarProveedor.Margin = new Padding(3, 2, 3, 2);
+            btnConsultarProveedor.Name = "btnConsultarProveedor";
+            btnConsultarProveedor.Size = new Size(31, 28);
+            btnConsultarProveedor.TabIndex = 22;
+            btnConsultarProveedor.UseVisualStyleBackColor = true;
+            // 
+            // btnAsignarProveedor
+            // 
+            btnAsignarProveedor.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnAsignarProveedor.Location = new Point(353, 152);
+            btnAsignarProveedor.Margin = new Padding(3, 2, 3, 2);
+            btnAsignarProveedor.Name = "btnAsignarProveedor";
+            btnAsignarProveedor.Size = new Size(31, 28);
+            btnAsignarProveedor.TabIndex = 21;
+            btnAsignarProveedor.UseVisualStyleBackColor = true;
+            btnAsignarProveedor.Click += btnAsignarProveedor_Click;
+            // 
             // frmAMCProducto
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(416, 206);
+            ClientSize = new Size(520, 233);
+            Controls.Add(btnQuitarProveedor);
+            Controls.Add(btnConsultarProveedor);
+            Controls.Add(btnAsignarProveedor);
+            Controls.Add(label6);
+            Controls.Add(txtProveedor);
             Controls.Add(cmbCategoria);
             Controls.Add(label5);
             Controls.Add(label4);
@@ -206,5 +254,10 @@
         private TextBox txtCodBarra;
         private Label label5;
         private ComboBox cmbCategoria;
+        private Label label6;
+        private TextBox txtProveedor;
+        private Button btnQuitarProveedor;
+        private Button btnConsultarProveedor;
+        private Button btnAsignarProveedor;
     }
 }
