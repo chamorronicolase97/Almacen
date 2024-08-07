@@ -130,5 +130,16 @@ namespace Almacen.Clases.Administracion
             string q = @$"Select * from {Tabla}";
             return cn.Consultar(q);
         }
+
+        public static DataTable ListarPorProveedor(Proveedor Proveedor)
+        {
+            Conexion cn = new Conexion();
+            string q = @$"Select * from {Tabla} WHERE ProveedorID = @ProveedorID";
+            SqlCommand cmd = new SqlCommand(q);
+            cmd.Parameters.Add("@ProveedorID", SqlDbType.Int).Value = Proveedor.ID;
+
+            return cn.Consultar(cmd);
+
+        }
     }
 }

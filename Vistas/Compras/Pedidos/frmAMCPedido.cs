@@ -1,4 +1,5 @@
 ﻿using Almacen.Clases;
+using Almacen.Clases.Administracion;
 using Almacen.Clases.Compra;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,7 @@ namespace Almacen.Vistas
     public partial class frmAMCPedido : Form
     {
         private int _nroPedido;
+        private Proveedor _proveedor;
         public Pedido Clase { get; set; }
 
         public bool Modificacion { get; set; } = false;
@@ -52,7 +54,7 @@ namespace Almacen.Vistas
             if (!Validar()) return;
 
             Clase.ID = _nroPedido;
-            Clase.FechaEntrega = dtpFechaEntrega.Value;            
+            Clase.FechaEntrega = dtpFechaEntrega.Value;
 
             if (Modificacion)
             {
@@ -96,8 +98,33 @@ namespace Almacen.Vistas
             }).ToList();
             dgvDetalles.DataSource = pedidosview;
             dgvDetalles.Columns["ID"].HeaderText = "Nro. Pedido";
+        }
+
+        private void HabilitarControles()
+        {
+            if(_proveedor != null) txtProveedor.Text = _proveedor.RazonSocial.ToString();
+
+            if(Modificacion)
+            {
+
+            }
+            else
+            {
+
+            }
 
         }
 
+        private void btnAsignarProveedor_Click(object sender, EventArgs e)
+        {
+            frmABMSProveedores f = new frmABMSProveedores { };
+            f.ObjetoSeleccionado = _proveedor;
+            if (DialogResult.OK == f.ShowDialog(this))
+            {
+                _proveedor = f.ObjetoSeleccionado;
+
+                HabilitarControles();
+            }
+        }
     }
 }

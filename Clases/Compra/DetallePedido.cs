@@ -58,7 +58,7 @@ namespace Almacen.Clases.Compra
             }
             catch (Exception ex)
             {
-                throw new Exception($"Error al abrir el objeto {NombreClase}. Clave {Pedido.ID + Producto.ID + Proveedor.ID}", ex);
+                throw new Exception($"Error al abrir el objeto {NombreClase}. Clave {Pedido.ID + Producto.ID}", ex);
             }
 
         }

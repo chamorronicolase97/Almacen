@@ -34,7 +34,6 @@ namespace Almacen.Vistas
             {
                 txtNroPedido.Text = Clase.Pedido.ID.ToString();
                 if (txtProducto != null) { txtProducto.Text = Clase.Producto.Descripcion.ToString(); }
-                if (txtProveedor != null) { txtProveedor.Text = Clase.Proveedor.RazonSocial.ToString(); }
                 txtCantidad.Text = Clase.Cantidad.ToString();
                 txtCostoUnitario.Text = Clase.CostoUnitario.ToString();
             }
@@ -47,7 +46,6 @@ namespace Almacen.Vistas
         private void HabilitarControles()
         {
             if (_producto != null) { txtProducto.Text = _producto.Descripcion.ToString(); }
-            if (_proveedor != null) { txtProveedor.Text = _proveedor.RazonSocial.ToString(); }
 
         }
 
@@ -66,7 +64,6 @@ namespace Almacen.Vistas
             }
 
             Clase.Producto = _producto;
-            Clase.Proveedor = _proveedor;
             Clase.Cantidad = Convert.ToInt32(txtCantidad.Text);
             Clase.CostoUnitario = Convert.ToDecimal(txtCostoUnitario.Text);
 
@@ -79,7 +76,7 @@ namespace Almacen.Vistas
             else
             {
                 int nroPedido = Pedido.CalcularNroPedido();
-                Clase.Insertar(nroPedido, _producto.ID, _proveedor.ID);
+                Clase.Insertar(nroPedido, _producto.ID);
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
