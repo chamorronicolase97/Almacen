@@ -14,7 +14,6 @@ namespace Almacen.Clases.Compra
     {
         private Pedido pedido;
         private Producto producto;
-        private Proveedor proveedor;
         private int _cantidad;
         private decimal _costoUnitario;
 
@@ -26,7 +25,6 @@ namespace Almacen.Clases.Compra
         #region Propiedades
         public Pedido Pedido { get { return pedido; } set { pedido = value; } }
         public Producto Producto { get { return producto; } set { producto = value; } }
-        public Proveedor Proveedor { get { return proveedor; } set { proveedor = value; } }
         public int Cantidad { get { return _cantidad; } set { _cantidad = value; } }
         public decimal CostoUnitario { get { return _costoUnitario; } set { _costoUnitario = value; } }
         #endregion
@@ -43,13 +41,11 @@ namespace Almacen.Clases.Compra
         {
             Conexion cn = new Conexion();
             string q = @$"Select * from {Tabla} where NroPedido = @nroPedido
-                                                and ProductoID = @productoID
-                                                and ProveedorID = @proveedorID";
+                                                and ProductoID = @productoID";
 
             SqlCommand cmd = new SqlCommand(q);
             cmd.Parameters.Add("@nroPedido", SqlDbType.Int).Value = Pedido.ID;
             cmd.Parameters.Add("@productoID", SqlDbType.Int).Value = Producto.ID;
-            cmd.Parameters.Add("@proveedorID", SqlDbType.Int).Value = Proveedor.ID;
 
             DataTable dt = cn.Consultar(q);
             try
@@ -71,20 +67,18 @@ namespace Almacen.Clases.Compra
         {
             pedido = new Pedido(Convert.ToInt32(dr["NroPedido"]));
             producto = new Producto(Convert.ToInt32(dr["ProductoID"]));
-            proveedor = new Proveedor(Convert.ToInt32(dr["ProveedorID"]));
             _cantidad = Convert.ToInt32(dr["Cantidad"]);
             _costoUnitario = Convert.ToDecimal(dr["CostoUnitario"]);
         }
 
-        public void Insertar(int nroPedido, int productoID, int proveedorID)
+        public void Insertar(int nroPedido, int productoID)
         {
             Conexion cn = new Conexion();
-            string q = $@"INSERT INTO {Tabla} (NroPedido, ProductoID, ProveedorID, Cantidad, CostoUnitario)
-                        Values(@NroPedido, @ProductoID, @ProveedorID, @cantidad, @costoUnitario);";
+            string q = $@"INSERT INTO {Tabla} (NroPedido, ProductoID, Cantidad, CostoUnitario)
+                        Values(@NroPedido, @ProductoID, @cantidad, @costoUnitario);";
             SqlCommand cmd = new SqlCommand(q);
             cmd.Parameters.Add("@NroPedido", SqlDbType.Int).Value = nroPedido;
             cmd.Parameters.Add("@ProductoID", SqlDbType.Int).Value = productoID;
-            cmd.Parameters.Add("@ProveedorID", SqlDbType.Int).Value = proveedorID;
             cmd.Parameters.Add("@cantidad", SqlDbType.Int).Value = Cantidad;
             cmd.Parameters.Add("@costoUnitario", SqlDbType.Decimal).Value = CostoUnitario;
 
@@ -97,14 +91,12 @@ namespace Almacen.Clases.Compra
             string q = $@"UPDATE {Tabla} SET Cantidad = @cantidad,
                                              CostoUnitario = @costoUnitario
                                              WHERE NroPedido = @nroPedido
-                                             and ProductoID = @productoID
-                                             and ProveedorID = @proveedorID;";
+                                             and ProductoID = @productoID;";
             SqlCommand cmd = new SqlCommand(q);
             cmd.Parameters.Add("@cantidad", SqlDbType.Int).Value = Cantidad;
             cmd.Parameters.Add("@costoUnitario", SqlDbType.Decimal).Value = CostoUnitario;
             cmd.Parameters.Add("@nroPedido", SqlDbType.Int).Value = Pedido.ID;
             cmd.Parameters.Add("@productoID", SqlDbType.Int).Value = Producto.ID;
-            cmd.Parameters.Add("@proveedorID", SqlDbType.Int).Value = Proveedor.ID;
 
             cn.Ejecutar(cmd);
         }
@@ -113,12 +105,10 @@ namespace Almacen.Clases.Compra
         {
             Conexion cn = new Conexion();
             string q = $@"DELETE FROM {Tabla} WHERE NroPedido = @nroPedido
-                                              and ProductoID = @productoID
-                                              and ProveedorID = @proveedorID";
+                                              and ProductoID = @productoID";
             SqlCommand cmd = new SqlCommand(q);
             cmd.Parameters.Add("@nroPedido", SqlDbType.Int).Value = Pedido.ID;
-            cmd.Parameters.Add("@productoID", SqlDbType.Int).Value = Producto.ID;
-            cmd.Parameters.Add("@proveedorID", SqlDbType.Int).Value = Proveedor.ID;
+            cmd.Parameters.Add("@productoID", SqlDbType.Int).Value = Producto.ID;;
 
             cn.Ejecutar(cmd);
 
