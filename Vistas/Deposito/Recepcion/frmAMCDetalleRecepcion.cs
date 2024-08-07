@@ -153,6 +153,7 @@ namespace Almacen.Vistas
             if (_proveedor == null) return;
 
             _proveedor = null;
+            HabilitarControles();
         }
     }
 }

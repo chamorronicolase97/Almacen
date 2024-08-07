@@ -102,9 +102,9 @@ namespace Almacen.Vistas
 
         private void HabilitarControles()
         {
-            if(_proveedor != null) txtProveedor.Text = _proveedor.RazonSocial.ToString();
+            if (_proveedor != null) txtProveedor.Text = _proveedor.RazonSocial.ToString();
 
-            if(Modificacion)
+            if (Modificacion)
             {
 
             }
@@ -125,6 +125,26 @@ namespace Almacen.Vistas
 
                 HabilitarControles();
             }
+        }
+
+        private void btnConsultarProveedor_Click(object sender, EventArgs e)
+        {
+            if (_proveedor == null) return;
+
+            frmAMCProveedor f = new frmAMCProveedor
+            {
+                Clase = _proveedor,
+                SoloLectura = true
+            };
+            f.ShowDialog(this);
+        }
+
+        private void btnQuitarProveedor_Click(object sender, EventArgs e)
+        {
+            if (_proveedor == null) return;
+
+            _proveedor = null;
+            HabilitarControles();
         }
     }
 }

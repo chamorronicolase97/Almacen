@@ -122,6 +122,7 @@ namespace Almacen.Vistas
             if (_producto == null) return;
 
             _producto = null;
+            HabilitarControles();
         }
 
     }

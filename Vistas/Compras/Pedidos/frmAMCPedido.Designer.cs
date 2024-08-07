@@ -158,6 +158,7 @@
             btnQuitarProveedor.Size = new Size(31, 28);
             btnQuitarProveedor.TabIndex = 23;
             btnQuitarProveedor.UseVisualStyleBackColor = true;
+            btnQuitarProveedor.Click += btnQuitarProveedor_Click;
             // 
             // btnConsultarProveedor
             // 
@@ -168,6 +169,7 @@
             btnConsultarProveedor.Size = new Size(31, 28);
             btnConsultarProveedor.TabIndex = 22;
             btnConsultarProveedor.UseVisualStyleBackColor = true;
+            btnConsultarProveedor.Click += btnConsultarProveedor_Click;
             // 
             // btnAsignarProveedor
             // 
