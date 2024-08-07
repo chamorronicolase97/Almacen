@@ -1,4 +1,5 @@
-﻿using Sistema;
+﻿using Almacen.Clases.Administracion;
+using Sistema;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -13,6 +14,7 @@ namespace Almacen.Clases.Compra
     {
         private int _id;
         private DateTime _fechaEntrega;
+        private Proveedor _proveedor;
 
         #region Constantes
         const string Tabla = "dbo.Pedidos";
@@ -22,6 +24,7 @@ namespace Almacen.Clases.Compra
         #region Propiedades
         public int ID { get { return _id; } set { _id = value; } }
         public DateTime FechaEntrega { get { return _fechaEntrega; } set { _fechaEntrega = value; } }
+        public Proveedor Proveedor { get { return _proveedor; } set { _proveedor = value; } }
         #endregion
 
         public Pedido() { }
@@ -57,16 +60,19 @@ namespace Almacen.Clases.Compra
         {
             ID = Convert.ToInt32(dr["NroPedido"]);
             _fechaEntrega = Convert.ToDateTime(dr["FechaEntrega"]);
+
+            if (dr["ProveedorID"] != DBNull.Value) _proveedor = new Proveedor(Convert.ToInt32(dr["ProveedorID"]));
         }
 
         public void Insertar()
         {
             Conexion cn = new Conexion();
-            string q = $@"INSERT INTO {Tabla} (NroPedido, FechaEntrega)
-                        Values(@NroPedido, @fecha);";
+            string q = $@"INSERT INTO {Tabla} (NroPedido, FechaEntrega, ProveedorID)
+                        Values(@NroPedido, @fecha, @ProveedorID);";
             SqlCommand cmd = new SqlCommand(q);
             cmd.Parameters.Add("@NroPedido", SqlDbType.Int).Value = ID;
             cmd.Parameters.Add("@fecha", SqlDbType.DateTime).Value = FechaEntrega;
+            cmd.Parameters.Add("@ProveedorID", SqlDbType.Int).Value = Proveedor.ID;
 
             cn.Ejecutar(cmd);
         }
@@ -74,10 +80,12 @@ namespace Almacen.Clases.Compra
         public void Modificar()
         {
             Conexion cn = new Conexion();
-            string q = $@"UPDATE {Tabla} SET FechaEntrega = @fecha, 
+            string q = $@"UPDATE {Tabla} SET FechaEntrega = @fecha,
+                                             ProveedorID = @ProveedorID
                                              WHERE NroPedido = @ID;";
             SqlCommand cmd = new SqlCommand(q);
             cmd.Parameters.Add("@fecha", SqlDbType.DateTime).Value = FechaEntrega;
+            cmd.Parameters.Add("@ProveedorID", SqlDbType.Int).Value = Proveedor.ID;
             cmd.Parameters.Add("@ID", SqlDbType.Int).Value = ID;
 
             cn.Ejecutar(cmd);
