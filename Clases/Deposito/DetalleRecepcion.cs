@@ -14,7 +14,6 @@ namespace Almacen.Clases.Compra
     {
         private Recepcion _recepcion;
         private Producto producto;
-        private Proveedor proveedor;
         private int _cantidad;
         private decimal _costoUnitario;
         public DateTime _fechaRecepcion;
@@ -27,7 +26,6 @@ namespace Almacen.Clases.Compra
         #region Propiedades
         public Recepcion Recepcion { get { return _recepcion; } set { _recepcion = value; } }
         public Producto Producto { get { return producto; } set { producto = value; } }
-        public Proveedor Proveedor { get { return proveedor; } set { proveedor = value; } }
         public int Cantidad { get { return _cantidad; } set { _cantidad = value; } }
         public decimal CostoUnitario { get { return _costoUnitario; } set { _costoUnitario = value; } }
         public DateTime FechaRecepcion { get { return _fechaRecepcion; }set { _fechaRecepcion = value; } }
@@ -45,13 +43,11 @@ namespace Almacen.Clases.Compra
         {
             Conexion cn = new Conexion();
             string q = @$"Select * from {Tabla} where RecepcionID = @RecepcionID
-                                                and ProductoID = @productoID
-                                                and ProveedorID = @proveedorID";
+                                                and ProductoID = @productoID";
 
             SqlCommand cmd = new SqlCommand(q);
             cmd.Parameters.Add("@RecepcionID", SqlDbType.Int).Value = Recepcion.ID;
             cmd.Parameters.Add("@productoID", SqlDbType.Int).Value = Producto.ID;
-            cmd.Parameters.Add("@proveedorID", SqlDbType.Int).Value = Proveedor.ID;
 
             DataTable dt = cn.Consultar(q);
             try
@@ -64,7 +60,7 @@ namespace Almacen.Clases.Compra
             }
             catch (Exception ex)
             {
-                throw new Exception($"Error al abrir el objeto {NombreClase}. Clave {Recepcion.ID + Producto.ID + Proveedor.ID}", ex);
+                throw new Exception($"Error al abrir el objeto {NombreClase}. Clave {Recepcion.ID + Producto.ID}", ex);
             }
 
         }
@@ -73,7 +69,6 @@ namespace Almacen.Clases.Compra
         {
             Recepcion = new Recepcion(Convert.ToInt32(dr["RecepcionID"]));
             producto = new Producto(Convert.ToInt32(dr["ProductoID"]));
-            proveedor = new Proveedor(Convert.ToInt32(dr["ProveedorID"]));
             _cantidad = Convert.ToInt32(dr["Cantidad"]);
             _costoUnitario = Convert.ToDecimal(dr["CostoUnitario"]);
             _fechaRecepcion = Convert.ToDateTime(dr["FechaRecepcion"]);
@@ -82,12 +77,11 @@ namespace Almacen.Clases.Compra
         public void Insertar()
         {
             Conexion cn = new Conexion();
-            string q = $@"INSERT INTO {Tabla} (RecepcionID, ProductoID, ProveedorID, Cantidad, CostoUnitario, FechaRecepcion)
-                        Values(@RecepcionID, @ProductoID, @ProveedorID, @cantidad, @costoUnitario, @fechaRecepcion);";
+            string q = $@"INSERT INTO {Tabla} (RecepcionID, ProductoID, Cantidad, CostoUnitario, FechaRecepcion)
+                        Values(@RecepcionID, @ProductoID, @cantidad, @costoUnitario, @fechaRecepcion);";
             SqlCommand cmd = new SqlCommand(q);
             cmd.Parameters.Add("@RecepcionID", SqlDbType.Int).Value = Recepcion.ID;
             cmd.Parameters.Add("@ProductoID", SqlDbType.Int).Value = Producto.ID;
-            cmd.Parameters.Add("@ProveedorID", SqlDbType.Int).Value = Proveedor.ID;
             cmd.Parameters.Add("@cantidad", SqlDbType.Int).Value = Cantidad;
             cmd.Parameters.Add("@costoUnitario", SqlDbType.Decimal).Value = CostoUnitario;
             cmd.Parameters.Add("@fechaRecepcion", SqlDbType.DateTime).Value = FechaRecepcion;
@@ -100,14 +94,12 @@ namespace Almacen.Clases.Compra
             string q = $@"UPDATE {Tabla} SET Cantidad = @cantidad,
                                              CostoUnitario = @costoUnitario
                                              WHERE RecepcionID = @RecepcionID
-                                             and ProductoID = @productoID
-                                             and ProveedorID = @proveedorID;";
+                                             and ProductoID = @productoID;";
             SqlCommand cmd = new SqlCommand(q);
             cmd.Parameters.Add("@cantidad", SqlDbType.Int).Value = Cantidad;
             cmd.Parameters.Add("@costoUnitario", SqlDbType.Decimal).Value = CostoUnitario;
             cmd.Parameters.Add("@RecepcionID", SqlDbType.Int).Value = Recepcion.ID;
             cmd.Parameters.Add("@productoID", SqlDbType.Int).Value = Producto.ID;
-            cmd.Parameters.Add("@proveedorID", SqlDbType.Int).Value = Proveedor.ID;
 
             cn.Ejecutar(cmd);
         }
@@ -116,12 +108,10 @@ namespace Almacen.Clases.Compra
         {
             Conexion cn = new Conexion();
             string q = $@"DELETE FROM {Tabla} WHERE RecepcionID = @RecepcionID
-                                              and ProductoID = @productoID
-                                              and ProveedorID = @proveedorID";
+                                              and ProductoID = @productoID;";
             SqlCommand cmd = new SqlCommand(q);
             cmd.Parameters.Add("@RecepcionID", SqlDbType.Int).Value = Recepcion.ID;
             cmd.Parameters.Add("@productoID", SqlDbType.Int).Value = Producto.ID;
-            cmd.Parameters.Add("@proveedorID", SqlDbType.Int).Value = Proveedor.ID;
 
             cn.Ejecutar(cmd);
 
@@ -134,9 +124,18 @@ namespace Almacen.Clases.Compra
             return cn.Consultar(q);
         }
 
-        public static List<DetalleRecepcion> ListarDetallesRecepciones()
+        public static DataTable Listar(int RecepcionID)
         {
-            DataTable dt = Listar();
+            Conexion cn = new Conexion();
+            string q = @$"Select * from {Tabla} where RecepcionID = @RecepcionID";
+            SqlCommand cmd = new SqlCommand(q);
+            cmd.Parameters.Add("@RecepcionID", SqlDbType.Int).Value = RecepcionID;
+            return cn.Consultar(cmd);
+        }
+
+        public static List<DetalleRecepcion> ListarDetallesRecepciones(Recepcion Recepcion)
+        {
+            DataTable dt = Listar(Recepcion.ID);
             List<DetalleRecepcion> lista = new List<DetalleRecepcion>();
             foreach (DataRow dr in dt.Rows)
             {

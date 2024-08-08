@@ -13,6 +13,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Vistas\Administracion\Productos\frmCostosProductos.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Vistas\Compras\Pedidos\frmABMSPedidos.cs">
       <SubType>Form</SubType>
     </Compile>

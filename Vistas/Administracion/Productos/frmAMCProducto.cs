@@ -16,6 +16,8 @@ namespace Almacen.Vistas
     {
         public Producto Clase { get; set; }
         protected bool _soloLectura;
+        private Proveedor _proveedor;
+
         public bool Modificacion { get; set; } = false;
         public bool SoloLectura { get { return _soloLectura; } set { _soloLectura = value; } }
         public frmAMCProducto()
@@ -74,6 +76,7 @@ namespace Almacen.Vistas
             Clase.Costo = null;
             Clase.CodigoDeBarra = txtCodBarra.Text;
             Clase.Categoria = new Categoria(Convert.ToInt32(cmbCategoria.SelectedValue));
+            Clase.Proveedor = _proveedor;
 
             if (Modificacion)
             {
@@ -103,8 +106,23 @@ namespace Almacen.Vistas
 
 
             return true;
-        }       
+        }
 
+        private void HabilitarControles()
+        {
+            if (_proveedor != null) txtProveedor.Text = _proveedor.RazonSocial;
+        }
 
+        private void btnAsignarProveedor_Click(object sender, EventArgs e)
+        {
+            frmABMSProveedores f = new frmABMSProveedores { };
+            f.ObjetoSeleccionado = _proveedor;
+            if (DialogResult.OK == f.ShowDialog(this))
+            {
+                _proveedor = f.ObjetoSeleccionado;
+
+                HabilitarControles();
+            }
+        }
     }
 }

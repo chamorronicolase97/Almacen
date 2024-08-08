@@ -76,12 +76,18 @@ namespace Almacen.Clases.Compra
             cmd.Parameters.Add("@fecha", SqlDbType.DateTime).Value = FechaEntrega;
 
             cn.Ejecutar(cmd);
+
+
+            q = $@"Select TOP 1 RecepcionID from {Tabla} ORDER BY 1 DESC";
+            DataTable dt = cn.Consultar(q);
+            ID = Convert.ToInt32(dt.Rows[0]);
+
         }
 
         public void Modificar()
         {
             Conexion cn = new Conexion();
-            string q = $@"UPDATE {Tabla} SET NroPedido = @NroPedido;
+            string q = $@"UPDATE {Tabla} SET NroPedido = @NroPedido,
                                              FechaEntrega = @fecha 
                                              WHERE RecepcionID = @ID;";
             SqlCommand cmd = new SqlCommand(q);
@@ -90,6 +96,7 @@ namespace Almacen.Clases.Compra
             cmd.Parameters.Add("@ID", SqlDbType.Int).Value = ID;
 
             cn.Ejecutar(cmd);
+
         }
 
         public void Eliminar()
@@ -133,6 +140,29 @@ namespace Almacen.Clases.Compra
             
             if(dt.Rows.Count > 0) { return true; }
             else { return false; }
+        }
+
+        public static Recepcion GetRecepcion(int RecepcionID)
+        {
+            Conexion cn = new Conexion();
+            string q = $@"SELECT TOP 1 * FROM dbo.Recepciones WHERE RecepcionID = @ID";
+            SqlCommand cmd = new SqlCommand(q);
+            cmd.Parameters.Add("@ID", SqlDbType.Int).Value = RecepcionID;
+
+            DataTable dt = cn.Consultar(cmd);
+
+            if (dt.Rows.Count > 0) { return new Recepcion(dt.Rows[0]); }
+            else { return null;}         
+        }
+
+        public static int CalcularNroRecepcion()
+        {
+            Conexion cn = new Conexion();
+            string q = $@"SELECT RecepcionID FROM dbo.Recepciones order by 1 desc";
+            SqlCommand cmd = new SqlCommand(q);
+            DataTable dt = cn.Consultar(cmd);
+            if (dt.Rows.Count > 0) { return Convert.ToInt32(dt.Rows[0]["RecepcionID"]) + 1; }
+            else { return 1; }
         }
     }
 }

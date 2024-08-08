@@ -21,6 +21,7 @@ namespace Almacen.Vistas
         public DetallePedido Clase { get; set; }
 
         public bool Modificacion { get; set; } = false;
+        public Proveedor FiltroProveedor { get { return _proveedor; } set { _proveedor = value; } }
 
         public frmAMCDetallePedido()
         {
@@ -34,7 +35,6 @@ namespace Almacen.Vistas
             {
                 txtNroPedido.Text = Clase.Pedido.ID.ToString();
                 if (txtProducto != null) { txtProducto.Text = Clase.Producto.Descripcion.ToString(); }
-                if (txtProveedor != null) { txtProveedor.Text = Clase.Proveedor.RazonSocial.ToString(); }
                 txtCantidad.Text = Clase.Cantidad.ToString();
                 txtCostoUnitario.Text = Clase.CostoUnitario.ToString();
             }
@@ -47,7 +47,6 @@ namespace Almacen.Vistas
         private void HabilitarControles()
         {
             if (_producto != null) { txtProducto.Text = _producto.Descripcion.ToString(); }
-            if (_proveedor != null) { txtProveedor.Text = _proveedor.RazonSocial.ToString(); }
 
         }
 
@@ -66,7 +65,6 @@ namespace Almacen.Vistas
             }
 
             Clase.Producto = _producto;
-            Clase.Proveedor = _proveedor;
             Clase.Cantidad = Convert.ToInt32(txtCantidad.Text);
             Clase.CostoUnitario = Convert.ToDecimal(txtCostoUnitario.Text);
 
@@ -79,7 +77,7 @@ namespace Almacen.Vistas
             else
             {
                 int nroPedido = Pedido.CalcularNroPedido();
-                Clase.Insertar(nroPedido, _producto.ID, _proveedor.ID);
+                Clase.Insertar(nroPedido, _producto.ID);
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
@@ -89,7 +87,7 @@ namespace Almacen.Vistas
         {
             if (txtProducto.Text.Length == 0)
             {
-                frmMostrarMensaje.MostrarMensaje("DetallePedido", "Debe definir una fecha para el DetallePedido");
+                frmMostrarMensaje.MostrarMensaje("DetallePedido", "Debe definir una Producto para el DetallePedido");
                 return false;
             }
 
@@ -100,24 +98,13 @@ namespace Almacen.Vistas
         {
             frmABMSProductos f = new frmABMSProductos { };
             f.ObjetoSeleccionado = _producto;
+            f.FiltroProveedor = _proveedor;
             if (DialogResult.OK == f.ShowDialog(this))
             {
                 _producto = f.ObjetoSeleccionado;
 
                 HabilitarControles();
             }
-        }
-
-        private void btnAsignarProveedor_Click(object sender, EventArgs e)
-        {
-            frmABMSProveedores f = new frmABMSProveedores { };
-            f.ObjetoSeleccionado = _proveedor;
-            if (DialogResult.OK == f.ShowDialog(this))
-            {
-                _proveedor = f.ObjetoSeleccionado;
-            }
-
-            HabilitarControles();
         }
 
         private void btnConsultarProducto_Click(object sender, EventArgs e)
@@ -132,30 +119,13 @@ namespace Almacen.Vistas
             f.ShowDialog(this);
         }
 
-        private void btnConsultarProveedor_Click(object sender, EventArgs e)
-        {
-            if (_proveedor == null) return;
-
-            frmAMCProveedor f = new frmAMCProveedor
-            {
-                Clase = _proveedor,
-                SoloLectura = true
-            };
-            f.ShowDialog(this);
-        }
-
         private void btnQuitarProducto_Click(object sender, EventArgs e)
         {
             if (_producto == null) return;
 
             _producto = null;
+            HabilitarControles();
         }
 
-        private void btnQuitarProveedor_Click(object sender, EventArgs e)
-        {
-            if (_proveedor == null) return;
-
-            _proveedor = null;
-        }
     }
 }
