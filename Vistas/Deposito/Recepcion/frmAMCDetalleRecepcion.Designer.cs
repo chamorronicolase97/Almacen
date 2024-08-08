@@ -33,7 +33,7 @@
             txtProducto = new TextBox();
             label1 = new Label();
             label3 = new Label();
-            txtNroPedido = new TextBox();
+            txtRecepcionID = new TextBox();
             backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             fontDialog1 = new FontDialog();
             btnAsignarProducto = new Button();
@@ -43,6 +43,8 @@
             label5 = new Label();
             btnConsultarProducto = new Button();
             btnQuitarProducto = new Button();
+            label2 = new Label();
+            dtpFechaRecepcion = new DateTimePicker();
             SuspendLayout();
             // 
             // btnAceptar
@@ -94,20 +96,20 @@
             label3.AutoSize = true;
             label3.Location = new Point(42, 31);
             label3.Name = "label3";
-            label3.Size = new Size(70, 15);
+            label3.Size = new Size(76, 15);
             label3.TabIndex = 6;
-            label3.Text = "Nro. Pedido";
+            label3.Text = "Recepción ID";
             // 
-            // txtNroPedido
+            // txtRecepcionID
             // 
-            txtNroPedido.Anchor = AnchorStyles.Bottom;
-            txtNroPedido.Enabled = false;
-            txtNroPedido.Location = new Point(118, 25);
-            txtNroPedido.Margin = new Padding(3, 2, 3, 2);
-            txtNroPedido.Name = "txtNroPedido";
-            txtNroPedido.ReadOnly = true;
-            txtNroPedido.Size = new Size(66, 23);
-            txtNroPedido.TabIndex = 7;
+            txtRecepcionID.Anchor = AnchorStyles.Bottom;
+            txtRecepcionID.Enabled = false;
+            txtRecepcionID.Location = new Point(118, 25);
+            txtRecepcionID.Margin = new Padding(3, 2, 3, 2);
+            txtRecepcionID.Name = "txtRecepcionID";
+            txtRecepcionID.ReadOnly = true;
+            txtRecepcionID.Size = new Size(66, 23);
+            txtRecepcionID.TabIndex = 7;
             // 
             // btnAsignarProducto
             // 
@@ -180,11 +182,31 @@
             btnQuitarProducto.UseVisualStyleBackColor = true;
             btnQuitarProducto.Click += btnQuitarProducto_Click;
             // 
+            // label2
+            // 
+            label2.Anchor = AnchorStyles.Bottom;
+            label2.AutoSize = true;
+            label2.Location = new Point(258, 109);
+            label2.Name = "label2";
+            label2.Size = new Size(96, 15);
+            label2.TabIndex = 19;
+            label2.Text = "Fecha Recepción";
+            // 
+            // dtpFechaRecepcion
+            // 
+            dtpFechaRecepcion.Format = DateTimePickerFormat.Short;
+            dtpFechaRecepcion.Location = new Point(360, 106);
+            dtpFechaRecepcion.Name = "dtpFechaRecepcion";
+            dtpFechaRecepcion.Size = new Size(125, 23);
+            dtpFechaRecepcion.TabIndex = 20;
+            // 
             // frmAMCDetalleRecepcion
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(497, 181);
+            Controls.Add(dtpFechaRecepcion);
+            Controls.Add(label2);
             Controls.Add(btnQuitarProducto);
             Controls.Add(btnConsultarProducto);
             Controls.Add(txtCostoUnitario);
@@ -193,7 +215,7 @@
             Controls.Add(label4);
             Controls.Add(btnAsignarProducto);
             Controls.Add(txtProducto);
-            Controls.Add(txtNroPedido);
+            Controls.Add(txtRecepcionID);
             Controls.Add(label3);
             Controls.Add(label1);
             Controls.Add(btnCancelar);
@@ -218,7 +240,7 @@
         private TextBox txtProducto;
         private Label label1;
         private Label label3;
-        private TextBox txtNroPedido;
+        private TextBox txtRecepcionID;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private FontDialog fontDialog1;
         private Button btnAsignarProducto;
@@ -228,5 +250,7 @@
         private Label label5;
         private Button btnConsultarProducto;
         private Button btnQuitarProducto;
+        private Label label2;
+        private DateTimePicker dtpFechaRecepcion;
     }
 }

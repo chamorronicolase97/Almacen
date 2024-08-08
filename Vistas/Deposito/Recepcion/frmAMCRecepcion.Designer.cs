@@ -42,6 +42,8 @@
             dtpFechaEntrega = new DateTimePicker();
             txtRecepcionID = new TextBox();
             label2 = new Label();
+            txtProveedor = new TextBox();
+            label4 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvDetalles).BeginInit();
             SuspendLayout();
@@ -168,11 +170,34 @@
             label2.TabIndex = 11;
             label2.Text = "Recepción ID";
             // 
+            // txtProveedor
+            // 
+            txtProveedor.Anchor = AnchorStyles.Bottom;
+            txtProveedor.Enabled = false;
+            txtProveedor.Location = new Point(345, 43);
+            txtProveedor.Margin = new Padding(3, 2, 3, 2);
+            txtProveedor.Name = "txtProveedor";
+            txtProveedor.ReadOnly = true;
+            txtProveedor.Size = new Size(135, 23);
+            txtProveedor.TabIndex = 14;
+            // 
+            // label4
+            // 
+            label4.Anchor = AnchorStyles.Bottom;
+            label4.AutoSize = true;
+            label4.Location = new Point(279, 46);
+            label4.Name = "label4";
+            label4.Size = new Size(61, 15);
+            label4.TabIndex = 13;
+            label4.Text = "Proveedor";
+            // 
             // frmAMCRecepcion
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(646, 302);
+            Controls.Add(txtProveedor);
+            Controls.Add(label4);
             Controls.Add(txtRecepcionID);
             Controls.Add(label2);
             Controls.Add(dtpFechaEntrega);
@@ -214,5 +239,7 @@
         private VScrollBar vScrollBar1;
         private TextBox txtRecepcionID;
         private Label label2;
+        private TextBox txtProveedor;
+        private Label label4;
     }
 }

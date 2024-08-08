@@ -77,6 +77,7 @@ namespace Almacen.Vistas
             else
             {
                 int nroPedido = Pedido.CalcularNroPedido();
+                Clase.Insertar(nroPedido, _producto.ID);
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
@@ -86,7 +87,7 @@ namespace Almacen.Vistas
         {
             if (txtProducto.Text.Length == 0)
             {
-                frmMostrarMensaje.MostrarMensaje("DetallePedido", "Debe definir una fecha para el DetallePedido");
+                frmMostrarMensaje.MostrarMensaje("DetallePedido", "Debe definir una Producto para el DetallePedido");
                 return false;
             }
 

@@ -37,8 +37,8 @@
             brnModificar = new Button();
             btnCrear = new Button();
             txtFiltro = new TextBox();
-            toolTip1 = new ToolTip(components);
             btnSeleccionar = new Button();
+            toolTip1 = new ToolTip(components);
             ((System.ComponentModel.ISupportInitialize)dgvDatos).BeginInit();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
@@ -57,10 +57,9 @@
             dgvDatos.Margin = new Padding(3, 2, 3, 2);
             dgvDatos.MultiSelect = false;
             dgvDatos.Name = "dgvDatos";
-            dgvDatos.ReadOnly = true;
             dgvDatos.RowHeadersWidth = 51;
             dgvDatos.RowTemplate.Height = 29;
-            dgvDatos.Size = new Size(554, 293);
+            dgvDatos.Size = new Size(554, 294);
             dgvDatos.TabIndex = 0;
             // 
             // splitContainer1

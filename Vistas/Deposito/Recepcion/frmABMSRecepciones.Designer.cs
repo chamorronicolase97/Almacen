@@ -50,12 +50,13 @@
             dgvDatos.AllowUserToDeleteRows = false;
             dgvDatos.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgvDatos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvDatos.Location = new Point(-21, 4);
+            dgvDatos.Location = new Point(0, 4);
             dgvDatos.Margin = new Padding(3, 2, 3, 2);
             dgvDatos.Name = "dgvDatos";
+            dgvDatos.ReadOnly = true;
             dgvDatos.RowHeadersWidth = 51;
             dgvDatos.RowTemplate.Height = 29;
-            dgvDatos.Size = new Size(602, 296);
+            dgvDatos.Size = new Size(581, 297);
             dgvDatos.TabIndex = 0;
             // 
             // splitContainer1
@@ -74,7 +75,7 @@
             // splitContainer1.Panel2
             // 
             splitContainer1.Panel2.Controls.Add(dgvDatos);
-            splitContainer1.Size = new Size(584, 361);
+            splitContainer1.Size = new Size(608, 361);
             splitContainer1.SplitterDistance = 63;
             splitContainer1.SplitterWidth = 3;
             splitContainer1.TabIndex = 1;

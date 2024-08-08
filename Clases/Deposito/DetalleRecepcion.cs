@@ -124,9 +124,18 @@ namespace Almacen.Clases.Compra
             return cn.Consultar(q);
         }
 
-        public static List<DetalleRecepcion> ListarDetallesRecepciones()
+        public static DataTable Listar(int RecepcionID)
         {
-            DataTable dt = Listar();
+            Conexion cn = new Conexion();
+            string q = @$"Select * from {Tabla} where RecepcionID = @RecepcionID";
+            SqlCommand cmd = new SqlCommand(q);
+            cmd.Parameters.Add("@RecepcionID", SqlDbType.Int).Value = RecepcionID;
+            return cn.Consultar(cmd);
+        }
+
+        public static List<DetalleRecepcion> ListarDetallesRecepciones(Recepcion Recepcion)
+        {
+            DataTable dt = Listar(Recepcion.ID);
             List<DetalleRecepcion> lista = new List<DetalleRecepcion>();
             foreach (DataRow dr in dt.Rows)
             {

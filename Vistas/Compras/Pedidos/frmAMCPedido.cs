@@ -29,19 +29,20 @@ namespace Almacen.Vistas
 
         private void frmAMCPedido_Load(object sender, EventArgs e)
         {
-            _nroPedido = Pedido.CalcularNroPedido();
-
+                     
             if (Modificacion == true)
-            {
-                CargarGrillaDetalles();
+            {             
                 txtNroPedido.Text = Clase.ID.ToString();
+                _nroPedido = Clase.ID;
                 dtpFechaEntrega.Value = Clase.FechaEntrega;
+                _proveedor = Clase.Proveedor;
             }
             else
             {
-                txtNroPedido.Text = _nroPedido.ToString();
-                CargarGrillaDetalles();
+                _nroPedido = Pedido.CalcularNroPedido();
+                txtNroPedido.Text = _nroPedido.ToString();                
             }
+            HabilitarControles();
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -55,6 +56,7 @@ namespace Almacen.Vistas
 
             Clase.ID = _nroPedido;
             Clase.FechaEntrega = dtpFechaEntrega.Value;
+            Clase.Proveedor = _proveedor;
 
             if (Modificacion)
             {
@@ -105,6 +107,8 @@ namespace Almacen.Vistas
         private void HabilitarControles()
         {
             if (_proveedor != null) txtProveedor.Text = _proveedor.RazonSocial.ToString();
+
+            CargarGrillaDetalles();
 
             if (Modificacion)
             {

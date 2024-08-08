@@ -1,4 +1,5 @@
 ﻿using Almacen.Clases;
+using Almacen.Clases.Administracion;
 using Almacen.Clases.Compra;
 using Sistema;
 using System;
@@ -35,15 +36,18 @@ namespace Almacen.Vistas
 
         private void btnCrear_Click(object sender, EventArgs e)
         {
-            frmABMSPedidos pedidos = new frmABMSPedidos();
+            frmABMSPedidos pedidos = new frmABMSPedidos();            
+            MessageBox.Show("Seleccione pedido a recepcionar", "Recepción", MessageBoxButtons.OK, MessageBoxIcon.Information);
             pedidos.ShowDialog();
             if (pedidos.DialogResult != DialogResult.OK) return;
             Pedido pedido = pedidos.Pedido;
+            Proveedor proveedor = pedido.Proveedor;
             pedidos.Close();
 
             frmAMCRecepcion f = new frmAMCRecepcion();
             f.Clase = new Recepcion(0);
             f.Pedido = pedido;
+            f.Proveedor = proveedor;
             f.ShowDialog();
             if (f.DialogResult == DialogResult.OK) CargarGrilla();
         }
@@ -77,7 +81,7 @@ namespace Almacen.Vistas
             Recepcion Clase = new Recepcion(Convert.ToInt32(dgvDatos.CurrentRow.Cells["RecepcionID"].Value));
 
             frmAMCRecepcion f = new frmAMCRecepcion();
-            f.Clase = Clase;
+            f.Clase = Clase;            
             f.Modificacion = true;
             f.ShowDialog();
             if (f.DialogResult == DialogResult.OK) CargarGrilla();
