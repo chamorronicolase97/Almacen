@@ -34,6 +34,7 @@
             reiniciarToolStripMenuItem = new ToolStripMenuItem();
             salirToolStripMenuItem = new ToolStripMenuItem();
             depositoToolStripMenuItem = new ToolStripMenuItem();
+            recepciónToolStripMenuItem = new ToolStripMenuItem();
             compraToolStripMenuItem = new ToolStripMenuItem();
             pedidosToolStripMenuItem = new ToolStripMenuItem();
             ventaToolStripMenuItem = new ToolStripMenuItem();
@@ -48,7 +49,7 @@
             monthCalendar1 = new MonthCalendar();
             panel1 = new Panel();
             lblBienvenido = new Label();
-            recepciónToolStripMenuItem = new ToolStripMenuItem();
+            costosProductosToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -98,6 +99,13 @@
             depositoToolStripMenuItem.Size = new Size(66, 20);
             depositoToolStripMenuItem.Text = "Deposito";
             // 
+            // recepciónToolStripMenuItem
+            // 
+            recepciónToolStripMenuItem.Name = "recepciónToolStripMenuItem";
+            recepciónToolStripMenuItem.Size = new Size(129, 22);
+            recepciónToolStripMenuItem.Text = "Recepción";
+            recepciónToolStripMenuItem.Click += recepciónToolStripMenuItem_Click;
+            // 
             // compraToolStripMenuItem
             // 
             compraToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { pedidosToolStripMenuItem });
@@ -120,7 +128,7 @@
             // 
             // administraciónToolStripMenuItem
             // 
-            administraciónToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { categoriasToolStripMenuItem, productosToolStripMenuItem, proveedoresToolStripMenuItem });
+            administraciónToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { categoriasToolStripMenuItem, proveedoresToolStripMenuItem, productosToolStripMenuItem, costosProductosToolStripMenuItem });
             administraciónToolStripMenuItem.Name = "administraciónToolStripMenuItem";
             administraciónToolStripMenuItem.Size = new Size(100, 20);
             administraciónToolStripMenuItem.Text = "Administración";
@@ -128,21 +136,21 @@
             // categoriasToolStripMenuItem
             // 
             categoriasToolStripMenuItem.Name = "categoriasToolStripMenuItem";
-            categoriasToolStripMenuItem.Size = new Size(139, 22);
+            categoriasToolStripMenuItem.Size = new Size(180, 22);
             categoriasToolStripMenuItem.Text = "Categorias";
             categoriasToolStripMenuItem.Click += categoriasToolStripMenuItem_Click;
             // 
             // productosToolStripMenuItem
             // 
             productosToolStripMenuItem.Name = "productosToolStripMenuItem";
-            productosToolStripMenuItem.Size = new Size(139, 22);
+            productosToolStripMenuItem.Size = new Size(180, 22);
             productosToolStripMenuItem.Text = "Productos";
             productosToolStripMenuItem.Click += productosToolStripMenuItem_Click;
             // 
             // proveedoresToolStripMenuItem
             // 
             proveedoresToolStripMenuItem.Name = "proveedoresToolStripMenuItem";
-            proveedoresToolStripMenuItem.Size = new Size(139, 22);
+            proveedoresToolStripMenuItem.Size = new Size(180, 22);
             proveedoresToolStripMenuItem.Text = "Proveedores";
             proveedoresToolStripMenuItem.Click += proveedoresToolStripMenuItem_Click;
             // 
@@ -203,12 +211,12 @@
             lblBienvenido.TabIndex = 0;
             lblBienvenido.Text = "Bienvenid@";
             // 
-            // recepciónToolStripMenuItem
+            // costosProductosToolStripMenuItem
             // 
-            recepciónToolStripMenuItem.Name = "recepciónToolStripMenuItem";
-            recepciónToolStripMenuItem.Size = new Size(180, 22);
-            recepciónToolStripMenuItem.Text = "Recepción";
-            recepciónToolStripMenuItem.Click += recepciónToolStripMenuItem_Click;
+            costosProductosToolStripMenuItem.Name = "costosProductosToolStripMenuItem";
+            costosProductosToolStripMenuItem.Size = new Size(180, 22);
+            costosProductosToolStripMenuItem.Text = "Costos Productos";
+            costosProductosToolStripMenuItem.Click += costosProductosToolStripMenuItem_Click;
             // 
             // frmPrincipal
             // 
@@ -256,5 +264,6 @@
         private ToolStripMenuItem permisosToolStripMenuItem;
         private ToolStripMenuItem pedidosToolStripMenuItem;
         private ToolStripMenuItem recepciónToolStripMenuItem;
+        private ToolStripMenuItem costosProductosToolStripMenuItem;
     }
 }

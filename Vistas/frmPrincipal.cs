@@ -102,5 +102,11 @@ namespace Almacen.Vistas
             frmABMSRecepciones f = new frmABMSRecepciones();
             f.Show();
         }
+
+        private void costosProductosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmCostosProductos f = new frmCostosProductos();
+            f.Show();
+        }
     }
 }
