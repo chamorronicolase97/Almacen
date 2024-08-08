@@ -36,6 +36,7 @@
             brnModificar = new Button();
             btnCrear = new Button();
             txtFiltro = new TextBox();
+            btnSeleccionar = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvDatos).BeginInit();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
@@ -50,14 +51,13 @@
             dgvDatos.AllowUserToDeleteRows = false;
             dgvDatos.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgvDatos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvDatos.Location = new Point(-21, 4);
+            dgvDatos.Location = new Point(0, 4);
             dgvDatos.Margin = new Padding(3, 2, 3, 2);
             dgvDatos.Name = "dgvDatos";
             dgvDatos.RowHeadersWidth = 51;
             dgvDatos.RowTemplate.Height = 29;
-            dgvDatos.Size = new Size(602, 296);
+            dgvDatos.Size = new Size(531, 291);
             dgvDatos.TabIndex = 0;
-            dgvDatos.CellMouseDoubleClick += dgvDatos_CellMouseDoubleClick;
             // 
             // splitContainer1
             // 
@@ -74,6 +74,7 @@
             // 
             // splitContainer1.Panel2
             // 
+            splitContainer1.Panel2.Controls.Add(btnSeleccionar);
             splitContainer1.Panel2.Controls.Add(dgvDatos);
             splitContainer1.Size = new Size(584, 361);
             splitContainer1.SplitterDistance = 63;
@@ -132,6 +133,17 @@
             txtFiltro.Size = new Size(165, 23);
             txtFiltro.TabIndex = 3;
             // 
+            // btnSeleccionar
+            // 
+            btnSeleccionar.Image = (Image)resources.GetObject("btnSeleccionar.Image");
+            btnSeleccionar.Location = new Point(537, 4);
+            btnSeleccionar.Margin = new Padding(3, 2, 3, 2);
+            btnSeleccionar.Name = "btnSeleccionar";
+            btnSeleccionar.Size = new Size(41, 36);
+            btnSeleccionar.TabIndex = 13;
+            btnSeleccionar.UseVisualStyleBackColor = true;
+            btnSeleccionar.Click += btnSeleccionar_Click;
+            // 
             // frmABMSPedidos
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -163,5 +175,6 @@
         private Button btnBorrar;
         private Button brnModificar;
         private Button btnCrear;
+        private Button btnSeleccionar;
     }
 }

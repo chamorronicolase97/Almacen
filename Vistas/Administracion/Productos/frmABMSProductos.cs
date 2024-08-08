@@ -16,6 +16,9 @@ namespace Almacen.Vistas
     public partial class frmABMSProductos : Form
     {
         private Producto _objetoSeleccionado;
+        private Proveedor _proveedor;
+
+        public Proveedor FiltroProveedor { get { return _proveedor; } set { _proveedor = value; } }
 
         public frmABMSProductos()
         {
@@ -28,12 +31,13 @@ namespace Almacen.Vistas
         private void frmABMSProductos_Load(object sender, EventArgs e)
 
         {
-            dgvDatos.DataSource = Producto.Listar();
+            CargarGrilla();
         }
 
         private void CargarGrilla()
         {
-            dgvDatos.DataSource = Producto.Listar();
+            if (FiltroProveedor != null) { dgvDatos.DataSource = Producto.ListarPorProveedor(FiltroProveedor); }
+            else { dgvDatos.DataSource = Producto.Listar(); }
         }
 
         private void btnCrear_Click(object sender, EventArgs e)
@@ -75,7 +79,7 @@ namespace Almacen.Vistas
 
         private void btnSeleccionar_Click(object sender, EventArgs e)
         {
-            if(dgvDatos.CurrentRow == null)
+            if (dgvDatos.CurrentRow == null)
             {
                 frmMostrarMensaje.MostrarMensaje($"Seleccionar", "No hay ningún registro seleccionado");
                 return;

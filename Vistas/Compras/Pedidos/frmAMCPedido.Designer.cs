@@ -40,6 +40,11 @@
             dgvDetalles = new DataGridView();
             btnAsignar = new Button();
             dtpFechaEntrega = new DateTimePicker();
+            btnQuitarProveedor = new Button();
+            btnConsultarProveedor = new Button();
+            btnAsignarProveedor = new Button();
+            txtProveedor = new TextBox();
+            label2 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvDetalles).BeginInit();
             SuspendLayout();
@@ -144,11 +149,68 @@
             dtpFechaEntrega.Size = new Size(98, 23);
             dtpFechaEntrega.TabIndex = 10;
             // 
+            // btnQuitarProveedor
+            // 
+            btnQuitarProveedor.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnQuitarProveedor.Location = new Point(554, 39);
+            btnQuitarProveedor.Margin = new Padding(3, 2, 3, 2);
+            btnQuitarProveedor.Name = "btnQuitarProveedor";
+            btnQuitarProveedor.Size = new Size(31, 28);
+            btnQuitarProveedor.TabIndex = 23;
+            btnQuitarProveedor.UseVisualStyleBackColor = true;
+            btnQuitarProveedor.Click += btnQuitarProveedor_Click;
+            // 
+            // btnConsultarProveedor
+            // 
+            btnConsultarProveedor.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnConsultarProveedor.Location = new Point(525, 39);
+            btnConsultarProveedor.Margin = new Padding(3, 2, 3, 2);
+            btnConsultarProveedor.Name = "btnConsultarProveedor";
+            btnConsultarProveedor.Size = new Size(31, 28);
+            btnConsultarProveedor.TabIndex = 22;
+            btnConsultarProveedor.UseVisualStyleBackColor = true;
+            btnConsultarProveedor.Click += btnConsultarProveedor_Click;
+            // 
+            // btnAsignarProveedor
+            // 
+            btnAsignarProveedor.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnAsignarProveedor.Location = new Point(496, 39);
+            btnAsignarProveedor.Margin = new Padding(3, 2, 3, 2);
+            btnAsignarProveedor.Name = "btnAsignarProveedor";
+            btnAsignarProveedor.Size = new Size(31, 28);
+            btnAsignarProveedor.TabIndex = 21;
+            btnAsignarProveedor.UseVisualStyleBackColor = true;
+            btnAsignarProveedor.Click += btnAsignarProveedor_Click;
+            // 
+            // txtProveedor
+            // 
+            txtProveedor.Anchor = AnchorStyles.Bottom;
+            txtProveedor.Location = new Point(319, 43);
+            txtProveedor.Margin = new Padding(3, 2, 3, 2);
+            txtProveedor.Name = "txtProveedor";
+            txtProveedor.Size = new Size(173, 23);
+            txtProveedor.TabIndex = 19;
+            // 
+            // label2
+            // 
+            label2.Anchor = AnchorStyles.Bottom;
+            label2.AutoSize = true;
+            label2.Location = new Point(257, 46);
+            label2.Name = "label2";
+            label2.Size = new Size(61, 15);
+            label2.TabIndex = 20;
+            label2.Text = "Proveedor";
+            // 
             // frmAMCPedido
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(646, 302);
+            Controls.Add(btnQuitarProveedor);
+            Controls.Add(btnConsultarProveedor);
+            Controls.Add(btnAsignarProveedor);
+            Controls.Add(txtProveedor);
+            Controls.Add(label2);
             Controls.Add(dtpFechaEntrega);
             Controls.Add(btnAsignar);
             Controls.Add(panel1);
@@ -186,5 +248,10 @@
         private Button btnAsignar;
         private DateTimePicker dtpFechaEntrega;
         private VScrollBar vScrollBar1;
+        private Button btnQuitarProveedor;
+        private Button btnConsultarProveedor;
+        private Button btnAsignarProveedor;
+        private TextBox txtProveedor;
+        private Label label2;
     }
 }

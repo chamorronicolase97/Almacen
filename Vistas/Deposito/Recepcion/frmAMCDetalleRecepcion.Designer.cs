@@ -33,12 +33,9 @@
             txtProducto = new TextBox();
             label1 = new Label();
             label3 = new Label();
-            txtNroPedido = new TextBox();
+            txtRecepcionID = new TextBox();
             backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             fontDialog1 = new FontDialog();
-            txtProveedor = new TextBox();
-            label2 = new Label();
-            btnAsignarProveedor = new Button();
             btnAsignarProducto = new Button();
             txtCantidad = new TextBox();
             label4 = new Label();
@@ -46,8 +43,8 @@
             label5 = new Label();
             btnConsultarProducto = new Button();
             btnQuitarProducto = new Button();
-            btnQuitarProveedor = new Button();
-            btnConsultarProveedor = new Button();
+            label2 = new Label();
+            dtpFechaRecepcion = new DateTimePicker();
             SuspendLayout();
             // 
             // btnAceptar
@@ -99,50 +96,20 @@
             label3.AutoSize = true;
             label3.Location = new Point(42, 31);
             label3.Name = "label3";
-            label3.Size = new Size(70, 15);
+            label3.Size = new Size(76, 15);
             label3.TabIndex = 6;
-            label3.Text = "Nro. Pedido";
+            label3.Text = "Recepción ID";
             // 
-            // txtNroPedido
+            // txtRecepcionID
             // 
-            txtNroPedido.Anchor = AnchorStyles.Bottom;
-            txtNroPedido.Enabled = false;
-            txtNroPedido.Location = new Point(118, 25);
-            txtNroPedido.Margin = new Padding(3, 2, 3, 2);
-            txtNroPedido.Name = "txtNroPedido";
-            txtNroPedido.ReadOnly = true;
-            txtNroPedido.Size = new Size(66, 23);
-            txtNroPedido.TabIndex = 7;
-            // 
-            // txtProveedor
-            // 
-            txtProveedor.Anchor = AnchorStyles.Bottom;
-            txtProveedor.Location = new Point(118, 79);
-            txtProveedor.Margin = new Padding(3, 2, 3, 2);
-            txtProveedor.Name = "txtProveedor";
-            txtProveedor.Size = new Size(173, 23);
-            txtProveedor.TabIndex = 8;
-            // 
-            // label2
-            // 
-            label2.Anchor = AnchorStyles.Bottom;
-            label2.AutoSize = true;
-            label2.Location = new Point(52, 82);
-            label2.Name = "label2";
-            label2.Size = new Size(61, 15);
-            label2.TabIndex = 9;
-            label2.Text = "Proveedor";
-            // 
-            // btnAsignarProveedor
-            // 
-            btnAsignarProveedor.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnAsignarProveedor.Location = new Point(281, 78);
-            btnAsignarProveedor.Margin = new Padding(3, 2, 3, 2);
-            btnAsignarProveedor.Name = "btnAsignarProveedor";
-            btnAsignarProveedor.Size = new Size(31, 28);
-            btnAsignarProveedor.TabIndex = 11;
-            btnAsignarProveedor.UseVisualStyleBackColor = true;
-            btnAsignarProveedor.Click += btnAsignarProveedor_Click;
+            txtRecepcionID.Anchor = AnchorStyles.Bottom;
+            txtRecepcionID.Enabled = false;
+            txtRecepcionID.Location = new Point(118, 25);
+            txtRecepcionID.Margin = new Padding(3, 2, 3, 2);
+            txtRecepcionID.Name = "txtRecepcionID";
+            txtRecepcionID.ReadOnly = true;
+            txtRecepcionID.Size = new Size(66, 23);
+            txtRecepcionID.TabIndex = 7;
             // 
             // btnAsignarProducto
             // 
@@ -158,7 +125,7 @@
             // txtCantidad
             // 
             txtCantidad.Anchor = AnchorStyles.Bottom;
-            txtCantidad.Location = new Point(118, 106);
+            txtCantidad.Location = new Point(118, 79);
             txtCantidad.Margin = new Padding(3, 2, 3, 2);
             txtCantidad.Name = "txtCantidad";
             txtCantidad.Size = new Size(66, 23);
@@ -168,7 +135,7 @@
             // 
             label4.Anchor = AnchorStyles.Bottom;
             label4.AutoSize = true;
-            label4.Location = new Point(56, 109);
+            label4.Location = new Point(56, 82);
             label4.Name = "label4";
             label4.Size = new Size(55, 15);
             label4.TabIndex = 14;
@@ -177,7 +144,7 @@
             // txtCostoUnitario
             // 
             txtCostoUnitario.Anchor = AnchorStyles.Bottom;
-            txtCostoUnitario.Location = new Point(118, 133);
+            txtCostoUnitario.Location = new Point(118, 106);
             txtCostoUnitario.Margin = new Padding(3, 2, 3, 2);
             txtCostoUnitario.Name = "txtCostoUnitario";
             txtCostoUnitario.Size = new Size(66, 23);
@@ -187,7 +154,7 @@
             // 
             label5.Anchor = AnchorStyles.Bottom;
             label5.AutoSize = true;
-            label5.Location = new Point(30, 136);
+            label5.Location = new Point(30, 109);
             label5.Name = "label5";
             label5.Size = new Size(83, 15);
             label5.TabIndex = 16;
@@ -215,35 +182,31 @@
             btnQuitarProducto.UseVisualStyleBackColor = true;
             btnQuitarProducto.Click += btnQuitarProducto_Click;
             // 
-            // btnQuitarProveedor
+            // label2
             // 
-            btnQuitarProveedor.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnQuitarProveedor.Location = new Point(339, 78);
-            btnQuitarProveedor.Margin = new Padding(3, 2, 3, 2);
-            btnQuitarProveedor.Name = "btnQuitarProveedor";
-            btnQuitarProveedor.Size = new Size(31, 28);
-            btnQuitarProveedor.TabIndex = 20;
-            btnQuitarProveedor.UseVisualStyleBackColor = true;
-            btnQuitarProveedor.Click += btnQuitarProveedor_Click;
+            label2.Anchor = AnchorStyles.Bottom;
+            label2.AutoSize = true;
+            label2.Location = new Point(258, 109);
+            label2.Name = "label2";
+            label2.Size = new Size(96, 15);
+            label2.TabIndex = 19;
+            label2.Text = "Fecha Recepción";
             // 
-            // btnConsultarProveedor
+            // dtpFechaRecepcion
             // 
-            btnConsultarProveedor.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnConsultarProveedor.Location = new Point(310, 78);
-            btnConsultarProveedor.Margin = new Padding(3, 2, 3, 2);
-            btnConsultarProveedor.Name = "btnConsultarProveedor";
-            btnConsultarProveedor.Size = new Size(31, 28);
-            btnConsultarProveedor.TabIndex = 19;
-            btnConsultarProveedor.UseVisualStyleBackColor = true;
-            btnConsultarProveedor.Click += btnConsultarProveedor_Click;
+            dtpFechaRecepcion.Format = DateTimePickerFormat.Short;
+            dtpFechaRecepcion.Location = new Point(360, 106);
+            dtpFechaRecepcion.Name = "dtpFechaRecepcion";
+            dtpFechaRecepcion.Size = new Size(125, 23);
+            dtpFechaRecepcion.TabIndex = 20;
             // 
             // frmAMCDetalleRecepcion
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(497, 181);
-            Controls.Add(btnQuitarProveedor);
-            Controls.Add(btnConsultarProveedor);
+            Controls.Add(dtpFechaRecepcion);
+            Controls.Add(label2);
             Controls.Add(btnQuitarProducto);
             Controls.Add(btnConsultarProducto);
             Controls.Add(txtCostoUnitario);
@@ -251,11 +214,8 @@
             Controls.Add(txtCantidad);
             Controls.Add(label4);
             Controls.Add(btnAsignarProducto);
-            Controls.Add(btnAsignarProveedor);
-            Controls.Add(txtProveedor);
-            Controls.Add(label2);
             Controls.Add(txtProducto);
-            Controls.Add(txtNroPedido);
+            Controls.Add(txtRecepcionID);
             Controls.Add(label3);
             Controls.Add(label1);
             Controls.Add(btnCancelar);
@@ -280,12 +240,9 @@
         private TextBox txtProducto;
         private Label label1;
         private Label label3;
-        private TextBox txtNroPedido;
+        private TextBox txtRecepcionID;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private FontDialog fontDialog1;
-        private TextBox txtProveedor;
-        private Label label2;
-        private Button btnAsignarProveedor;
         private Button btnAsignarProducto;
         private TextBox txtCantidad;
         private Label label4;
@@ -293,7 +250,7 @@
         private Label label5;
         private Button btnConsultarProducto;
         private Button btnQuitarProducto;
-        private Button btnQuitarProveedor;
-        private Button btnConsultarProveedor;
+        private Label label2;
+        private DateTimePicker dtpFechaRecepcion;
     }
 }

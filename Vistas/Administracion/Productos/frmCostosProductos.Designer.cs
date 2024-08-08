@@ -1,6 +1,6 @@
 ﻿namespace Almacen.Vistas
 {
-    partial class frmABMSRecepciones
+    partial class frmCostosProductos
     {
         /// <summary>
         /// Required designer variable.
@@ -28,14 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmABMSRecepciones));
+            components = new System.ComponentModel.Container();
             dgvDatos = new DataGridView();
             splitContainer1 = new SplitContainer();
             pnlBotones = new Panel();
-            btnBorrar = new Button();
-            brnModificar = new Button();
-            btnCrear = new Button();
+            label1 = new Label();
+            dtpFechaCosto = new DateTimePicker();
             txtFiltro = new TextBox();
+            btnActualizarCostos = new Button();
+            toolTip1 = new ToolTip(components);
             ((System.ComponentModel.ISupportInitialize)dgvDatos).BeginInit();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
@@ -50,13 +51,13 @@
             dgvDatos.AllowUserToDeleteRows = false;
             dgvDatos.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgvDatos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvDatos.Location = new Point(0, 4);
+            dgvDatos.Location = new Point(0, 3);
             dgvDatos.Margin = new Padding(3, 2, 3, 2);
+            dgvDatos.MultiSelect = false;
             dgvDatos.Name = "dgvDatos";
-            dgvDatos.ReadOnly = true;
             dgvDatos.RowHeadersWidth = 51;
             dgvDatos.RowTemplate.Height = 29;
-            dgvDatos.Size = new Size(581, 297);
+            dgvDatos.Size = new Size(953, 378);
             dgvDatos.TabIndex = 0;
             // 
             // splitContainer1
@@ -74,55 +75,39 @@
             // 
             // splitContainer1.Panel2
             // 
+            splitContainer1.Panel2.Controls.Add(btnActualizarCostos);
             splitContainer1.Panel2.Controls.Add(dgvDatos);
-            splitContainer1.Size = new Size(608, 361);
-            splitContainer1.SplitterDistance = 63;
+            splitContainer1.Size = new Size(1023, 464);
+            splitContainer1.SplitterDistance = 79;
             splitContainer1.SplitterWidth = 3;
             splitContainer1.TabIndex = 1;
             // 
             // pnlBotones
             // 
             pnlBotones.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            pnlBotones.Controls.Add(btnBorrar);
-            pnlBotones.Controls.Add(brnModificar);
-            pnlBotones.Controls.Add(btnCrear);
-            pnlBotones.Location = new Point(427, 10);
+            pnlBotones.Controls.Add(label1);
+            pnlBotones.Controls.Add(dtpFechaCosto);
+            pnlBotones.Location = new Point(832, 7);
             pnlBotones.Name = "pnlBotones";
-            pnlBotones.Size = new Size(151, 45);
-            pnlBotones.TabIndex = 13;
+            pnlBotones.Size = new Size(183, 45);
+            pnlBotones.TabIndex = 12;
             // 
-            // btnBorrar
+            // label1
             // 
-            btnBorrar.Image = (Image)resources.GetObject("btnBorrar.Image");
-            btnBorrar.Location = new Point(103, 4);
-            btnBorrar.Margin = new Padding(3, 2, 3, 2);
-            btnBorrar.Name = "btnBorrar";
-            btnBorrar.Size = new Size(41, 36);
-            btnBorrar.TabIndex = 11;
-            btnBorrar.UseVisualStyleBackColor = true;
-            btnBorrar.Click += btnBorrar_Click;
+            label1.AutoSize = true;
+            label1.Location = new Point(14, 14);
+            label1.Name = "label1";
+            label1.Size = new Size(38, 15);
+            label1.TabIndex = 1;
+            label1.Text = "Fecha";
             // 
-            // brnModificar
+            // dtpFechaCosto
             // 
-            brnModificar.Image = (Image)resources.GetObject("brnModificar.Image");
-            brnModificar.Location = new Point(56, 4);
-            brnModificar.Margin = new Padding(3, 2, 3, 2);
-            brnModificar.Name = "brnModificar";
-            brnModificar.Size = new Size(41, 36);
-            brnModificar.TabIndex = 10;
-            brnModificar.UseVisualStyleBackColor = true;
-            brnModificar.Click += btnModificar_Click;
-            // 
-            // btnCrear
-            // 
-            btnCrear.Image = (Image)resources.GetObject("btnCrear.Image");
-            btnCrear.Location = new Point(9, 4);
-            btnCrear.Margin = new Padding(3, 2, 3, 2);
-            btnCrear.Name = "btnCrear";
-            btnCrear.Size = new Size(41, 36);
-            btnCrear.TabIndex = 9;
-            btnCrear.UseVisualStyleBackColor = true;
-            btnCrear.Click += btnCrear_Click;
+            dtpFechaCosto.Format = DateTimePickerFormat.Short;
+            dtpFechaCosto.Location = new Point(58, 8);
+            dtpFechaCosto.Name = "dtpFechaCosto";
+            dtpFechaCosto.Size = new Size(113, 23);
+            dtpFechaCosto.TabIndex = 0;
             // 
             // txtFiltro
             // 
@@ -132,18 +117,29 @@
             txtFiltro.Size = new Size(165, 23);
             txtFiltro.TabIndex = 3;
             // 
-            // frmABMSRecepciones
+            // btnActualizarCostos
+            // 
+            btnActualizarCostos.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnActualizarCostos.Location = new Point(953, 3);
+            btnActualizarCostos.Name = "btnActualizarCostos";
+            btnActualizarCostos.Size = new Size(67, 54);
+            btnActualizarCostos.TabIndex = 2;
+            btnActualizarCostos.Text = "Actualizar";
+            btnActualizarCostos.UseVisualStyleBackColor = true;
+            btnActualizarCostos.Click += btnActualizarCostos_Click;
+            // 
+            // frmCostosProductos
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(584, 361);
+            ClientSize = new Size(1023, 464);
             Controls.Add(splitContainer1);
             Margin = new Padding(3, 2, 3, 2);
             MinimumSize = new Size(600, 400);
-            Name = "frmABMSRecepciones";
+            Name = "frmCostosProductos";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Recepciones";
-            Load += frmABMSPedidos_Load;
+            Text = "Costos Productos";
+            Load += frmCostosProductos_Load;
             ((System.ComponentModel.ISupportInitialize)dgvDatos).EndInit();
             splitContainer1.Panel1.ResumeLayout(false);
             splitContainer1.Panel1.PerformLayout();
@@ -151,6 +147,7 @@
             ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
             splitContainer1.ResumeLayout(false);
             pnlBotones.ResumeLayout(false);
+            pnlBotones.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -160,8 +157,9 @@
         private SplitContainer splitContainer1;
         private TextBox txtFiltro;
         private Panel pnlBotones;
-        private Button btnBorrar;
-        private Button brnModificar;
-        private Button btnCrear;
+        private ToolTip toolTip1;
+        private Button btnActualizarCostos;
+        private Label label1;
+        private DateTimePicker dtpFechaCosto;
     }
 }

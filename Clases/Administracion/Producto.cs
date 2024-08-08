@@ -17,6 +17,7 @@ namespace Almacen.Clases.Administracion
         private decimal? _costo;
         private string _codigoDeBarra;
         private Categoria _categoria;
+        private Proveedor _proveedor;
 
         #region Constantes
         const string Tabla = "dbo.Productos";
@@ -29,6 +30,7 @@ namespace Almacen.Clases.Administracion
         public decimal? Costo { get { return _costo; } set { _costo = value; } }
         public string CodigoDeBarra { get { return _codigoDeBarra; } set { _codigoDeBarra = value; } }
         public Categoria Categoria { get { return _categoria; } set { _categoria = value; } }
+        public Proveedor Proveedor { get { return _proveedor; } set { _proveedor = value; } }   
         #endregion
 
         public Producto() { }
@@ -70,19 +72,21 @@ namespace Almacen.Clases.Administracion
             _codigoDeBarra = Convert.ToString(dr["CodigoDeBarra"]);
 
             if (dr["CategoriaID"] != DBNull.Value) _categoria = new Categoria(Convert.ToInt32(dr["CategoriaID"]));
+            if (dr["ProveedorID"] != DBNull.Value) _proveedor = new Proveedor(Convert.ToInt32(dr["ProveedorID"]));
         }
 
 
         public void Insertar()
         {
             Conexion cn = new Conexion();
-            string q = $@"INSERT INTO {Tabla} (Descripcion, Costo, CodigoDeBarra, CategoriaID)
-                        Values(@Descripcion, @Costo, @CodigoDeBarra, @CategoriaID);";
+            string q = $@"INSERT INTO {Tabla} (Descripcion, Costo, CodigoDeBarra, CategoriaID, ProveedorID)
+                        Values(@Descripcion, @Costo, @CodigoDeBarra, @CategoriaID, @ProveedorID);";
             SqlCommand cmd = new SqlCommand(q);
             cmd.Parameters.Add("@Descripcion", SqlDbType.VarChar).Value = Descripcion;
             cmd.Parameters.Add("@Costo", SqlDbType.Decimal).Value = DBNull.Value;
             cmd.Parameters.Add("@CodigoDeBarra", SqlDbType.VarChar).Value = CodigoDeBarra;
             cmd.Parameters.Add("@CategoriaID", SqlDbType.Int).Value = Categoria.ID;
+            cmd.Parameters.Add("@ProveedorID", SqlDbType.Int).Value = Proveedor.ID;
 
             cn.Ejecutar(cmd);
 
@@ -94,13 +98,15 @@ namespace Almacen.Clases.Administracion
             string q = $@"UPDATE {Tabla} SET Descripcion = @Descripcion, 
                                              Costo = @Costo,
                                              CodigoDeBarra = @CodigoDeBarra,
-                                             CategoriaID = @CategoriaID
+                                             CategoriaID = @CategoriaID,
+                                             ProveedorID = @ProveedorID
                                              WHERE ProductoID = @ID;";
             SqlCommand cmd = new SqlCommand(q);
             cmd.Parameters.Add("@Descripcion", SqlDbType.VarChar).Value = Descripcion;
             cmd.Parameters.Add("@Costo", SqlDbType.Decimal).Value = FuncionesAuxiliares.ConvertDBNullIfNull(Costo);
             cmd.Parameters.Add("@CodigoDeBarra", SqlDbType.VarChar).Value = CodigoDeBarra;
             cmd.Parameters.Add("@CategoriaID", SqlDbType.Int).Value = Categoria.ID;
+            cmd.Parameters.Add("@ProveedorID", SqlDbType.Int).Value = Proveedor.ID;
             cmd.Parameters.Add("@ID", SqlDbType.Int).Value = ID;
 
             cn.Ejecutar(cmd);
@@ -123,6 +129,17 @@ namespace Almacen.Clases.Administracion
             Conexion cn = new Conexion();
             string q = @$"Select * from {Tabla}";
             return cn.Consultar(q);
+        }
+
+        public static DataTable ListarPorProveedor(Proveedor Proveedor)
+        {
+            Conexion cn = new Conexion();
+            string q = @$"Select * from {Tabla} WHERE ProveedorID = @ProveedorID";
+            SqlCommand cmd = new SqlCommand(q);
+            cmd.Parameters.Add("@ProveedorID", SqlDbType.Int).Value = Proveedor.ID;
+
+            return cn.Consultar(cmd);
+
         }
     }
 }

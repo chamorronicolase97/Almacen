@@ -17,9 +17,13 @@ namespace Almacen.Vistas
     {
         private Producto _producto;
         private Proveedor _proveedor;
+        private Recepcion _recepcion;
 
-        public DetallePedido Clase { get; set; }
 
+        public DetalleRecepcion Clase { get; set; }
+
+        public Proveedor Proveedor { get { return _proveedor; } set { _proveedor = value; } }
+        public Recepcion Recepcion { get { return _recepcion; } set { _recepcion = value; } }
         public bool Modificacion { get; set; } = false;
 
         public frmAMCDetalleRecepcion()
@@ -32,22 +36,20 @@ namespace Almacen.Vistas
         {
             if (Modificacion == true)
             {
-                txtNroPedido.Text = Clase.Pedido.ID.ToString();
+                txtRecepcionID.Text = Clase.Recepcion.ID.ToString();
                 if (txtProducto != null) { txtProducto.Text = Clase.Producto.Descripcion.ToString(); }
-                if (txtProveedor != null) { txtProveedor.Text = Clase.Proveedor.RazonSocial.ToString(); }
                 txtCantidad.Text = Clase.Cantidad.ToString();
                 txtCostoUnitario.Text = Clase.CostoUnitario.ToString();
             }
             else
             {
-                txtNroPedido.Text = Pedido.CalcularNroPedido().ToString();
+                txtRecepcionID.Text = Recepcion.ID.ToString();
             }
         }
 
         private void HabilitarControles()
         {
             if (_producto != null) { txtProducto.Text = _producto.Descripcion.ToString(); }
-            if (_proveedor != null) { txtProveedor.Text = _proveedor.RazonSocial.ToString(); }
 
         }
 
@@ -62,13 +64,14 @@ namespace Almacen.Vistas
 
             if (Clase == null)
             {
-                Clase = new DetallePedido();
+                Clase = new DetalleRecepcion();
             }
 
+            Clase.Recepcion = Recepcion;
             Clase.Producto = _producto;
-            Clase.Proveedor = _proveedor;
             Clase.Cantidad = Convert.ToInt32(txtCantidad.Text);
             Clase.CostoUnitario = Convert.ToDecimal(txtCostoUnitario.Text);
+            Clase.FechaRecepcion = dtpFechaRecepcion.Value;
 
             if (Modificacion)
             {
@@ -78,8 +81,8 @@ namespace Almacen.Vistas
             }
             else
             {
-                int nroPedido = Pedido.CalcularNroPedido();
-                Clase.Insertar(nroPedido, _producto.ID, _proveedor.ID);
+
+                Clase.Insertar();
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
@@ -100,6 +103,7 @@ namespace Almacen.Vistas
         {
             frmABMSProductos f = new frmABMSProductos { };
             f.ObjetoSeleccionado = _producto;
+            f.FiltroProveedor = Proveedor;
             if (DialogResult.OK == f.ShowDialog(this))
             {
                 _producto = f.ObjetoSeleccionado;
@@ -156,6 +160,7 @@ namespace Almacen.Vistas
             if (_proveedor == null) return;
 
             _proveedor = null;
+            HabilitarControles();
         }
     }
 }
