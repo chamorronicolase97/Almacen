@@ -16,13 +16,13 @@ namespace Almacen.Vistas
 {
     public partial class frmABMSRecepciones : Form
     {
-
+        private Recepcion _objetoSeleccionado;
         public frmABMSRecepciones()
         {
             InitializeComponent();
 
         }
-
+        public Recepcion ObjetoSeleccionado { get { return _objetoSeleccionado; } set { _objetoSeleccionado = value; } }
         private void frmABMSPedidos_Load(object sender, EventArgs e)
 
         {
@@ -34,9 +34,10 @@ namespace Almacen.Vistas
             dgvDatos.DataSource = Recepcion.Listar();
         }
 
+
         private void btnCrear_Click(object sender, EventArgs e)
         {
-            frmABMSPedidos pedidos = new frmABMSPedidos();            
+            frmABMSPedidos pedidos = new frmABMSPedidos();
             MessageBox.Show("Seleccione pedido a recepcionar", "Recepción", MessageBoxButtons.OK, MessageBoxIcon.Information);
             pedidos.ShowDialog();
             if (pedidos.DialogResult != DialogResult.OK) return;
@@ -71,7 +72,6 @@ namespace Almacen.Vistas
             frmMostrarMensaje.MostrarMensaje($"{Recepcion.NombreClase}", "Baja de " + Recepcion.NombreClase + " exitosa.");
 
             CargarGrilla();
-
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
@@ -81,10 +81,24 @@ namespace Almacen.Vistas
             Recepcion Clase = new Recepcion(Convert.ToInt32(dgvDatos.CurrentRow.Cells["RecepcionID"].Value));
 
             frmAMCRecepcion f = new frmAMCRecepcion();
-            f.Clase = Clase;            
+            f.Clase = Clase;
             f.Modificacion = true;
             f.ShowDialog();
             if (f.DialogResult == DialogResult.OK) CargarGrilla();
+        }
+
+        private void btnSeleccionar_Click(object sender, EventArgs e)
+        {
+            if (dgvDatos.CurrentRow == null)
+            {
+                frmMostrarMensaje.MostrarMensaje($"Seleccionar", "No hay ningún registro seleccionado");
+                return;
+            }
+
+            _objetoSeleccionado = new Recepcion(Convert.ToInt32(dgvDatos.CurrentRow.Cells["RecepcionID"].Value));
+
+            this.DialogResult = DialogResult.OK;
+            this.Close();
         }
     }
 }

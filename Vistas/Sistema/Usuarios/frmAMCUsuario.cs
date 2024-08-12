@@ -15,9 +15,10 @@ namespace Almacen.Vistas
     public partial class frmAMCUsuario : Form
     {
         public Usuario Clase { get; set; }
-
+        protected bool _soloLectura;
+        private Grupo? _grupo;
         public bool Modificacion { get; set; } = false;
-
+        public bool SoloLectura { get { return _soloLectura; } set { _soloLectura = value; } }
         public frmAMCUsuario()
         {
             InitializeComponent();
@@ -26,32 +27,12 @@ namespace Almacen.Vistas
 
         private void frmAMCUsuario_Load(object sender, EventArgs e)
         {
-            #region Combo Grupos
-            List<Grupo> ListaGrupos = Grupo.ListarGrupos();
-
-            Grupo grupo = new Grupo()
-            {
-                ID = 0,
-                Descripcion = "Seleccione"
-            };
-
-            ListaGrupos.Insert(0, grupo);
-
-
-            cmbGrupo.ValueMember = "ID";
-            cmbGrupo.DisplayMember = "Descripcion";
-            cmbGrupo.DataSource = ListaGrupos;
-            #endregion
-
-
             if (Modificacion == true)
             {
                 txtID.Text = Clase.ID.ToString();
                 txtNomApe.Text = Clase.NombreApellido;
                 txtUsuario.Text = Clase.CodUsuario;
                 txtContraseña.Text = Clase.Contraseña;
-                cmbGrupo.Text = Clase.Grupo.Descripcion;
-                cmbGrupo.Enabled = false;
             }
             else
             {
@@ -71,7 +52,7 @@ namespace Almacen.Vistas
             Clase.NombreApellido = txtNomApe.Text;
             Clase.CodUsuario = txtUsuario.Text;
             Clase.Contraseña = txtContraseña.Text;
-            Clase.Grupo = new Grupo(Convert.ToInt32(cmbGrupo.SelectedValue));
+            Clase.Grupo = _grupo;
 
             if (Modificacion)
             {
@@ -100,13 +81,13 @@ namespace Almacen.Vistas
                 return false;
             }
 
-            if (txtContraseña.Text.Length <= 0)
+            if (txtContraseña.Text.Length == 0)
             {
                 frmMostrarMensaje.MostrarMensaje("Usuario", "Debe escribir una contraseña para el Usuario");
                 return false;
             }
 
-            if (cmbGrupo.SelectedIndex == 0)
+            if (_grupo == null)
             {
                 frmMostrarMensaje.MostrarMensaje("Usuario", "Debe seleccionar un grupo");
                 return false;
@@ -116,6 +97,41 @@ namespace Almacen.Vistas
             return true;
         }
 
+        private void HabilitarControles()
+        {
+            if (_grupo != null) txtGrupo.Text = _grupo.Descripcion;
+        }
 
+        private void btnAsignarGrupo_Click(object sender, EventArgs e)
+        {
+            frmABMSGrupos f = new frmABMSGrupos { };
+            f.ObjetoSeleccionado = _grupo;
+            if (DialogResult.OK == f.ShowDialog(this))
+            {
+                _grupo = f.ObjetoSeleccionado;
+
+                HabilitarControles();
+            }
+        }
+
+        private void btnConsultarGrupo_Click(object sender, EventArgs e)
+        {
+            if (_grupo == null) return;
+
+            frmAMCGrupo f = new frmAMCGrupo
+            {
+                Clase = _grupo,
+                SoloLectura = true
+            };
+            f.ShowDialog(this);
+        }
+
+        private void btnQuitarGrupo_Click(object sender, EventArgs e)
+        {
+            if (_grupo == null) return;
+
+            _grupo = null;
+            HabilitarControles();
+        }
     }
 }

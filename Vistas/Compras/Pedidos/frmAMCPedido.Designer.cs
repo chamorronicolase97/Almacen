@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAMCPedido));
             btnAceptar = new Button();
             btnCancelar = new Button();
             label1 = new Label();
@@ -45,6 +47,7 @@
             btnAsignarProveedor = new Button();
             txtProveedor = new TextBox();
             label2 = new Label();
+            toolTip1 = new ToolTip(components);
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvDetalles).BeginInit();
             SuspendLayout();
@@ -152,33 +155,39 @@
             // btnQuitarProveedor
             // 
             btnQuitarProveedor.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnQuitarProveedor.Image = (Image)resources.GetObject("btnQuitarProveedor.Image");
             btnQuitarProveedor.Location = new Point(554, 39);
             btnQuitarProveedor.Margin = new Padding(3, 2, 3, 2);
             btnQuitarProveedor.Name = "btnQuitarProveedor";
             btnQuitarProveedor.Size = new Size(31, 28);
             btnQuitarProveedor.TabIndex = 23;
+            toolTip1.SetToolTip(btnQuitarProveedor, "Quitar");
             btnQuitarProveedor.UseVisualStyleBackColor = true;
             btnQuitarProveedor.Click += btnQuitarProveedor_Click;
             // 
             // btnConsultarProveedor
             // 
             btnConsultarProveedor.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnConsultarProveedor.Image = (Image)resources.GetObject("btnConsultarProveedor.Image");
             btnConsultarProveedor.Location = new Point(525, 39);
             btnConsultarProveedor.Margin = new Padding(3, 2, 3, 2);
             btnConsultarProveedor.Name = "btnConsultarProveedor";
             btnConsultarProveedor.Size = new Size(31, 28);
             btnConsultarProveedor.TabIndex = 22;
+            toolTip1.SetToolTip(btnConsultarProveedor, "Consultar");
             btnConsultarProveedor.UseVisualStyleBackColor = true;
             btnConsultarProveedor.Click += btnConsultarProveedor_Click;
             // 
             // btnAsignarProveedor
             // 
             btnAsignarProveedor.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnAsignarProveedor.Image = (Image)resources.GetObject("btnAsignarProveedor.Image");
             btnAsignarProveedor.Location = new Point(496, 39);
             btnAsignarProveedor.Margin = new Padding(3, 2, 3, 2);
             btnAsignarProveedor.Name = "btnAsignarProveedor";
             btnAsignarProveedor.Size = new Size(31, 28);
             btnAsignarProveedor.TabIndex = 21;
+            toolTip1.SetToolTip(btnAsignarProveedor, "Asignar");
             btnAsignarProveedor.UseVisualStyleBackColor = true;
             btnAsignarProveedor.Click += btnAsignarProveedor_Click;
             // 
@@ -253,5 +262,6 @@
         private Button btnAsignarProveedor;
         private TextBox txtProveedor;
         private Label label2;
+        private ToolTip toolTip1;
     }
 }

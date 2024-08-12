@@ -31,15 +31,15 @@ namespace Almacen.Vistas
         }
 
         private void CargarGrilla()
-        {           
+        {
 
             var pedidosview = Pedido.ListarPedidos().Select(p => new
             {
                 p.ID,
                 p.Proveedor.RazonSocial,
-                p.FechaEntrega               
+                p.FechaEntrega
             }).ToList();
-            dgvDatos.DataSource = pedidosview;           
+            dgvDatos.DataSource = pedidosview;
 
         }
 
@@ -70,7 +70,6 @@ namespace Almacen.Vistas
             frmMostrarMensaje.MostrarMensaje($"{Pedido.NombreClase}", "Baja de " + Pedido.NombreClase + " exitosa.");
 
             CargarGrilla();
-
         }
 
         private void btnModificar_Click(object sender, EventArgs e)

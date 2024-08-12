@@ -40,8 +40,9 @@
             ventaToolStripMenuItem = new ToolStripMenuItem();
             administraciónToolStripMenuItem = new ToolStripMenuItem();
             categoriasToolStripMenuItem = new ToolStripMenuItem();
-            productosToolStripMenuItem = new ToolStripMenuItem();
             proveedoresToolStripMenuItem = new ToolStripMenuItem();
+            productosToolStripMenuItem = new ToolStripMenuItem();
+            costosProductosToolStripMenuItem = new ToolStripMenuItem();
             configuraciónToolStripMenuItem = new ToolStripMenuItem();
             gruposToolStripMenuItem = new ToolStripMenuItem();
             usuariosToolStripMenuItem = new ToolStripMenuItem();
@@ -49,7 +50,6 @@
             monthCalendar1 = new MonthCalendar();
             panel1 = new Panel();
             lblBienvenido = new Label();
-            costosProductosToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -136,23 +136,30 @@
             // categoriasToolStripMenuItem
             // 
             categoriasToolStripMenuItem.Name = "categoriasToolStripMenuItem";
-            categoriasToolStripMenuItem.Size = new Size(180, 22);
+            categoriasToolStripMenuItem.Size = new Size(167, 22);
             categoriasToolStripMenuItem.Text = "Categorias";
             categoriasToolStripMenuItem.Click += categoriasToolStripMenuItem_Click;
-            // 
-            // productosToolStripMenuItem
-            // 
-            productosToolStripMenuItem.Name = "productosToolStripMenuItem";
-            productosToolStripMenuItem.Size = new Size(180, 22);
-            productosToolStripMenuItem.Text = "Productos";
-            productosToolStripMenuItem.Click += productosToolStripMenuItem_Click;
             // 
             // proveedoresToolStripMenuItem
             // 
             proveedoresToolStripMenuItem.Name = "proveedoresToolStripMenuItem";
-            proveedoresToolStripMenuItem.Size = new Size(180, 22);
+            proveedoresToolStripMenuItem.Size = new Size(167, 22);
             proveedoresToolStripMenuItem.Text = "Proveedores";
             proveedoresToolStripMenuItem.Click += proveedoresToolStripMenuItem_Click;
+            // 
+            // productosToolStripMenuItem
+            // 
+            productosToolStripMenuItem.Name = "productosToolStripMenuItem";
+            productosToolStripMenuItem.Size = new Size(167, 22);
+            productosToolStripMenuItem.Text = "Productos";
+            productosToolStripMenuItem.Click += productosToolStripMenuItem_Click;
+            // 
+            // costosProductosToolStripMenuItem
+            // 
+            costosProductosToolStripMenuItem.Name = "costosProductosToolStripMenuItem";
+            costosProductosToolStripMenuItem.Size = new Size(167, 22);
+            costosProductosToolStripMenuItem.Text = "Costos Productos";
+            costosProductosToolStripMenuItem.Click += costosProductosToolStripMenuItem_Click;
             // 
             // configuraciónToolStripMenuItem
             // 
@@ -205,18 +212,12 @@
             // lblBienvenido
             // 
             lblBienvenido.AutoSize = true;
+            lblBienvenido.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             lblBienvenido.Location = new Point(15, 17);
             lblBienvenido.Name = "lblBienvenido";
-            lblBienvenido.Size = new Size(70, 15);
+            lblBienvenido.Size = new Size(74, 15);
             lblBienvenido.TabIndex = 0;
             lblBienvenido.Text = "Bienvenid@";
-            // 
-            // costosProductosToolStripMenuItem
-            // 
-            costosProductosToolStripMenuItem.Name = "costosProductosToolStripMenuItem";
-            costosProductosToolStripMenuItem.Size = new Size(180, 22);
-            costosProductosToolStripMenuItem.Text = "Costos Productos";
-            costosProductosToolStripMenuItem.Click += costosProductosToolStripMenuItem_Click;
             // 
             // frmPrincipal
             // 
