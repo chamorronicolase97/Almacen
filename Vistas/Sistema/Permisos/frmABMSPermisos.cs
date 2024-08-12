@@ -15,13 +15,13 @@ namespace Almacen.Vistas
 {
     public partial class frmABMSPermisos : Form
     {
-
+        private Permiso _objetoSeleccionado;
         public frmABMSPermisos()
         {
             InitializeComponent();
 
         }
-
+        public Permiso ObjetoSeleccionado { get { return _objetoSeleccionado; } set { _objetoSeleccionado = value; } }
         private void frmABMSPermisos_Load(object sender, EventArgs e)
 
         {
@@ -65,7 +65,6 @@ namespace Almacen.Vistas
             frmMostrarMensaje.MostrarMensaje($"{Permiso.NombreClase}", "Baja de " + Permiso.NombreClase + " exitosa.");
 
             CargarGrilla();
-
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
@@ -79,6 +78,20 @@ namespace Almacen.Vistas
             f.Modificacion = true;
             f.ShowDialog();
             if (f.DialogResult == DialogResult.OK) CargarGrilla();
+        }
+
+        private void btnSeleccionar_Click(object sender, EventArgs e)
+        {
+            if (dgvDatos.CurrentRow == null)
+            {
+                frmMostrarMensaje.MostrarMensaje($"Seleccionar", "No hay ningún registro seleccionado");
+                return;
+            }
+
+            _objetoSeleccionado = new Permiso(Convert.ToInt32(dgvDatos.CurrentRow.Cells["PermisoID"].Value));
+
+            this.DialogResult = DialogResult.OK;
+            this.Close();
         }
     }
 }

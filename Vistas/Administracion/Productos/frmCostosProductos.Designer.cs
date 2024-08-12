@@ -51,13 +51,13 @@
             dgvDatos.AllowUserToDeleteRows = false;
             dgvDatos.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgvDatos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvDatos.Location = new Point(0, 3);
+            dgvDatos.Location = new Point(3, 3);
             dgvDatos.Margin = new Padding(3, 2, 3, 2);
             dgvDatos.MultiSelect = false;
             dgvDatos.Name = "dgvDatos";
             dgvDatos.RowHeadersWidth = 51;
             dgvDatos.RowTemplate.Height = 29;
-            dgvDatos.Size = new Size(953, 378);
+            dgvDatos.Size = new Size(950, 377);
             dgvDatos.TabIndex = 0;
             // 
             // splitContainer1

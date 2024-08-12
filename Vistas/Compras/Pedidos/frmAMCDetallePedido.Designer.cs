@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAMCDetallePedido));
             btnAceptar = new Button();
             btnCancelar = new Button();
             txtProducto = new TextBox();
@@ -43,6 +45,7 @@
             label5 = new Label();
             btnConsultarProducto = new Button();
             btnQuitarProducto = new Button();
+            toolTip1 = new ToolTip(components);
             SuspendLayout();
             // 
             // btnAceptar
@@ -111,11 +114,13 @@
             // btnAsignarProducto
             // 
             btnAsignarProducto.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnAsignarProducto.Location = new Point(281, 48);
+            btnAsignarProducto.Image = (Image)resources.GetObject("btnAsignarProducto.Image");
+            btnAsignarProducto.Location = new Point(297, 49);
             btnAsignarProducto.Margin = new Padding(3, 2, 3, 2);
             btnAsignarProducto.Name = "btnAsignarProducto";
             btnAsignarProducto.Size = new Size(31, 28);
             btnAsignarProducto.TabIndex = 12;
+            toolTip1.SetToolTip(btnAsignarProducto, "Asignar");
             btnAsignarProducto.UseVisualStyleBackColor = true;
             btnAsignarProducto.Click += btnAsignarProducto_Click;
             // 
@@ -160,22 +165,26 @@
             // btnConsultarProducto
             // 
             btnConsultarProducto.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnConsultarProducto.Location = new Point(310, 48);
+            btnConsultarProducto.Image = (Image)resources.GetObject("btnConsultarProducto.Image");
+            btnConsultarProducto.Location = new Point(326, 49);
             btnConsultarProducto.Margin = new Padding(3, 2, 3, 2);
             btnConsultarProducto.Name = "btnConsultarProducto";
             btnConsultarProducto.Size = new Size(31, 28);
             btnConsultarProducto.TabIndex = 17;
+            toolTip1.SetToolTip(btnConsultarProducto, "Consultar");
             btnConsultarProducto.UseVisualStyleBackColor = true;
             btnConsultarProducto.Click += btnConsultarProducto_Click;
             // 
             // btnQuitarProducto
             // 
             btnQuitarProducto.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnQuitarProducto.Location = new Point(339, 48);
+            btnQuitarProducto.Image = (Image)resources.GetObject("btnQuitarProducto.Image");
+            btnQuitarProducto.Location = new Point(355, 49);
             btnQuitarProducto.Margin = new Padding(3, 2, 3, 2);
             btnQuitarProducto.Name = "btnQuitarProducto";
             btnQuitarProducto.Size = new Size(31, 28);
             btnQuitarProducto.TabIndex = 18;
+            toolTip1.SetToolTip(btnQuitarProducto, "Quitar");
             btnQuitarProducto.UseVisualStyleBackColor = true;
             btnQuitarProducto.Click += btnQuitarProducto_Click;
             // 
@@ -227,5 +236,6 @@
         private Label label5;
         private Button btnConsultarProducto;
         private Button btnQuitarProducto;
+        private ToolTip toolTip1;
     }
 }

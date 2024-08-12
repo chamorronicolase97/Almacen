@@ -15,13 +15,13 @@ namespace Almacen.Vistas
 {
     public partial class frmABMSUsuarios : Form
     {
-
+        private Usuario _objetoSeleccionado;
         public frmABMSUsuarios()
         {
             InitializeComponent();
 
         }
-
+        public Usuario ObjetoSeleccionado { get { return _objetoSeleccionado; } set { _objetoSeleccionado = value; } }
         private void frmABMSUsuarios_Load(object sender, EventArgs e)
 
         {
@@ -55,7 +55,6 @@ namespace Almacen.Vistas
             frmMostrarMensaje.MostrarMensaje($"{Usuario.NombreClase}", "Baja de " + Usuario.NombreClase + " exitosa.");
 
             CargarGrilla();
-
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
@@ -69,6 +68,20 @@ namespace Almacen.Vistas
             f.Modificacion = true;
             f.ShowDialog();
             if (f.DialogResult == DialogResult.OK) CargarGrilla();
+        }
+
+        private void btnSeleccionar_Click(object sender, EventArgs e)
+        {
+            if (dgvDatos.CurrentRow == null)
+            {
+                frmMostrarMensaje.MostrarMensaje($"Seleccionar", "No hay ningún registro seleccionado");
+                return;
+            }
+
+            _objetoSeleccionado = new Usuario(Convert.ToInt32(dgvDatos.CurrentRow.Cells["UsuarioID"].Value));
+
+            this.DialogResult = DialogResult.OK;
+            this.Close();
         }
     }
 }

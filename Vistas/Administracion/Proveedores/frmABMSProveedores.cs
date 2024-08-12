@@ -56,7 +56,6 @@ namespace Almacen.Vistas
             frmMostrarMensaje.MostrarMensaje($"{Proveedor.NombreClase}", "Baja de " + Proveedor.NombreClase + " exitosa.");
 
             CargarGrilla();
-
         }
 
         private void btnModificar_Click(object sender, EventArgs e)

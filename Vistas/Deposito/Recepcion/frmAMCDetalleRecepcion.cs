@@ -15,9 +15,9 @@ namespace Almacen.Vistas
 {
     public partial class frmAMCDetalleRecepcion : Form
     {
-        private Producto _producto;
-        private Proveedor _proveedor;
-        private Recepcion _recepcion;
+        private Producto? _producto;
+        private Proveedor? _proveedor;
+        private Recepcion? _recepcion;
 
 
         public DetalleRecepcion Clase { get; set; }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAMCUsuario));
             btnAceptar = new Button();
             btnCancelar = new Button();
             txtNomApe = new TextBox();
@@ -39,13 +40,16 @@
             label4 = new Label();
             txtContraseña = new TextBox();
             label5 = new Label();
-            cmbGrupo = new ComboBox();
+            txtGrupo = new TextBox();
+            btnQuitarGrupo = new Button();
+            btnConsultarGrupo = new Button();
+            btnAsignarGrupo = new Button();
             SuspendLayout();
             // 
             // btnAceptar
             // 
             btnAceptar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnAceptar.Location = new Point(236, 198);
+            btnAceptar.Location = new Point(308, 198);
             btnAceptar.Margin = new Padding(3, 2, 3, 2);
             btnAceptar.Name = "btnAceptar";
             btnAceptar.Size = new Size(82, 22);
@@ -57,7 +61,7 @@
             // btnCancelar
             // 
             btnCancelar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnCancelar.Location = new Point(324, 198);
+            btnCancelar.Location = new Point(396, 198);
             btnCancelar.Margin = new Padding(3, 2, 3, 2);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(82, 22);
@@ -145,21 +149,60 @@
             label5.TabIndex = 10;
             label5.Text = "Grupo";
             // 
-            // cmbGrupo
+            // txtGrupo
             // 
-            cmbGrupo.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbGrupo.FormattingEnabled = true;
-            cmbGrupo.Location = new Point(126, 150);
-            cmbGrupo.Name = "cmbGrupo";
-            cmbGrupo.Size = new Size(246, 23);
-            cmbGrupo.TabIndex = 11;
+            txtGrupo.Location = new Point(126, 150);
+            txtGrupo.Margin = new Padding(3, 2, 3, 2);
+            txtGrupo.Name = "txtGrupo";
+            txtGrupo.PasswordChar = '*';
+            txtGrupo.Size = new Size(246, 23);
+            txtGrupo.TabIndex = 11;
+            // 
+            // btnQuitarGrupo
+            // 
+            btnQuitarGrupo.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnQuitarGrupo.Image = (Image)resources.GetObject("btnQuitarGrupo.Image");
+            btnQuitarGrupo.Location = new Point(436, 148);
+            btnQuitarGrupo.Margin = new Padding(3, 2, 3, 2);
+            btnQuitarGrupo.Name = "btnQuitarGrupo";
+            btnQuitarGrupo.Size = new Size(31, 28);
+            btnQuitarGrupo.TabIndex = 30;
+            btnQuitarGrupo.UseVisualStyleBackColor = true;
+            btnQuitarGrupo.Click += btnQuitarGrupo_Click;
+            // 
+            // btnConsultarGrupo
+            // 
+            btnConsultarGrupo.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnConsultarGrupo.Image = (Image)resources.GetObject("btnConsultarGrupo.Image");
+            btnConsultarGrupo.Location = new Point(407, 148);
+            btnConsultarGrupo.Margin = new Padding(3, 2, 3, 2);
+            btnConsultarGrupo.Name = "btnConsultarGrupo";
+            btnConsultarGrupo.Size = new Size(31, 28);
+            btnConsultarGrupo.TabIndex = 29;
+            btnConsultarGrupo.UseVisualStyleBackColor = true;
+            btnConsultarGrupo.Click += btnConsultarGrupo_Click;
+            // 
+            // btnAsignarGrupo
+            // 
+            btnAsignarGrupo.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnAsignarGrupo.Image = (Image)resources.GetObject("btnAsignarGrupo.Image");
+            btnAsignarGrupo.Location = new Point(378, 148);
+            btnAsignarGrupo.Margin = new Padding(3, 2, 3, 2);
+            btnAsignarGrupo.Name = "btnAsignarGrupo";
+            btnAsignarGrupo.Size = new Size(31, 28);
+            btnAsignarGrupo.TabIndex = 28;
+            btnAsignarGrupo.UseVisualStyleBackColor = true;
+            btnAsignarGrupo.Click += btnAsignarGrupo_Click;
             // 
             // frmAMCUsuario
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(416, 229);
-            Controls.Add(cmbGrupo);
+            ClientSize = new Size(488, 229);
+            Controls.Add(btnQuitarGrupo);
+            Controls.Add(btnConsultarGrupo);
+            Controls.Add(btnAsignarGrupo);
+            Controls.Add(txtGrupo);
             Controls.Add(label5);
             Controls.Add(label4);
             Controls.Add(txtContraseña);
@@ -196,6 +239,9 @@
         private Label label4;
         private TextBox txtContraseña;
         private Label label5;
-        private ComboBox cmbGrupo;
+        private TextBox txtGrupo;
+        private Button btnQuitarGrupo;
+        private Button btnConsultarGrupo;
+        private Button btnAsignarGrupo;
     }
 }
