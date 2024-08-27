@@ -37,6 +37,7 @@
             label2 = new Label();
             label3 = new Label();
             panel1 = new Panel();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // btnCancelar
@@ -107,16 +108,17 @@
             // 
             label3.AutoSize = true;
             label3.BackColor = SystemColors.ActiveCaption;
-            label3.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
-            label3.Location = new Point(75, 9);
+            label3.Font = new Font("Tahoma", 18F, FontStyle.Bold, GraphicsUnit.Point);
+            label3.Location = new Point(74, 9);
             label3.Name = "label3";
-            label3.Size = new Size(167, 32);
+            label3.Size = new Size(176, 29);
             label3.TabIndex = 7;
             label3.Text = "Iniciar Sesión";
             // 
             // panel1
             // 
             panel1.BackColor = SystemColors.ActiveCaption;
+            panel1.Controls.Add(label3);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
@@ -130,7 +132,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             CancelButton = btnCancelar;
             ClientSize = new Size(334, 181);
-            Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(txtPassword);
@@ -146,6 +147,8 @@
             Name = "frmLogin";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Iniciar Sesión";
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }

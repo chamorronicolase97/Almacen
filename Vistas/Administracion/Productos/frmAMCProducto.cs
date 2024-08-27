@@ -16,7 +16,8 @@ namespace Almacen.Vistas
     {
         public Producto Clase { get; set; }
         protected bool _soloLectura;
-        private Proveedor _proveedor;
+        private Proveedor? _proveedor;
+        private Categoria? _categoria;
 
         public bool Modificacion { get; set; } = false;
         public bool SoloLectura { get { return _soloLectura; } set { _soloLectura = value; } }
@@ -28,23 +29,6 @@ namespace Almacen.Vistas
 
         private void frmAMCCategoria_Load(object sender, EventArgs e)
         {
-            #region Combo Categorias
-            List<Categoria> ListaCategorias = Categoria.ListarCategorias();
-
-            Categoria cat = new Categoria()
-            {
-                ID = 0,
-                Descripcion = "Seleccione"
-            };
-
-            ListaCategorias.Insert(0, cat);
-
-
-            cmbCategoria.ValueMember = "ID";
-            cmbCategoria.DisplayMember = "Descripcion";
-            cmbCategoria.DataSource = ListaCategorias;
-            #endregion
-
 
             if (Modificacion == true)
             {
@@ -52,8 +36,6 @@ namespace Almacen.Vistas
                 txtDescripcion.Text = Clase.Descripcion;
                 txtCosto.Text = Clase.Costo.ToString();
                 txtCodBarra.Text = Clase.CodigoDeBarra;
-                cmbCategoria.Text = Clase.Categoria.Descripcion;
-                cmbCategoria.Enabled = false;
             }
             else
             {
@@ -75,8 +57,8 @@ namespace Almacen.Vistas
             Clase.Descripcion = txtDescripcion.Text;
             Clase.Costo = null;
             Clase.CodigoDeBarra = txtCodBarra.Text;
-            Clase.Categoria = new Categoria(Convert.ToInt32(cmbCategoria.SelectedValue));
             Clase.Proveedor = _proveedor;
+            Clase.Categoria = _categoria;
 
             if (Modificacion)
             {
@@ -92,15 +74,21 @@ namespace Almacen.Vistas
 
         private bool Validar()
         {
-            if (txtDescripcion.Text.Length <= 0)
+            if (txtDescripcion.Text.Length == 0)
             {
                 frmMostrarMensaje.MostrarMensaje("Producto", "Debe escribir una descripción para el producto");
                 return false;
             }
 
-            if (cmbCategoria.SelectedIndex == 0)
+            if (_categoria == null)
             {
-                frmMostrarMensaje.MostrarMensaje("Producto", "Debe seleccionar una categoria");
+                frmMostrarMensaje.MostrarMensaje("Producto", "Debe seleccionar una Categoría");
+                return false;
+            }
+
+            if (_proveedor == null)
+            {
+                frmMostrarMensaje.MostrarMensaje("Producto", "Debe seleccionar un Proveedor");
                 return false;
             }
 
@@ -111,6 +99,7 @@ namespace Almacen.Vistas
         private void HabilitarControles()
         {
             if (_proveedor != null) txtProveedor.Text = _proveedor.RazonSocial;
+            if (_categoria != null) txtCategoria.Text = _categoria.Descripcion;
         }
 
         private void btnAsignarProveedor_Click(object sender, EventArgs e)
@@ -123,6 +112,57 @@ namespace Almacen.Vistas
 
                 HabilitarControles();
             }
+        }
+        private void btnConsultarProveedor_Click(object sender, EventArgs e)
+        {
+            if (_proveedor == null) return;
+
+            frmAMCProveedor f = new frmAMCProveedor
+            {
+                Clase = _proveedor,
+                SoloLectura = true
+            };
+            f.ShowDialog(this);
+        }
+
+        private void btnQuitarProveedor_Click(object sender, EventArgs e)
+        {
+            if (_proveedor == null) return;
+
+            _proveedor = null;
+            HabilitarControles();
+        }
+
+        private void btnAsignarCategoria_Click(object sender, EventArgs e)
+        {
+            frmABMSCategorias f = new frmABMSCategorias { };
+            f.ObjetoSeleccionado = _categoria;
+            if (DialogResult.OK == f.ShowDialog(this))
+            {
+                _categoria = f.ObjetoSeleccionado;
+
+                HabilitarControles();
+            }
+        }
+
+        private void btnConsultarCategoria_Click(object sender, EventArgs e)
+        {
+            if (_categoria == null) return;
+
+            frmAMCCategoria f = new frmAMCCategoria
+            {
+                Clase = _categoria,
+                SoloLectura = true
+            };
+            f.ShowDialog(this);
+        }
+
+        private void btnQuitarCategoria_Click(object sender, EventArgs e)
+        {
+            if (_categoria == null) return;
+
+            _categoria = null;
+            HabilitarControles();
         }
     }
 }

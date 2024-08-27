@@ -35,9 +35,10 @@ namespace Almacen.Vistas
             p.Costo 'Costo Actual', p.Costo + (p.Costo * Utilidad)/100 'Precio Venta Actual',
             drec.CostoUnitario 'Nuevo Costo', drec.CostoUnitario + (drec.CostoUnitario * Utilidad)/100 'Nuevo Precio Venta',
             c.Descripcion 'Categoria', prov.RazonSocial 'Proveedor'   from DetallesRecepciones drec 
-            left join Productos p on drec.ProductoID = p.ProductoID and CONVERT(DATE, drec.FechaRecepcion) = CONVERT(DATE, '{dtpFechaCosto.Value}')
+            left join Productos p on drec.ProductoID = p.ProductoID 
             left join Categorias c on c.CategoriaID = p.CategoriaID
-            left join Proveedores prov on prov.ProveedorID = p.ProveedorID;";
+            left join Proveedores prov on prov.ProveedorID = p.ProveedorID
+            where CONVERT(DATE, drec.FechaRecepcion) = CONVERT(DATE, '{dtpFechaCosto.Value.ToString("yyyyMMdd")}');";
 
             SqlCommand cmd = new SqlCommand(q);
             Conexion cn = new Conexion();
@@ -59,10 +60,10 @@ namespace Almacen.Vistas
             SqlCommand cmd = new SqlCommand(q);
             try
             {
-            Conexion cn = new Conexion();
-            cn.Ejecutar(cmd);
-            frmMostrarMensaje.MostrarMensaje("Actualización de Costos", "Actualización realizada correctamente.");
-            CargarGrilla();
+                Conexion cn = new Conexion();
+                cn.Ejecutar(cmd);
+                frmMostrarMensaje.MostrarMensaje("Actualización de Costos", "Actualización realizada correctamente.");
+                CargarGrilla();
             }
             catch (Exception ex) { throw new Exception(ex.Message, ex.InnerException); }
         }

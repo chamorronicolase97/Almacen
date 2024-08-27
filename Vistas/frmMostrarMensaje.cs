@@ -30,5 +30,6 @@ namespace Almacen.Vistas
             DialogResult = DialogResult.OK;
             Close();
         }
+
     }
 }

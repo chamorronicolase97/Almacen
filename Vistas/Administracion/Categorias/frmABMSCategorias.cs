@@ -15,6 +15,7 @@ namespace Almacen.Vistas
 {
     public partial class frmABMSCategorias : Form
     {
+        private Categoria _objetoSeleccionado;
 
         public frmABMSCategorias()
         {
@@ -22,6 +23,7 @@ namespace Almacen.Vistas
 
         }
 
+        public Categoria ObjetoSeleccionado { get { return _objetoSeleccionado; } set { _objetoSeleccionado = value; } }
         private void frmABMSCategorias_Load(object sender, EventArgs e)
 
         {
@@ -32,6 +34,7 @@ namespace Almacen.Vistas
         {
             dgvDatos.DataSource = Categoria.Listar();
         }
+
 
         private void btnCrear_Click(object sender, EventArgs e)
         {
@@ -60,7 +63,6 @@ namespace Almacen.Vistas
             frmMostrarMensaje.MostrarMensaje($"{Categoria.NombreClase}", "Baja de " + Categoria.NombreClase + " exitosa.");
 
             CargarGrilla();
-
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
@@ -74,6 +76,20 @@ namespace Almacen.Vistas
             f.Modificacion = true;
             f.ShowDialog();
             if (f.DialogResult == DialogResult.OK) CargarGrilla();
+        }
+
+        private void btnSeleccionar_Click(object sender, EventArgs e)
+        {
+            if (dgvDatos.CurrentRow == null)
+            {
+                frmMostrarMensaje.MostrarMensaje($"Seleccionar", "No hay ningún registro seleccionado");
+                return;
+            }
+
+            _objetoSeleccionado = new Categoria(Convert.ToInt32(dgvDatos.CurrentRow.Cells["CategoriaID"].Value));
+
+            this.DialogResult = DialogResult.OK;
+            this.Close();
         }
     }
 }

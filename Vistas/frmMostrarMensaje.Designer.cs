@@ -52,10 +52,10 @@
             // 
             lblDescripcion.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             lblDescripcion.AutoSize = true;
-            lblDescripcion.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lblDescripcion.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point);
             lblDescripcion.Location = new Point(12, 9);
             lblDescripcion.Name = "lblDescripcion";
-            lblDescripcion.Size = new Size(52, 21);
+            lblDescripcion.Size = new Size(51, 19);
             lblDescripcion.TabIndex = 0;
             lblDescripcion.Text = "label1";
             // 

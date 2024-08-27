@@ -15,13 +15,13 @@ namespace Almacen.Vistas
 {
     public partial class frmABMSGrupos : Form
     {
-
+        private Grupo _objetoSeleccionado;
         public frmABMSGrupos()
         {
             InitializeComponent();
 
         }
-
+        public Grupo ObjetoSeleccionado { get { return _objetoSeleccionado; } set { _objetoSeleccionado = value; } }
         private void frmABMSGrupos_Load(object sender, EventArgs e)
 
         {
@@ -60,7 +60,6 @@ namespace Almacen.Vistas
             frmMostrarMensaje.MostrarMensaje($"{Grupo.NombreClase}", "Baja de " + Grupo.NombreClase + " exitosa.");
 
             CargarGrilla();
-
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
@@ -74,6 +73,20 @@ namespace Almacen.Vistas
             f.Modificacion = true;
             f.ShowDialog();
             if (f.DialogResult == DialogResult.OK) CargarGrilla();
+        }
+
+        private void btnSeleccionar_Click(object sender, EventArgs e)
+        {
+            if (dgvDatos.CurrentRow == null)
+            {
+                frmMostrarMensaje.MostrarMensaje($"Seleccionar", "No hay ningún registro seleccionado");
+                return;
+            }
+
+            _objetoSeleccionado = new Grupo(Convert.ToInt32(dgvDatos.CurrentRow.Cells["GrupoID"].Value));
+
+            this.DialogResult = DialogResult.OK;
+            this.Close();
         }
     }
 }

@@ -16,7 +16,7 @@ namespace Almacen.Vistas
     public partial class frmAMCPedido : Form
     {
         private int _nroPedido;
-        private Proveedor _proveedor;
+        private Proveedor? _proveedor;
         public Pedido Clase { get; set; }
 
         public bool Modificacion { get; set; } = false;

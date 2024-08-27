@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAMCDetalleRecepcion));
             btnAceptar = new Button();
             btnCancelar = new Button();
             txtProducto = new TextBox();
@@ -114,7 +115,8 @@
             // btnAsignarProducto
             // 
             btnAsignarProducto.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnAsignarProducto.Location = new Point(281, 48);
+            btnAsignarProducto.Image = (Image)resources.GetObject("btnAsignarProducto.Image");
+            btnAsignarProducto.Location = new Point(295, 49);
             btnAsignarProducto.Margin = new Padding(3, 2, 3, 2);
             btnAsignarProducto.Name = "btnAsignarProducto";
             btnAsignarProducto.Size = new Size(31, 28);
@@ -163,7 +165,8 @@
             // btnConsultarProducto
             // 
             btnConsultarProducto.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnConsultarProducto.Location = new Point(310, 48);
+            btnConsultarProducto.Image = (Image)resources.GetObject("btnConsultarProducto.Image");
+            btnConsultarProducto.Location = new Point(324, 49);
             btnConsultarProducto.Margin = new Padding(3, 2, 3, 2);
             btnConsultarProducto.Name = "btnConsultarProducto";
             btnConsultarProducto.Size = new Size(31, 28);
@@ -174,7 +177,8 @@
             // btnQuitarProducto
             // 
             btnQuitarProducto.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnQuitarProducto.Location = new Point(339, 48);
+            btnQuitarProducto.Image = (Image)resources.GetObject("btnQuitarProducto.Image");
+            btnQuitarProducto.Location = new Point(353, 49);
             btnQuitarProducto.Margin = new Padding(3, 2, 3, 2);
             btnQuitarProducto.Name = "btnQuitarProducto";
             btnQuitarProducto.Size = new Size(31, 28);
@@ -186,7 +190,7 @@
             // 
             label2.Anchor = AnchorStyles.Bottom;
             label2.AutoSize = true;
-            label2.Location = new Point(258, 109);
+            label2.Location = new Point(250, 109);
             label2.Name = "label2";
             label2.Size = new Size(96, 15);
             label2.TabIndex = 19;
@@ -195,7 +199,7 @@
             // dtpFechaRecepcion
             // 
             dtpFechaRecepcion.Format = DateTimePickerFormat.Short;
-            dtpFechaRecepcion.Location = new Point(360, 106);
+            dtpFechaRecepcion.Location = new Point(352, 106);
             dtpFechaRecepcion.Name = "dtpFechaRecepcion";
             dtpFechaRecepcion.Size = new Size(125, 23);
             dtpFechaRecepcion.TabIndex = 20;
