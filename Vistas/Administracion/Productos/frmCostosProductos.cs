@@ -38,7 +38,7 @@ namespace Almacen.Vistas
             left join Productos p on drec.ProductoID = p.ProductoID 
             left join Categorias c on c.CategoriaID = p.CategoriaID
             left join Proveedores prov on prov.ProveedorID = p.ProveedorID
-            where CONVERT(DATE, drec.FechaRecepcion) = CONVERT(DATE, '{dtpFechaCosto.Value}');";
+            where CONVERT(DATE, drec.FechaRecepcion) = CONVERT(DATE, '{dtpFechaCosto.Value.ToString("yyyyMMdd")}');";
 
             SqlCommand cmd = new SqlCommand(q);
             Conexion cn = new Conexion();
@@ -60,10 +60,10 @@ namespace Almacen.Vistas
             SqlCommand cmd = new SqlCommand(q);
             try
             {
-            Conexion cn = new Conexion();
-            cn.Ejecutar(cmd);
-            frmMostrarMensaje.MostrarMensaje("Actualización de Costos", "Actualización realizada correctamente.");
-            CargarGrilla();
+                Conexion cn = new Conexion();
+                cn.Ejecutar(cmd);
+                frmMostrarMensaje.MostrarMensaje("Actualización de Costos", "Actualización realizada correctamente.");
+                CargarGrilla();
             }
             catch (Exception ex) { throw new Exception(ex.Message, ex.InnerException); }
         }
