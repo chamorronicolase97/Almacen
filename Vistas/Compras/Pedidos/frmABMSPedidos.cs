@@ -16,7 +16,7 @@ namespace Almacen.Vistas
     public partial class frmABMSPedidos : Form
     {
 
-        public Pedido Pedido { get; set; }
+        public Venta Pedido { get; set; }
 
         public frmABMSPedidos()
         {
@@ -27,20 +27,12 @@ namespace Almacen.Vistas
         private void frmABMSPedidos_Load(object sender, EventArgs e)
 
         {
-            CargarGrilla();
+            dgvDatos.DataSource = Pedido.Listar();
         }
 
         private void CargarGrilla()
         {
-
-            var pedidosview = Pedido.ListarPedidos().Select(p => new
-            {
-                p.ID,
-                p.Proveedor.RazonSocial,
-                p.FechaEntrega
-            }).ToList();
-            dgvDatos.DataSource = pedidosview;
-
+            dgvDatos.DataSource = Pedido.Listar();
         }
 
         private void btnCrear_Click(object sender, EventArgs e)
@@ -55,7 +47,7 @@ namespace Almacen.Vistas
         {
             if (dgvDatos.CurrentRow == null) return;
 
-            Pedido Clase = new Pedido(Convert.ToInt32(dgvDatos.CurrentRow.Cells["NroPedido"].Value));
+            Venta Clase = new Pedido(Convert.ToInt32(dgvDatos.CurrentRow.Cells["NroPedido"].Value));
 
             DialogResult = MessageBox.Show("Desea eliminar el Pedido " + Clase.ID + "?", "Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (DialogResult == DialogResult.No) return;
@@ -70,26 +62,27 @@ namespace Almacen.Vistas
             frmMostrarMensaje.MostrarMensaje($"{Pedido.NombreClase}", "Baja de " + Pedido.NombreClase + " exitosa.");
 
             CargarGrilla();
+
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
             if (dgvDatos.CurrentRow == null) return;
 
-            Pedido Clase = new Pedido(Convert.ToInt32(dgvDatos.CurrentRow.Cells["ID"].Value));
+            Venta Clase = new Pedido(Convert.ToInt32(dgvDatos.CurrentRow.Cells["NroPedido"].Value));
 
             frmAMCPedido f = new frmAMCPedido();
             f.Clase = Clase;
             f.Modificacion = true;
-            f.Show();
+            f.ShowDialog();
             if (f.DialogResult == DialogResult.OK) CargarGrilla();
         }
 
-        private void btnSeleccionar_Click(object sender, EventArgs e)
+        private void dgvDatos_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             if (dgvDatos.CurrentRow == null) return;
-
-            Pedido = new Pedido(Convert.ToInt32(dgvDatos.CurrentRow.Cells["ID"].Value));
+            
+            Pedido = new Pedido(Convert.ToInt32(dgvDatos.CurrentRow.Cells["NroPedido"].Value));
             this.DialogResult = DialogResult.OK;
         }
     }

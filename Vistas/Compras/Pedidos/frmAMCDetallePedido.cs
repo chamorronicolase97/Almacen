@@ -76,7 +76,7 @@ namespace Almacen.Vistas
             }
             else
             {
-                int nroPedido = Pedido.CalcularNroPedido();
+                int nroPedido = Venta.CalcularNroPedido();
                 Clase.Insertar(nroPedido, _producto.ID);
                 this.DialogResult = DialogResult.OK;
                 this.Close();

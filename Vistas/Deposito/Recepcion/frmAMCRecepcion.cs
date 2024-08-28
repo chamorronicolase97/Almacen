@@ -1,5 +1,4 @@
 ﻿using Almacen.Clases;
-using Almacen.Clases.Administracion;
 using Almacen.Clases.Compra;
 using System;
 using System.Collections.Generic;
@@ -16,8 +15,7 @@ namespace Almacen.Vistas
     public partial class frmAMCRecepcion : Form
     {
         public Recepcion Clase { get; set; }
-        public Pedido Pedido { get; set; }
-        public Proveedor Proveedor { get; set; }
+        public Venta Pedido { get; set; }
         public bool Modificacion { get; set; } = false;
 
         public frmAMCRecepcion()
@@ -31,16 +29,12 @@ namespace Almacen.Vistas
             if (Modificacion == true)
             {
                 CargarGrillaDetalles();
-                Proveedor = Clase.Pedido.Proveedor;
-                txtProveedor.Text = Proveedor.RazonSocial.ToString();
                 txtNroPedido.Text = Clase.ID.ToString();
                 dtpFechaEntrega.Value = Clase.FechaEntrega;
-                txtRecepcionID.Text = Clase.ID.ToString();
             }
             else
             {
                 txtNroPedido.Text = Pedido.ID.ToString();
-                txtRecepcionID.Text = Recepcion.CalcularNroRecepcion().ToString();
             }
         }
 
@@ -80,35 +74,14 @@ namespace Almacen.Vistas
 
         private void btnAsignar_Click(object sender, EventArgs e)
         {
-            Clase = Recepcion.GetRecepcion(Convert.ToInt32(txtRecepcionID.Text));
-            if (Clase == null)
-            {
-                Clase = new Recepcion()
-                {
-                    FechaEntrega = dtpFechaEntrega.Value,
-                    Pedido = Pedido
-                };
-                Clase.Insertar();
-            }
-
             frmAMCDetalleRecepcion f = new frmAMCDetalleRecepcion();
-            f.Proveedor = Proveedor;
-            f.Recepcion = Clase;
             f.Show();
-
             CargarGrillaDetalles();
         }
 
         private void CargarGrillaDetalles()
         {
-            var recepciones = DetalleRecepcion.ListarDetallesRecepciones(Clase).Select(p => new
-            {
-                p.Producto.Descripcion,
-                p.Cantidad,
-                p.CostoUnitario
-            }).ToList();
-
-            dgvDetalles.DataSource = recepciones;
+            dgvDetalles.DataSource = DetallePedido.Listar();
         }
 
     }

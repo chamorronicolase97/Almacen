@@ -1,4 +1,5 @@
 ﻿using Almacen.Clases.Administracion;
+using Almacen.Vistas.Ventas;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -106,6 +107,13 @@ namespace Almacen.Vistas
         private void costosProductosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmCostosProductos f = new frmCostosProductos();
+            f.Show();
+        }
+
+        private void principalDeVentasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmPrincipalVentas f = new frmPrincipalVentas();
+            f.Usuario = Usuario;
             f.Show();
         }
     }

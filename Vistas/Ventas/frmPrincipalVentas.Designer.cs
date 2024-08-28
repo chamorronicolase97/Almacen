@@ -35,20 +35,20 @@
             dataGridView1 = new DataGridView();
             dtpFecha = new DateTimePicker();
             groupBox1 = new GroupBox();
+            button2 = new Button();
+            button1 = new Button();
             btnCierreParcial = new Button();
             btnArticulos = new Button();
             button3 = new Button();
             btnClientes = new Button();
             btnNotaCredito = new Button();
             btnNuevaVenta = new Button();
+            groupBoxGerencial = new GroupBox();
             groupBox2 = new GroupBox();
             label1 = new Label();
-            textBox1 = new TextBox();
+            txtTotal = new TextBox();
             btnCerrarCaja = new Button();
-            button1 = new Button();
-            button2 = new Button();
             CustomToolTip = new ToolTip(components);
-            groupBoxGerencial = new GroupBox();
             ((System.ComponentModel.ISupportInitialize)ContainerCaja).BeginInit();
             ContainerCaja.Panel1.SuspendLayout();
             ContainerCaja.Panel2.SuspendLayout();
@@ -104,7 +104,7 @@
             // 
             lblOperador.AutoSize = true;
             lblOperador.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            lblOperador.Location = new Point(208, 11);
+            lblOperador.Location = new Point(126, 11);
             lblOperador.Name = "lblOperador";
             lblOperador.Size = new Size(210, 32);
             lblOperador.TabIndex = 2;
@@ -147,6 +147,24 @@
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "Caja";
+            // 
+            // button2
+            // 
+            button2.Location = new Point(167, 282);
+            button2.Name = "button2";
+            button2.Size = new Size(109, 46);
+            button2.TabIndex = 7;
+            button2.Text = "Cuentas Corrientes";
+            button2.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            button1.Location = new Point(28, 282);
+            button1.Name = "button1";
+            button1.Size = new Size(109, 46);
+            button1.TabIndex = 6;
+            button1.Text = "Medios de Pago";
+            button1.UseVisualStyleBackColor = true;
             // 
             // btnCierreParcial
             // 
@@ -203,10 +221,19 @@
             btnNuevaVenta.Text = "Nueva Venta";
             btnNuevaVenta.UseVisualStyleBackColor = false;
             // 
+            // groupBoxGerencial
+            // 
+            groupBoxGerencial.Location = new Point(6, 202);
+            groupBoxGerencial.Name = "groupBoxGerencial";
+            groupBoxGerencial.Size = new Size(280, 147);
+            groupBoxGerencial.TabIndex = 8;
+            groupBoxGerencial.TabStop = false;
+            groupBoxGerencial.Text = "Gerencial";
+            // 
             // groupBox2
             // 
             groupBox2.Controls.Add(label1);
-            groupBox2.Controls.Add(textBox1);
+            groupBox2.Controls.Add(txtTotal);
             groupBox2.Controls.Add(btnCerrarCaja);
             groupBox2.Dock = DockStyle.Fill;
             groupBox2.Location = new Point(0, 0);
@@ -226,12 +253,12 @@
             label1.TabIndex = 3;
             label1.Text = "Total";
             // 
-            // textBox1
+            // txtTotal
             // 
-            textBox1.Location = new Point(338, 43);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(156, 23);
-            textBox1.TabIndex = 7;
+            txtTotal.Location = new Point(338, 43);
+            txtTotal.Name = "txtTotal";
+            txtTotal.Size = new Size(156, 23);
+            txtTotal.TabIndex = 7;
             // 
             // btnCerrarCaja
             // 
@@ -243,33 +270,6 @@
             btnCerrarCaja.Text = "Cerrar Caja";
             btnCerrarCaja.UseVisualStyleBackColor = false;
             // 
-            // button1
-            // 
-            button1.Location = new Point(28, 282);
-            button1.Name = "button1";
-            button1.Size = new Size(109, 46);
-            button1.TabIndex = 6;
-            button1.Text = "Medios de Pago";
-            button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            button2.Location = new Point(167, 282);
-            button2.Name = "button2";
-            button2.Size = new Size(109, 46);
-            button2.TabIndex = 7;
-            button2.Text = "Cuentas Corrientes";
-            button2.UseVisualStyleBackColor = true;
-            // 
-            // groupBoxGerencial
-            // 
-            groupBoxGerencial.Location = new Point(6, 202);
-            groupBoxGerencial.Name = "groupBoxGerencial";
-            groupBoxGerencial.Size = new Size(280, 147);
-            groupBoxGerencial.TabIndex = 8;
-            groupBoxGerencial.TabStop = false;
-            groupBoxGerencial.Text = "Gerencial";
-            // 
             // frmPrincipalVentas
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -278,6 +278,7 @@
             Controls.Add(ContainerCaja);
             Name = "frmPrincipalVentas";
             Text = "Principal de Ventas";
+            Load += frmPrincipalVentas_Load;
             ContainerCaja.Panel1.ResumeLayout(false);
             ContainerCaja.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)ContainerCaja).EndInit();
@@ -310,7 +311,7 @@
         private Button btnNotaCredito;
         private Button btnNuevaVenta;
         private Label label1;
-        private TextBox textBox1;
+        private TextBox txtTotal;
         private Button btnCerrarCaja;
         private Button button1;
         private Button button2;
