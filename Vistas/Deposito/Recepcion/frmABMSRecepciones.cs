@@ -1,4 +1,5 @@
 ﻿using Almacen.Clases;
+using Almacen.Clases.Administracion;
 using Almacen.Clases.Compra;
 using Sistema;
 using System;
@@ -15,13 +16,13 @@ namespace Almacen.Vistas
 {
     public partial class frmABMSRecepciones : Form
     {
-
+        private Recepcion _objetoSeleccionado;
         public frmABMSRecepciones()
         {
             InitializeComponent();
 
         }
-
+        public Recepcion ObjetoSeleccionado { get { return _objetoSeleccionado; } set { _objetoSeleccionado = value; } }
         private void frmABMSPedidos_Load(object sender, EventArgs e)
 
         {
@@ -33,17 +34,21 @@ namespace Almacen.Vistas
             dgvDatos.DataSource = Recepcion.Listar();
         }
 
+
         private void btnCrear_Click(object sender, EventArgs e)
         {
             frmABMSPedidos pedidos = new frmABMSPedidos();
+            MessageBox.Show("Seleccione pedido a recepcionar", "Recepción", MessageBoxButtons.OK, MessageBoxIcon.Information);
             pedidos.ShowDialog();
             if (pedidos.DialogResult != DialogResult.OK) return;
-            Venta pedido = pedidos.Pedido;
+            Pedido pedido = pedidos.Pedido;
+            Proveedor proveedor = pedido.Proveedor;
             pedidos.Close();
 
             frmAMCRecepcion f = new frmAMCRecepcion();
             f.Clase = new Recepcion(0);
             f.Pedido = pedido;
+            f.Proveedor = proveedor;
             f.ShowDialog();
             if (f.DialogResult == DialogResult.OK) CargarGrilla();
         }
@@ -67,7 +72,6 @@ namespace Almacen.Vistas
             frmMostrarMensaje.MostrarMensaje($"{Recepcion.NombreClase}", "Baja de " + Recepcion.NombreClase + " exitosa.");
 
             CargarGrilla();
-
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
@@ -81,6 +85,20 @@ namespace Almacen.Vistas
             f.Modificacion = true;
             f.ShowDialog();
             if (f.DialogResult == DialogResult.OK) CargarGrilla();
+        }
+
+        private void btnSeleccionar_Click(object sender, EventArgs e)
+        {
+            if (dgvDatos.CurrentRow == null)
+            {
+                frmMostrarMensaje.MostrarMensaje($"Seleccionar", "No hay ningún registro seleccionado");
+                return;
+            }
+
+            _objetoSeleccionado = new Recepcion(Convert.ToInt32(dgvDatos.CurrentRow.Cells["RecepcionID"].Value));
+
+            this.DialogResult = DialogResult.OK;
+            this.Close();
         }
     }
 }
