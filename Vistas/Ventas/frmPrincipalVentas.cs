@@ -14,9 +14,10 @@ namespace Almacen.Vistas.Ventas
     public partial class frmPrincipalVentas : Form
     {
         private Usuario _usuario;
+        private Cliente _cliente;
 
         public Usuario Usuario { get { return _usuario; } set { _usuario = value; } }
-
+        public Cliente Cliente { get { return _cliente; } set { _cliente = value; } } 
 
         public frmPrincipalVentas()
         {
@@ -36,6 +37,9 @@ namespace Almacen.Vistas.Ventas
 
         private void btnNuevaVenta_Click(object sender, EventArgs e)
         {
+            frmABMSClientes clientes = new frmABMSClientes();
+            clientes.Show();
+
 
         }
     }
