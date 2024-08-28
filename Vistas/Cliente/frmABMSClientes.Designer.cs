@@ -58,7 +58,7 @@
             dgvDatos.Name = "dgvDatos";
             dgvDatos.RowHeadersWidth = 51;
             dgvDatos.RowTemplate.Height = 29;
-            dgvDatos.Size = new Size(615, 289);
+            dgvDatos.Size = new Size(615, 290);
             dgvDatos.TabIndex = 0;
             // 
             // splitContainer1
@@ -151,7 +151,7 @@
             btnModificar.UseVisualStyleBackColor = true;
             btnModificar.Click += btnModificar_Click;
             // 
-            // frmABMSProveedores
+            // frmABMSClientes
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -159,9 +159,9 @@
             Controls.Add(splitContainer1);
             Margin = new Padding(3, 2, 3, 2);
             MinimumSize = new Size(600, 400);
-            Name = "frmABMSProveedores";
+            Name = "frmABMSClientes";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Proveedores";
+            Text = "Clientes";
             Load += frmABMSProveedores_Load;
             ((System.ComponentModel.ISupportInitialize)dgvDatos).EndInit();
             splitContainer1.Panel1.ResumeLayout(false);

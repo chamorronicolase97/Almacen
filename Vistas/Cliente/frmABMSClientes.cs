@@ -15,30 +15,30 @@ namespace Almacen.Vistas
 {
     public partial class frmABMSClientes : Form
     {
-        private Proveedor _objetoSeleccionado;
+        private Cliente _objetoSeleccionado;
 
         public frmABMSClientes()
         {
             InitializeComponent();
 
         }
-        public Proveedor ObjetoSeleccionado { get { return _objetoSeleccionado; } set { _objetoSeleccionado = value; } }
+        public Cliente ObjetoSeleccionado { get { return _objetoSeleccionado; } set { _objetoSeleccionado = value; } }
 
         private void frmABMSProveedores_Load(object sender, EventArgs e)
 
         {
-            dgvDatos.DataSource = Proveedor.Listar();
+            CargarGrilla();
         }
 
         private void CargarGrilla()
         {
-            dgvDatos.DataSource = Proveedor.Listar();
+            dgvDatos.DataSource = Cliente.Listar();
         }
 
         private void btnCrear_Click(object sender, EventArgs e)
         {
-            frmAMCCliente f = new frmAMCProveedor();
-            f.Clase = new Proveedor(0);
+            frmAMCCliente f = new frmAMCCliente();
+            f.Clase = new Cliente(0);
             f.ShowDialog();
             if (f.DialogResult == DialogResult.OK) CargarGrilla();
         }
@@ -47,13 +47,13 @@ namespace Almacen.Vistas
         {
             if (dgvDatos.CurrentRow == null) return;
 
-            Proveedor Clase = new Proveedor(Convert.ToInt32(dgvDatos.CurrentRow.Cells["ProveedorID"].Value));
+            Proveedor Clase = new Proveedor(Convert.ToInt32(dgvDatos.CurrentRow.Cells["ClienteID"].Value));
 
-            DialogResult = MessageBox.Show("Desea eliminar al Proveedor " + Clase.RazonSocial + "?", "Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            DialogResult = MessageBox.Show("Desea eliminar al Cliente " + Clase.RazonSocial + "?", "Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (DialogResult == DialogResult.No) return;
             Clase.Eliminar();
 
-            frmMostrarMensaje.MostrarMensaje($"{Proveedor.NombreClase}", "Baja de " + Proveedor.NombreClase + " exitosa.");
+            frmMostrarMensaje.MostrarMensaje($"{Cliente.NombreClase}", "Baja de " + Cliente.NombreClase + " exitosa.");
 
             CargarGrilla();
         }
@@ -62,9 +62,9 @@ namespace Almacen.Vistas
         {
             if (dgvDatos.CurrentRow == null) return;
 
-            Proveedor Clase = new Proveedor(Convert.ToInt32(dgvDatos.CurrentRow.Cells["ProveedorID"].Value));
+            Cliente Clase = new Cliente(Convert.ToInt32(dgvDatos.CurrentRow.Cells["ClienteID"].Value));
 
-            frmAMCCliente f = new frmAMCProveedor();
+            frmAMCCliente f = new frmAMCCliente();
             f.Clase = Clase;
             f.Modificacion = true;
             f.ShowDialog();
@@ -79,7 +79,7 @@ namespace Almacen.Vistas
                 return;
             }
 
-            _objetoSeleccionado = new Proveedor(Convert.ToInt32(dgvDatos.CurrentRow.Cells["ProveedorID"].Value));
+            _objetoSeleccionado = new Cliente(Convert.ToInt32(dgvDatos.CurrentRow.Cells["ClienteID"].Value));
 
             this.DialogResult = DialogResult.OK;
             this.Close();

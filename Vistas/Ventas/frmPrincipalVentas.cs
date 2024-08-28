@@ -22,5 +22,21 @@ namespace Almacen.Vistas.Ventas
         {
             InitializeComponent();
         }
+
+        private void btnClientes_Click(object sender, EventArgs e)
+        {
+            frmABMSClientes f = new frmABMSClientes();
+            f.Show();
+        }
+
+        private void frmPrincipalVentas_Load(object sender, EventArgs e)
+        {
+            lblOperador.Text = $"Operador: {Usuario.NombreApellido}";
+        }
+
+        private void btnNuevaVenta_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

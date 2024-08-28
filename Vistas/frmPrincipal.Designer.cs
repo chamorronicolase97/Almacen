@@ -50,6 +50,7 @@
             monthCalendar1 = new MonthCalendar();
             panel1 = new Panel();
             lblBienvenido = new Label();
+            principalDeVentaToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -122,9 +123,10 @@
             // 
             // ventaToolStripMenuItem
             // 
+            ventaToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { principalDeVentaToolStripMenuItem });
             ventaToolStripMenuItem.Name = "ventaToolStripMenuItem";
-            ventaToolStripMenuItem.Size = new Size(48, 20);
-            ventaToolStripMenuItem.Text = "Venta";
+            ventaToolStripMenuItem.Size = new Size(53, 20);
+            ventaToolStripMenuItem.Text = "Ventas";
             // 
             // administraciónToolStripMenuItem
             // 
@@ -219,6 +221,13 @@
             lblBienvenido.TabIndex = 0;
             lblBienvenido.Text = "Bienvenid@";
             // 
+            // principalDeVentaToolStripMenuItem
+            // 
+            principalDeVentaToolStripMenuItem.Name = "principalDeVentaToolStripMenuItem";
+            principalDeVentaToolStripMenuItem.Size = new Size(180, 22);
+            principalDeVentaToolStripMenuItem.Text = "Principal de Venta";
+            principalDeVentaToolStripMenuItem.Click += principalDeVentaToolStripMenuItem_Click;
+            // 
             // frmPrincipal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -266,5 +275,6 @@
         private ToolStripMenuItem pedidosToolStripMenuItem;
         private ToolStripMenuItem recepciónToolStripMenuItem;
         private ToolStripMenuItem costosProductosToolStripMenuItem;
+        private ToolStripMenuItem principalDeVentaToolStripMenuItem;
     }
 }

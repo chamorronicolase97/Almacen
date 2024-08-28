@@ -14,7 +14,7 @@ namespace Almacen.Vistas
 {
     public partial class frmAMCCliente : Form
     {
-        public Proveedor Clase { get; set; }
+        public Cliente Clase { get; set; }
         protected bool _soloLectura;
 
         public bool Modificacion { get; set; } = false;
@@ -34,7 +34,7 @@ namespace Almacen.Vistas
             {
                 txtID.Text = Clase.ID.ToString();
                 txtCUIT.Text = Clase.Cuit;
-                txtRazonSocial.Text = Clase.RazonSocial;
+                txtDenominacion.Text = Clase.Denominacion;
                 txtDireccion.Text = Clase.Direccion;
                 txtMail.Text = Clase.Mail;
                 txtTelefono.Text = Clase.Telefono;
@@ -55,10 +55,12 @@ namespace Almacen.Vistas
             if (!Validar()) return;
 
             Clase.Cuit = txtCUIT.Text;
-            Clase.RazonSocial = txtRazonSocial.Text;
+            Clase.Denominacion = txtDenominacion.Text;
             Clase.Direccion = txtDireccion.Text;
             Clase.Mail = txtMail.Text;
             Clase.Telefono = txtTelefono.Text;
+            Clase.Empleado = chkEmpleado.Checked;
+            Clase.Preferencial = chkPreferencial.Checked;  
 
             if (Modificacion)
             {
@@ -76,14 +78,36 @@ namespace Almacen.Vistas
         {
             if (txtCUIT.Text.Length <= 0)
             {
-                frmMostrarMensaje.MostrarMensaje("Proveedor", "El proveedor debe tener un CUIT");
+                frmMostrarMensaje.MostrarMensaje("Cliente", "El Cliente debe tener un CUIT");
                 return false;
             }
 
+            if (txtDenominacion.Text.Length <= 0)
+            {
+                frmMostrarMensaje.MostrarMensaje("Cliente", "El Cliente debe tener una Denominación");
+                return false;
+            }
+
+            if (txtDireccion.Text.Length <= 0)
+            {
+                frmMostrarMensaje.MostrarMensaje("Cliente", "El Cliente debe tener una Dirección");
+                return false;
+            }
+
+            if (txtMail.Text.Length <= 0)
+            {
+                frmMostrarMensaje.MostrarMensaje("Cliente", "El Cliente debe tener un Correo");
+                return false;
+            }
+
+            if (txtTelefono.Text.Length <= 0)
+            {
+                frmMostrarMensaje.MostrarMensaje("Cliente", "El Cliente debe tener un Teléfono");
+                return false;
+            }
 
             return true;
         }
-
 
     }
 }
