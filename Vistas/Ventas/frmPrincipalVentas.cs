@@ -1,5 +1,6 @@
 ﻿using Almacen.Clases.Administracion;
 using Almacen.Clases.Compra;
+using Almacen.Clases.Venta;
 using Sistema;
 using System;
 using System.Collections.Generic;
@@ -52,6 +53,7 @@ namespace Almacen.Vistas.Ventas
 
             frmNuevaVenta f = new frmNuevaVenta();
             f.Cliente = clientes.ObjetoSeleccionado;
+            f.Usuario = Usuario;
             f.ShowDialog();
 
         }
@@ -77,7 +79,7 @@ namespace Almacen.Vistas.Ventas
 
             foreach (Venta venta in _ventas)
             {
-                _total += venta.Total;
+                _total += venta.Total.GetValueOrDefault(0);
             }
 
             txtTotal.Text = _total.ToString();

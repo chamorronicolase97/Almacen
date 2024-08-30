@@ -16,7 +16,7 @@ namespace Almacen.Clases.Venta
         private DateTime _fechaVenta;
         private Usuario _usuario;
         private Cliente _cliente;
-        private decimal _total;
+        private decimal? _total;
 
 
         #region Constantes
@@ -29,7 +29,7 @@ namespace Almacen.Clases.Venta
         public DateTime FechaVenta { get { return _fechaVenta; } set { _fechaVenta = value; } }   
         public Usuario Usuario { get { return _usuario; } set { _usuario = value; } }
         public Cliente Cliente { get { return _cliente; } set { _cliente = value; } }
-        public decimal Total { get { return _total; } set { _total = value; } }
+        public decimal? Total { get { return _total; } set { _total = value; } }
         #endregion
 
         public Venta() { }
@@ -63,14 +63,17 @@ namespace Almacen.Clases.Venta
 
         private void CargaDatos(DataRow dr)
         {
-            ID = Convert.ToInt32(dr["NroPedido"]);
-            _fechaVenta = Convert.ToDateTime(dr["FechaEntrega"]);
+            ID = Convert.ToInt32(dr["VentaID"]);
+            _fechaVenta = Convert.ToDateTime(dr["FechaVenta"]);
 
-            if (dr["CodUsuarioCaja"] != DBNull.Value) _usuario = new Usuario(Convert.ToInt32(dr["CodUsuarioCaja"]));
+            _usuario = null;
+            if (dr["CodUsuarioCaja"] != DBNull.Value) _usuario =  Usuario.GetUsuario(Convert.ToString(dr["CodUsuarioCaja"]));
 
-            if (dr["NroCliente"] != DBNull.Value) _cliente = new Cliente(Convert.ToInt32(dr["NroCliente"])); 
+            _cliente = null;
+            if (dr["NroCliente"] != DBNull.Value) _cliente = new Cliente(Convert.ToInt32(dr["NroCliente"]));
 
-            _total = Convert.ToDecimal(Convert.ToInt32(dr["Total"]));
+            _total = null;
+            if (dr["Total"] != DBNull.Value) _total = Convert.ToDecimal(dr["Total"]);
         }
 
         public void Insertar()
@@ -81,8 +84,11 @@ namespace Almacen.Clases.Venta
             SqlCommand cmd = new SqlCommand(q);
             cmd.Parameters.Add("@NroCliente", SqlDbType.Int).Value = Cliente.ID;
             cmd.Parameters.Add("@fecha", SqlDbType.DateTime).Value = FechaVenta;
-            cmd.Parameters.Add("@CodUsuarioCaja", SqlDbType.Int).Value = Usuario.ID;
-            cmd.Parameters.Add("@Total", SqlDbType.Decimal).Value = Total;
+            cmd.Parameters.Add("@CodUsuarioCaja", SqlDbType.VarChar).Value = Usuario.CodUsuario;
+            cmd.Parameters.Add("@Total", SqlDbType.Decimal).Value = DBNull.Value;
+            if (Total != null) cmd.Parameters["@Total"].Value = Total;
+
+            ID = CalcularNroVenta();
 
             cn.Ejecutar(cmd);
         }
@@ -99,8 +105,9 @@ namespace Almacen.Clases.Venta
             SqlCommand cmd = new SqlCommand(q);
             cmd.Parameters.Add("@NroCliente", SqlDbType.Int).Value = Cliente.ID;
             cmd.Parameters.Add("@fecha", SqlDbType.DateTime).Value = FechaVenta;
-            cmd.Parameters.Add("@CodUsuarioCaja", SqlDbType.Int).Value = Usuario.ID;
-            cmd.Parameters.Add("@Total", SqlDbType.Decimal).Value = Total;
+            cmd.Parameters.Add("@CodUsuarioCaja", SqlDbType.Int).Value = Usuario.CodUsuario;
+            cmd.Parameters.Add("@Total", SqlDbType.Decimal).Value = DBNull.Value;
+            if (Total != null) cmd.Parameters["@Total"].Value = Total;
             cmd.Parameters.Add("@ID", SqlDbType.Int).Value = ID;
 
             cn.Ejecutar(cmd);
@@ -161,7 +168,7 @@ namespace Almacen.Clases.Venta
             string q = $@"SELECT VentaID FROM dbo.Ventas order by 1 desc";
             SqlCommand cmd = new SqlCommand(q);
             DataTable dt = cn.Consultar(cmd);
-            if (dt.Rows.Count > 0) { return Convert.ToInt32(dt.Rows[0]["VentaID"]) + 1; }
+            if (dt.Rows.Count > 0) { return Convert.ToInt32(dt.Rows[0]["VentaID"]); }
             else { return 1; }
         }
     }
