@@ -38,7 +38,15 @@ namespace Almacen.Vistas.Ventas
         private void btnNuevaVenta_Click(object sender, EventArgs e)
         {
             frmABMSClientes clientes = new frmABMSClientes();
-            clientes.Show();
+            clientes.ShowDialog();
+
+            if (clientes.DialogResult != DialogResult.OK) return;
+
+            frmNuevaVenta f = new frmNuevaVenta();
+            f.Cliente = clientes.ObjetoSeleccionado;
+            
+
+
 
 
         }

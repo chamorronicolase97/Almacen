@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmNuevaVenta));
             splitContainer1 = new SplitContainer();
             splitContainer2 = new SplitContainer();
             dgvDatos = new DataGridView();
@@ -44,6 +45,8 @@
             label5 = new Label();
             dateTimePicker1 = new DateTimePicker();
             label6 = new Label();
+            btnAgregar = new Button();
+            btnBorrar = new Button();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
@@ -68,6 +71,8 @@
             // 
             // splitContainer1.Panel2
             // 
+            splitContainer1.Panel2.Controls.Add(btnBorrar);
+            splitContainer1.Panel2.Controls.Add(btnAgregar);
             splitContainer1.Panel2.Controls.Add(txtDescuento);
             splitContainer1.Panel2.Controls.Add(txtTotal);
             splitContainer1.Panel2.Controls.Add(txtSubTotal);
@@ -75,7 +80,7 @@
             splitContainer1.Panel2.Controls.Add(label3);
             splitContainer1.Panel2.Controls.Add(label2);
             splitContainer1.Panel2.Controls.Add(label1);
-            splitContainer1.Size = new Size(800, 450);
+            splitContainer1.Size = new Size(893, 450);
             splitContainer1.SplitterDistance = 352;
             splitContainer1.TabIndex = 0;
             // 
@@ -98,18 +103,20 @@
             // splitContainer2.Panel2
             // 
             splitContainer2.Panel2.Controls.Add(dgvDatos);
-            splitContainer2.Size = new Size(800, 352);
+            splitContainer2.Size = new Size(893, 352);
             splitContainer2.SplitterDistance = 48;
             splitContainer2.TabIndex = 0;
             // 
             // dgvDatos
             // 
+            dgvDatos.AllowUserToAddRows = false;
+            dgvDatos.AllowUserToDeleteRows = false;
             dgvDatos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvDatos.Dock = DockStyle.Fill;
             dgvDatos.Location = new Point(0, 0);
             dgvDatos.Name = "dgvDatos";
             dgvDatos.RowTemplate.Height = 25;
-            dgvDatos.Size = new Size(800, 300);
+            dgvDatos.Size = new Size(893, 300);
             dgvDatos.TabIndex = 0;
             // 
             // label1
@@ -141,12 +148,13 @@
             // 
             // btnFinalizar
             // 
-            btnFinalizar.Location = new Point(12, 59);
+            btnFinalizar.BackColor = SystemColors.ActiveCaption;
+            btnFinalizar.Image = (Image)resources.GetObject("btnFinalizar.Image");
+            btnFinalizar.Location = new Point(808, 7);
             btnFinalizar.Name = "btnFinalizar";
-            btnFinalizar.Size = new Size(75, 23);
+            btnFinalizar.Size = new Size(73, 77);
             btnFinalizar.TabIndex = 3;
-            btnFinalizar.Text = "Finalizar";
-            btnFinalizar.UseVisualStyleBackColor = true;
+            btnFinalizar.UseVisualStyleBackColor = false;
             // 
             // txtSubTotal
             // 
@@ -229,11 +237,31 @@
             label6.TabIndex = 12;
             label6.Text = "Fecha";
             // 
+            // btnAgregar
+            // 
+            btnAgregar.Image = (Image)resources.GetObject("btnAgregar.Image");
+            btnAgregar.Location = new Point(12, 7);
+            btnAgregar.Margin = new Padding(3, 2, 3, 2);
+            btnAgregar.Name = "btnAgregar";
+            btnAgregar.Size = new Size(35, 35);
+            btnAgregar.TabIndex = 10;
+            btnAgregar.UseVisualStyleBackColor = true;
+            // 
+            // btnBorrar
+            // 
+            btnBorrar.Image = (Image)resources.GetObject("btnBorrar.Image");
+            btnBorrar.Location = new Point(12, 50);
+            btnBorrar.Margin = new Padding(3, 2, 3, 2);
+            btnBorrar.Name = "btnBorrar";
+            btnBorrar.Size = new Size(35, 35);
+            btnBorrar.TabIndex = 12;
+            btnBorrar.UseVisualStyleBackColor = true;
+            // 
             // frmNuevaVenta
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(893, 450);
             Controls.Add(splitContainer1);
             MaximizeBox = false;
             Name = "frmNuevaVenta";
@@ -262,7 +290,6 @@
         private Label label2;
         private Label label1;
         private Label label6;
-        private DateTimePicker dateTimePicker1;
         private TextBox txtCliente;
         private Label label5;
         private TextBox txtOperador;
@@ -270,5 +297,8 @@
         private TextBox txtDescuento;
         private TextBox txtTotal;
         private TextBox txtSubTotal;
+        private Button btnAgregar;
+        private Button btnBorrar;
+        protected DateTimePicker dateTimePicker1;
     }
 }

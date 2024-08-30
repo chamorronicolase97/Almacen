@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPrincipal));
             menuStrip1 = new MenuStrip();
             principalToolStripMenuItem = new ToolStripMenuItem();
             cambiarUsuarioToolStripMenuItem = new ToolStripMenuItem();
@@ -38,6 +39,7 @@
             compraToolStripMenuItem = new ToolStripMenuItem();
             pedidosToolStripMenuItem = new ToolStripMenuItem();
             ventaToolStripMenuItem = new ToolStripMenuItem();
+            principalDeVentaToolStripMenuItem = new ToolStripMenuItem();
             administraciónToolStripMenuItem = new ToolStripMenuItem();
             categoriasToolStripMenuItem = new ToolStripMenuItem();
             proveedoresToolStripMenuItem = new ToolStripMenuItem();
@@ -50,7 +52,6 @@
             monthCalendar1 = new MonthCalendar();
             panel1 = new Panel();
             lblBienvenido = new Label();
-            principalDeVentaToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -127,6 +128,15 @@
             ventaToolStripMenuItem.Name = "ventaToolStripMenuItem";
             ventaToolStripMenuItem.Size = new Size(53, 20);
             ventaToolStripMenuItem.Text = "Ventas";
+            // 
+            // principalDeVentaToolStripMenuItem
+            // 
+            principalDeVentaToolStripMenuItem.Image = (Image)resources.GetObject("principalDeVentaToolStripMenuItem.Image");
+            principalDeVentaToolStripMenuItem.ImageAlign = ContentAlignment.MiddleLeft;
+            principalDeVentaToolStripMenuItem.Name = "principalDeVentaToolStripMenuItem";
+            principalDeVentaToolStripMenuItem.Size = new Size(184, 26);
+            principalDeVentaToolStripMenuItem.Text = "Principal de Venta";
+            principalDeVentaToolStripMenuItem.Click += principalDeVentaToolStripMenuItem_Click;
             // 
             // administraciónToolStripMenuItem
             // 
@@ -220,13 +230,6 @@
             lblBienvenido.Size = new Size(74, 15);
             lblBienvenido.TabIndex = 0;
             lblBienvenido.Text = "Bienvenid@";
-            // 
-            // principalDeVentaToolStripMenuItem
-            // 
-            principalDeVentaToolStripMenuItem.Name = "principalDeVentaToolStripMenuItem";
-            principalDeVentaToolStripMenuItem.Size = new Size(180, 22);
-            principalDeVentaToolStripMenuItem.Text = "Principal de Venta";
-            principalDeVentaToolStripMenuItem.Click += principalDeVentaToolStripMenuItem_Click;
             // 
             // frmPrincipal
             // 

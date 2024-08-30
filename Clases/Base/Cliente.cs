@@ -70,7 +70,7 @@ namespace Almacen.Clases.Administracion
 
         private void CargaDatos(DataRow dr)
         {
-            ID = Convert.ToInt32(dr["ProveedorID"]);
+            ID = Convert.ToInt32(dr["ClienteID"]);
             _cuit = Convert.ToString(dr["CUIT"]);
             _denominacion = Convert.ToString(dr["Denominacion"]);
             _domicilio = Convert.ToString(dr["Domicilio"]);
