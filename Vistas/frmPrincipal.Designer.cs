@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPrincipal));
             menuStrip1 = new MenuStrip();
             principalToolStripMenuItem = new ToolStripMenuItem();
             cambiarUsuarioToolStripMenuItem = new ToolStripMenuItem();
@@ -38,6 +39,7 @@
             compraToolStripMenuItem = new ToolStripMenuItem();
             pedidosToolStripMenuItem = new ToolStripMenuItem();
             ventaToolStripMenuItem = new ToolStripMenuItem();
+            principalDeVentaToolStripMenuItem = new ToolStripMenuItem();
             administraciónToolStripMenuItem = new ToolStripMenuItem();
             categoriasToolStripMenuItem = new ToolStripMenuItem();
             proveedoresToolStripMenuItem = new ToolStripMenuItem();
@@ -122,9 +124,19 @@
             // 
             // ventaToolStripMenuItem
             // 
+            ventaToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { principalDeVentaToolStripMenuItem });
             ventaToolStripMenuItem.Name = "ventaToolStripMenuItem";
-            ventaToolStripMenuItem.Size = new Size(48, 20);
-            ventaToolStripMenuItem.Text = "Venta";
+            ventaToolStripMenuItem.Size = new Size(53, 20);
+            ventaToolStripMenuItem.Text = "Ventas";
+            // 
+            // principalDeVentaToolStripMenuItem
+            // 
+            principalDeVentaToolStripMenuItem.Image = (Image)resources.GetObject("principalDeVentaToolStripMenuItem.Image");
+            principalDeVentaToolStripMenuItem.ImageAlign = ContentAlignment.MiddleLeft;
+            principalDeVentaToolStripMenuItem.Name = "principalDeVentaToolStripMenuItem";
+            principalDeVentaToolStripMenuItem.Size = new Size(184, 26);
+            principalDeVentaToolStripMenuItem.Text = "Principal de Venta";
+            principalDeVentaToolStripMenuItem.Click += principalDeVentaToolStripMenuItem_Click;
             // 
             // administraciónToolStripMenuItem
             // 
@@ -266,5 +278,6 @@
         private ToolStripMenuItem pedidosToolStripMenuItem;
         private ToolStripMenuItem recepciónToolStripMenuItem;
         private ToolStripMenuItem costosProductosToolStripMenuItem;
+        private ToolStripMenuItem principalDeVentaToolStripMenuItem;
     }
 }

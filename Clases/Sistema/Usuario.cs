@@ -138,6 +138,35 @@ namespace Almacen.Clases.Administracion
             return lista;
         }
 
+        public static Usuario GetUsuario(string User)
+        {
+            Conexion cn = new Conexion();
+            string q = @$"Select * from {Tabla} where CodUsuario = @User";
+            SqlCommand cmd = new SqlCommand(q);
+            cmd.Parameters.Add("@User", SqlDbType.VarChar).Value = User;
+
+            DataTable dt = new DataTable();
+
+
+            try
+            {
+                dt = cn.Consultar(cmd);
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Usuario no Encontrado", ex);
+            }
+            if (dt.Rows.Count > 0)
+            {
+                return new Usuario((dt.Rows[0]));
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         public static Usuario? GetUsuario(string User, string Password)
         {
             Conexion cn = new Conexion();
