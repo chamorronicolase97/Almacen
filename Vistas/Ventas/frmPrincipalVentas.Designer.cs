@@ -32,7 +32,7 @@
             ContainerCaja = new SplitContainer();
             subcontainerCaja = new SplitContainer();
             lblOperador = new Label();
-            dataGridView1 = new DataGridView();
+            dgvDatos = new DataGridView();
             dtpFecha = new DateTimePicker();
             groupBox1 = new GroupBox();
             button2 = new Button();
@@ -46,7 +46,7 @@
             groupBoxGerencial = new GroupBox();
             groupBox2 = new GroupBox();
             label1 = new Label();
-            textBox1 = new TextBox();
+            txtTotal = new TextBox();
             btnCerrarCaja = new Button();
             CustomToolTip = new ToolTip(components);
             ((System.ComponentModel.ISupportInitialize)ContainerCaja).BeginInit();
@@ -57,7 +57,7 @@
             subcontainerCaja.Panel1.SuspendLayout();
             subcontainerCaja.Panel2.SuspendLayout();
             subcontainerCaja.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvDatos).BeginInit();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             SuspendLayout();
@@ -90,7 +90,7 @@
             // subcontainerCaja.Panel1
             // 
             subcontainerCaja.Panel1.Controls.Add(lblOperador);
-            subcontainerCaja.Panel1.Controls.Add(dataGridView1);
+            subcontainerCaja.Panel1.Controls.Add(dgvDatos);
             subcontainerCaja.Panel1.Controls.Add(dtpFecha);
             // 
             // subcontainerCaja.Panel2
@@ -110,14 +110,15 @@
             lblOperador.TabIndex = 2;
             lblOperador.Text = "Nombre Operador";
             // 
-            // dataGridView1
+            // dgvDatos
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(3, 64);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowTemplate.Height = 25;
-            dataGridView1.Size = new Size(491, 288);
-            dataGridView1.TabIndex = 1;
+            dgvDatos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvDatos.Location = new Point(3, 64);
+            dgvDatos.Name = "dgvDatos";
+            dgvDatos.ReadOnly = true;
+            dgvDatos.RowTemplate.Height = 25;
+            dgvDatos.Size = new Size(491, 288);
+            dgvDatos.TabIndex = 1;
             // 
             // dtpFecha
             // 
@@ -235,7 +236,7 @@
             // groupBox2
             // 
             groupBox2.Controls.Add(label1);
-            groupBox2.Controls.Add(textBox1);
+            groupBox2.Controls.Add(txtTotal);
             groupBox2.Controls.Add(btnCerrarCaja);
             groupBox2.Dock = DockStyle.Fill;
             groupBox2.Location = new Point(0, 0);
@@ -255,12 +256,12 @@
             label1.TabIndex = 3;
             label1.Text = "Total";
             // 
-            // textBox1
+            // txtTotal
             // 
-            textBox1.Location = new Point(338, 43);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(156, 23);
-            textBox1.TabIndex = 7;
+            txtTotal.Location = new Point(338, 43);
+            txtTotal.Name = "txtTotal";
+            txtTotal.Size = new Size(156, 23);
+            txtTotal.TabIndex = 7;
             // 
             // btnCerrarCaja
             // 
@@ -290,7 +291,7 @@
             subcontainerCaja.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)subcontainerCaja).EndInit();
             subcontainerCaja.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvDatos).EndInit();
             groupBox1.ResumeLayout(false);
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
@@ -301,7 +302,7 @@
 
         private SplitContainer ContainerCaja;
         private SplitContainer subcontainerCaja;
-        private DataGridView dataGridView1;
+        private DataGridView dgvDatos;
         private DateTimePicker dtpFecha;
         private GroupBox groupBox1;
         private GroupBox groupBox2;
@@ -313,7 +314,7 @@
         private Button btnNotaCredito;
         private Button btnNuevaVenta;
         private Label label1;
-        private TextBox textBox1;
+        private TextBox txtTotal;
         private Button btnCerrarCaja;
         private Button button1;
         private Button button2;

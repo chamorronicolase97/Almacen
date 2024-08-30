@@ -31,22 +31,22 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmNuevaVenta));
             splitContainer1 = new SplitContainer();
             splitContainer2 = new SplitContainer();
-            dgvDatos = new DataGridView();
-            label1 = new Label();
-            label2 = new Label();
-            label3 = new Label();
-            btnFinalizar = new Button();
-            txtSubTotal = new TextBox();
-            txtTotal = new TextBox();
-            txtDescuento = new TextBox();
-            txtOperador = new TextBox();
-            label4 = new Label();
+            label6 = new Label();
+            dateTimePicker1 = new DateTimePicker();
             txtCliente = new TextBox();
             label5 = new Label();
-            dateTimePicker1 = new DateTimePicker();
-            label6 = new Label();
-            btnAgregar = new Button();
+            txtOperador = new TextBox();
+            label4 = new Label();
+            dgvDatos = new DataGridView();
             btnBorrar = new Button();
+            btnAgregar = new Button();
+            txtDescuento = new TextBox();
+            txtTotal = new TextBox();
+            txtSubTotal = new TextBox();
+            btnFinalizar = new Button();
+            label3 = new Label();
+            label2 = new Label();
+            label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
@@ -107,99 +107,23 @@
             splitContainer2.SplitterDistance = 48;
             splitContainer2.TabIndex = 0;
             // 
-            // dgvDatos
+            // label6
             // 
-            dgvDatos.AllowUserToAddRows = false;
-            dgvDatos.AllowUserToDeleteRows = false;
-            dgvDatos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvDatos.Dock = DockStyle.Fill;
-            dgvDatos.Location = new Point(0, 0);
-            dgvDatos.Name = "dgvDatos";
-            dgvDatos.RowTemplate.Height = 25;
-            dgvDatos.Size = new Size(893, 300);
-            dgvDatos.TabIndex = 0;
+            label6.AutoSize = true;
+            label6.Location = new Point(643, 16);
+            label6.Name = "label6";
+            label6.Size = new Size(38, 15);
+            label6.TabIndex = 12;
+            label6.Text = "Fecha";
             // 
-            // label1
+            // dateTimePicker1
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(585, 70);
-            label1.Name = "label1";
-            label1.Size = new Size(32, 15);
-            label1.TabIndex = 0;
-            label1.Text = "Total";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(567, 11);
-            label2.Name = "label2";
-            label2.Size = new Size(52, 15);
-            label2.TabIndex = 1;
-            label2.Text = "SubTotal";
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(558, 40);
-            label3.Name = "label3";
-            label3.Size = new Size(63, 15);
-            label3.TabIndex = 2;
-            label3.Text = "Descuento";
-            // 
-            // btnFinalizar
-            // 
-            btnFinalizar.BackColor = SystemColors.ActiveCaption;
-            btnFinalizar.Image = (Image)resources.GetObject("btnFinalizar.Image");
-            btnFinalizar.Location = new Point(808, 7);
-            btnFinalizar.Name = "btnFinalizar";
-            btnFinalizar.Size = new Size(73, 77);
-            btnFinalizar.TabIndex = 3;
-            btnFinalizar.UseVisualStyleBackColor = false;
-            // 
-            // txtSubTotal
-            // 
-            txtSubTotal.Enabled = false;
-            txtSubTotal.Location = new Point(625, 8);
-            txtSubTotal.Name = "txtSubTotal";
-            txtSubTotal.ReadOnly = true;
-            txtSubTotal.Size = new Size(163, 23);
-            txtSubTotal.TabIndex = 4;
-            // 
-            // txtTotal
-            // 
-            txtTotal.Enabled = false;
-            txtTotal.Location = new Point(625, 66);
-            txtTotal.Name = "txtTotal";
-            txtTotal.ReadOnly = true;
-            txtTotal.Size = new Size(163, 23);
-            txtTotal.TabIndex = 5;
-            // 
-            // txtDescuento
-            // 
-            txtDescuento.Enabled = false;
-            txtDescuento.Location = new Point(625, 37);
-            txtDescuento.Name = "txtDescuento";
-            txtDescuento.ReadOnly = true;
-            txtDescuento.Size = new Size(163, 23);
-            txtDescuento.TabIndex = 6;
-            // 
-            // txtOperador
-            // 
-            txtOperador.Enabled = false;
-            txtOperador.Location = new Point(80, 12);
-            txtOperador.Name = "txtOperador";
-            txtOperador.ReadOnly = true;
-            txtOperador.Size = new Size(163, 23);
-            txtOperador.TabIndex = 8;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new Point(22, 15);
-            label4.Name = "label4";
-            label4.Size = new Size(57, 15);
-            label4.TabIndex = 7;
-            label4.Text = "Operador";
+            dateTimePicker1.Enabled = false;
+            dateTimePicker1.Format = DateTimePickerFormat.Short;
+            dateTimePicker1.Location = new Point(687, 13);
+            dateTimePicker1.Name = "dateTimePicker1";
+            dateTimePicker1.Size = new Size(101, 23);
+            dateTimePicker1.TabIndex = 11;
             // 
             // txtCliente
             // 
@@ -219,33 +143,36 @@
             label5.TabIndex = 9;
             label5.Text = "Cliente";
             // 
-            // dateTimePicker1
+            // txtOperador
             // 
-            dateTimePicker1.Enabled = false;
-            dateTimePicker1.Format = DateTimePickerFormat.Short;
-            dateTimePicker1.Location = new Point(687, 13);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(101, 23);
-            dateTimePicker1.TabIndex = 11;
+            txtOperador.Enabled = false;
+            txtOperador.Location = new Point(80, 12);
+            txtOperador.Name = "txtOperador";
+            txtOperador.ReadOnly = true;
+            txtOperador.Size = new Size(163, 23);
+            txtOperador.TabIndex = 8;
             // 
-            // label6
+            // label4
             // 
-            label6.AutoSize = true;
-            label6.Location = new Point(643, 16);
-            label6.Name = "label6";
-            label6.Size = new Size(38, 15);
-            label6.TabIndex = 12;
-            label6.Text = "Fecha";
+            label4.AutoSize = true;
+            label4.Location = new Point(22, 15);
+            label4.Name = "label4";
+            label4.Size = new Size(57, 15);
+            label4.TabIndex = 7;
+            label4.Text = "Operador";
             // 
-            // btnAgregar
+            // dgvDatos
             // 
-            btnAgregar.Image = (Image)resources.GetObject("btnAgregar.Image");
-            btnAgregar.Location = new Point(12, 7);
-            btnAgregar.Margin = new Padding(3, 2, 3, 2);
-            btnAgregar.Name = "btnAgregar";
-            btnAgregar.Size = new Size(35, 35);
-            btnAgregar.TabIndex = 10;
-            btnAgregar.UseVisualStyleBackColor = true;
+            dgvDatos.AllowUserToAddRows = false;
+            dgvDatos.AllowUserToDeleteRows = false;
+            dgvDatos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvDatos.Dock = DockStyle.Fill;
+            dgvDatos.Location = new Point(0, 0);
+            dgvDatos.Name = "dgvDatos";
+            dgvDatos.ReadOnly = true;
+            dgvDatos.RowTemplate.Height = 25;
+            dgvDatos.Size = new Size(893, 300);
+            dgvDatos.TabIndex = 0;
             // 
             // btnBorrar
             // 
@@ -257,6 +184,81 @@
             btnBorrar.TabIndex = 12;
             btnBorrar.UseVisualStyleBackColor = true;
             // 
+            // btnAgregar
+            // 
+            btnAgregar.Image = (Image)resources.GetObject("btnAgregar.Image");
+            btnAgregar.Location = new Point(12, 7);
+            btnAgregar.Margin = new Padding(3, 2, 3, 2);
+            btnAgregar.Name = "btnAgregar";
+            btnAgregar.Size = new Size(35, 35);
+            btnAgregar.TabIndex = 10;
+            btnAgregar.UseVisualStyleBackColor = true;
+            btnAgregar.Click += btnAgregar_Click;
+            // 
+            // txtDescuento
+            // 
+            txtDescuento.Enabled = false;
+            txtDescuento.Location = new Point(625, 37);
+            txtDescuento.Name = "txtDescuento";
+            txtDescuento.ReadOnly = true;
+            txtDescuento.Size = new Size(163, 23);
+            txtDescuento.TabIndex = 6;
+            // 
+            // txtTotal
+            // 
+            txtTotal.Enabled = false;
+            txtTotal.Location = new Point(625, 66);
+            txtTotal.Name = "txtTotal";
+            txtTotal.ReadOnly = true;
+            txtTotal.Size = new Size(163, 23);
+            txtTotal.TabIndex = 5;
+            // 
+            // txtSubTotal
+            // 
+            txtSubTotal.Enabled = false;
+            txtSubTotal.Location = new Point(625, 8);
+            txtSubTotal.Name = "txtSubTotal";
+            txtSubTotal.ReadOnly = true;
+            txtSubTotal.Size = new Size(163, 23);
+            txtSubTotal.TabIndex = 4;
+            // 
+            // btnFinalizar
+            // 
+            btnFinalizar.BackColor = SystemColors.ActiveCaption;
+            btnFinalizar.Image = (Image)resources.GetObject("btnFinalizar.Image");
+            btnFinalizar.Location = new Point(808, 7);
+            btnFinalizar.Name = "btnFinalizar";
+            btnFinalizar.Size = new Size(73, 77);
+            btnFinalizar.TabIndex = 3;
+            btnFinalizar.UseVisualStyleBackColor = false;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(558, 40);
+            label3.Name = "label3";
+            label3.Size = new Size(63, 15);
+            label3.TabIndex = 2;
+            label3.Text = "Descuento";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(567, 11);
+            label2.Name = "label2";
+            label2.Size = new Size(52, 15);
+            label2.TabIndex = 1;
+            label2.Text = "SubTotal";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(585, 70);
+            label1.Name = "label1";
+            label1.Size = new Size(32, 15);
+            label1.TabIndex = 0;
+            label1.Text = "Total";
+            // 
             // frmNuevaVenta
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -266,6 +268,7 @@
             MaximizeBox = false;
             Name = "frmNuevaVenta";
             Text = "Nueva Venta";
+            Load += frmNuevaVenta_Load;
             splitContainer1.Panel1.ResumeLayout(false);
             splitContainer1.Panel2.ResumeLayout(false);
             splitContainer1.Panel2.PerformLayout();

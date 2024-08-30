@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Almacen.Clases.Compra
+namespace Almacen.Clases.Venta
 {
     public class Venta
     {
@@ -124,7 +124,7 @@ namespace Almacen.Clases.Compra
             return cn.Consultar(q);
         }
 
-        public static List<Venta> ListarPedidos()
+        public static List<Venta> ListarVentas()
         {
             DataTable dt = Listar();
             List<Venta> lista = new List<Venta>();
@@ -134,19 +134,25 @@ namespace Almacen.Clases.Compra
             }
 
             return lista;
-        }
-
-        public bool TieneRecepcion()
+        } 
+        
+        public static List<Venta> ListarVentasEnEldia(Usuario usuario)
         {
-            Conexion cn = new Conexion();
-            string q = $@"SELECT TOP 1 * FROM dbo.Recepciones WHERE NroPedido = @ID";
-            SqlCommand cmd = new SqlCommand(q);
-            cmd.Parameters.Add("@ID", SqlDbType.Int).Value = ID;
+            string q = $@"SELECT *
+                FROM dbo.Ventas
+            where CONVERT(DATE, FechaVenta) = CONVERT(DATE, '{DateTime.Now.ToString("yyyyMMdd")}')
+            and CodUsuarioCaja = @CodUsuario;";
 
+            SqlCommand cmd = new SqlCommand(q);
+            cmd.Parameters.Add("@CodUsuario", SqlDbType.VarChar).Value = usuario.CodUsuario;
+            Conexion cn = new Conexion();
             DataTable dt = cn.Consultar(cmd);
-            
-            if(dt.Rows.Count > 0) { return true; }
-            else { return false; }
+            List<Venta> ventas = new List<Venta>();
+            foreach (DataRow dr in dt.Rows) 
+            {
+                ventas.Add(new Venta(dr));
+            }
+            return ventas;
         }
 
         public static int CalcularNroVenta()
