@@ -30,7 +30,9 @@ namespace Almacen.Clases.Administracion
         public decimal? Costo { get { return _costo; } set { _costo = value; } }
         public string CodigoDeBarra { get { return _codigoDeBarra; } set { _codigoDeBarra = value; } }
         public Categoria Categoria { get { return _categoria; } set { _categoria = value; } }
-        public Proveedor Proveedor { get { return _proveedor; } set { _proveedor = value; } }   
+        public Proveedor Proveedor { get { return _proveedor; } set { _proveedor = value; } } 
+        
+        public decimal ValorVenta => Costo.GetValueOrDefault(0) + ((Costo.GetValueOrDefault(0) * Categoria.Utilidad) / 100);
         #endregion
 
         public Producto() { }
