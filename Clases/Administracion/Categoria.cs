@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Net.Mime;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,7 +12,7 @@ namespace Almacen.Clases.Administracion
 {
     public class Categoria
     {
-        private int _id;
+        private int _categoriaID;
         private string _descripcion;
         private decimal _utilidad;
 
@@ -21,7 +22,7 @@ namespace Almacen.Clases.Administracion
         #endregion
 
         #region Propiedades
-        public int ID { get { return _id; } set { _id = value; } }
+        public int CategoriaID { get { return _categoriaID; } set { _categoriaID = value; } }
         public string Descripcion { get { return _descripcion; } set { _descripcion = value; } }
         public decimal Utilidad { get { return _utilidad; } set { _utilidad = value; } }
         #endregion
@@ -29,79 +30,40 @@ namespace Almacen.Clases.Administracion
         public Categoria() { }
         public Categoria(int ID)
         {
-            this.ID = ID;
-            if (ID != 0) Abrir();
+            this.CategoriaID = ID;
+            if (ID != 0) Consultar(ID);
         }
-        public Categoria(DataRow dr) => CargaDatos(dr);
-
-        public void Abrir()
-        {
-            Conexion cn = new Conexion();
-            string q = @$"Select * from {Tabla} where CategoriaID = {ID}";
-
-            DataTable dt = cn.Consultar(q);
-            try
-            {
-
-                if (dt.Rows.Count > 0)
-                {
-                    CargaDatos(dt.Rows[0]);
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"Error al abrir el objeto {NombreClase}. Clave {ID}", ex);
-            }
-
-        }
-
-
-
-        private void CargaDatos(DataRow dr)
-        {
-            ID = Convert.ToInt32(dr["CategoriaID"]);
-            _descripcion = Convert.ToString(dr["Descripcion"]);
-            _utilidad = Convert.ToDecimal(dr["Utilidad"]);
-        }
+        
 
 
         public void Insertar()
         {
-            Conexion cn = new Conexion();
-            string q = $@"INSERT INTO {Tabla} (Descripcion, Utilidad)
-                        Values(@Descripcion, @Utilidad);";
-            SqlCommand cmd = new SqlCommand(q);
-            cmd.Parameters.Add("@Descripcion", SqlDbType.VarChar).Value = Descripcion;
-            cmd.Parameters.Add("@Utilidad", SqlDbType.Decimal).Value = Utilidad;
-
-            cn.Ejecutar(cmd);
-
+            using (var context = new AlmacenContext())
+            {
+                context.Categorias.Add(this);
+                context.SaveChanges();
+            }
         }
 
         public void Modificar()
         {
-            Conexion cn = new Conexion();
-            string q = $@"UPDATE {Tabla} SET Descripcion = @Descripcion, 
-                                             Utilidad = @Utilidad
-                                             WHERE CategoriaID = @ID;";
-            SqlCommand cmd = new SqlCommand(q);
-            cmd.Parameters.Add("@Descripcion", SqlDbType.VarChar).Value = Descripcion;
-            cmd.Parameters.Add("@Utilidad", SqlDbType.Decimal).Value = Utilidad;
-            cmd.Parameters.Add("@ID", SqlDbType.Int).Value = ID;
-
-            cn.Ejecutar(cmd);
-
+            Categoria categoria = new Categoria();
+            using (var context = new AlmacenContext())
+            {
+                categoria = context.Categorias.Find(this.CategoriaID);
+                categoria.Utilidad = this.Utilidad;
+                categoria.Descripcion = this.Descripcion;
+                context.SaveChanges();
+            }
         }
 
         public void Eliminar()
         {
-            Conexion cn = new Conexion();
-            string q = $@"DELETE FROM {Tabla} WHERE CategoriaID = @ID;";
-            SqlCommand cmd = new SqlCommand(q);
-            cmd.Parameters.Add("@ID", SqlDbType.Int).Value = ID;
-
-            cn.Ejecutar(cmd);
-
+            using (var context = new AlmacenContext())
+            {
+                context.Categorias.Remove(this);
+                context.SaveChanges();
+            }
         }
 
         public static DataTable Listar()
@@ -113,14 +75,14 @@ namespace Almacen.Clases.Administracion
 
         public static List<Categoria> ListarCategorias()
         {
-            DataTable dt = Listar();
+           
             List<Categoria> lista = new List<Categoria>();
-            foreach (DataRow dr in dt.Rows)
+            using (var context = new AlmacenContext())
             {
-                lista.Add(new Categoria(dr));
+                lista = context.Categorias.ToList();
             }
 
-            return lista;
+                return lista;
         }
 
         public bool EsVacia()
@@ -128,12 +90,32 @@ namespace Almacen.Clases.Administracion
             Conexion cn = new Conexion();
             string q = $@"SELECT TOP 1 * FROM dbo.Productos WHERE CategoriaID = @ID";
             SqlCommand cmd = new SqlCommand(q);
-            cmd.Parameters.Add("@ID", SqlDbType.Int).Value = ID;
+            cmd.Parameters.Add("@ID", SqlDbType.Int).Value = CategoriaID;
 
             DataTable dt = cn.Consultar(cmd);
             
             if(dt.Rows.Count > 0) { return false; }
             else { return true; }
+        }
+
+        public Categoria Consultar(int ID)
+        {
+            Categoria categoria;
+            using (var context = new AlmacenContext())
+            {
+                categoria = context.Categorias.Find(ID);
+            }
+            if (categoria != null)
+            {
+                _categoriaID = categoria.CategoriaID;
+                _descripcion = categoria.Descripcion;
+                _utilidad = categoria.Utilidad;
+                return categoria; 
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }

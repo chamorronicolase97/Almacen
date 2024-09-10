@@ -28,7 +28,7 @@ namespace Almacen.Vistas
         {
             if (Modificacion == true)
             {
-                txtID.Text = Clase.ID.ToString();
+                txtID.Text = Clase.CategoriaID.ToString();
                 txtNombre.Text = Clase.Descripcion;
                 txtUtilidad.Text = Clase.Utilidad.ToString();
             }
