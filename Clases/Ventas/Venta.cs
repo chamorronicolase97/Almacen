@@ -104,8 +104,8 @@ namespace Almacen.Clases.Venta
                                              WHERE VentaID = @ID;";
             SqlCommand cmd = new SqlCommand(q);
             cmd.Parameters.Add("@NroCliente", SqlDbType.Int).Value = Cliente.ID;
-            cmd.Parameters.Add("@fecha", SqlDbType.DateTime).Value = FechaVenta;
-            cmd.Parameters.Add("@CodUsuarioCaja", SqlDbType.Int).Value = Usuario.CodUsuario;
+            cmd.Parameters.Add("@FechaVenta", SqlDbType.DateTime).Value = FechaVenta;
+            cmd.Parameters.Add("@CodUsuarioCaja", SqlDbType.VarChar).Value = Usuario.CodUsuario;
             cmd.Parameters.Add("@Total", SqlDbType.Decimal).Value = DBNull.Value;
             if (Total != null) cmd.Parameters["@Total"].Value = Total;
             cmd.Parameters.Add("@ID", SqlDbType.Int).Value = ID;
