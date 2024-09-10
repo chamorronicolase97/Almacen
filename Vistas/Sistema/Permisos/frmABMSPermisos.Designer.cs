@@ -55,6 +55,7 @@
             dgvDatos.Location = new Point(5, 2);
             dgvDatos.Margin = new Padding(3, 2, 3, 2);
             dgvDatos.Name = "dgvDatos";
+            dgvDatos.ReadOnly = true;
             dgvDatos.RowHeadersWidth = 51;
             dgvDatos.RowTemplate.Height = 29;
             dgvDatos.Size = new Size(567, 272);

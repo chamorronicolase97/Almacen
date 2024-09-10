@@ -57,9 +57,11 @@
             dgvDatos.Margin = new Padding(3, 2, 3, 2);
             dgvDatos.MultiSelect = false;
             dgvDatos.Name = "dgvDatos";
+            dgvDatos.ReadOnly = true;
             dgvDatos.RowHeadersWidth = 51;
             dgvDatos.RowTemplate.Height = 29;
-            dgvDatos.Size = new Size(656, 291);
+            dgvDatos.ShowEditingIcon = false;
+            dgvDatos.Size = new Size(656, 293);
             dgvDatos.TabIndex = 0;
             // 
             // splitContainer1

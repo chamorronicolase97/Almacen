@@ -31,7 +31,6 @@
             components = new System.ComponentModel.Container();
             ContainerCaja = new SplitContainer();
             subcontainerCaja = new SplitContainer();
-            lblOperador = new Label();
             dgvDatos = new DataGridView();
             dtpFecha = new DateTimePicker();
             groupBox1 = new GroupBox();
@@ -49,6 +48,7 @@
             txtTotal = new TextBox();
             btnCerrarCaja = new Button();
             CustomToolTip = new ToolTip(components);
+            txtOperador = new TextBox();
             ((System.ComponentModel.ISupportInitialize)ContainerCaja).BeginInit();
             ContainerCaja.Panel1.SuspendLayout();
             ContainerCaja.Panel2.SuspendLayout();
@@ -89,7 +89,7 @@
             // 
             // subcontainerCaja.Panel1
             // 
-            subcontainerCaja.Panel1.Controls.Add(lblOperador);
+            subcontainerCaja.Panel1.Controls.Add(txtOperador);
             subcontainerCaja.Panel1.Controls.Add(dgvDatos);
             subcontainerCaja.Panel1.Controls.Add(dtpFecha);
             // 
@@ -99,16 +99,6 @@
             subcontainerCaja.Size = new Size(798, 355);
             subcontainerCaja.SplitterDistance = 497;
             subcontainerCaja.TabIndex = 0;
-            // 
-            // lblOperador
-            // 
-            lblOperador.AutoSize = true;
-            lblOperador.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            lblOperador.Location = new Point(136, 11);
-            lblOperador.Name = "lblOperador";
-            lblOperador.Size = new Size(210, 32);
-            lblOperador.TabIndex = 2;
-            lblOperador.Text = "Nombre Operador";
             // 
             // dgvDatos
             // 
@@ -273,6 +263,14 @@
             btnCerrarCaja.Text = "Cerrar Caja";
             btnCerrarCaja.UseVisualStyleBackColor = false;
             // 
+            // txtOperador
+            // 
+            txtOperador.Location = new Point(172, 11);
+            txtOperador.Name = "txtOperador";
+            txtOperador.ReadOnly = true;
+            txtOperador.Size = new Size(296, 23);
+            txtOperador.TabIndex = 2;
+            // 
             // frmPrincipalVentas
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -306,7 +304,6 @@
         private DateTimePicker dtpFecha;
         private GroupBox groupBox1;
         private GroupBox groupBox2;
-        private Label lblOperador;
         private Button btnCierreParcial;
         private Button btnArticulos;
         private Button button3;
@@ -320,5 +317,6 @@
         private Button button2;
         private GroupBox groupBoxGerencial;
         private ToolTip CustomToolTip;
+        private TextBox txtOperador;
     }
 }

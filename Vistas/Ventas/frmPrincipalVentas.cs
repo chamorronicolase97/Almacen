@@ -38,7 +38,7 @@ namespace Almacen.Vistas.Ventas
 
         private void frmPrincipalVentas_Load(object sender, EventArgs e)
         {
-            lblOperador.Text = $"Operador: {Usuario.NombreApellido}";
+            txtOperador.Text = $"Operador: {Usuario.NombreApellido}";
             _ventas = Venta.ListarVentasEnEldia(Usuario);
             CargarGrilla();
             CalcularTotal();
@@ -55,6 +55,8 @@ namespace Almacen.Vistas.Ventas
             f.Cliente = clientes.ObjetoSeleccionado;
             f.Usuario = Usuario;
             f.ShowDialog();
+
+            if (f.DialogResult == DialogResult.OK) CargarGrilla();
 
         }
 

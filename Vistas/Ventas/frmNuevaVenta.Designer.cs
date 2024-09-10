@@ -231,6 +231,7 @@
             btnFinalizar.Size = new Size(73, 77);
             btnFinalizar.TabIndex = 3;
             btnFinalizar.UseVisualStyleBackColor = false;
+            btnFinalizar.Click += btnFinalizar_Click;
             // 
             // label3
             // 

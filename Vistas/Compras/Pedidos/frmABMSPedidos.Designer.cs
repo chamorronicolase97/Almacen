@@ -56,9 +56,10 @@
             dgvDatos.Location = new Point(3, 4);
             dgvDatos.Margin = new Padding(3, 2, 3, 2);
             dgvDatos.Name = "dgvDatos";
+            dgvDatos.ReadOnly = true;
             dgvDatos.RowHeadersWidth = 51;
             dgvDatos.RowTemplate.Height = 29;
-            dgvDatos.Size = new Size(535, 289);
+            dgvDatos.Size = new Size(535, 290);
             dgvDatos.TabIndex = 0;
             // 
             // splitContainer1
