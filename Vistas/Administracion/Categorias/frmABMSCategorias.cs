@@ -27,12 +27,12 @@ namespace Almacen.Vistas
         private void frmABMSCategorias_Load(object sender, EventArgs e)
 
         {
-            dgvDatos.DataSource = Categoria.Listar();
+            CargarGrilla();
         }
 
         private void CargarGrilla()
         {
-            dgvDatos.DataSource = Categoria.Listar();
+            dgvDatos.DataSource = Categoria.ListarCategorias();
         }
 
 

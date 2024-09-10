@@ -87,7 +87,7 @@ namespace Almacen.Clases.Administracion
             cmd.Parameters.Add("@Descripcion", SqlDbType.VarChar).Value = Descripcion;
             cmd.Parameters.Add("@Costo", SqlDbType.Decimal).Value = DBNull.Value;
             cmd.Parameters.Add("@CodigoDeBarra", SqlDbType.VarChar).Value = CodigoDeBarra;
-            cmd.Parameters.Add("@CategoriaID", SqlDbType.Int).Value = Categoria.ID;
+            cmd.Parameters.Add("@CategoriaID", SqlDbType.Int).Value = Categoria.CategoriaID;
             cmd.Parameters.Add("@ProveedorID", SqlDbType.Int).Value = Proveedor.ID;
 
             cn.Ejecutar(cmd);
@@ -107,7 +107,7 @@ namespace Almacen.Clases.Administracion
             cmd.Parameters.Add("@Descripcion", SqlDbType.VarChar).Value = Descripcion;
             cmd.Parameters.Add("@Costo", SqlDbType.Decimal).Value = FuncionesAuxiliares.ConvertDBNullIfNull(Costo);
             cmd.Parameters.Add("@CodigoDeBarra", SqlDbType.VarChar).Value = CodigoDeBarra;
-            cmd.Parameters.Add("@CategoriaID", SqlDbType.Int).Value = Categoria.ID;
+            cmd.Parameters.Add("@CategoriaID", SqlDbType.Int).Value = Categoria.CategoriaID;
             cmd.Parameters.Add("@ProveedorID", SqlDbType.Int).Value = Proveedor.ID;
             cmd.Parameters.Add("@ID", SqlDbType.Int).Value = ID;
 
