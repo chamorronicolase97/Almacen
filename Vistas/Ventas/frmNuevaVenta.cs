@@ -40,6 +40,7 @@ namespace Almacen.Vistas.Ventas
         private void frmNuevaVenta_Load(object sender, EventArgs e)
         {
             txtCliente.Text = _cliente.Denominacion;
+            txtOperador.Text = _usuario.NombreApellido;
             _detalleVenta = new List<DetalleVenta>();
 
             _venta = new Venta(0);
@@ -62,7 +63,7 @@ namespace Almacen.Vistas.Ventas
                 _subtotal += detalle.SubTotal;
             }
 
-            txtSubTotal.Text = _subtotal.ToString();
+            txtSubTotal.Text = _subtotal.ToString("#00.00");
         }
 
         private void CalcularDescuento()
@@ -70,17 +71,18 @@ namespace Almacen.Vistas.Ventas
             _descuento = 0;
             if (_cliente.Empleado) _descuento += 5;
             if (_cliente.Preferencial) _descuento += 5;
-            txtDescuento.Text = _descuento.ToString();
+            txtDescuento.Text = _descuento.ToString() + " " + "%";
         }
         private void CalcularTotal()
         {
+            _total = 0;
             _total = _subtotal - ((_subtotal * _descuento) / 100);
-            txtTotal.Text = _total.ToString();
+            txtTotal.Text = _total.ToString("#00.00");
         }
 
         private void CargarDetalleVenta()
         {
-            string query = $@"SELECT DetallesVentas.Cantidad, Productos.Descripcion, dbo.PrecioVenta(Productos.ProductoID) 'Precio Venta',  DetallesVentas.SubTotal
+            string query = $@"SELECT DetallesVentas.DetalleVentaID, DetallesVentas.Cantidad, Productos.Descripcion, dbo.PrecioVenta(Productos.ProductoID) 'Precio Venta',  DetallesVentas.SubTotal
                               FROM DetallesVentas
                               INNER JOIN Productos ON DetallesVentas.ProductoID = Productos.ProductoID
                               WHERE  VentaID = @VentaID";
@@ -90,14 +92,15 @@ namespace Almacen.Vistas.Ventas
 
             Conexion cn = new Conexion();
 
-            dgvDatos.DataSource = cn.Consultar(cmd);
+            DataTable dtDatos = cn.Consultar(cmd);
 
-            if (_detalleVenta.Count != 0) //FIXME moverlo a otro metodo que habilite y valide todo
-            {
-                CalcularSubTotal();
-                CalcularDescuento();
-                CalcularTotal();
-            }
+            dgvDatos.DataSource = dtDatos;
+
+            dgvDatos.Columns["DetalleVentaID"].Visible = false;
+
+           CalcularSubTotal();
+           CalcularDescuento();
+           CalcularTotal();
 
         }
 
@@ -131,18 +134,52 @@ namespace Almacen.Vistas.Ventas
         private void btnFinalizar_Click(object sender, EventArgs e)
         {
             //Detalle Final.
+            if (dgvDatos.Rows.Count == 0) return;
+
+
 
             _venta.Total = Convert.ToDecimal(txtTotal.Text);
             _venta.Modificar();
-            //Elegir Medio De Pago.
+            //Elegir Medio De Pago.            
+
+            //Mostrar Operación Exitosa.
+            string Detalle = $"Cliente: {_cliente.Denominacion}              Fecha y Hora: {DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss")}" + Environment.NewLine;
+            Detalle += Environment.NewLine;
+            Detalle += $"Cajero: {_usuario.NombreApellido}" + Environment.NewLine;
+            Detalle += Environment.NewLine;
+            foreach (DetalleVenta dv in _detalleVenta)
+            {
+                Detalle += $"Cantidad: {dv.Cantidad}  Producto: {dv.Producto.Descripcion.Substring(0, 10)}  Precio Venta: $ {dv.Producto.ValorVenta:00.00}  SubTotal: $ {dv.SubTotal:00.00}" + Environment.NewLine;
+                Detalle += Environment.NewLine;
+            }
+
+            Detalle += $"Total: $ {_venta.Total:00.00}";
+
+            frmMostrarMensajeDetalle.MostrarMensaje("Venta", "Venta exitosa", Detalle);
 
             //imprimir comprobante.
 
-            //Mostrar Operación Exitosa.
-            frmMostrarMensaje.MostrarMensaje("Venta", "Venta exitosa");
-
             this.DialogResult = DialogResult.OK;
             this.Close();
+        }
+
+        private void btnBorrar_Click(object sender, EventArgs e)
+        {
+            if (dgvDatos.CurrentRow == null) return;
+
+            DetalleVenta Clase = new DetalleVenta(Convert.ToInt32(dgvDatos.CurrentRow.Cells["DetalleVentaID"].Value), _venta.ID);
+
+             
+            if (MessageBox.Show("Desea eliminar el detalle " + Clase.ID + "?", "Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            {
+                Clase.Eliminar();
+
+                frmMostrarMensaje.MostrarMensaje($"{DetalleVenta.NombreClase}", "Baja de " + DetalleVenta.NombreClase + " exitosa.");
+            }
+
+            _detalleVenta.RemoveAll(x => x.ID == Clase.ID && x.Venta.ID == Clase.Venta.ID);            
+
+            CargarDetalleVenta();
         }
     }
 }

@@ -183,6 +183,7 @@
             btnBorrar.Size = new Size(35, 35);
             btnBorrar.TabIndex = 12;
             btnBorrar.UseVisualStyleBackColor = true;
+            btnBorrar.Click += btnBorrar_Click;
             // 
             // btnAgregar
             // 
