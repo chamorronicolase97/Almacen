@@ -89,6 +89,8 @@ namespace Almacen.Clases.Venta
             cmd.Parameters.Add("@SubTotal", SqlDbType.Decimal).Value = SubTotal;
 
             cn.Ejecutar(cmd);
+
+            ID = CalcularUltimoNumeroDetalleVenta();
         }
 
         public void Modificar()
@@ -120,6 +122,17 @@ namespace Almacen.Clases.Venta
 
             cn.Ejecutar(cmd);
 
+        }
+
+        private int CalcularUltimoNumeroDetalleVenta()
+        {
+            Conexion cn = new Conexion();
+            string q = $@"SELECT DetalleVentaID FROM dbo.DetallesVentas
+            WHERE VentaID ={Venta.ID} order by 1 desc";
+            SqlCommand cmd = new SqlCommand(q);
+            DataTable dt = cn.Consultar(cmd);
+            if (dt.Rows.Count > 0) { return Convert.ToInt32(dt.Rows[0]["DetalleVentaID"]); }
+            else { return 1; }
         }
        
     }
