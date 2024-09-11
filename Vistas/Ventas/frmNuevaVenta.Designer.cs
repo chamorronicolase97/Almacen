@@ -37,9 +37,13 @@
             label5 = new Label();
             txtOperador = new TextBox();
             label4 = new Label();
+            splitContainer3 = new SplitContainer();
             dgvDatos = new DataGridView();
+            splitContainer4 = new SplitContainer();
+            cmbCategoria = new ComboBox();
+            txtFiltro = new TextBox();
+            dgvProductos = new DataGridView();
             btnBorrar = new Button();
-            btnAgregar = new Button();
             txtDescuento = new TextBox();
             txtTotal = new TextBox();
             txtSubTotal = new TextBox();
@@ -55,7 +59,16 @@
             splitContainer2.Panel1.SuspendLayout();
             splitContainer2.Panel2.SuspendLayout();
             splitContainer2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainer3).BeginInit();
+            splitContainer3.Panel1.SuspendLayout();
+            splitContainer3.Panel2.SuspendLayout();
+            splitContainer3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvDatos).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)splitContainer4).BeginInit();
+            splitContainer4.Panel1.SuspendLayout();
+            splitContainer4.Panel2.SuspendLayout();
+            splitContainer4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvProductos).BeginInit();
             SuspendLayout();
             // 
             // splitContainer1
@@ -72,7 +85,6 @@
             // splitContainer1.Panel2
             // 
             splitContainer1.Panel2.Controls.Add(btnBorrar);
-            splitContainer1.Panel2.Controls.Add(btnAgregar);
             splitContainer1.Panel2.Controls.Add(txtDescuento);
             splitContainer1.Panel2.Controls.Add(txtTotal);
             splitContainer1.Panel2.Controls.Add(txtSubTotal);
@@ -80,7 +92,7 @@
             splitContainer1.Panel2.Controls.Add(label3);
             splitContainer1.Panel2.Controls.Add(label2);
             splitContainer1.Panel2.Controls.Add(label1);
-            splitContainer1.Size = new Size(893, 450);
+            splitContainer1.Size = new Size(1031, 450);
             splitContainer1.SplitterDistance = 352;
             splitContainer1.TabIndex = 0;
             // 
@@ -102,8 +114,8 @@
             // 
             // splitContainer2.Panel2
             // 
-            splitContainer2.Panel2.Controls.Add(dgvDatos);
-            splitContainer2.Size = new Size(893, 352);
+            splitContainer2.Panel2.Controls.Add(splitContainer3);
+            splitContainer2.Size = new Size(1031, 352);
             splitContainer2.SplitterDistance = 48;
             splitContainer2.TabIndex = 0;
             // 
@@ -161,6 +173,23 @@
             label4.TabIndex = 7;
             label4.Text = "Operador";
             // 
+            // splitContainer3
+            // 
+            splitContainer3.Dock = DockStyle.Fill;
+            splitContainer3.Location = new Point(0, 0);
+            splitContainer3.Name = "splitContainer3";
+            // 
+            // splitContainer3.Panel1
+            // 
+            splitContainer3.Panel1.Controls.Add(dgvDatos);
+            // 
+            // splitContainer3.Panel2
+            // 
+            splitContainer3.Panel2.Controls.Add(splitContainer4);
+            splitContainer3.Size = new Size(1031, 300);
+            splitContainer3.SplitterDistance = 484;
+            splitContainer3.TabIndex = 1;
+            // 
             // dgvDatos
             // 
             dgvDatos.AllowUserToAddRows = false;
@@ -171,8 +200,59 @@
             dgvDatos.Name = "dgvDatos";
             dgvDatos.ReadOnly = true;
             dgvDatos.RowTemplate.Height = 25;
-            dgvDatos.Size = new Size(893, 300);
-            dgvDatos.TabIndex = 0;
+            dgvDatos.Size = new Size(484, 300);
+            dgvDatos.TabIndex = 1;
+            // 
+            // splitContainer4
+            // 
+            splitContainer4.Dock = DockStyle.Fill;
+            splitContainer4.Location = new Point(0, 0);
+            splitContainer4.Name = "splitContainer4";
+            splitContainer4.Orientation = Orientation.Horizontal;
+            // 
+            // splitContainer4.Panel1
+            // 
+            splitContainer4.Panel1.Controls.Add(cmbCategoria);
+            splitContainer4.Panel1.Controls.Add(txtFiltro);
+            // 
+            // splitContainer4.Panel2
+            // 
+            splitContainer4.Panel2.Controls.Add(dgvProductos);
+            splitContainer4.Size = new Size(543, 300);
+            splitContainer4.SplitterDistance = 43;
+            splitContainer4.TabIndex = 0;
+            // 
+            // cmbCategoria
+            // 
+            cmbCategoria.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbCategoria.FormattingEnabled = true;
+            cmbCategoria.Location = new Point(356, 10);
+            cmbCategoria.Name = "cmbCategoria";
+            cmbCategoria.Size = new Size(175, 23);
+            cmbCategoria.TabIndex = 1;
+            cmbCategoria.SelectedIndexChanged += cmbCategoria_SelectedIndexChanged;
+            // 
+            // txtFiltro
+            // 
+            txtFiltro.Location = new Point(14, 10);
+            txtFiltro.Name = "txtFiltro";
+            txtFiltro.Size = new Size(246, 23);
+            txtFiltro.TabIndex = 0;
+            txtFiltro.TextChanged += txtFiltro_TextChanged;
+            // 
+            // dgvProductos
+            // 
+            dgvProductos.AllowUserToAddRows = false;
+            dgvProductos.AllowUserToDeleteRows = false;
+            dgvProductos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvProductos.Dock = DockStyle.Fill;
+            dgvProductos.Location = new Point(0, 0);
+            dgvProductos.Name = "dgvProductos";
+            dgvProductos.ReadOnly = true;
+            dgvProductos.RowTemplate.Height = 25;
+            dgvProductos.Size = new Size(543, 253);
+            dgvProductos.TabIndex = 2;
+            dgvProductos.CellDoubleClick += dgvProductos_CellDoubleClick;
             // 
             // btnBorrar
             // 
@@ -185,21 +265,11 @@
             btnBorrar.UseVisualStyleBackColor = true;
             btnBorrar.Click += btnBorrar_Click;
             // 
-            // btnAgregar
-            // 
-            btnAgregar.Image = (Image)resources.GetObject("btnAgregar.Image");
-            btnAgregar.Location = new Point(12, 7);
-            btnAgregar.Margin = new Padding(3, 2, 3, 2);
-            btnAgregar.Name = "btnAgregar";
-            btnAgregar.Size = new Size(35, 35);
-            btnAgregar.TabIndex = 10;
-            btnAgregar.UseVisualStyleBackColor = true;
-            btnAgregar.Click += btnAgregar_Click;
-            // 
             // txtDescuento
             // 
+            txtDescuento.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             txtDescuento.Enabled = false;
-            txtDescuento.Location = new Point(625, 37);
+            txtDescuento.Location = new Point(228, 38);
             txtDescuento.Name = "txtDescuento";
             txtDescuento.ReadOnly = true;
             txtDescuento.Size = new Size(163, 23);
@@ -207,8 +277,9 @@
             // 
             // txtTotal
             // 
+            txtTotal.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             txtTotal.Enabled = false;
-            txtTotal.Location = new Point(625, 66);
+            txtTotal.Location = new Point(228, 67);
             txtTotal.Name = "txtTotal";
             txtTotal.ReadOnly = true;
             txtTotal.Size = new Size(163, 23);
@@ -216,8 +287,9 @@
             // 
             // txtSubTotal
             // 
+            txtSubTotal.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             txtSubTotal.Enabled = false;
-            txtSubTotal.Location = new Point(625, 8);
+            txtSubTotal.Location = new Point(228, 9);
             txtSubTotal.Name = "txtSubTotal";
             txtSubTotal.ReadOnly = true;
             txtSubTotal.Size = new Size(163, 23);
@@ -225,9 +297,10 @@
             // 
             // btnFinalizar
             // 
+            btnFinalizar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnFinalizar.BackColor = SystemColors.ActiveCaption;
             btnFinalizar.Image = (Image)resources.GetObject("btnFinalizar.Image");
-            btnFinalizar.Location = new Point(808, 7);
+            btnFinalizar.Location = new Point(411, 8);
             btnFinalizar.Name = "btnFinalizar";
             btnFinalizar.Size = new Size(73, 77);
             btnFinalizar.TabIndex = 3;
@@ -236,8 +309,9 @@
             // 
             // label3
             // 
+            label3.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             label3.AutoSize = true;
-            label3.Location = new Point(558, 40);
+            label3.Location = new Point(161, 41);
             label3.Name = "label3";
             label3.Size = new Size(63, 15);
             label3.TabIndex = 2;
@@ -245,8 +319,9 @@
             // 
             // label2
             // 
+            label2.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             label2.AutoSize = true;
-            label2.Location = new Point(567, 11);
+            label2.Location = new Point(170, 12);
             label2.Name = "label2";
             label2.Size = new Size(52, 15);
             label2.TabIndex = 1;
@@ -254,8 +329,9 @@
             // 
             // label1
             // 
+            label1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             label1.AutoSize = true;
-            label1.Location = new Point(585, 70);
+            label1.Location = new Point(188, 71);
             label1.Name = "label1";
             label1.Size = new Size(32, 15);
             label1.TabIndex = 0;
@@ -265,7 +341,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(893, 450);
+            ClientSize = new Size(1031, 450);
             Controls.Add(splitContainer1);
             MaximizeBox = false;
             Name = "frmNuevaVenta";
@@ -281,7 +357,17 @@
             splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)splitContainer2).EndInit();
             splitContainer2.ResumeLayout(false);
+            splitContainer3.Panel1.ResumeLayout(false);
+            splitContainer3.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)splitContainer3).EndInit();
+            splitContainer3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvDatos).EndInit();
+            splitContainer4.Panel1.ResumeLayout(false);
+            splitContainer4.Panel1.PerformLayout();
+            splitContainer4.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)splitContainer4).EndInit();
+            splitContainer4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dgvProductos).EndInit();
             ResumeLayout(false);
         }
 
@@ -289,7 +375,6 @@
 
         private SplitContainer splitContainer1;
         private SplitContainer splitContainer2;
-        private DataGridView dgvDatos;
         private Button btnFinalizar;
         private Label label3;
         private Label label2;
@@ -302,8 +387,13 @@
         private TextBox txtDescuento;
         private TextBox txtTotal;
         private TextBox txtSubTotal;
-        private Button btnAgregar;
         private Button btnBorrar;
         protected DateTimePicker dateTimePicker1;
+        private SplitContainer splitContainer3;
+        private DataGridView dgvDatos;
+        private SplitContainer splitContainer4;
+        private ComboBox cmbCategoria;
+        private TextBox txtFiltro;
+        private DataGridView dgvProductos;
     }
 }
