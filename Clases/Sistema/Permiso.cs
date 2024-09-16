@@ -11,7 +11,7 @@ namespace Almacen.Clases.Administracion
 {
     public class Permiso
     {
-        private int _id;
+        private int _permisoID;
         private string _codPermiso;
         private string _descripcion;
 
@@ -21,7 +21,7 @@ namespace Almacen.Clases.Administracion
         #endregion
 
         #region Propiedades
-        public int ID { get { return _id; } set { _id = value; } }
+        public int PermisoID { get { return _permisoID; } set { _permisoID = value; } }
         public string CodPermiso { get { return _codPermiso; } set { _codPermiso = value; } }
         public string Descripcion { get { return _descripcion; } set { _descripcion = value; } }
         #endregion
@@ -29,95 +29,54 @@ namespace Almacen.Clases.Administracion
         public Permiso() { }
         public Permiso(int ID)
         {
-            this.ID = ID;
-            if (ID != 0) Abrir();
+            this.PermisoID = ID;
+            if (ID != 0) Consultar(ID);
         }
-        public Permiso(DataRow dr) => CargaDatos(dr);
-
-        public void Abrir()
-        {
-            Conexion cn = new Conexion();
-            string q = @$"Select * from {Tabla} where PermisoID = {ID}";
-
-            DataTable dt = cn.Consultar(q);
-            try
-            {
-
-                if (dt.Rows.Count > 0)
-                {
-                    CargaDatos(dt.Rows[0]);
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"Error al abrir el objeto {NombreClase}. Clave {ID}", ex);
-            }
-
-        }
-
-
-
-        private void CargaDatos(DataRow dr)
-        {
-            ID = Convert.ToInt32(dr["PermisoID"]);
-            _codPermiso = Convert.ToString(dr["CodPermiso"]);
-            _descripcion = Convert.ToString(dr["Descripcion"]);
-        }
-
 
         public void Insertar()
         {
-            Conexion cn = new Conexion();
-            string q = $@"INSERT INTO {Tabla} (CodPermiso, Descripcion)
-                        Values(@CodPermiso, @Descripcion);";
-            SqlCommand cmd = new SqlCommand(q);
-            cmd.Parameters.Add("@CodPermiso", SqlDbType.VarChar, 50).Value = CodPermiso;
-            cmd.Parameters.Add("@Descripcion", SqlDbType.VarChar, 50).Value = Descripcion;
-
-            cn.Ejecutar(cmd);
-
+            using (var context = new AlmacenContext())
+            {
+                context.Permisos.Add(this);
+                context.SaveChanges();
+            }
         }
 
         public void Modificar()
         {
-            Conexion cn = new Conexion();
-            string q = $@"UPDATE {Tabla} SET CodPermiso = @CodPermiso, 
-                                             Descripcion = @Descripcion
-                                             WHERE PermisoID = @ID;";
-            SqlCommand cmd = new SqlCommand(q);
-            cmd.Parameters.Add("@CodPermiso", SqlDbType.VarChar, 50).Value = CodPermiso;
-            cmd.Parameters.Add("@Descripcion", SqlDbType.VarChar).Value = Descripcion;
-            cmd.Parameters.Add("@ID", SqlDbType.Int).Value = ID;
-
-            cn.Ejecutar(cmd);
-
+            Permiso permiso = new Permiso();
+            using (var context = new AlmacenContext())
+            {
+                permiso = context.Permisos.Find(this.PermisoID);
+                permiso.CodPermiso = this.CodPermiso;
+                permiso.Descripcion = this.Descripcion;
+                context.SaveChanges();
+            }
         }
 
         public void Eliminar()
         {
-            Conexion cn = new Conexion();
-            string q = $@"DELETE FROM {Tabla} WHERE PermisoID = @ID;";
-            SqlCommand cmd = new SqlCommand(q);
-            cmd.Parameters.Add("@ID", SqlDbType.Int).Value = ID;
-
-            cn.Ejecutar(cmd);
-
+            using (var context = new AlmacenContext())
+            {
+                context.Permisos.Remove(this);
+                context.SaveChanges();
+            }
         }
 
-        public static DataTable Listar()
+        public static DataTable ListarGrilla()
         {
             Conexion cn = new Conexion();
             string q = @$"Select * from {Tabla}";
             return cn.Consultar(q);
         }
 
-        public static List<Permiso> ListarPermisos()
+        public static List<Grupo> Listar()
         {
-            DataTable dt = Listar();
-            List<Permiso> lista = new List<Permiso>();
-            foreach (DataRow dr in dt.Rows)
+
+            List<Grupo> lista = new List<Grupo>();
+            using (var context = new AlmacenContext())
             {
-                lista.Add(new Permiso(dr));
+                lista = context.Grupos.ToList();
             }
 
             return lista;
@@ -147,9 +106,29 @@ namespace Almacen.Clases.Administracion
 
             if (dt.Rows.Count > 0)
             {
-                permiso = new Permiso(dt.Rows[1]);
+                permiso = new Permiso(Convert.ToInt32(dt.Rows[1]));
             }
                 return permiso;
+        }
+
+        public Permiso Consultar(int ID)
+        {
+            Permiso permiso;
+            using (var context = new AlmacenContext())
+            {
+                permiso= context.Permisos.Find(ID);
+            }
+            if (permiso != null)
+            {
+                _permisoID = permiso.PermisoID;
+                _descripcion = permiso.Descripcion;
+                _codPermiso = permiso.CodPermiso;
+                return permiso;
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }

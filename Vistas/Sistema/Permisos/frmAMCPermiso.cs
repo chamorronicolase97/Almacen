@@ -29,7 +29,7 @@ namespace Almacen.Vistas
 
             if (Modificacion == true)
             {
-                txtID.Text = Clase.ID.ToString();
+                txtID.Text = Clase.PermisoID.ToString();
                 txtCodPermiso.Text = Clase.CodPermiso;
                 txtDescripcion.Text = Clase.Descripcion;
                 btnAsignar.Enabled = true;

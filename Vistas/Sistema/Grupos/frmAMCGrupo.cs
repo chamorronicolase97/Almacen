@@ -29,7 +29,7 @@ namespace Almacen.Vistas
         {
             if (Modificacion == true)
             {
-                txtID.Text = Clase.ID.ToString();
+                txtID.Text = Clase.GrupoID.ToString();
                 txtNombre.Text = Clase.Descripcion;
             }
             else

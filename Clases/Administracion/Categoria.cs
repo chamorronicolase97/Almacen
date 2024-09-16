@@ -34,8 +34,6 @@ namespace Almacen.Clases.Administracion
             if (ID != 0) Consultar(ID);
         }
         
-
-
         public void Insertar()
         {
             using (var context = new AlmacenContext())
@@ -66,10 +64,11 @@ namespace Almacen.Clases.Administracion
             }
         }
 
-        public static DataTable Listar()
+        public static DataTable ListarGrilla()
         {
             Conexion cn = new Conexion();
-            string q = @$"Select * from {Tabla}";
+            string q = @$"select cat.CategoriaID, cat.Descripcion, cat.Utilidad 
+                            from {Tabla} cat";
             return cn.Consultar(q);
         }
 

@@ -126,17 +126,28 @@ namespace Almacen.Clases.Administracion
 
         }
 
-        public static DataTable Listar()
+        public static DataTable ListarGrilla()
         {
             Conexion cn = new Conexion();
-            string q = @$"Select * from {Tabla}";
+            string q = @$"select prod.ProductoID, prod.Descripcion, prod.Costo, prod.CodigoDeBarra, cat.CategoriaID, prod.Descripcion as Categoria, prod.ProveedorID, prov.RazonSocial as Proveedor
+                            from {Tabla} prod
+                            left join dbo.Categorias cat on prod.CategoriaID = cat.CategoriaID
+                            left join dbo.Proveedores prov on prod.ProveedorID = prov.ProveedorID
+                            where 1=1";
+
+            //if()
+
             return cn.Consultar(q);
         }
 
         public static DataTable ListarPorProveedor(Proveedor Proveedor)
         {
             Conexion cn = new Conexion();
-            string q = @$"Select * from {Tabla} WHERE ProveedorID = @ProveedorID";
+            string q = @$"select prod.ProductoID, prod.Descripcion, prod.Costo, prod.CodigoDeBarra, cat.CategoriaID, cat.Descripcion as Categoria, prod.ProveedorID, prov.RazonSocial as Proveedor
+                            from {Tabla} prod
+                            left join dbo.Categorias cat on prod.CategoriaID = cat.CategoriaID
+                            left join dbo.Proveedores prov on prod.ProveedorID = prov.ProveedorID
+                            where prod.ProveedorID = @ProveedorID";
             SqlCommand cmd = new SqlCommand(q);
             cmd.Parameters.Add("@ProveedorID", SqlDbType.Int).Value = Proveedor.ID;
 

@@ -16,10 +16,13 @@ namespace Almacen.Vistas
     public partial class frmABMSProveedores : Form
     {
         private Proveedor _objetoSeleccionado;
+        private BindingSource bindingSource;
 
         public frmABMSProveedores()
         {
             InitializeComponent();
+
+            bindingSource = new BindingSource();
 
         }
         public Proveedor ObjetoSeleccionado { get { return _objetoSeleccionado; } set { _objetoSeleccionado = value; } }
@@ -27,12 +30,20 @@ namespace Almacen.Vistas
         private void frmABMSProveedores_Load(object sender, EventArgs e)
 
         {
-            dgvDatos.DataSource = Proveedor.Listar();
+            CargarGrilla();
         }
 
         private void CargarGrilla()
         {
-            dgvDatos.DataSource = Proveedor.Listar();
+            bindingSource.DataSource = Proveedor.ListarGrilla();
+            dgvDatos.DataSource = bindingSource;
+
+            dgvDatos.Columns["ProveedorID"].HeaderText = "ID";
+            dgvDatos.Columns["RazonSocial"].HeaderText = "Razón Social";
+            dgvDatos.Columns["Direccion"].HeaderText = "Dirección";
+            dgvDatos.Columns["Telefono"].HeaderText = "Teléfono";
+
+            dgvDatos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
         }
 
         private void btnCrear_Click(object sender, EventArgs e)
@@ -83,6 +94,29 @@ namespace Almacen.Vistas
 
             this.DialogResult = DialogResult.OK;
             this.Close();
+        }
+
+        private void AplicarFiltroRapido()
+        {
+            string str = "";
+            string filtro = txtFiltro.Text.Trim().ToLower();
+            if (string.IsNullOrEmpty(filtro))
+            {
+                bindingSource.RemoveFilter();
+            }
+            else
+            {
+                str += $@"RazonSocial LIKE '%{filtro}%' OR Direccion LIKE '%{filtro}%'
+                                        OR Mail LIKE '%{filtro}%' and ";
+            }
+
+            str += "1=1";
+            bindingSource.Filter = str;
+        }
+
+        private void txtFiltro_TextChanged(object sender, EventArgs e)
+        {
+            AplicarFiltroRapido();
         }
     }
 }

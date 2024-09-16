@@ -50,5 +50,31 @@ namespace Almacen.Clases.Sistema
             // Not a number
             return null;
         }
+
+        public static string AsegurarFiltroRapido(string pFiltroRapido)
+        {
+            StringBuilder sb = new StringBuilder(pFiltroRapido.Length);
+            for (int i = 0; i < pFiltroRapido.Length; i++)
+            {
+                char c = pFiltroRapido[i];
+                switch (c)
+                {
+                    case ']':
+                    case '[':
+                    case '%':
+                    case '*':
+                        sb.Append("[").Append(c).Append("]");
+                        break;
+                    case '\'':
+                        sb.Append("''");
+                        break;
+                    default:
+                        sb.Append(c);
+                        break;
+                }
+            }
+
+            return sb.ToString();
+        }
     }
 }

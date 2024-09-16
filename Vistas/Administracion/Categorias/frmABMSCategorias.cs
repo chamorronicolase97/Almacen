@@ -1,5 +1,6 @@
 ﻿using Almacen.Clases;
 using Almacen.Clases.Administracion;
+using Almacen.Clases.Sistema;
 using Sistema;
 using System;
 using System.Collections.Generic;
@@ -16,11 +17,13 @@ namespace Almacen.Vistas
     public partial class frmABMSCategorias : Form
     {
         private Categoria _objetoSeleccionado;
+        private BindingSource bindingSource;
 
         public frmABMSCategorias()
         {
             InitializeComponent();
 
+            bindingSource = new BindingSource();
         }
 
         public Categoria ObjetoSeleccionado { get { return _objetoSeleccionado; } set { _objetoSeleccionado = value; } }
@@ -32,7 +35,13 @@ namespace Almacen.Vistas
 
         private void CargarGrilla()
         {
-            dgvDatos.DataSource = Categoria.ListarCategorias();
+            bindingSource.DataSource = Categoria.ListarGrilla();
+            dgvDatos.DataSource = bindingSource;
+
+            dgvDatos.Columns["CategoriaID"].HeaderText = "ID";
+            dgvDatos.Columns["Descripcion"].HeaderText = "Descripción";
+
+            dgvDatos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
         }
 
 
@@ -90,6 +99,19 @@ namespace Almacen.Vistas
 
             this.DialogResult = DialogResult.OK;
             this.Close();
+        }
+
+        private void txtFiltro_TextChanged(object sender, EventArgs e)
+        {
+            string filtro = txtFiltro.Text.Trim().ToLower();
+            if (string.IsNullOrEmpty(filtro))
+            {
+                bindingSource.RemoveFilter();
+            }
+            else
+            {
+                bindingSource.Filter = $"Descripcion LIKE '%{filtro}%' OR Convert(Utilidad, 'System.String') LIKE '%{filtro}%'";
+            }
         }
     }
 }
