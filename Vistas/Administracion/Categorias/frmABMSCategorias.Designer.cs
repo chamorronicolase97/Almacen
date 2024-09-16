@@ -59,7 +59,7 @@
             dgvDatos.ReadOnly = true;
             dgvDatos.RowHeadersWidth = 51;
             dgvDatos.RowTemplate.Height = 29;
-            dgvDatos.Size = new Size(579, 293);
+            dgvDatos.Size = new Size(579, 295);
             dgvDatos.TabIndex = 0;
             // 
             // splitContainer1

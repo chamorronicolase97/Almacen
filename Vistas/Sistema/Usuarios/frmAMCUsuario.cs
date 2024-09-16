@@ -29,7 +29,7 @@ namespace Almacen.Vistas
         {
             if (Modificacion == true)
             {
-                txtID.Text = Clase.ID.ToString();
+                txtID.Text = Clase.UsuarioID.ToString();
                 txtNomApe.Text = Clase.NombreApellido;
                 txtUsuario.Text = Clase.CodUsuario;
                 txtContraseña.Text = Clase.Contraseña;

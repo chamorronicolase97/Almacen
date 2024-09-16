@@ -32,6 +32,11 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmABMSProductos));
             dgvDatos = new DataGridView();
             splitContainer1 = new SplitContainer();
+            label3 = new Label();
+            cmbProveedor = new ComboBox();
+            btnActualizarFiltro = new Button();
+            label2 = new Label();
+            cmbCategoria = new ComboBox();
             txtFiltro = new TextBox();
             pnlBotones = new Panel();
             btnSeleccionar = new Button();
@@ -60,7 +65,7 @@
             dgvDatos.ReadOnly = true;
             dgvDatos.RowHeadersWidth = 51;
             dgvDatos.RowTemplate.Height = 29;
-            dgvDatos.Size = new Size(656, 294);
+            dgvDatos.Size = new Size(656, 291);
             dgvDatos.TabIndex = 0;
             // 
             // splitContainer1
@@ -73,6 +78,11 @@
             // 
             // splitContainer1.Panel1
             // 
+            splitContainer1.Panel1.Controls.Add(label3);
+            splitContainer1.Panel1.Controls.Add(cmbProveedor);
+            splitContainer1.Panel1.Controls.Add(btnActualizarFiltro);
+            splitContainer1.Panel1.Controls.Add(label2);
+            splitContainer1.Panel1.Controls.Add(cmbCategoria);
             splitContainer1.Panel1.Controls.Add(txtFiltro);
             // 
             // splitContainer1.Panel2
@@ -83,6 +93,54 @@
             splitContainer1.SplitterDistance = 62;
             splitContainer1.SplitterWidth = 3;
             splitContainer1.TabIndex = 1;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(388, 27);
+            label3.Name = "label3";
+            label3.Size = new Size(61, 15);
+            label3.TabIndex = 12;
+            label3.Text = "Proveedor";
+            // 
+            // cmbProveedor
+            // 
+            cmbProveedor.FormattingEnabled = true;
+            cmbProveedor.Location = new Point(452, 24);
+            cmbProveedor.Name = "cmbProveedor";
+            cmbProveedor.Size = new Size(121, 23);
+            cmbProveedor.TabIndex = 11;
+            cmbProveedor.SelectedIndexChanged += cmbProveedor_SelectedIndexChanged;
+            // 
+            // btnActualizarFiltro
+            // 
+            btnActualizarFiltro.Image = (Image)resources.GetObject("btnActualizarFiltro.Image");
+            btnActualizarFiltro.Location = new Point(665, 12);
+            btnActualizarFiltro.Margin = new Padding(3, 2, 3, 2);
+            btnActualizarFiltro.Name = "btnActualizarFiltro";
+            btnActualizarFiltro.Size = new Size(35, 35);
+            btnActualizarFiltro.TabIndex = 10;
+            toolTip1.SetToolTip(btnActualizarFiltro, "Nuevo");
+            btnActualizarFiltro.UseVisualStyleBackColor = true;
+            btnActualizarFiltro.Click += btnActualizarFiltro_Click;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(195, 27);
+            label2.Name = "label2";
+            label2.Size = new Size(58, 15);
+            label2.TabIndex = 8;
+            label2.Text = "Categoría";
+            // 
+            // cmbCategoria
+            // 
+            cmbCategoria.FormattingEnabled = true;
+            cmbCategoria.Location = new Point(259, 24);
+            cmbCategoria.Name = "cmbCategoria";
+            cmbCategoria.Size = new Size(121, 23);
+            cmbCategoria.TabIndex = 7;
+            cmbCategoria.SelectedIndexChanged += cmbCategoria_SelectedIndexChanged;
             // 
             // txtFiltro
             // 
@@ -188,5 +246,10 @@
         private Panel pnlBotones;
         private Button btnSeleccionar;
         private ToolTip toolTip1;
+        private Label label2;
+        private ComboBox cmbCategoria;
+        private Button btnActualizarFiltro;
+        private Label label3;
+        private ComboBox cmbProveedor;
     }
 }

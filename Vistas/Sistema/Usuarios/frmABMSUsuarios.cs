@@ -30,7 +30,7 @@ namespace Almacen.Vistas
 
         private void CargarGrilla()
         {
-            dgvDatos.DataSource = Usuario.Listar();
+            dgvDatos.DataSource = Usuario.ListarGrilla();
         }
 
         private void btnCrear_Click(object sender, EventArgs e)

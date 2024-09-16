@@ -36,7 +36,7 @@ namespace Almacen.Clases.Administracion
         public void Abrir()
         {
             Conexion cn = new Conexion();
-            string q = @$"Select * from {Tabla} where GrupoID = {Grupo.ID} and CodPermiso = {Permiso.CodPermiso} ";
+            string q = @$"Select * from {Tabla} where GrupoID = {Grupo.GrupoID} and CodPermiso = {Permiso.CodPermiso} ";
 
             DataTable dt = cn.Consultar(q);
             try
@@ -49,7 +49,7 @@ namespace Almacen.Clases.Administracion
             }
             catch (Exception ex)
             {
-                throw new Exception($"Error al abrir el objeto {NombreClase}. Clave {Grupo.ID} {Permiso.CodPermiso}", ex);
+                throw new Exception($"Error al abrir el objeto {NombreClase}. Clave {Grupo.GrupoID} {Permiso.CodPermiso}", ex);
             }
 
         }
@@ -72,7 +72,7 @@ namespace Almacen.Clases.Administracion
             string q = $@"INSERT INTO {Tabla} (GrupoID, CodPermiso)
                         Values(@GrupoID, @CodPermiso);";
             SqlCommand cmd = new SqlCommand(q);
-            cmd.Parameters.Add("@GrupoID", SqlDbType.Int).Value = Grupo.ID;
+            cmd.Parameters.Add("@GrupoID", SqlDbType.Int).Value = Grupo.GrupoID;
             cmd.Parameters.Add("@CodPermiso", SqlDbType.VarChar).Value = Permiso.CodPermiso;
 
             cn.Ejecutar(cmd);
@@ -85,7 +85,7 @@ namespace Almacen.Clases.Administracion
             Conexion cn = new Conexion();
             string q = $@"DELETE FROM {Tabla} WHERE GrupoID = @GrupoID and CodPermiso = @CodPermiso ;";
             SqlCommand cmd = new SqlCommand(q);
-            cmd.Parameters.Add("@GrupoID", SqlDbType.Int).Value = Grupo.ID;
+            cmd.Parameters.Add("@GrupoID", SqlDbType.Int).Value = Grupo.GrupoID;
             cmd.Parameters.Add("@CodPermiso", SqlDbType.Int).Value = Permiso.CodPermiso;
 
             cn.Ejecutar(cmd);

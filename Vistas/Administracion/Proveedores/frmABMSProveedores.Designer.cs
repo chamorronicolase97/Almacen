@@ -59,7 +59,7 @@
             dgvDatos.ReadOnly = true;
             dgvDatos.RowHeadersWidth = 51;
             dgvDatos.RowTemplate.Height = 29;
-            dgvDatos.Size = new Size(615, 290);
+            dgvDatos.Size = new Size(615, 289);
             dgvDatos.TabIndex = 0;
             // 
             // splitContainer1
@@ -90,6 +90,8 @@
             txtFiltro.Name = "txtFiltro";
             txtFiltro.Size = new Size(165, 23);
             txtFiltro.TabIndex = 3;
+            toolTip1.SetToolTip(txtFiltro, "Aplica a Razón Social, Direccion y Mail");
+            txtFiltro.TextChanged += txtFiltro_TextChanged;
             // 
             // pnlBotones
             // 

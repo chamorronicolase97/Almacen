@@ -35,8 +35,13 @@ namespace Almacen.Vistas
 
         private void CargarGrilla()
         {
-            bindingSource.DataSource = Categoria.Listar();
+            bindingSource.DataSource = Categoria.ListarGrilla();
             dgvDatos.DataSource = bindingSource;
+
+            dgvDatos.Columns["CategoriaID"].HeaderText = "ID";
+            dgvDatos.Columns["Descripcion"].HeaderText = "Descripción";
+
+            dgvDatos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
         }
 
 

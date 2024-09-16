@@ -13,7 +13,7 @@ namespace Almacen.Clases.Administracion
 {
     public class Usuario
     {
-        private int _id;
+        private int _usuarioID;
         private string _nombreApellido;
         private string _codUsuario;
         private string  _contraseña;
@@ -25,7 +25,7 @@ namespace Almacen.Clases.Administracion
         #endregion
 
         #region Propiedades
-        public int ID { get { return _id; } set { _id = value; } }
+        public int UsuarioID { get { return _usuarioID; } set { _usuarioID = value; } }
         public string NombreApellido { get { return _nombreApellido; } set { _nombreApellido = value; } }
         public string CodUsuario { get { return _codUsuario; } set { _codUsuario = value; } }
         public string Contraseña { get { return _contraseña; } set { _contraseña = value; } }
@@ -35,104 +35,56 @@ namespace Almacen.Clases.Administracion
         public Usuario() { }
         public Usuario(int ID)
         {
-            this.ID = ID;
-            if (ID != 0) Abrir();
+            this.UsuarioID = ID;
+            if (ID != 0) Consultar(ID);
         }
-        public Usuario(DataRow dr) => CargaDatos(dr);
-
-        public void Abrir()
-        {
-            Conexion cn = new Conexion();
-            string q = @$"Select * from {Tabla} where UsuarioID = {ID}";
-
-            DataTable dt = cn.Consultar(q);
-            try
-            {
-
-                if (dt.Rows.Count > 0)
-                {
-                    CargaDatos(dt.Rows[0]);
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"Error al abrir el objeto {NombreClase}. Clave {ID}", ex);
-            }
-
-        }
-
-
-
-        private void CargaDatos(DataRow dr)
-        {
-            ID = Convert.ToInt32(dr["UsuarioID"]);
-            _nombreApellido = Convert.ToString(dr["NombreApellido"]);
-            _codUsuario = Convert.ToString(dr["CodUsuario"]);
-            _contraseña = ""; //no traigo la contraseña
-
-            if (dr["GrupoID"] != DBNull.Value) _grupo = new Grupo(Convert.ToInt32(dr["GrupoID"]));
-        }
-
 
         public void Insertar()
         {
-            Conexion cn = new Conexion();
-            string q = $@"INSERT INTO {Tabla} (NombreApellido, CodUsuario, Contraseña, GrupoID)
-                        Values(@NombreApellido, @CodUsuario, @Contraseña, @GrupoID);";
-            SqlCommand cmd = new SqlCommand(q);
-            cmd.Parameters.AddWithValue("@NombreApellido", NombreApellido);
-            cmd.Parameters.AddWithValue("@CodUsuario", CodUsuario);
-            cmd.Parameters.Add("@Contraseña", SqlDbType.VarChar).Value = Encrypt.HashString(Contraseña);
-            cmd.Parameters.AddWithValue("@GrupoID", Grupo.ID);
-
-            cn.Ejecutar(cmd);
-
+            using (var context = new AlmacenContext())
+            {
+                context.Usuarios.Add(this);
+                context.SaveChanges();
+            }
         }
 
         public void Modificar()
         {
-            Conexion cn = new Conexion();
-            string q = $@"UPDATE {Tabla} SET NombreApellido = @NombreApellido, 
-                                             CodUsuario = @CodUsuario,
-                                             Contraseña = @Contraseña,
-                                             GrupoID = @GrupoID
-                                             WHERE UsuarioID = @ID;";
-            SqlCommand cmd = new SqlCommand(q);
-            cmd.Parameters.Add("@NombreApellido", SqlDbType.VarChar).Value = NombreApellido;
-            cmd.Parameters.Add("@CodUsuario", SqlDbType.VarChar).Value = CodUsuario;
-            cmd.Parameters.Add("@Contraseña", SqlDbType.VarChar).Value = Encrypt.HashString(Contraseña) ;
-            cmd.Parameters.Add("@GrupoID", SqlDbType.Int).Value = Grupo.ID;
-            cmd.Parameters.Add("@ID", SqlDbType.Int).Value = ID;
-
-            cn.Ejecutar(cmd);
-
+            Usuario usuario = new Usuario();
+            using (var context = new AlmacenContext())
+            {
+                usuario = context.Usuarios.Find(this.UsuarioID);
+                usuario.NombreApellido = this.NombreApellido;
+                usuario.CodUsuario = this.CodUsuario;
+                usuario.Contraseña = this.Contraseña;
+                usuario.Grupo = this.Grupo;
+                context.SaveChanges();
+            }
         }
 
         public void Eliminar()
         {
-            Conexion cn = new Conexion();
-            string q = $@"DELETE FROM {Tabla} WHERE UsuarioID = @ID;";
-            SqlCommand cmd = new SqlCommand(q);
-            cmd.Parameters.Add("@ID", SqlDbType.Int).Value = ID;
-
-            cn.Ejecutar(cmd);
-
+            using (var context = new AlmacenContext())
+            {
+                context.Usuarios.Remove(this);
+                context.SaveChanges();
+            }
         }
 
-        public static DataTable Listar()
+        public static DataTable ListarGrilla()
         {
             Conexion cn = new Conexion();
             string q = @$"Select * from {Tabla}";
             return cn.Consultar(q);
         }
 
-        public static List<Usuario> ListarUsuarios()
+        public static List<Usuario> Listar()
         {
-            DataTable dt = Listar();
+
             List<Usuario> lista = new List<Usuario>();
-            foreach (DataRow dr in dt.Rows)
+            using (var context = new AlmacenContext())
             {
-                lista.Add(new Usuario(dr));
+                lista = context.Usuarios.ToList();
             }
 
             return lista;
@@ -159,7 +111,7 @@ namespace Almacen.Clases.Administracion
             }
             if (dt.Rows.Count > 0)
             {
-                return new Usuario((dt.Rows[0]));
+                return new Usuario(Convert.ToInt32(dt.Rows[0]));
             }
             else
             {
@@ -190,13 +142,35 @@ namespace Almacen.Clases.Administracion
             }
             if (dt.Rows.Count > 0)
             {
-                return new Usuario((dt.Rows[0]));
+                return new Usuario(Convert.ToInt32(dt.Rows[0]["UsuarioID"]));
             }
             else
             {
                 return null;
             }
 
+        }
+
+        public Usuario Consultar(int ID)
+        {
+            Usuario usuario;
+            using (var context = new AlmacenContext())
+            {
+                usuario = context.Usuarios.Find(ID);
+            }
+            if (usuario != null)
+            {
+                _usuarioID = usuario.UsuarioID;
+                _nombreApellido = usuario.NombreApellido;
+                _codUsuario = usuario.CodUsuario;
+                _contraseña = usuario.Contraseña;
+                _grupo = usuario.Grupo;
+                return usuario;
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }

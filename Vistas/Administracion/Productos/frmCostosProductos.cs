@@ -43,6 +43,8 @@ namespace Almacen.Vistas
             SqlCommand cmd = new SqlCommand(q);
             Conexion cn = new Conexion();
             dgvDatos.DataSource = cn.Consultar(cmd);
+            dgvDatos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+
         }
 
         private void btnActualizarCostos_Click(object sender, EventArgs e)

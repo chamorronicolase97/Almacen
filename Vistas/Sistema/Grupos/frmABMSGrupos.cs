@@ -25,12 +25,12 @@ namespace Almacen.Vistas
         private void frmABMSGrupos_Load(object sender, EventArgs e)
 
         {
-            dgvDatos.DataSource = Grupo.Listar();
+            dgvDatos.DataSource = Grupo.ListarGrilla();
         }
 
         private void CargarGrilla()
         {
-            dgvDatos.DataSource = Grupo.Listar();
+            dgvDatos.DataSource = Grupo.ListarGrilla();
         }
 
         private void btnCrear_Click(object sender, EventArgs e)

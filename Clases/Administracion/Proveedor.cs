@@ -124,11 +124,23 @@ namespace Almacen.Clases.Administracion
         }
 
 
-        public static DataTable Listar()
+        public static DataTable ListarGrilla()
         {
             Conexion cn = new Conexion();
             string q = @$"Select * from {Tabla}";
             return cn.Consultar(q);
+        }
+
+        public static List<Proveedor> Listar()
+        {
+            List<Proveedor> proveedores = new List<Proveedor>();
+            DataTable provedores = ListarGrilla();
+            foreach (DataRow dr in provedores.Rows)
+            {
+                Proveedor proveedor = new Proveedor(Convert.ToInt32(dr["ProveedorID"]));
+                proveedores.Add(proveedor);
+            }
+            return proveedores;
         }
     }
 }
