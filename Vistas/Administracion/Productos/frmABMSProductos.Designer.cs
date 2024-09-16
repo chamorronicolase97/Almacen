@@ -60,8 +60,7 @@
             dgvDatos.ReadOnly = true;
             dgvDatos.RowHeadersWidth = 51;
             dgvDatos.RowTemplate.Height = 29;
-            dgvDatos.ShowEditingIcon = false;
-            dgvDatos.Size = new Size(656, 293);
+            dgvDatos.Size = new Size(656, 294);
             dgvDatos.TabIndex = 0;
             // 
             // splitContainer1
@@ -92,6 +91,8 @@
             txtFiltro.Name = "txtFiltro";
             txtFiltro.Size = new Size(165, 23);
             txtFiltro.TabIndex = 3;
+            toolTip1.SetToolTip(txtFiltro, "Aplica a Descripcion, Codigo de Barra, Costo, Proveedor y Categoria ");
+            txtFiltro.TextChanged += txtFiltro_TextChanged;
             // 
             // pnlBotones
             // 

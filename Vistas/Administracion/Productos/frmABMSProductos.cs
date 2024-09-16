@@ -17,6 +17,7 @@ namespace Almacen.Vistas
     {
         private Producto _objetoSeleccionado;
         private Proveedor _proveedor;
+        private BindingSource bindingSource;
 
         public Proveedor FiltroProveedor { get { return _proveedor; } set { _proveedor = value; } }
 
@@ -24,6 +25,7 @@ namespace Almacen.Vistas
         {
             InitializeComponent();
 
+            bindingSource = new BindingSource();
         }
 
         public Producto ObjetoSeleccionado { get { return _objetoSeleccionado; } set { _objetoSeleccionado = value; } }
@@ -36,8 +38,9 @@ namespace Almacen.Vistas
 
         private void CargarGrilla()
         {
-            if (FiltroProveedor != null) { dgvDatos.DataSource = Producto.ListarPorProveedor(FiltroProveedor); }
-            else { dgvDatos.DataSource = Producto.Listar(); }
+            if (FiltroProveedor != null) { bindingSource.DataSource = Producto.ListarPorProveedor(FiltroProveedor); }
+            else { bindingSource.DataSource = Producto.Listar(); }
+            dgvDatos.DataSource = bindingSource;
         }
 
         private void btnCrear_Click(object sender, EventArgs e)
@@ -89,6 +92,20 @@ namespace Almacen.Vistas
 
             this.DialogResult = DialogResult.OK;
             this.Close();
+        }
+
+        private void txtFiltro_TextChanged(object sender, EventArgs e)
+        {
+            string filtro = txtFiltro.Text.Trim().ToLower();
+            if (string.IsNullOrEmpty(filtro))
+            {
+                bindingSource.RemoveFilter();
+            }
+            else
+            {
+                bindingSource.Filter = $@"Descripcion LIKE '%{filtro}%' OR Convert(Costo, 'System.String') LIKE '%{filtro}%'
+                                        OR CodigoDeBarra LIKE '%{filtro}%'";
+            }
         }
     }
 }
