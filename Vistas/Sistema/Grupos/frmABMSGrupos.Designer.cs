@@ -34,6 +34,7 @@
             splitContainer1 = new SplitContainer();
             txtFiltro = new TextBox();
             pnlBotones = new Panel();
+            btnConsultar = new Button();
             btnSeleccionar = new Button();
             btnBorrar = new Button();
             btnCrear = new Button();
@@ -60,7 +61,7 @@
             dgvDatos.ReadOnly = true;
             dgvDatos.RowHeadersWidth = 51;
             dgvDatos.RowTemplate.Height = 29;
-            dgvDatos.Size = new Size(566, 290);
+            dgvDatos.Size = new Size(566, 289);
             dgvDatos.TabIndex = 0;
             // 
             // splitContainer1
@@ -91,24 +92,38 @@
             txtFiltro.Name = "txtFiltro";
             txtFiltro.Size = new Size(165, 23);
             txtFiltro.TabIndex = 3;
+            txtFiltro.TextChanged += txtFiltro_TextChanged;
             // 
             // pnlBotones
             // 
             pnlBotones.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            pnlBotones.Controls.Add(btnConsultar);
             pnlBotones.Controls.Add(btnSeleccionar);
             pnlBotones.Controls.Add(btnBorrar);
             pnlBotones.Controls.Add(btnCrear);
             pnlBotones.Controls.Add(btnModificar);
             pnlBotones.Location = new Point(572, 4);
             pnlBotones.Name = "pnlBotones";
-            pnlBotones.Size = new Size(40, 166);
+            pnlBotones.Size = new Size(40, 200);
             pnlBotones.TabIndex = 13;
+            // 
+            // btnConsultar
+            // 
+            btnConsultar.Image = (Image)resources.GetObject("btnConsultar.Image");
+            btnConsultar.Location = new Point(3, -1);
+            btnConsultar.Margin = new Padding(3, 2, 3, 2);
+            btnConsultar.Name = "btnConsultar";
+            btnConsultar.Size = new Size(35, 35);
+            btnConsultar.TabIndex = 16;
+            toolTip1.SetToolTip(btnConsultar, "Nuevo");
+            btnConsultar.UseVisualStyleBackColor = true;
+            btnConsultar.Click += btnConsultar_Click;
             // 
             // btnSeleccionar
             // 
             btnSeleccionar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnSeleccionar.Image = (Image)resources.GetObject("btnSeleccionar.Image");
-            btnSeleccionar.Location = new Point(3, 120);
+            btnSeleccionar.Location = new Point(3, 155);
             btnSeleccionar.Margin = new Padding(3, 2, 3, 2);
             btnSeleccionar.Name = "btnSeleccionar";
             btnSeleccionar.Size = new Size(35, 35);
@@ -120,7 +135,7 @@
             // btnBorrar
             // 
             btnBorrar.Image = (Image)resources.GetObject("btnBorrar.Image");
-            btnBorrar.Location = new Point(3, 81);
+            btnBorrar.Location = new Point(3, 116);
             btnBorrar.Margin = new Padding(3, 2, 3, 2);
             btnBorrar.Name = "btnBorrar";
             btnBorrar.Size = new Size(35, 35);
@@ -132,7 +147,7 @@
             // btnCrear
             // 
             btnCrear.Image = (Image)resources.GetObject("btnCrear.Image");
-            btnCrear.Location = new Point(3, 3);
+            btnCrear.Location = new Point(3, 38);
             btnCrear.Margin = new Padding(3, 2, 3, 2);
             btnCrear.Name = "btnCrear";
             btnCrear.Size = new Size(35, 35);
@@ -144,7 +159,7 @@
             // btnModificar
             // 
             btnModificar.Image = (Image)resources.GetObject("btnModificar.Image");
-            btnModificar.Location = new Point(3, 42);
+            btnModificar.Location = new Point(3, 77);
             btnModificar.Margin = new Padding(3, 2, 3, 2);
             btnModificar.Name = "btnModificar";
             btnModificar.Size = new Size(35, 35);
@@ -186,5 +201,6 @@
         private Button btnModificar;
         private Button btnSeleccionar;
         private ToolTip toolTip1;
+        private Button btnConsultar;
     }
 }

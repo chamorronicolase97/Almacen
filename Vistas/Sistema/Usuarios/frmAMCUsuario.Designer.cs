@@ -115,10 +115,10 @@
             // 
             // txtID
             // 
-            txtID.Enabled = false;
             txtID.Location = new Point(126, 25);
             txtID.Margin = new Padding(3, 2, 3, 2);
             txtID.Name = "txtID";
+            txtID.ReadOnly = true;
             txtID.Size = new Size(66, 23);
             txtID.TabIndex = 7;
             // 
@@ -154,7 +154,7 @@
             txtGrupo.Location = new Point(126, 150);
             txtGrupo.Margin = new Padding(3, 2, 3, 2);
             txtGrupo.Name = "txtGrupo";
-            txtGrupo.PasswordChar = '*';
+            txtGrupo.ReadOnly = true;
             txtGrupo.Size = new Size(246, 23);
             txtGrupo.TabIndex = 11;
             // 

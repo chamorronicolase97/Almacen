@@ -29,20 +29,33 @@ namespace Almacen.Vistas
 
         private void frmAMCCategoria_Load(object sender, EventArgs e)
         {
-
-            if (Modificacion == true)
+            if(Clase != null)
             {
                 txtID.Text = Clase.ID.ToString();
                 txtDescripcion.Text = Clase.Descripcion;
                 txtCosto.Text = Clase.Costo.ToString();
                 txtCodBarra.Text = Clase.CodigoDeBarra;
-            }
-            else
-            {
-                //aqui no vamos a guardar el costo como valor inicial así que este campo lo deshabilito.
-                txtCosto.Enabled = false;
+                txtCategoria.Text = Clase.Categoria.Descripcion.ToString();
+                txtProveedor.Text = Clase.Proveedor.RazonSocial.ToString();
 
+                _categoria = Clase.Categoria;
+                _proveedor = Clase.Proveedor;
+
+                if (_soloLectura)
+                {
+                    txtDescripcion.ReadOnly = true;
+                    txtCosto.ReadOnly = true;
+                    txtCodBarra.ReadOnly = true;
+
+                    btnAsignarCategoria.Enabled = false;
+                    btnQuitarCategoria.Enabled = false;
+
+                    btnAsignarProveedor.Enabled = false;
+                    btnQuitarProveedor.Enabled = false;
+                }
             }
+            txtCategoria.ReadOnly = true;
+            txtProveedor.ReadOnly = true;
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -52,24 +65,44 @@ namespace Almacen.Vistas
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            if (!Validar()) return;
-
-            Clase.Descripcion = txtDescripcion.Text;
-            Clase.Costo = null;
-            Clase.CodigoDeBarra = txtCodBarra.Text;
-            Clase.Proveedor = _proveedor;
-            Clase.Categoria = _categoria;
-
-            if (Modificacion)
+            if (_soloLectura)
             {
-                Clase.Modificar();
                 this.DialogResult = DialogResult.OK;
+                this.Close();
             }
             else
             {
-                Clase.Insertar();
+                if (!Validar()) return;
+
+                if(Clase == null)
+                {
+                    Clase = new Producto
+                    {
+                        Descripcion = txtDescripcion.Text,
+                        Costo = Convert.ToInt32(txtCosto.Text),
+                        CodigoDeBarra = txtCodBarra.Text,
+                        Proveedor = _proveedor,
+                        Categoria = _categoria
+                    };
+                    Clase.Insertar();
+                }
+                else
+                {
+                    Clase.Descripcion = txtDescripcion.Text;
+                    Clase.Costo = null;
+                    Clase.CodigoDeBarra = txtCodBarra.Text;
+                    Clase.Proveedor = _proveedor;
+                    Clase.Categoria = _categoria;
+
+                    if (Modificacion)
+                    {
+                        Clase.Modificar();
+                    }
+                }
                 this.DialogResult = DialogResult.OK;
+                this.Close();
             }
+            
         }
 
         private bool Validar()
@@ -98,8 +131,10 @@ namespace Almacen.Vistas
 
         private void HabilitarControles()
         {
-            if (_proveedor != null) txtProveedor.Text = _proveedor.RazonSocial;
+            if (_proveedor != null) { txtProveedor.Text = _proveedor.RazonSocial; }
+            else { txtProveedor.Text = ""; }
             if (_categoria != null) txtCategoria.Text = _categoria.Descripcion;
+            else { txtCategoria.Text = ""; }
         }
 
         private void btnAsignarProveedor_Click(object sender, EventArgs e)
@@ -117,12 +152,10 @@ namespace Almacen.Vistas
         {
             if (_proveedor == null) return;
 
-            frmAMCProveedor f = new frmAMCProveedor
-            {
-                Clase = _proveedor,
-                SoloLectura = true
-            };
-            f.ShowDialog(this);
+            frmAMCProveedor f = new frmAMCProveedor();
+            f.Clase = _proveedor;
+            f.SoloLectura = true;
+            f.Show(this);
         }
 
         private void btnQuitarProveedor_Click(object sender, EventArgs e)
@@ -137,6 +170,7 @@ namespace Almacen.Vistas
         {
             frmABMSCategorias f = new frmABMSCategorias { };
             f.ObjetoSeleccionado = _categoria;
+            f.ModoSeleccion = true;
             if (DialogResult.OK == f.ShowDialog(this))
             {
                 _categoria = f.ObjetoSeleccionado;
@@ -149,12 +183,10 @@ namespace Almacen.Vistas
         {
             if (_categoria == null) return;
 
-            frmAMCCategoria f = new frmAMCCategoria
-            {
-                Clase = _categoria,
-                SoloLectura = true
-            };
-            f.ShowDialog(this);
+            frmAMCCategoria f = new frmAMCCategoria();
+            f.Clase = _categoria;
+            f.SoloLectura = true;
+            f.Show(this);
         }
 
         private void btnQuitarCategoria_Click(object sender, EventArgs e)

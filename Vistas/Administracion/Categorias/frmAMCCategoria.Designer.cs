@@ -114,10 +114,10 @@
             // txtID
             // 
             txtID.Anchor = AnchorStyles.Bottom;
-            txtID.Enabled = false;
             txtID.Location = new Point(88, 14);
             txtID.Margin = new Padding(3, 2, 3, 2);
             txtID.Name = "txtID";
+            txtID.ReadOnly = true;
             txtID.Size = new Size(66, 23);
             txtID.TabIndex = 7;
             // 

@@ -19,7 +19,9 @@ namespace Almacen.Vistas
         public Pedido Pedido { get; set; }
         public Proveedor Proveedor { get; set; }
         public bool Modificacion { get; set; } = false;
+        protected bool _soloLectura;
 
+        public bool SoloLectura { get { return _soloLectura; } set { _soloLectura = value; } }
         public frmAMCRecepcion()
         {
             InitializeComponent();
@@ -28,7 +30,7 @@ namespace Almacen.Vistas
 
         private void frmAMCPedido_Load(object sender, EventArgs e)
         {
-            if (Modificacion == true)
+            if(Clase != null)
             {
                 CargarGrillaDetalles();
                 Proveedor = Clase.Pedido.Proveedor;
@@ -36,12 +38,20 @@ namespace Almacen.Vistas
                 txtNroPedido.Text = Clase.ID.ToString();
                 dtpFechaEntrega.Value = Clase.FechaEntrega;
                 txtRecepcionID.Text = Clase.ID.ToString();
+
+                if (_soloLectura)
+                {
+                    dtpFechaEntrega.Enabled = false;
+                }
             }
             else
             {
                 txtNroPedido.Text = Pedido.ID.ToString();
                 txtRecepcionID.Text = Recepcion.CalcularNroRecepcion().ToString();
             }
+            txtProveedor.ReadOnly = true;
+            txtNroPedido.ReadOnly = true;
+            txtRecepcionID.ReadOnly = true;
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)

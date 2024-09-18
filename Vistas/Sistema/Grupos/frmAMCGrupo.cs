@@ -27,15 +27,17 @@ namespace Almacen.Vistas
 
         private void frmAMCCategoria_Load(object sender, EventArgs e)
         {
-            if (Modificacion == true)
+            if(Clase != null)
             {
                 txtID.Text = Clase.GrupoID.ToString();
                 txtNombre.Text = Clase.Descripcion;
-            }
-            else
-            {
 
+                if (_soloLectura)
+                {
+                    txtNombre.ReadOnly = true;
+                }
             }
+
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -45,20 +47,30 @@ namespace Almacen.Vistas
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            if (!Validar()) return;
-
-            Clase.Descripcion = txtNombre.Text;
-
-            if (Modificacion)
+            if (!_soloLectura)
             {
-                Clase.Modificar();
-                this.DialogResult = DialogResult.OK;
+                if (!Validar()) return;
+
+                if(Clase == null)
+                {
+                    Clase = new Grupo()
+                    {
+                        Descripcion = txtNombre.Text,
+                    };
+                    Clase.Insertar();
+                }
+                else
+                {
+                    Clase.Descripcion = txtNombre.Text;
+
+                    if (Modificacion)
+                    {
+                        Clase.Modificar();
+                    }
+                }
             }
-            else
-            {
-                Clase.Insertar();
-                this.DialogResult = DialogResult.OK;
-            }
+            this.DialogResult = DialogResult.OK;
+            this.Close();
         }
 
         private bool Validar()

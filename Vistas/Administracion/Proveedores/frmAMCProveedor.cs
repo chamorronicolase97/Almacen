@@ -29,8 +29,7 @@ namespace Almacen.Vistas
 
         private void frmAMCCategoria_Load(object sender, EventArgs e)
         {
-
-            if (Modificacion == true)
+            if(Clase != null)
             {
                 txtID.Text = Clase.ID.ToString();
                 txtCUIT.Text = Clase.Cuit;
@@ -38,10 +37,15 @@ namespace Almacen.Vistas
                 txtDireccion.Text = Clase.Direccion;
                 txtMail.Text = Clase.Mail;
                 txtTelefono.Text = Clase.Telefono;
-            }
-            else
-            {
 
+                if (_soloLectura)
+                {
+                    txtCUIT.ReadOnly = true;
+                    txtRazonSocial.ReadOnly = true;
+                    txtDireccion.ReadOnly = true;
+                    txtMail.ReadOnly = true;
+                    txtTelefono.ReadOnly = true;
+                }
             }
         }
 
@@ -52,24 +56,44 @@ namespace Almacen.Vistas
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            if (!Validar()) return;
-
-            Clase.Cuit = txtCUIT.Text;
-            Clase.RazonSocial = txtRazonSocial.Text;
-            Clase.Direccion = txtDireccion.Text;
-            Clase.Mail = txtMail.Text;
-            Clase.Telefono = txtTelefono.Text;
-
-            if (Modificacion)
+            if (_soloLectura)
             {
-                Clase.Modificar();
                 this.DialogResult = DialogResult.OK;
+                this.Close();
             }
             else
             {
-                Clase.Insertar();
+                if (!Validar()) return;
+
+                if (Clase == null)
+                {
+                    Clase = new Proveedor()
+                    {
+                        Cuit = txtCUIT.Text,
+                        RazonSocial = txtRazonSocial.Text,
+                        Direccion = txtDireccion.Text,
+                        Mail = txtMail.Text,
+                        Telefono = txtTelefono.Text,
+                    };
+                    Clase.Insertar();
+                }
+                else
+                {
+                    Clase.Cuit = txtCUIT.Text;
+                    Clase.RazonSocial = txtRazonSocial.Text;
+                    Clase.Direccion = txtDireccion.Text;
+                    Clase.Mail = txtMail.Text;
+                    Clase.Telefono = txtTelefono.Text;
+
+                    if (Modificacion)
+                    {
+                        Clase.Modificar();
+                    }
+                }
                 this.DialogResult = DialogResult.OK;
+                this.Close();
             }
+
         }
 
         private bool Validar()

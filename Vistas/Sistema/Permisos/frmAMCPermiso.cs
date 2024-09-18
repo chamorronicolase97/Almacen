@@ -15,8 +15,10 @@ namespace Almacen.Vistas
     public partial class frmAMCPermiso : Form
     {
         public Permiso Clase { get; set; }
+        protected bool _soloLectura;
 
         public bool Modificacion { get; set; } = false;
+        public bool SoloLectura { get { return _soloLectura; } set { _soloLectura = value; } }
 
         public frmAMCPermiso()
         {
@@ -26,17 +28,19 @@ namespace Almacen.Vistas
 
         private void frmAMCPermiso_Load(object sender, EventArgs e)
         {
-
-            if (Modificacion == true)
+            if(Clase != null)
             {
                 txtID.Text = Clase.PermisoID.ToString();
                 txtCodPermiso.Text = Clase.CodPermiso;
                 txtDescripcion.Text = Clase.Descripcion;
-                btnAsignar.Enabled = true;
-            }
-            else
-            {
-                btnAsignar.Enabled = false;
+
+                if (_soloLectura)
+                {
+                    txtCodPermiso.ReadOnly = true;
+                    txtDescripcion.ReadOnly = true;
+
+                    btnAsignar.Enabled = false;
+                }
             }
         }
 
@@ -47,21 +51,32 @@ namespace Almacen.Vistas
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            if (!Validar()) return;
-
-            Clase.CodPermiso = txtCodPermiso.Text;
-            Clase.Descripcion = txtDescripcion.Text;
-
-            if (Modificacion)
+            if(!_soloLectura)
             {
-                Clase.Modificar();
-                this.DialogResult = DialogResult.OK;
+                if (!Validar()) return;
+
+                if(Clase == null)
+                {
+                    Clase = new Permiso()
+                    {
+                        CodPermiso = txtCodPermiso.Text,
+                        Descripcion = txtDescripcion.Text,
+                    };
+                    Clase.Insertar();
+                }
+                else
+                {
+                    Clase.CodPermiso = txtCodPermiso.Text;
+                    Clase.Descripcion = txtDescripcion.Text;
+
+                    if (Modificacion)
+                    {
+                        Clase.Modificar();
+                    }
+                }
             }
-            else
-            {
-                Clase.Insertar();
-                this.DialogResult = DialogResult.OK;
-            }
+            this.DialogResult = DialogResult.OK;
+            this.Close();
         }
 
         private bool Validar()

@@ -27,16 +27,20 @@ namespace Almacen.Vistas
 
         private void frmAMCUsuario_Load(object sender, EventArgs e)
         {
-            if (Modificacion == true)
+            if(Clase != null)
             {
                 txtID.Text = Clase.UsuarioID.ToString();
                 txtNomApe.Text = Clase.NombreApellido;
                 txtUsuario.Text = Clase.CodUsuario;
                 txtContraseña.Text = Clase.Contraseña;
-            }
-            else
-            {
+                txtGrupo.Text = Clase.Grupo.Descripcion.ToString();
 
+                if (SoloLectura)
+                {
+                    txtNomApe.ReadOnly = true;
+                    txtUsuario.ReadOnly = true;
+                    txtContraseña.ReadOnly = true;
+                }
             }
         }
 
@@ -47,23 +51,30 @@ namespace Almacen.Vistas
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            if (!Validar()) return;
-
-            Clase.NombreApellido = txtNomApe.Text;
-            Clase.CodUsuario = txtUsuario.Text;
-            Clase.Contraseña = txtContraseña.Text;
-            Clase.Grupo = _grupo;
-
-            if (Modificacion)
+            if (!SoloLectura)
             {
-                Clase.Modificar();
-                this.DialogResult = DialogResult.OK;
+                if (!Validar()) return;
+
+                if (Clase == null)
+                {
+                    Clase = new Usuario();
+                }
+                Clase.NombreApellido = txtNomApe.Text;
+                Clase.CodUsuario = txtUsuario.Text;
+                Clase.Contraseña = txtContraseña.Text;
+                Clase.Grupo = _grupo;
+
+                if (Modificacion)
+                {
+                    Clase.Modificar();
+                }
+                else
+                {
+                    Clase.Insertar();
+                }
             }
-            else
-            {
-                Clase.Insertar();
-                this.DialogResult = DialogResult.OK;
-            }
+            this.DialogResult = DialogResult.OK;
+            this.Close();
         }
 
         private bool Validar()
@@ -99,13 +110,16 @@ namespace Almacen.Vistas
 
         private void HabilitarControles()
         {
-            if (_grupo != null) txtGrupo.Text = _grupo.Descripcion;
+            if (_grupo != null) { txtGrupo.Text = _grupo.Descripcion; }
+            else { txtGrupo.Text = ""; }
         }
 
         private void btnAsignarGrupo_Click(object sender, EventArgs e)
         {
             frmABMSGrupos f = new frmABMSGrupos { };
+            
             f.ObjetoSeleccionado = _grupo;
+            f.ModoSeleccion = true;
             if (DialogResult.OK == f.ShowDialog(this))
             {
                 _grupo = f.ObjetoSeleccionado;
