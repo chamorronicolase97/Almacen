@@ -20,6 +20,7 @@ namespace Almacen.Vistas
         public Proveedor Proveedor { get; set; }
         public bool Modificacion { get; set; } = false;
         protected bool _soloLectura;
+        private List<DetalleRecepcion> listaRecepcion;
 
         public bool SoloLectura { get { return _soloLectura; } set { _soloLectura = value; } }
         public frmAMCRecepcion()
@@ -28,7 +29,7 @@ namespace Almacen.Vistas
 
         }
 
-        private void frmAMCPedido_Load(object sender, EventArgs e)
+        private void frmAMCRecepcion_Load(object sender, EventArgs e)
         {
             if(Clase != null)
             {
@@ -46,6 +47,7 @@ namespace Almacen.Vistas
             }
             else
             {
+                txtProveedor.Text = Proveedor.RazonSocial.ToString();
                 txtNroPedido.Text = Pedido.ID.ToString();
                 txtRecepcionID.Text = Recepcion.CalcularNroRecepcion().ToString();
             }
@@ -55,7 +57,21 @@ namespace Almacen.Vistas
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
-        {
+        {       
+            if(Clase == null)
+            {
+                if (dgvDetalles.Rows.Count != 0)
+                {
+                    frmMostrarMensaje.MostrarMensaje("Recepcion", "Ya tiene productos ingresados, eliminelos antes de cancelar la recepción");
+                    return;
+                }
+
+                if (MessageBox.Show("¿Desea Eliminar la  recepción iniciada?", "Recepcion", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    
+                }
+            }
+
             Close();
         }
 
@@ -81,7 +97,7 @@ namespace Almacen.Vistas
         {
             if (dtpFechaEntrega == null)
             {
-                frmMostrarMensaje.MostrarMensaje("Pedido", "Debe definir una fecha para el Pedido");
+                frmMostrarMensaje.MostrarMensaje("Pedido", "Debe definir una fecha para la entrega.");
                 return false;
             }
 

@@ -19,6 +19,7 @@ namespace Sistema
         public DbSet<Grupo> Grupos { get; set; }
         public DbSet<Permiso> Permisos { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<PedidoEstado> PedidosEstados { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
