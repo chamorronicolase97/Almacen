@@ -75,6 +75,8 @@ namespace Almacen.Clases.Compra
             cmd.Parameters.Add("@ProveedorID", SqlDbType.Int).Value = Proveedor.ID;
 
             cn.Ejecutar(cmd);
+
+            ID = CalcularNroPedido();
         }
 
         public void Modificar()

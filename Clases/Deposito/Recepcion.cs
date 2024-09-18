@@ -77,11 +77,7 @@ namespace Almacen.Clases.Compra
 
             cn.Ejecutar(cmd);
 
-
-            q = $@"Select TOP 1 RecepcionID from {Tabla} ORDER BY 1 DESC";
-            DataTable dt = cn.Consultar(q);
-            ID = Convert.ToInt32(dt.Rows[0]);
-
+            ID = CalcularNroRecepcion();
         }
 
         public void Modificar()
