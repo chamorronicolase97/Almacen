@@ -99,10 +99,10 @@
             // txtNroPedido
             // 
             txtNroPedido.Anchor = AnchorStyles.Bottom;
-            txtNroPedido.Enabled = false;
             txtNroPedido.Location = new Point(129, 43);
             txtNroPedido.Margin = new Padding(3, 2, 3, 2);
             txtNroPedido.Name = "txtNroPedido";
+            txtNroPedido.ReadOnly = true;
             txtNroPedido.Size = new Size(66, 23);
             txtNroPedido.TabIndex = 7;
             // 

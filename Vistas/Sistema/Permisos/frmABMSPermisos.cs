@@ -16,10 +16,12 @@ namespace Almacen.Vistas
     public partial class frmABMSPermisos : Form
     {
         private Permiso _objetoSeleccionado;
+        private BindingSource bindingSource;
         public frmABMSPermisos()
         {
             InitializeComponent();
 
+            bindingSource = new BindingSource();
         }
         public Permiso ObjetoSeleccionado { get { return _objetoSeleccionado; } set { _objetoSeleccionado = value; } }
         private void frmABMSPermisos_Load(object sender, EventArgs e)
@@ -30,13 +32,20 @@ namespace Almacen.Vistas
 
         private void CargarGrilla()
         {
-            dgvDatos.DataSource = Permiso.ListarGrilla();
+            bindingSource.DataSource = Permiso.ListarGrilla();
+            dgvDatos.DataSource = bindingSource;
+
+            dgvDatos.Columns["PermisoID"].HeaderText = "ID";
+            dgvDatos.Columns["CodPermiso"].HeaderText = "Cod. Permiso";
+            dgvDatos.Columns["Descripcion"].HeaderText = "Descripción";
+
+            dgvDatos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
         }
 
         private void btnCrear_Click(object sender, EventArgs e)
         {
             frmAMCPermiso f = new frmAMCPermiso();
-            f.Clase = new Permiso(0);
+            f.SoloLectura = false;
             f.ShowDialog();
             if (f.DialogResult == DialogResult.OK) CargarGrilla();
         }
@@ -92,6 +101,40 @@ namespace Almacen.Vistas
 
             this.DialogResult = DialogResult.OK;
             this.Close();
+        }
+
+        private void btnConsultar_Click(object sender, EventArgs e)
+        {
+            if (dgvDatos.CurrentRow != null)
+            {
+                frmAMCPermiso f = new frmAMCPermiso();
+                Permiso permiso = new Permiso(Convert.ToInt32(dgvDatos.CurrentRow.Cells["PermisoID"].Value));
+                f.SoloLectura = true;
+                f.Clase = permiso;
+                f.Show(this);
+            }
+        }
+
+        private void txtFiltro_TextChanged(object sender, EventArgs e)
+        {
+            AplicarFiltroRapido();
+        }
+
+        private void AplicarFiltroRapido()
+        {
+            string str = "";
+            string filtro = txtFiltro.Text.Trim().ToLower();
+            if (string.IsNullOrEmpty(filtro))
+            {
+                bindingSource.RemoveFilter();
+            }
+            else
+            {
+                str += $@"CodPermiso LIKE '%{filtro}%' OR Descripcion LIKE '%{filtro}%' and ";
+            }
+
+            str += "1=1";
+            bindingSource.Filter = str;
         }
     }
 }

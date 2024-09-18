@@ -20,6 +20,7 @@ namespace Almacen.Vistas
         private Proveedor _proveedor;
         private BindingSource bindingSource;
         private bool formularioCargado = false;
+        private bool _modoSeleccion = false;
 
         public Proveedor FiltroProveedor { get { return _proveedor; } set { _proveedor = value; } }
 
@@ -31,6 +32,7 @@ namespace Almacen.Vistas
         }
 
         public Producto ObjetoSeleccionado { get { return _objetoSeleccionado; } set { _objetoSeleccionado = value; } }
+        public bool ModoSeleccion { get { return _modoSeleccion; } set { _modoSeleccion = value; } }
 
         private void frmABMSProductos_Load(object sender, EventArgs e)
         {
@@ -61,6 +63,18 @@ namespace Almacen.Vistas
             cmbProveedor.ValueMember = "ID";
             cmbProveedor.SelectedIndex = 0;
 
+            if (FiltroProveedor != null)
+            {
+                cmbProveedor.Enabled = false;
+            }
+
+            if(_modoSeleccion)
+            {
+                btnCrear.Enabled = false;
+                btnModificar.Enabled = false;
+                btnBorrar.Enabled = false;
+            }
+
             CargarGrilla();
 
             formularioCargado = true;
@@ -85,7 +99,7 @@ namespace Almacen.Vistas
         private void btnCrear_Click(object sender, EventArgs e)
         {
             frmAMCProducto f = new frmAMCProducto();
-            f.Clase = new Producto(0);
+            f.SoloLectura = false;
             f.ShowDialog();
             if (f.DialogResult == DialogResult.OK) CargarGrilla();
         }
@@ -188,6 +202,18 @@ namespace Almacen.Vistas
             if (dgvDatos == null) return;
             if (formularioCargado == false) return;
             AplicarFiltroRapido();
+        }
+
+        private void btnConsultar_Click(object sender, EventArgs e)
+        {
+            if (dgvDatos.CurrentRow != null)
+            {
+                frmAMCProducto f = new frmAMCProducto();
+                Producto categoria = new Producto(Convert.ToInt32(dgvDatos.CurrentRow.Cells["ProductoID"].Value));
+                f.SoloLectura = true;
+                f.Clase = categoria;
+                f.Show(this);
+            }
         }
     }
 }

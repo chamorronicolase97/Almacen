@@ -16,27 +16,45 @@ namespace Almacen.Vistas
     public partial class frmABMSGrupos : Form
     {
         private Grupo _objetoSeleccionado;
+        private BindingSource bindingSource;
+        private bool _modoSeleccion = false;
         public frmABMSGrupos()
         {
             InitializeComponent();
 
+            bindingSource = new BindingSource();
         }
         public Grupo ObjetoSeleccionado { get { return _objetoSeleccionado; } set { _objetoSeleccionado = value; } }
+        public bool ModoSeleccion { get { return _modoSeleccion; } set { _modoSeleccion = value; } }
+
         private void frmABMSGrupos_Load(object sender, EventArgs e)
 
         {
-            dgvDatos.DataSource = Grupo.ListarGrilla();
+            if (_modoSeleccion)
+            {
+                btnCrear.Enabled = false;
+                btnModificar.Enabled = false;
+                btnBorrar.Enabled = false;
+            }
+
+            CargarGrilla();
         }
 
         private void CargarGrilla()
         {
-            dgvDatos.DataSource = Grupo.ListarGrilla();
+            bindingSource.DataSource = Grupo.ListarGrilla();
+            dgvDatos.DataSource = bindingSource.DataSource;
+
+            dgvDatos.Columns["GrupoID"].HeaderText = "ID";
+            dgvDatos.Columns["Descripcion"].HeaderText = "Descripción";
+
+            dgvDatos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
         }
 
         private void btnCrear_Click(object sender, EventArgs e)
         {
             frmAMCGrupo f = new frmAMCGrupo();
-            f.Clase = new Grupo(0);
+            f.SoloLectura = false;
             f.ShowDialog();
             if (f.DialogResult == DialogResult.OK) CargarGrilla();
         }
@@ -87,6 +105,35 @@ namespace Almacen.Vistas
 
             this.DialogResult = DialogResult.OK;
             this.Close();
+        }
+
+        private void btnConsultar_Click(object sender, EventArgs e)
+        {
+            if (dgvDatos.CurrentRow != null)
+            {
+                frmAMCGrupo f = new frmAMCGrupo();
+                Grupo grupo = new Grupo(Convert.ToInt32(dgvDatos.CurrentRow.Cells["GrupoID"].Value));
+                f.SoloLectura = true;
+                f.Clase = grupo;
+                f.Show(this);
+            }
+        }
+
+        private void txtFiltro_TextChanged(object sender, EventArgs e)
+        {
+            string str = "";
+            string filtro = txtFiltro.Text.Trim().ToLower();
+            if (string.IsNullOrEmpty(filtro))
+            {
+                bindingSource.RemoveFilter();
+            }
+            else
+            {
+                str += $@"Descripcion LIKE '%{filtro}%' and ";
+            }
+
+            str += "1=1";
+            bindingSource.Filter = str;
         }
     }
 }

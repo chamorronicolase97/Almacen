@@ -33,6 +33,7 @@ namespace Almacen.Clases.Administracion
 
         #endregion
 
+        public Proveedor() { }
         public Proveedor(int ID)
         {
             this.ID = ID;

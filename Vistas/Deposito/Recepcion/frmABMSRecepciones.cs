@@ -38,6 +38,7 @@ namespace Almacen.Vistas
         private void btnCrear_Click(object sender, EventArgs e)
         {
             frmABMSPedidos pedidos = new frmABMSPedidos();
+            pedidos.ModoSeleccion = true;
             MessageBox.Show("Seleccione pedido a recepcionar", "Recepción", MessageBoxButtons.OK, MessageBoxIcon.Information);
             pedidos.ShowDialog();
             if (pedidos.DialogResult != DialogResult.OK) return;
@@ -46,9 +47,10 @@ namespace Almacen.Vistas
             pedidos.Close();
 
             frmAMCRecepcion f = new frmAMCRecepcion();
-            f.Clase = new Recepcion(0);
             f.Pedido = pedido;
             f.Proveedor = proveedor;
+            f.SoloLectura = false;
+            
             f.ShowDialog();
             if (f.DialogResult == DialogResult.OK) CargarGrilla();
         }
@@ -99,6 +101,18 @@ namespace Almacen.Vistas
 
             this.DialogResult = DialogResult.OK;
             this.Close();
+        }
+
+        private void btnConsultar_Click(object sender, EventArgs e)
+        {
+            if (dgvDatos.CurrentRow != null)
+            {
+                frmAMCRecepcion f = new frmAMCRecepcion();
+                Recepcion recepcion = new Recepcion(Convert.ToInt32(dgvDatos.CurrentRow.Cells["RecepcionID"].Value));
+                f.SoloLectura = true;
+                f.Clase = recepcion;
+                f.Show(this);
+            }
         }
     }
 }

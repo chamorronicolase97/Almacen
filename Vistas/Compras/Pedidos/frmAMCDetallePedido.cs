@@ -17,11 +17,13 @@ namespace Almacen.Vistas
     {
         private Producto? _producto;
         private Proveedor? _proveedor;
+        private int  _numeroPedido;
 
         public DetallePedido Clase { get; set; }
 
         public bool Modificacion { get; set; } = false;
         public Proveedor FiltroProveedor { get { return _proveedor; } set { _proveedor = value; } }
+        public int NroPedido { get { return _numeroPedido; } set { _numeroPedido = value; } }
 
         public frmAMCDetallePedido()
         {
@@ -47,6 +49,7 @@ namespace Almacen.Vistas
         private void HabilitarControles()
         {
             if (_producto != null) { txtProducto.Text = _producto.Descripcion.ToString(); }
+            else { txtProducto.Text = ""; }
 
         }
 
@@ -62,25 +65,24 @@ namespace Almacen.Vistas
             if (Clase == null)
             {
                 Clase = new DetallePedido();
-            }
-
-            Clase.Producto = _producto;
-            Clase.Cantidad = Convert.ToInt32(txtCantidad.Text);
-            Clase.CostoUnitario = Convert.ToDecimal(txtCostoUnitario.Text);
-
-            if (Modificacion)
-            {
-                Clase.Modificar();
-                this.DialogResult = DialogResult.OK;
-                this.Close();
+                Clase.Producto = _producto;
+                Clase.Cantidad = Convert.ToInt32(txtCantidad.Text);
+                Clase.CostoUnitario = Convert.ToDecimal(txtCostoUnitario.Text);
+                //int nroPedido = Pedido.CalcularNroPedido();
+                Clase.Insertar(_numeroPedido, _producto.ID);
             }
             else
             {
-                int nroPedido = Pedido.CalcularNroPedido();
-                Clase.Insertar(nroPedido, _producto.ID);
-                this.DialogResult = DialogResult.OK;
-                this.Close();
+                Clase.Producto = _producto;
+                Clase.Cantidad = Convert.ToInt32(txtCantidad.Text);
+                Clase.CostoUnitario = Convert.ToDecimal(txtCostoUnitario.Text);
+                if (Modificacion)
+                {
+                    Clase.Modificar();
+                }
             }
+            this.DialogResult = DialogResult.OK;
+            this.Close();
         }
 
         private bool Validar()
@@ -99,6 +101,7 @@ namespace Almacen.Vistas
             frmABMSProductos f = new frmABMSProductos { };
             f.ObjetoSeleccionado = _producto;
             f.FiltroProveedor = _proveedor;
+            f.ModoSeleccion = true;
             if (DialogResult.OK == f.ShowDialog(this))
             {
                 _producto = f.ObjetoSeleccionado;

@@ -16,10 +16,12 @@ namespace Almacen.Vistas
     public partial class frmABMSUsuarios : Form
     {
         private Usuario _objetoSeleccionado;
+        private BindingSource bindingSource;
         public frmABMSUsuarios()
         {
             InitializeComponent();
 
+            bindingSource = new BindingSource();
         }
         public Usuario ObjetoSeleccionado { get { return _objetoSeleccionado; } set { _objetoSeleccionado = value; } }
         private void frmABMSUsuarios_Load(object sender, EventArgs e)
@@ -30,13 +32,24 @@ namespace Almacen.Vistas
 
         private void CargarGrilla()
         {
-            dgvDatos.DataSource = Usuario.ListarGrilla();
+            bindingSource.DataSource = Usuario.ListarGrilla();
+            dgvDatos.DataSource = bindingSource;
+
+            dgvDatos.Columns["UsuarioID"].HeaderText = "ID";
+            dgvDatos.Columns["NombreApellido"].HeaderText = "Nombre y Apellido";
+            dgvDatos.Columns["CodUsuario"].HeaderText = "Cod. Usuario";
+            dgvDatos.Columns["Contraseña"].Visible = false;
+            dgvDatos.Columns["GrupoID"].Visible = false;
+            dgvDatos.Columns["GrupoID1"].Visible = false;
+            dgvDatos.Columns["Descripcion"].HeaderText = "Grupo";
+
+            dgvDatos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
         }
 
         private void btnCrear_Click(object sender, EventArgs e)
         {
             frmAMCUsuario f = new frmAMCUsuario();
-            f.Clase = new Usuario(0);
+            f.SoloLectura = false;
             f.ShowDialog();
             if (f.DialogResult == DialogResult.OK) CargarGrilla();
         }
@@ -82,6 +95,39 @@ namespace Almacen.Vistas
 
             this.DialogResult = DialogResult.OK;
             this.Close();
+        }
+
+        private void btnConsultar_Click(object sender, EventArgs e)
+        {
+            if (dgvDatos.CurrentRow != null)
+            {
+                frmAMCUsuario f = new frmAMCUsuario();
+                Usuario usuario = new Usuario(Convert.ToInt32(dgvDatos.CurrentRow.Cells["UsuarioID"].Value));
+                f.SoloLectura = true;
+                f.Clase = usuario;
+                f.Show(this);
+            }
+        }
+
+        private void txtFiltro_TextChanged(object sender, EventArgs e)
+        {
+            AplicarFiltroRapido();
+        }
+        private void AplicarFiltroRapido()
+        {
+            string str = "";
+            string filtro = txtFiltro.Text.Trim().ToLower();
+            if (string.IsNullOrEmpty(filtro))
+            {
+                bindingSource.RemoveFilter();
+            }
+            else
+            {
+                str += $@"NombreApellido LIKE '%{filtro}%' OR CodUsuario LIKE '%{filtro}%' OR Descripcion LIKE '%{filtro}%' and ";
+            }
+
+            str += "1=1";
+            bindingSource.Filter = str;
         }
     }
 }

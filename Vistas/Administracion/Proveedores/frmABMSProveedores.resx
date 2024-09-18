@@ -121,6 +121,18 @@
     <value>17, 17</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="btnConsultar.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
+        DgAACw4BQL7hQQAAAWNJREFUSEvtlkFLAkEYhscOQUZgKyWaJDuzGnjsh/R7uq0XC3d2W0sqJDr0Y7p2
+        EiIwLNkZtdbUCqJDfM2yE2JIMEtBh33hYWAY3ne+4YP50DyVzdZitgnJrMnUabJk3ukuIQQJaTer4BCx
+        mIWdwR22+0NscWWI+zjElN9u7t+vSttZEYtbpeYHkMMRENePhNF4BhH2KqrRpO1UGdpb1i3ukfoYxE0i
+        EwSJ9WluSN5saeIGI3koMj+GBG8YvmkcEhKHKBGHKBGHKPFPQij3jaMJGMdvUDx9j0TpDIA4A8g1vLS0
+        niqshL1gezDRKTvRaa8SBeIOK9hmu6IS8QV/k1Hla0GZpObtyK3fV27PS4sKOkWnuyG3/kKQECEX4gu+
+        JAcP23q1n9Hr0cC0t45Mc0Eaz6pgdlKYsnMxrdyIaaWtU64Mdv226NKrgttJSdv52qpdr5SdsRa0oTpj
+        LWgiBF9zF0Kf951mryy8PVMAAAAASUVORK5CYII=
+</value>
+  </data>
   <data name="btnSeleccionar.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL

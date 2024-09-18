@@ -17,6 +17,7 @@ namespace Almacen.Vistas
     {
         private Proveedor _objetoSeleccionado;
         private BindingSource bindingSource;
+        private bool _modoSeleccion;
 
         public frmABMSProveedores()
         {
@@ -26,10 +27,17 @@ namespace Almacen.Vistas
 
         }
         public Proveedor ObjetoSeleccionado { get { return _objetoSeleccionado; } set { _objetoSeleccionado = value; } }
+        public bool ModoSeleccion { get { return _modoSeleccion; } set { _modoSeleccion = value; } }
 
         private void frmABMSProveedores_Load(object sender, EventArgs e)
 
         {
+            if (_modoSeleccion)
+            {
+                btnCrear.Enabled = false;
+                btnModificar.Enabled = false;
+                btnBorrar.Enabled = false;
+            }
             CargarGrilla();
         }
 
@@ -49,7 +57,7 @@ namespace Almacen.Vistas
         private void btnCrear_Click(object sender, EventArgs e)
         {
             frmAMCProveedor f = new frmAMCProveedor();
-            f.Clase = new Proveedor(0);
+            f.SoloLectura = false;
             f.ShowDialog();
             if (f.DialogResult == DialogResult.OK) CargarGrilla();
         }
@@ -117,6 +125,18 @@ namespace Almacen.Vistas
         private void txtFiltro_TextChanged(object sender, EventArgs e)
         {
             AplicarFiltroRapido();
+        }
+
+        private void btnConsultar_Click(object sender, EventArgs e)
+        {
+            if (dgvDatos.CurrentRow != null)
+            {
+                frmAMCProveedor f = new frmAMCProveedor();
+                Proveedor categoria = new Proveedor(Convert.ToInt32(dgvDatos.CurrentRow.Cells["ProveedorID"].Value));
+                f.SoloLectura = true;
+                f.Clase = categoria;
+                f.Show(this);
+            }
         }
     }
 }

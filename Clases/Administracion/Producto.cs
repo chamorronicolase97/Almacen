@@ -129,7 +129,7 @@ namespace Almacen.Clases.Administracion
         public static DataTable ListarGrilla()
         {
             Conexion cn = new Conexion();
-            string q = @$"select prod.ProductoID, prod.Descripcion, prod.Costo, prod.CodigoDeBarra, cat.CategoriaID, prod.Descripcion as Categoria, prod.ProveedorID, prov.RazonSocial as Proveedor
+            string q = @$"select prod.ProductoID, prod.Descripcion, prod.Costo, prod.CodigoDeBarra, cat.CategoriaID, cat.Descripcion as Categoria, prod.ProveedorID, prov.RazonSocial as Proveedor
                             from {Tabla} prod
                             left join dbo.Categorias cat on prod.CategoriaID = cat.CategoriaID
                             left join dbo.Proveedores prov on prod.ProveedorID = prov.ProveedorID

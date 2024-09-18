@@ -74,7 +74,7 @@ namespace Almacen.Clases.Administracion
         public static DataTable ListarGrilla()
         {
             Conexion cn = new Conexion();
-            string q = @$"Select * from {Tabla}";
+            string q = @$"Select * from {Tabla} usu left join dbo.Grupos gru on usu.GrupoID = gru.GrupoID";
             return cn.Consultar(q);
         }
 

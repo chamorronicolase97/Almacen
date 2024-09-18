@@ -18,6 +18,7 @@ namespace Almacen.Vistas
     {
         private Categoria _objetoSeleccionado;
         private BindingSource bindingSource;
+        private bool _modoSeleccion;
 
         public frmABMSCategorias()
         {
@@ -27,9 +28,16 @@ namespace Almacen.Vistas
         }
 
         public Categoria ObjetoSeleccionado { get { return _objetoSeleccionado; } set { _objetoSeleccionado = value; } }
+        public bool ModoSeleccion { get { return _modoSeleccion; } set { _modoSeleccion = value; } }
         private void frmABMSCategorias_Load(object sender, EventArgs e)
 
         {
+            if (_modoSeleccion)
+            {
+                btnCrear.Enabled = false;
+                btnModificar.Enabled = false;
+                btnBorrar.Enabled = false;
+            }
             CargarGrilla();
         }
 
@@ -48,7 +56,7 @@ namespace Almacen.Vistas
         private void btnCrear_Click(object sender, EventArgs e)
         {
             frmAMCCategoria f = new frmAMCCategoria();
-            f.Clase = new Categoria(0);
+            f.SoloLectura = false;
             f.ShowDialog();
             if (f.DialogResult == DialogResult.OK) CargarGrilla();
         }
@@ -111,6 +119,18 @@ namespace Almacen.Vistas
             else
             {
                 bindingSource.Filter = $"Descripcion LIKE '%{filtro}%' OR Convert(Utilidad, 'System.String') LIKE '%{filtro}%'";
+            }
+        }
+
+        private void btnConsultar_Click(object sender, EventArgs e)
+        {
+            if(dgvDatos.CurrentRow != null)
+            {
+                frmAMCCategoria f = new frmAMCCategoria();
+                Categoria categoria = new Categoria(Convert.ToInt32(dgvDatos.CurrentRow.Cells["CategoriaID"].Value));
+                f.SoloLectura = true;
+                f.Clase = categoria;
+                f.Show(this);
             }
         }
     }

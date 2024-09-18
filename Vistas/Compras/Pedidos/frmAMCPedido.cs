@@ -18,8 +18,10 @@ namespace Almacen.Vistas
         private int _nroPedido;
         private Proveedor? _proveedor;
         public Pedido Clase { get; set; }
+        protected bool _soloLectura;
 
         public bool Modificacion { get; set; } = false;
+        public bool SoloLectura { get { return _soloLectura; } set { _soloLectura = value; } }
 
         public frmAMCPedido()
         {
@@ -29,19 +31,32 @@ namespace Almacen.Vistas
 
         private void frmAMCPedido_Load(object sender, EventArgs e)
         {
-                     
-            if (Modificacion == true)
-            {             
+            if (Clase != null)
+            {
                 txtNroPedido.Text = Clase.ID.ToString();
                 _nroPedido = Clase.ID;
                 dtpFechaEntrega.Value = Clase.FechaEntrega;
                 _proveedor = Clase.Proveedor;
+
+                if (_soloLectura)
+                {
+                    txtNroPedido.ReadOnly = true;
+                    dtpFechaEntrega.Enabled = false;
+                    txtProveedor.ReadOnly = true;
+
+                    btnAsignarProveedor.Enabled = false;
+                    btnQuitarProveedor.Enabled = false;
+
+                    btnAsignar.Enabled = false;
+                }
             }
             else
             {
                 _nroPedido = Pedido.CalcularNroPedido();
-                txtNroPedido.Text = _nroPedido.ToString();                
+                txtNroPedido.Text = _nroPedido.ToString();
             }
+
+
             HabilitarControles();
         }
 
@@ -52,22 +67,41 @@ namespace Almacen.Vistas
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            if (!Validar()) return;
-
-            Clase.ID = _nroPedido;
-            Clase.FechaEntrega = dtpFechaEntrega.Value;
-            Clase.Proveedor = _proveedor;
-
-            if (Modificacion)
+            if(_soloLectura)
             {
-                Clase.Modificar();
                 this.DialogResult = DialogResult.OK;
+                this.Close();
             }
             else
             {
-                Clase.Insertar();
-                this.DialogResult = DialogResult.OK;
+                if (!Validar()) return;
+
+                if(Clase == null)
+                {
+                    Clase = new Pedido()
+                    {
+                        ID = _nroPedido,
+                        FechaEntrega = dtpFechaEntrega.Value,
+                        Proveedor = _proveedor
+                    };
+                    Clase.Insertar();
+                }
+                else
+                {
+                    Clase.ID = _nroPedido;
+                    Clase.FechaEntrega = dtpFechaEntrega.Value;
+                    Clase.Proveedor = _proveedor;
+
+                    if (Modificacion)
+                    {
+                        Clase.Modificar();
+                    }
+                }
             }
+            this.DialogResult = DialogResult.OK;
+            this.Close();
+
+
         }
 
         private bool Validar()
@@ -77,6 +111,12 @@ namespace Almacen.Vistas
                 frmMostrarMensaje.MostrarMensaje("Pedido", "Debe definir una fecha para el Pedido");
                 return false;
             }
+            if (_proveedor == null)
+            {
+                frmMostrarMensaje.MostrarMensaje("Pedido", "Debe definir un Proveedor para el Pedido");
+                return false;
+            }
+
 
             return true;
         }
@@ -86,7 +126,8 @@ namespace Almacen.Vistas
             if (_proveedor == null) return;
             frmAMCDetallePedido f = new frmAMCDetallePedido();
             f.FiltroProveedor = _proveedor;
-            f.Show();
+            f.NroPedido = _nroPedido;
+            f.ShowDialog(this);
             CargarGrillaDetalles();
         }
 
@@ -106,7 +147,8 @@ namespace Almacen.Vistas
 
         private void HabilitarControles()
         {
-            if (_proveedor != null) txtProveedor.Text = _proveedor.RazonSocial.ToString();
+            if (_proveedor != null) { txtProveedor.Text = _proveedor.RazonSocial.ToString(); }
+            else { txtProveedor.Text = ""; }
 
             CargarGrillaDetalles();
 
@@ -125,6 +167,7 @@ namespace Almacen.Vistas
         {
             frmABMSProveedores f = new frmABMSProveedores { };
             f.ObjetoSeleccionado = _proveedor;
+            f.ModoSeleccion = true;
             if (DialogResult.OK == f.ShowDialog(this))
             {
                 _proveedor = f.ObjetoSeleccionado;
