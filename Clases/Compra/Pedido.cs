@@ -1,4 +1,5 @@
 ﻿using Almacen.Clases.Administracion;
+using Almacen.Clases.Sistema;
 using Sistema;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,7 @@ namespace Almacen.Clases.Compra
         private int _id;
         private DateTime _fechaEntrega;
         private Proveedor _proveedor;
+        private PedidoEstado _pedidoEstado;
 
         #region Constantes
         const string Tabla = "dbo.Pedidos";
@@ -25,6 +27,7 @@ namespace Almacen.Clases.Compra
         public int ID { get { return _id; } set { _id = value; } }
         public DateTime FechaEntrega { get { return _fechaEntrega; } set { _fechaEntrega = value; } }
         public Proveedor Proveedor { get { return _proveedor; } set { _proveedor = value; } }
+        public PedidoEstado PedidoEstado { get { return _pedidoEstado; } set { _pedidoEstado = value; } }
         #endregion
 
         public Pedido() { }
@@ -62,18 +65,21 @@ namespace Almacen.Clases.Compra
             _fechaEntrega = Convert.ToDateTime(dr["FechaEntrega"]);
 
             if (dr["ProveedorID"] != DBNull.Value) _proveedor = new Proveedor(Convert.ToInt32(dr["ProveedorID"]));
+
+            _pedidoEstado = null;
+            if (dr["EstadoID"] != DBNull.Value) _pedidoEstado = new PedidoEstado(Convert.ToInt32(dr["EstadoID"]));
         }
 
         public void Insertar()
         {
             Conexion cn = new Conexion();
-            string q = $@"INSERT INTO {Tabla} (NroPedido, FechaEntrega, ProveedorID)
-                        Values(@NroPedido, @fecha, @ProveedorID);";
+            string q = $@"INSERT INTO {Tabla} (NroPedido, FechaEntrega, ProveedorID, EstadoID)
+                        Values(@NroPedido, @fecha, @ProveedorID, @EstadoID);";
             SqlCommand cmd = new SqlCommand(q);
             cmd.Parameters.Add("@NroPedido", SqlDbType.Int).Value = ID;
             cmd.Parameters.Add("@fecha", SqlDbType.DateTime).Value = FechaEntrega;
             cmd.Parameters.Add("@ProveedorID", SqlDbType.Int).Value = Proveedor.ID;
-
+            cmd.Parameters.Add("@EstadoID", SqlDbType.Int).Value = FuncionesAuxiliares.ConvertDBNullIfNull(PedidoEstado.PedidoEstadoID);
             cn.Ejecutar(cmd);
 
             ID = CalcularNroPedido();
@@ -83,11 +89,13 @@ namespace Almacen.Clases.Compra
         {
             Conexion cn = new Conexion();
             string q = $@"UPDATE {Tabla} SET FechaEntrega = @fecha,
-                                             ProveedorID = @ProveedorID
+                                             ProveedorID = @ProveedorID,
+                                             EstadoID = @EstadoID
                                              WHERE NroPedido = @ID;";
             SqlCommand cmd = new SqlCommand(q);
             cmd.Parameters.Add("@fecha", SqlDbType.DateTime).Value = FechaEntrega;
             cmd.Parameters.Add("@ProveedorID", SqlDbType.Int).Value = Proveedor.ID;
+            cmd.Parameters.Add("@EstadoID", SqlDbType.Int).Value = FuncionesAuxiliares.ConvertDBNullIfNull(PedidoEstado.PedidoEstadoID);
             cmd.Parameters.Add("@ID", SqlDbType.Int).Value = ID;
 
             cn.Ejecutar(cmd);

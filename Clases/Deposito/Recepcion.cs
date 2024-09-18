@@ -1,4 +1,6 @@
-﻿using Sistema;
+﻿using Almacen.Clases.Administracion;
+using Almacen.Clases.Sistema;
+using Sistema;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -14,6 +16,7 @@ namespace Almacen.Clases.Compra
         private int _id;
         private Pedido? _pedido;
         private DateTime _fechaEntrega;
+        private PedidoEstado? _estado;
 
         #region Constantes
         const string Tabla = "dbo.Recepciones";
@@ -24,6 +27,7 @@ namespace Almacen.Clases.Compra
         public int ID { get { return _id; } set { _id = value; } }
         public Pedido? Pedido { get { return _pedido; } set { _pedido = value; } }
         public DateTime FechaEntrega { get { return _fechaEntrega; } set { _fechaEntrega = value; } }
+        public PedidoEstado Estado { get { return _estado; } set { _estado = value; } }
         #endregion
 
         public Recepcion() { }
@@ -64,16 +68,20 @@ namespace Almacen.Clases.Compra
             if (dr["NroPedido"] != DBNull.Value) { _pedido = new Pedido(Convert.ToInt32(dr["NroPedido"])); }
 
             _fechaEntrega = Convert.ToDateTime(dr["FechaEntrega"]);
+
+            _estado = null;
+            if (dr["EstadoID"] != DBNull.Value) _estado = new PedidoEstado(Convert.ToInt32(dr["EstadoID"]));
         }
 
         public void Insertar()
         {
             Conexion cn = new Conexion();
-            string q = $@"INSERT INTO {Tabla} (NroPedido, FechaEntrega)
-                        Values(@NroPedido, @fecha);";
+            string q = $@"INSERT INTO {Tabla} (NroPedido, FechaEntrega, EstadoID)
+                        Values(@NroPedido, @fecha, @EstadoID);";
             SqlCommand cmd = new SqlCommand(q);
             cmd.Parameters.Add("@NroPedido", SqlDbType.Int).Value = Pedido.ID;
             cmd.Parameters.Add("@fecha", SqlDbType.DateTime).Value = FechaEntrega;
+            cmd.Parameters.Add("@EstadoID", SqlDbType.Int).Value = FuncionesAuxiliares.ConvertDBNullIfNull(Estado.PedidoEstadoID);
 
             cn.Ejecutar(cmd);
 
@@ -84,11 +92,13 @@ namespace Almacen.Clases.Compra
         {
             Conexion cn = new Conexion();
             string q = $@"UPDATE {Tabla} SET NroPedido = @NroPedido,
-                                             FechaEntrega = @fecha 
+                                             FechaEntrega = @fecha, 
+                                             EstadoID = @EstadoID
                                              WHERE RecepcionID = @ID;";
             SqlCommand cmd = new SqlCommand(q);
             cmd.Parameters.Add("@NroPedido", SqlDbType.Int).Value = Pedido.ID;
             cmd.Parameters.Add("@fecha", SqlDbType.DateTime).Value = FechaEntrega;
+            cmd.Parameters.Add("@EstadoID", SqlDbType.Int).Value = FuncionesAuxiliares.ConvertDBNullIfNull(Estado.PedidoEstadoID);
             cmd.Parameters.Add("@ID", SqlDbType.Int).Value = ID;
 
             cn.Ejecutar(cmd);
