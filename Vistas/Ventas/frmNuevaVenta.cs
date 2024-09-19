@@ -136,6 +136,12 @@ namespace Almacen.Vistas.Ventas
             _detalle.Venta = _venta;
             _detalle.Producto = _producto;
 
+            if(_detalle.Cantidad < _producto.Stock)
+            {
+                frmMostrarMensaje.MostrarMensaje("Añadir Producto", "La cantidad del producto seleccionado excede la existencia en nuestro inventario.");
+                return;
+            }
+
             //calcular SubTotal
             _detalle.SubTotal = _detalle.Cantidad * (_detalle.Producto.Costo.Value + ((_detalle.Producto.Costo.Value * _detalle.Producto.Categoria.Utilidad) / 100));
 
@@ -166,9 +172,19 @@ namespace Almacen.Vistas.Ventas
             {
                 Detalle += $"Cantidad: {dv.Cantidad}  Producto: {dv.Producto.Descripcion.Substring(0, 10)}  Precio Venta: $ {dv.Producto.ValorVenta:00.00}  SubTotal: $ {dv.SubTotal:00.00}" + Environment.NewLine;
                 Detalle += Environment.NewLine;
+
+                try
+                {
+                    dv.Producto.Stock -= dv.Cantidad;
+                    dv.Producto.Modificar();
+                }
+                catch(Exception ex) 
+                {
+                    throw new Exception(ex.Message);
+                }
             }
 
-            Detalle += $"Total: $ {_venta.Total:00.00}";
+            Detalle += $"Total: $ {_venta.Total:00.00}";           
 
             frmMostrarMensajeDetalle.MostrarMensaje("Venta", "Venta exitosa", Detalle);
 
@@ -227,7 +243,7 @@ namespace Almacen.Vistas.Ventas
 
         private void CargarProductos()
         {
-            string query = $@"SELECT ProductoID, Descripcion, dbo.PrecioVenta(ProductoID) 'Precio Venta', CategoriaID FROM dbo.Productos WHERE Costo IS NOT NULL";
+            string query = $@"SELECT ProductoID, Descripcion, dbo.PrecioVenta(ProductoID) 'Precio Venta', CategoriaID FROM dbo.Productos WHERE Costo IS NOT NULL and Stock > 0";
 
             SqlCommand cmd = new SqlCommand(query);
 
