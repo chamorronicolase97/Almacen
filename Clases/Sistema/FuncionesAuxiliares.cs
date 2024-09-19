@@ -51,6 +51,26 @@ namespace Almacen.Clases.Sistema
             return null;
         }
 
+        public static int? ConvertToNInt(object input)
+        {
+            if (input == null)
+            {
+                return null;
+            }
+
+            // Try parsing as string
+            if (input is string str)
+            {
+                if (int.TryParse(str, out int intResult))
+                {
+                    return intResult;
+                }
+            }
+
+            // Not a number
+            return null;
+        }
+
         public static string AsegurarFiltroRapido(string pFiltroRapido)
         {
             StringBuilder sb = new StringBuilder(pFiltroRapido.Length);

@@ -82,6 +82,12 @@ namespace Almacen.Vistas
 
             Recepcion Clase = new Recepcion(Convert.ToInt32(dgvDatos.CurrentRow.Cells["RecepcionID"].Value));
 
+            if (Clase.Estado.PedidoEstadoID == PedidoEstado.Confirmado.PedidoEstadoID || Clase.Estado.PedidoEstadoID == PedidoEstado.Cancelado.PedidoEstadoID)
+            {
+                frmMostrarMensaje.MostrarMensaje("Recepciones", "Las recepciones deben estar en Estado de Edición para ser modificadas.");
+                return ;
+            }
+
             frmAMCRecepcion f = new frmAMCRecepcion();
             f.Clase = Clase;
             f.Modificacion = true;

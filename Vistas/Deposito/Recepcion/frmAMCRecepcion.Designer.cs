@@ -216,7 +216,7 @@
             Name = "frmAMCRecepcion";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Recepcion";
-            Load += frmAMCPedido_Load;
+            Load += frmAMCRecepcion_Load;
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvDetalles).EndInit();
             ResumeLayout(false);
