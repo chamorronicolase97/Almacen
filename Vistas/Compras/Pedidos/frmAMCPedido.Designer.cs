@@ -197,6 +197,7 @@
             txtProveedor.Location = new Point(319, 43);
             txtProveedor.Margin = new Padding(3, 2, 3, 2);
             txtProveedor.Name = "txtProveedor";
+            txtProveedor.ReadOnly = true;
             txtProveedor.Size = new Size(173, 23);
             txtProveedor.TabIndex = 19;
             // 

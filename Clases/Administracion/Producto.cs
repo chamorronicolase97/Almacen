@@ -114,7 +114,7 @@ namespace Almacen.Clases.Administracion
             cmd.Parameters.Add("@CodigoDeBarra", SqlDbType.VarChar).Value = CodigoDeBarra;
             cmd.Parameters.Add("@CategoriaID", SqlDbType.Int).Value = Categoria.CategoriaID;
             cmd.Parameters.Add("@ProveedorID", SqlDbType.Int).Value = Proveedor.ID;
-            cmd.Parameters.Add("@Stock", SqlDbType.Int).Value = 1;
+            cmd.Parameters.Add("@Stock", SqlDbType.Int).Value = Stock;
             cmd.Parameters.Add("@ID", SqlDbType.Int).Value = ID;
 
             cn.Ejecutar(cmd);
@@ -135,7 +135,7 @@ namespace Almacen.Clases.Administracion
         public static DataTable ListarGrilla()
         {
             Conexion cn = new Conexion();
-            string q = @$"select prod.ProductoID, prod.Descripcion, prod.Costo, prod.CodigoDeBarra, cat.CategoriaID, cat.Descripcion as Categoria, prod.ProveedorID, prov.RazonSocial as Proveedor
+            string q = @$"select prod.ProductoID, prod.Descripcion, prod.Costo, prod.CodigoDeBarra, cat.CategoriaID, cat.Descripcion as Categoria, prod.ProveedorID, prov.RazonSocial as Proveedor, prod.Stock
                             from {Tabla} prod
                             left join dbo.Categorias cat on prod.CategoriaID = cat.CategoriaID
                             left join dbo.Proveedores prov on prod.ProveedorID = prov.ProveedorID

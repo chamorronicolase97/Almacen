@@ -73,10 +73,9 @@ namespace Almacen.Clases.Compra
         public void Insertar()
         {
             Conexion cn = new Conexion();
-            string q = $@"INSERT INTO {Tabla} (NroPedido, FechaEntrega, ProveedorID, EstadoID)
-                        Values(@NroPedido, @fecha, @ProveedorID, @EstadoID);";
-            SqlCommand cmd = new SqlCommand(q);
-            cmd.Parameters.Add("@NroPedido", SqlDbType.Int).Value = ID;
+            string q = $@"INSERT INTO {Tabla} (FechaEntrega, ProveedorID, EstadoID)
+                        Values(@fecha, @ProveedorID, @EstadoID);";
+            SqlCommand cmd = new SqlCommand(q);            
             cmd.Parameters.Add("@fecha", SqlDbType.DateTime).Value = FechaEntrega;
             cmd.Parameters.Add("@ProveedorID", SqlDbType.Int).Value = Proveedor.ID;
             cmd.Parameters.Add("@EstadoID", SqlDbType.Int).Value = FuncionesAuxiliares.ConvertDBNullIfNull(PedidoEstado.PedidoEstadoID);

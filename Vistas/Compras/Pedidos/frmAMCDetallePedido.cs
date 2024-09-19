@@ -17,13 +17,13 @@ namespace Almacen.Vistas
     {
         private Producto? _producto;
         private Proveedor? _proveedor;
-        private int  _numeroPedido;
+        private Pedido  _pedido;
 
         public DetallePedido Clase { get; set; }
 
         public bool Modificacion { get; set; } = false;
         public Proveedor FiltroProveedor { get { return _proveedor; } set { _proveedor = value; } }
-        public int NroPedido { get { return _numeroPedido; } set { _numeroPedido = value; } }
+        public Pedido Pedido { get { return _pedido; } set { _pedido = value; } }
 
         public frmAMCDetallePedido()
         {
@@ -69,7 +69,7 @@ namespace Almacen.Vistas
                 Clase.Cantidad = Convert.ToInt32(txtCantidad.Text);
                 Clase.CostoUnitario = Convert.ToDecimal(txtCostoUnitario.Text);
                 //int nroPedido = Pedido.CalcularNroPedido();
-                Clase.Insertar(_numeroPedido, _producto.ID);
+                Clase.Insertar(_pedido.ID, _producto.ID);
             }
             else
             {

@@ -51,9 +51,8 @@ namespace Almacen.Vistas
                 }
             }
             else
-            {
-                _nroPedido = Pedido.CalcularNroPedido();
-                txtNroPedido.Text = _nroPedido.ToString();
+            {                
+                
             }
 
 
@@ -62,12 +61,30 @@ namespace Almacen.Vistas
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
+            if (Clase == null)
+            {
+                if (Clase.PedidoEstado.PedidoEstadoID == PedidoEstado.EnEdicion.PedidoEstadoID)
+                {
+                    if (dgvDetalles.Rows.Count != 0)
+                    {
+                        frmMostrarMensaje.MostrarMensaje("Pedido", "Ya tiene productos ingresados, eliminelos antes de cancelar el pedido");
+                        return;
+                    }
+
+                    if (MessageBox.Show("¿Desea Eliminar el pedido iniciada?", "Pedido", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        Clase.Eliminar();
+                    }
+
+                }
+            }
+
             Close();
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            if(_soloLectura)
+            if (_soloLectura)
             {
                 this.DialogResult = DialogResult.OK;
                 this.Close();
@@ -76,21 +93,20 @@ namespace Almacen.Vistas
             {
                 if (!Validar()) return;
 
-                if(Clase == null)
+                if (Clase == null)
                 {
                     Clase = new Pedido()
-                    {
-                        ID = _nroPedido,
+                    {                        
                         FechaEntrega = dtpFechaEntrega.Value,
-                        Proveedor = _proveedor
+                        Proveedor = _proveedor,
+                        PedidoEstado = PedidoEstado.EnEdicion
                     };
                     Clase.Insertar();
                 }
                 else
                 {
-                    Clase.ID = _nroPedido;
                     Clase.FechaEntrega = dtpFechaEntrega.Value;
-                    Clase.Proveedor = _proveedor;
+                    Clase.Proveedor = _proveedor;                    
 
                     if (Modificacion)
                     {
@@ -117,6 +133,13 @@ namespace Almacen.Vistas
                 return false;
             }
 
+            if(Clase.PedidoEstado.PedidoEstadoID == PedidoEstado.EnEdicion.PedidoEstadoID)
+            {
+                if(MessageBox.Show("¿Desea finalizar Pedido?", "Pedido", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    Clase.PedidoEstado = PedidoEstado.Confirmado;                    
+                }
+            }
 
             return true;
         }
@@ -124,9 +147,22 @@ namespace Almacen.Vistas
         private void btnAsignar_Click(object sender, EventArgs e)
         {
             if (_proveedor == null) return;
+
+            if (Clase == null)
+            {
+                Clase = new Pedido()
+                {
+                    FechaEntrega = dtpFechaEntrega.Value,
+                    Proveedor = _proveedor,
+                    PedidoEstado = PedidoEstado.EnEdicion
+                };
+                Clase.Insertar();
+            }
+
             frmAMCDetallePedido f = new frmAMCDetallePedido();
+            f.Pedido = Clase;
             f.FiltroProveedor = _proveedor;
-            f.NroPedido = _nroPedido;
+            
             f.ShowDialog(this);
             CargarGrillaDetalles();
         }

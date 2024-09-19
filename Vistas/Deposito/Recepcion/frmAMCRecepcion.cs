@@ -32,8 +32,7 @@ namespace Almacen.Vistas
         private void frmAMCRecepcion_Load(object sender, EventArgs e)
         {
             if(Clase != null)
-            {
-                CargarGrillaDetalles();
+            {               
                 Proveedor = Clase.Pedido.Proveedor;
                 txtProveedor.Text = Proveedor.RazonSocial.ToString();
                 txtNroPedido.Text = Clase.ID.ToString();
@@ -49,26 +48,32 @@ namespace Almacen.Vistas
             {
                 txtProveedor.Text = Proveedor.RazonSocial.ToString();
                 txtNroPedido.Text = Pedido.ID.ToString();
-                txtRecepcionID.Text = Recepcion.CalcularNroRecepcion().ToString();
+                txtRecepcionID.Text = Clase.ID.ToString();
             }
             txtProveedor.ReadOnly = true;
             txtNroPedido.ReadOnly = true;
             txtRecepcionID.ReadOnly = true;
+
+            CargarGrillaDetalles();
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {       
             if(Clase == null)
             {
-                if (dgvDetalles.Rows.Count != 0)
+                if(Clase.Estado.PedidoEstadoID == PedidoEstado.EnEdicion.PedidoEstadoID)
                 {
-                    frmMostrarMensaje.MostrarMensaje("Recepcion", "Ya tiene productos ingresados, eliminelos antes de cancelar la recepción");
-                    return;
-                }
+                    if (dgvDetalles.Rows.Count != 0)
+                    {
+                        frmMostrarMensaje.MostrarMensaje("Recepcion", "Ya tiene productos ingresados, eliminelos antes de cancelar la recepción");
+                        return;
+                    }
 
-                if (MessageBox.Show("¿Desea Eliminar la  recepción iniciada?", "Recepcion", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                {
-                    
+                    if (MessageBox.Show("¿Desea Eliminar la  recepción iniciada?", "Recepcion", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        Clase.Eliminar();
+                    }
+
                 }
             }
 
@@ -87,18 +92,43 @@ namespace Almacen.Vistas
                 this.DialogResult = DialogResult.OK;
             }
             else
+
             {
+                Clase.Estado = PedidoEstado.EnEdicion;
                 Clase.Insertar();
-                this.DialogResult = DialogResult.OK;
+                
             }
+
+            //actualizacion stock
+            if (Clase.Estado.PedidoEstadoID == PedidoEstado.Confirmado.PedidoEstadoID)
+            {
+
+                List<DetalleRecepcion> recepcion = DetalleRecepcion.ListarDetallesRecepciones(Clase);
+
+                foreach (DetalleRecepcion rec in recepcion)
+                {
+                    rec.Producto.Stock += rec.Cantidad;
+                    rec.Producto.Modificar();
+                }
+            }
+
+            this.DialogResult = DialogResult.OK;
         }
 
         private bool Validar()
         {
             if (dtpFechaEntrega == null)
             {
-                frmMostrarMensaje.MostrarMensaje("Pedido", "Debe definir una fecha para la entrega.");
+                frmMostrarMensaje.MostrarMensaje("Recepcion", "Debe definir una fecha de recepción.");
                 return false;
+            }
+
+            if (Clase.Estado.PedidoEstadoID == PedidoEstado.EnEdicion.PedidoEstadoID)
+            {
+                if (MessageBox.Show("¿Desea finalizar la recepción?", "Recepcion", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    Clase.Estado = PedidoEstado.Confirmado;
+                }
             }
 
             return true;
@@ -112,7 +142,8 @@ namespace Almacen.Vistas
                 Clase = new Recepcion()
                 {
                     FechaEntrega = dtpFechaEntrega.Value,
-                    Pedido = Pedido
+                    Pedido = Pedido,
+                    Estado = PedidoEstado.EnEdicion
                 };
                 Clase.Insertar();
             }
@@ -120,9 +151,10 @@ namespace Almacen.Vistas
             frmAMCDetalleRecepcion f = new frmAMCDetalleRecepcion();
             f.Proveedor = Proveedor;
             f.Recepcion = Clase;
-            f.Show();
+            f.ShowDialog(this);
 
             CargarGrillaDetalles();
+
         }
 
         private void CargarGrillaDetalles()

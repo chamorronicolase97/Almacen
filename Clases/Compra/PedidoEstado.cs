@@ -25,9 +25,9 @@ namespace Almacen.Clases.Administracion
         public string Descripcion { get { return _descripcion; } set { _descripcion = value; } }
         #endregion
 
-        public PedidoEstado EnEdicion => new PedidoEstado(1);
-        public PedidoEstado Confirmado => new PedidoEstado(2);
-        public PedidoEstado Cancelado => new PedidoEstado(3);
+        public static PedidoEstado EnEdicion => new PedidoEstado(1);
+        public static PedidoEstado Confirmado => new PedidoEstado(2);
+        public static PedidoEstado Cancelado => new PedidoEstado(3);
 
         public PedidoEstado() { }
         public PedidoEstado(int ID)
