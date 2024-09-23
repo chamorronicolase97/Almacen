@@ -1,0 +1,140 @@
+﻿body {
+    color: black;
+}
+
+.indentado {
+    padding-left: 2em;
+}
+
+.fechaComprobante {
+    text-align: right;
+    font-size: 8pt;
+    margin: 0px;
+    padding: 0px;
+}
+
+.LogoMutual {
+    height: 70px;
+    width: 75px;
+}
+
+.comprobante {
+    margin-top: 20pt;
+    padding: 20pt;
+    border: 1pt solid #000;
+    margin-left: 30pt;
+}
+
+.tituloPrestamo {
+    font-size: 16pt;
+    margin-top: 5pt;
+    padding: 5pt;
+    margin-bottom: 0;
+    padding-bottom: 0px;
+    text-align: center;
+}
+
+.nomargen {
+    margin-bottom: 0;
+    padding-bottom: 0px;
+}
+
+.comprobantePrestamo {
+    width: 100%;
+    margin-top: 0.8em;
+    padding: 5pt;
+    border: 1pt solid #000;
+    font-size: 9pt;
+    text-align: left;
+}
+
+.Texto {
+    font-size: 9pt;
+    text-align: justify;
+}
+
+.logoPrestamo {
+    margin-left: 8pt;
+    text-align: center;
+}
+
+.pielogo {
+    font-size: 6pt;
+    text-align: center;
+    font-weight: normal;
+}
+
+.sello {
+    color: red;
+    font-size: 6pt;
+    text-align: center;
+    padding: 0px;
+    margin: 0px;
+}
+
+.datos {
+    width: 450px;
+    font-size: 8pt;
+    text-align: left;
+}
+
+.smallComprobante {
+    font-size: 6pt;
+}
+
+.middle {
+    vertical-align: middle;
+}
+
+.resaltadocomprobante {
+    font-weight: bold;
+    color: black;
+}
+
+.leyenda {
+    font-size: 8pt;
+    text-align: center;
+    padding: 1em;
+    font-style: italic;
+}
+
+.Resaltado {
+    font-size: 8pt;
+}
+
+.advertencia {
+    font-size: 8pt;
+    text-align: center;
+    padding: 2em;
+    font-weight: bold;
+}
+
+.titulo {
+    text-align: center;
+    padding-left: 1.5em;
+}
+
+.cabecera {
+    text-align: center;
+}
+
+.center {
+    text-align: center;
+}
+
+.fechaPrestamo {
+    margin-top: 12px;
+}
+
+
+.borde {
+    border: 1pt solid #000;
+}
+
+
+.tituloLiquidacion {
+    padding: 3px;
+    border: 2pt solid #000;
+    font-size: 18pt;
+    text-align: center;
+}

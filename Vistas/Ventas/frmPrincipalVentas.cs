@@ -1,6 +1,9 @@
 ﻿using Almacen.Clases.Administracion;
 using Almacen.Clases.Compra;
+using Almacen.Clases.Sistema;
 using Almacen.Clases.Venta;
+using Azure.Core;
+using NEntidadesFinancieras;
 using Sistema;
 using System;
 using System.Collections.Generic;
@@ -87,6 +90,31 @@ namespace Almacen.Vistas.Ventas
             txtTotal.Text = _total.ToString();
         }
 
+        private void  btnImprimirComprobante_Click(object sender, EventArgs e)
+        {
+            if (dgvDatos.CurrentRow == null) return;
 
+            Venta venta = new Venta(Convert.ToInt32(dgvDatos.CurrentRow.Cells["VentaID"].Value));
+
+            if (venta == null)
+            {
+                frmMostrarMensaje.MostrarMensaje("Imprimir Comprobante", "No se pudo obtener la venta seleccionada.");
+                return;               
+            }
+
+            List<DetalleVenta> detalleVentas = DetalleVenta.ListarDetallesVentas(venta.ID);
+
+            ComprobanteVentaPDF PDFHTML = new ComprobanteVentaPDF(venta, detalleVentas);
+
+            var Renderer = new IronPdf.ChromePdfRenderer();
+            using var PDF = Renderer.RenderHtmlAsPdf(PDFHTML.GenerarHtml()); 
+
+            var contentLength = PDF.BinaryData.Length;
+
+
+            //PDF.SaveAsPdfA($"ComprobanteVenta_{venta.ID}");  
+                        
+            Utilidades.VerPDFTemporal($"Venta_{venta.ID}", PDF.BinaryData);
+        }
     }
 }

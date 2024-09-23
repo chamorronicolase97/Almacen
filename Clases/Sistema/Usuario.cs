@@ -111,7 +111,7 @@ namespace Almacen.Clases.Administracion
             }
             if (dt.Rows.Count > 0)
             {
-                return new Usuario(Convert.ToInt32(dt.Rows[0]));
+                return new Usuario(Convert.ToInt32(dt.Rows[0]["UsuarioID"]));
             }
             else
             {

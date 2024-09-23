@@ -1,4 +1,5 @@
 ﻿using Almacen.Clases.Administracion;
+using Almacen.Clases.Compra;
 using Sistema;
 using System;
 using System.Collections.Generic;
@@ -134,6 +135,27 @@ namespace Almacen.Clases.Venta
             if (dt.Rows.Count > 0) { return Convert.ToInt32(dt.Rows[0]["DetalleVentaID"]); }
             else { return 1; }
         }
-       
+
+        public static DataTable Listar(int VentaID)
+        {
+            Conexion cn = new Conexion();
+            string q = @$"Select * from {Tabla} where VentaID = @VentaID";
+            SqlCommand cmd = new SqlCommand(q);
+            cmd.Parameters.Add("@VentaID", SqlDbType.Int).Value = VentaID;
+            return cn.Consultar(cmd);
+        }
+
+        public static List<DetalleVenta> ListarDetallesVentas(int VentaID)
+        {
+            DataTable dt = Listar(VentaID);
+            List<DetalleVenta> lista = new List<DetalleVenta>();
+            foreach (DataRow dr in dt.Rows)
+            {
+                lista.Add(new DetalleVenta(dr));
+            }
+
+            return lista;
+        }
+
     }
 }

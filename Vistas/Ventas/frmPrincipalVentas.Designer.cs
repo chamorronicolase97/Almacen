@@ -31,6 +31,7 @@
             components = new System.ComponentModel.Container();
             ContainerCaja = new SplitContainer();
             subcontainerCaja = new SplitContainer();
+            txtOperador = new TextBox();
             dgvDatos = new DataGridView();
             dtpFecha = new DateTimePicker();
             groupBox1 = new GroupBox();
@@ -40,7 +41,7 @@
             btnArticulos = new Button();
             button3 = new Button();
             btnClientes = new Button();
-            btnNotaCredito = new Button();
+            btnImprimirComprobante = new Button();
             btnNuevaVenta = new Button();
             groupBoxGerencial = new GroupBox();
             groupBox2 = new GroupBox();
@@ -48,7 +49,6 @@
             txtTotal = new TextBox();
             btnCerrarCaja = new Button();
             CustomToolTip = new ToolTip(components);
-            txtOperador = new TextBox();
             ((System.ComponentModel.ISupportInitialize)ContainerCaja).BeginInit();
             ContainerCaja.Panel1.SuspendLayout();
             ContainerCaja.Panel2.SuspendLayout();
@@ -100,6 +100,14 @@
             subcontainerCaja.SplitterDistance = 497;
             subcontainerCaja.TabIndex = 0;
             // 
+            // txtOperador
+            // 
+            txtOperador.Location = new Point(172, 11);
+            txtOperador.Name = "txtOperador";
+            txtOperador.ReadOnly = true;
+            txtOperador.Size = new Size(296, 23);
+            txtOperador.TabIndex = 2;
+            // 
             // dgvDatos
             // 
             dgvDatos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -128,7 +136,7 @@
             groupBox1.Controls.Add(btnArticulos);
             groupBox1.Controls.Add(button3);
             groupBox1.Controls.Add(btnClientes);
-            groupBox1.Controls.Add(btnNotaCredito);
+            groupBox1.Controls.Add(btnImprimirComprobante);
             groupBox1.Controls.Add(btnNuevaVenta);
             groupBox1.Controls.Add(groupBoxGerencial);
             groupBox1.Dock = DockStyle.Fill;
@@ -194,14 +202,15 @@
             btnClientes.UseVisualStyleBackColor = true;
             btnClientes.Click += btnClientes_Click;
             // 
-            // btnNotaCredito
+            // btnImprimirComprobante
             // 
-            btnNotaCredito.Location = new Point(167, 64);
-            btnNotaCredito.Name = "btnNotaCredito";
-            btnNotaCredito.Size = new Size(109, 46);
-            btnNotaCredito.TabIndex = 1;
-            btnNotaCredito.Text = "Nota Credito";
-            btnNotaCredito.UseVisualStyleBackColor = true;
+            btnImprimirComprobante.Location = new Point(167, 64);
+            btnImprimirComprobante.Name = "btnImprimirComprobante";
+            btnImprimirComprobante.Size = new Size(109, 46);
+            btnImprimirComprobante.TabIndex = 1;
+            btnImprimirComprobante.Text = "Imprimir Comprobante";
+            btnImprimirComprobante.UseVisualStyleBackColor = true;
+            btnImprimirComprobante.Click += btnImprimirComprobante_Click;
             // 
             // btnNuevaVenta
             // 
@@ -263,14 +272,6 @@
             btnCerrarCaja.Text = "Cerrar Caja";
             btnCerrarCaja.UseVisualStyleBackColor = false;
             // 
-            // txtOperador
-            // 
-            txtOperador.Location = new Point(172, 11);
-            txtOperador.Name = "txtOperador";
-            txtOperador.ReadOnly = true;
-            txtOperador.Size = new Size(296, 23);
-            txtOperador.TabIndex = 2;
-            // 
             // frmPrincipalVentas
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -308,7 +309,7 @@
         private Button btnArticulos;
         private Button button3;
         private Button btnClientes;
-        private Button btnNotaCredito;
+        private Button btnImprimirComprobante;
         private Button btnNuevaVenta;
         private Label label1;
         private TextBox txtTotal;

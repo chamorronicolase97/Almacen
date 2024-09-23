@@ -1,6 +1,9 @@
 ﻿using Almacen.Clases.Administracion;
 using Almacen.Clases.Compra;
+using Almacen.Clases.Sistema;
 using Almacen.Clases.Venta;
+using NComprobantesPDF;
+using NEntidadesFinancieras;
 using Sistema;
 using System;
 using System.Collections.Generic;
@@ -117,40 +120,7 @@ namespace Almacen.Vistas.Ventas
             CalcularDescuento();
             CalcularTotal();
 
-        }
-
-        private void btnAgregar_Click(object sender, EventArgs e)
-        {
-            frmABMSProductos f = new frmABMSProductos();
-            f.ShowDialog();
-            if (f.DialogResult != DialogResult.OK) return;
-            _producto = f.ObjetoSeleccionado;
-
-            InputCantidad inputCantidad = new InputCantidad();
-            inputCantidad.ShowDialog();
-            if (inputCantidad.DialogResult != DialogResult.OK) return;
-            int cantidad = Convert.ToInt32(inputCantidad.Cantidad);
-
-            _detalle = new DetalleVenta();
-            _detalle.Cantidad = cantidad;
-            _detalle.Venta = _venta;
-            _detalle.Producto = _producto;
-
-            if(_detalle.Cantidad < _producto.Stock)
-            {
-                frmMostrarMensaje.MostrarMensaje("Añadir Producto", "La cantidad del producto seleccionado excede la existencia en nuestro inventario.");
-                return;
-            }
-
-            //calcular SubTotal
-            _detalle.SubTotal = _detalle.Cantidad * (_detalle.Producto.Costo.Value + ((_detalle.Producto.Costo.Value * _detalle.Producto.Categoria.Utilidad) / 100));
-
-            _detalle.Insertar();
-
-            _detalleVenta.Add(_detalle);
-
-            CargarDetalleVenta();
-        }
+        }        
 
         private void btnFinalizar_Click(object sender, EventArgs e)
         {
@@ -189,6 +159,18 @@ namespace Almacen.Vistas.Ventas
             frmMostrarMensajeDetalle.MostrarMensaje("Venta", "Venta exitosa", Detalle);
 
             //imprimir comprobante.
+
+            ComprobanteVentaPDF PDFHTML = new ComprobanteVentaPDF(_venta, _detalleVenta);           
+
+            var Renderer = new IronPdf.ChromePdfRenderer();
+            using var PDF = Renderer.RenderHtmlAsPdf(PDFHTML.GenerarHtml());
+
+            var contentLength = PDF.BinaryData.Length;
+
+
+            //PDF.SaveAsPdfA($"ComprobanteVenta_{venta.ID}");  
+
+            Utilidades.VerPDFTemporal($"Venta_{_venta.ID}", PDF.BinaryData);
 
             this.DialogResult = DialogResult.OK;
             this.Close();
