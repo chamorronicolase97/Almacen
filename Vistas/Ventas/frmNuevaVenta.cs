@@ -160,11 +160,17 @@ namespace Almacen.Vistas.Ventas
 
             //imprimir comprobante.
 
-            ComprobanteVentaPDF PDF = new ComprobanteVentaPDF(_venta, _detalleVenta);
+            ComprobanteVentaPDF PDFHTML = new ComprobanteVentaPDF(_venta, _detalleVenta);           
 
-            byte[] archivo = PDF.GetContent();
+            var Renderer = new IronPdf.ChromePdfRenderer();
+            using var PDF = Renderer.RenderHtmlAsPdf(PDFHTML.GenerarHtml());
 
-            Utilidades.VerPDFTemporal($"Venta {_venta.ID}", archivo);
+            var contentLength = PDF.BinaryData.Length;
+
+
+            //PDF.SaveAsPdfA($"ComprobanteVenta_{venta.ID}");  
+
+            Utilidades.VerPDFTemporal($"Venta_{_venta.ID}", PDF.BinaryData);
 
             this.DialogResult = DialogResult.OK;
             this.Close();
