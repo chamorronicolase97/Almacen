@@ -36,7 +36,7 @@ namespace NEntidadesFinancieras
             };
         }
 
-        private string GenerarHtml()
+        public string GenerarHtml()
         {
             string cuerpoHTML = @"<!DOCTYPE html>
 <html lang='es'>

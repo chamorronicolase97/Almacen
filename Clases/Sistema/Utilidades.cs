@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,7 +17,7 @@ namespace Almacen.Clases.Sistema
         {
             string filename = Path.Combine(Path.GetTempPath(), NombreArchivo);
             File.WriteAllBytes(filename, Contenido);
-            System.Diagnostics.Process.Start(filename);
+            new Process { StartInfo = new ProcessStartInfo(filename) { UseShellExecute = true } }.Start();
         }
     }
 }
