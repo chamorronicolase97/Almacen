@@ -149,7 +149,7 @@ namespace Almacen.Clases.Compra
             string q = $@"SELECT NroPedido FROM dbo.Pedidos order by 1 desc";
             SqlCommand cmd = new SqlCommand(q);
             DataTable dt = cn.Consultar(cmd);
-            if (dt.Rows.Count > 0) { return Convert.ToInt32(dt.Rows[0]["NroPedido"]) + 1; }
+            if (dt.Rows.Count > 0) {return Convert.ToInt32(dt.Rows[0]["NroPedido"]); }
             else { return 1; }
         }
     }

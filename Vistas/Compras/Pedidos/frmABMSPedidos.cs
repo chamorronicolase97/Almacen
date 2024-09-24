@@ -70,7 +70,7 @@ namespace Almacen.Vistas
         {
             if (dgvDatos.CurrentRow == null) return;
 
-            Pedido Clase = new Pedido(Convert.ToInt32(dgvDatos.CurrentRow.Cells["NroPedido"].Value));
+            Pedido Clase = new Pedido(Convert.ToInt32(dgvDatos.CurrentRow.Cells["ID"].Value));
 
             DialogResult = MessageBox.Show("Desea eliminar el Pedido " + Clase.ID + "?", "Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (DialogResult == DialogResult.No) return;

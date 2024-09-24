@@ -167,7 +167,7 @@ namespace Almacen.Clases.Compra
             string q = $@"SELECT RecepcionID FROM dbo.Recepciones order by 1 desc";
             SqlCommand cmd = new SqlCommand(q);
             DataTable dt = cn.Consultar(cmd);
-            if (dt.Rows.Count > 0) { return Convert.ToInt32(dt.Rows[0]["RecepcionID"]) + 1; }
+            if (dt.Rows.Count > 0) { return Convert.ToInt32(dt.Rows[0]["RecepcionID"]); }
             else { return 1; }
         }
     }

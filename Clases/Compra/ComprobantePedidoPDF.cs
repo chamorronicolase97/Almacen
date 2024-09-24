@@ -23,13 +23,13 @@ namespace NEntidadesFinancieras
             _pedido = Pedido;
             _detallesPedido = DetallePedido;     
 
-            FileName = $"Comrpobante Venta nro {_pedido.ID}.pdf";
+            FileName = $"Comrpobante Pedido nro {_pedido.ID}.pdf";
 
             PDFConverter = new HtmlToPDF
             {
-                Titulo = "COMPROBANTE VENTA",
-                Asunto = $"Venta nro {_pedido.ID}",
-                PalabrasClave = "COMPROBANTE VENTA",
+                Titulo = "COMPROBANTE PEDIDO",
+                Asunto = $"Pedido nro {_pedido.ID}",
+                PalabrasClave = "COMPROBANTE PEDIDO",
                 CabeceraHTML = GetEncabezado(),                
                 TamañoPagina = iTextSharp.text.PageSize.LETTER
             };
@@ -71,7 +71,7 @@ namespace NEntidadesFinancieras
     </style>
 </head>
 <body>
-    <h1>Comprobante de Venta</h1>
+    <h1>Nota de Pedido</h1>
 
     <div class='comprobante'>
         <div class='empresa'>

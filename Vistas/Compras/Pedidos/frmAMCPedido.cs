@@ -54,7 +54,7 @@ namespace Almacen.Vistas
                 }
             }
             else
-            {                
+            {
                 
             }
 
@@ -105,6 +105,7 @@ namespace Almacen.Vistas
                         PedidoEstado = PedidoEstado.EnEdicion
                     };
                     Clase.Insertar();
+                    _nroPedido = Clase.ID;
                 }
                 else
                 {
@@ -192,7 +193,7 @@ namespace Almacen.Vistas
 
         private void CargarGrillaDetalles()
         {
-            var pedidosview = DetallePedido.ListarDetallesPedidos(_nroPedido).Select(p => new
+            var pedidosview = DetallePedido.ListarDetallesPedidos(Clase.ID).Select(p => new
             {
                 p.Pedido.ID,
                 p.Pedido.FechaEntrega,
@@ -250,6 +251,12 @@ namespace Almacen.Vistas
         private void btnQuitarProveedor_Click(object sender, EventArgs e)
         {
             if (_proveedor == null) return;
+
+            if (DetallePedido.ListarDetallesPedidos(Clase.ID).Count > 0)
+            {
+                frmMostrarMensaje.MostrarMensaje("Pedido", "No puede quitar el proveedor que ya tiene detalles cargados.");
+                return;
+            }
 
             _proveedor = null;
             HabilitarControles();
