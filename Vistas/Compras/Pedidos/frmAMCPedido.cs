@@ -1,6 +1,9 @@
 ﻿using Almacen.Clases;
 using Almacen.Clases.Administracion;
 using Almacen.Clases.Compra;
+using Almacen.Clases.Sistema;
+using Almacen.Clases.Venta;
+using NEntidadesFinancieras;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -113,6 +116,26 @@ namespace Almacen.Vistas
                         Clase.Modificar();
                     }
                 }
+
+                //imprimir comprobante.
+
+                List<DetallePedido> lstDetalles = DetallePedido.ListarDetallesPedidos(Clase.ID);
+                ComprobantePedidoPDF comprobante = new ComprobantePedidoPDF(Clase, lstDetalles);
+
+                var Renderer = new IronPdf.ChromePdfRenderer();
+                using var PDF = Renderer.RenderHtmlAsPdf(comprobante.GenerarHtml());
+                Renderer.RenderingOptions.HtmlHeader = new HtmlHeaderFooter()
+                {
+                    MaxHeight = 30,
+                    HtmlFragment = comprobante.GetEncabezado()
+                };
+
+                var contentLength = PDF.BinaryData.Length;
+
+
+                //PDF.SaveAsPdfA($"ComprobanteVenta_{venta.ID}");  
+
+                Utilidades.VerPDFTemporal($"Pedido_{Clase.ID}", PDF.BinaryData);
             }
             this.DialogResult = DialogResult.OK;
             this.Close();

@@ -9,6 +9,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Clases\Base\Comprobante\**" />
+    <EmbeddedResource Remove="Clases\Base\Comprobante\**" />
+    <None Remove="Clases\Base\Comprobante\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Imagenes\logo.png" />
   </ItemGroup>
 
@@ -23,6 +29,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Update="Vistas\Administracion\Productos\frmCostosProductos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -86,13 +97,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Clases\Base\Comprobante\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Content Include="Imagenes\logo.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
 
 </Project>
