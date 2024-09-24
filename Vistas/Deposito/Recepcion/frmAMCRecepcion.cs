@@ -1,6 +1,8 @@
 ﻿using Almacen.Clases;
 using Almacen.Clases.Administracion;
 using Almacen.Clases.Compra;
+using Almacen.Clases.Sistema;
+using NEntidadesFinancieras;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,7 +22,7 @@ namespace Almacen.Vistas
         public Proveedor Proveedor { get; set; }
         public bool Modificacion { get; set; } = false;
         protected bool _soloLectura;
-        private List<DetalleRecepcion> listaRecepcion;
+        private List<DetalleRecepcion> listaRecepcion;        
 
         public bool SoloLectura { get { return _soloLectura; } set { _soloLectura = value; } }
         public frmAMCRecepcion()
@@ -43,23 +45,21 @@ namespace Almacen.Vistas
                 {
                     dtpFechaEntrega.Enabled = false;
                 }
+                CargarGrillaDetalles();
             }
             else
             {
                 txtProveedor.Text = Proveedor.RazonSocial.ToString();
-                txtNroPedido.Text = Pedido.ID.ToString();
-                txtRecepcionID.Text = Clase.ID.ToString();
+                txtNroPedido.Text = Pedido.ID.ToString();               
             }
             txtProveedor.ReadOnly = true;
             txtNroPedido.ReadOnly = true;
-            txtRecepcionID.ReadOnly = true;
-
-            CargarGrillaDetalles();
+            txtRecepcionID.ReadOnly = true;         
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {       
-            if(Clase == null)
+            if(Clase != null)
             {
                 if(Clase.Estado.PedidoEstadoID == PedidoEstado.EnEdicion.PedidoEstadoID)
                 {
@@ -110,6 +110,24 @@ namespace Almacen.Vistas
                     rec.Producto.Stock += rec.Cantidad;
                     rec.Producto.Modificar();
                 }
+
+                //imprimir comprobante.            
+                ComprobanteRecepcionPDF comprobante = new ComprobanteRecepcionPDF(Clase, recepcion);
+
+                var Renderer = new IronPdf.ChromePdfRenderer();
+                using var PDF = Renderer.RenderHtmlAsPdf(comprobante.GenerarHtml());
+                Renderer.RenderingOptions.HtmlHeader = new HtmlHeaderFooter()
+                {
+                    MaxHeight = 30,
+                    HtmlFragment = comprobante.GetEncabezado()
+                };
+
+                var contentLength = PDF.BinaryData.Length;
+
+
+                //PDF.SaveAsPdfA($"ComprobanteVenta_{venta.ID}");  
+
+                Utilidades.VerPDFTemporal($"Recepcion_{Clase.ID}", PDF.BinaryData);
             }
 
             this.DialogResult = DialogResult.OK;
@@ -135,8 +153,7 @@ namespace Almacen.Vistas
         }
 
         private void btnAsignar_Click(object sender, EventArgs e)
-        {
-            Clase = Recepcion.GetRecepcion(Convert.ToInt32(txtRecepcionID.Text));
+        {           
             if (Clase == null)
             {
                 Clase = new Recepcion()
