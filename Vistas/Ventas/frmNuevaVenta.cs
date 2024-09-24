@@ -129,7 +129,9 @@ namespace Almacen.Vistas.Ventas
 
 
 
-            _venta.Total = Convert.ToDecimal(txtTotal.Text);
+            _venta.Total = _total;
+            _venta.Subtotal = _subtotal;
+            _venta.Descuento = _descuento;
             _venta.Modificar();
             //Elegir Medio De Pago.            
 
@@ -160,10 +162,15 @@ namespace Almacen.Vistas.Ventas
 
             //imprimir comprobante.
 
-            ComprobanteVentaPDF PDFHTML = new ComprobanteVentaPDF(_venta, _detalleVenta);           
+            ComprobanteVentaPDF comprobante = new ComprobanteVentaPDF(_venta, _detalleVenta);           
 
             var Renderer = new IronPdf.ChromePdfRenderer();
-            using var PDF = Renderer.RenderHtmlAsPdf(PDFHTML.GenerarHtml());
+            using var PDF = Renderer.RenderHtmlAsPdf(comprobante.GenerarHtml());
+            Renderer.RenderingOptions.HtmlHeader = new HtmlHeaderFooter()
+            {
+                MaxHeight = 30,
+                HtmlFragment = comprobante.GetEncabezado()
+            };
 
             var contentLength = PDF.BinaryData.Length;
 

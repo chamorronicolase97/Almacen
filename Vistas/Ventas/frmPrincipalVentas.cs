@@ -90,7 +90,7 @@ namespace Almacen.Vistas.Ventas
             txtTotal.Text = _total.ToString();
         }
 
-        private void  btnImprimirComprobante_Click(object sender, EventArgs e)
+        private void btnImprimirComprobante_Click(object sender, EventArgs e)
         {
             if (dgvDatos.CurrentRow == null) return;
 
@@ -99,22 +99,47 @@ namespace Almacen.Vistas.Ventas
             if (venta == null)
             {
                 frmMostrarMensaje.MostrarMensaje("Imprimir Comprobante", "No se pudo obtener la venta seleccionada.");
-                return;               
+                return;
             }
 
             List<DetalleVenta> detalleVentas = DetalleVenta.ListarDetallesVentas(venta.ID);
 
-            ComprobanteVentaPDF PDFHTML = new ComprobanteVentaPDF(venta, detalleVentas);
+            ComprobanteVentaPDF comprobante = new ComprobanteVentaPDF(venta, detalleVentas);
 
             var Renderer = new IronPdf.ChromePdfRenderer();
-            using var PDF = Renderer.RenderHtmlAsPdf(PDFHTML.GenerarHtml()); 
+
+
+            Renderer.RenderingOptions.HtmlHeader = new HtmlHeaderFooter()
+            {
+                MaxHeight = 30,
+                HtmlFragment = comprobante.GetEncabezado()
+            };
+
+            using var PDF = Renderer.RenderHtmlAsPdf(comprobante.GenerarHtml());
 
             var contentLength = PDF.BinaryData.Length;
 
 
             //PDF.SaveAsPdfA($"ComprobanteVenta_{venta.ID}");  
-                        
+
             Utilidades.VerPDFTemporal($"Venta_{venta.ID}", PDF.BinaryData);
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            if (dgvDatos.CurrentRow == null) return;
+
+            Venta venta = new Venta(Convert.ToInt32(dgvDatos.CurrentRow.Cells["VentaID"].Value));
+
+            List<DetalleVenta> lstVentas = DetalleVenta.ListarDetallesVentas(venta.ID);
+            if (lstVentas.Count != 0 || venta.Total != 0)
+            {
+                frmMostrarMensaje.MostrarMensaje("Eliminar Venta", "La venta seleccionada tiene elementos cargados y/o ya fue cobrada.");
+                return;
+            }
+            
+            venta.Eliminar();
+            frmMostrarMensaje.MostrarMensaje("Eliminar Venta", "Eliminación realizada correctamente.");
         }
     }
 }

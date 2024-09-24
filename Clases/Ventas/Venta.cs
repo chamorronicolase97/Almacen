@@ -17,6 +17,8 @@ namespace Almacen.Clases.Venta
         private Usuario _usuario;
         private Cliente _cliente;
         private decimal? _total;
+        private decimal? _subtotal;
+        private decimal? _descuento;
 
 
         #region Constantes
@@ -30,6 +32,8 @@ namespace Almacen.Clases.Venta
         public Usuario Usuario { get { return _usuario; } set { _usuario = value; } }
         public Cliente Cliente { get { return _cliente; } set { _cliente = value; } }
         public decimal? Total { get { return _total; } set { _total = value; } }
+        public decimal? Subtotal { get { return _subtotal; }set { _subtotal = value; } }
+        public decimal? Descuento { get { return _descuento; } set { _descuento = value; } }
         #endregion
 
         public Venta() { }
@@ -74,19 +78,31 @@ namespace Almacen.Clases.Venta
 
             _total = null;
             if (dr["Total"] != DBNull.Value) _total = Convert.ToDecimal(dr["Total"]);
+
+            _subtotal = null;
+            if (dr["SubTotal"] != DBNull.Value) _total = Convert.ToDecimal(dr["SubTotal"]);
+
+            _descuento = null;
+            if (dr["Descuento"] != DBNull.Value) _total = Convert.ToDecimal(dr["Descuento"]);
         }
 
         public void Insertar()
         {
             Conexion cn = new Conexion();
-            string q = $@"INSERT INTO {Tabla} (NroCliente, FechaVenta, CodUsuarioCaja, Total)
-                        Values(@NroCliente, @fecha, @CodUsuarioCaja, @Total);";
+            string q = $@"INSERT INTO {Tabla} (NroCliente, FechaVenta, CodUsuarioCaja, Total, Subtotal, Descuento)
+                        Values(@NroCliente, @fecha, @CodUsuarioCaja, @Total, @Subtotal, @Descuento);";
             SqlCommand cmd = new SqlCommand(q);
             cmd.Parameters.Add("@NroCliente", SqlDbType.Int).Value = Cliente.ID;
             cmd.Parameters.Add("@fecha", SqlDbType.DateTime).Value = FechaVenta;
             cmd.Parameters.Add("@CodUsuarioCaja", SqlDbType.VarChar).Value = Usuario.CodUsuario;
             cmd.Parameters.Add("@Total", SqlDbType.Decimal).Value = DBNull.Value;
             if (Total != null) cmd.Parameters["@Total"].Value = Total;
+            cmd.Parameters.Add("@SubTotal", SqlDbType.Decimal).Value = DBNull.Value;
+            if (Subtotal != null) cmd.Parameters["@Subtotal"].Value = Subtotal;
+            cmd.Parameters.Add("@Descuento", SqlDbType.Decimal).Value = DBNull.Value;
+            if (Descuento != null) cmd.Parameters["@Descuento"].Value = Descuento;
+
+
 
             ID = CalcularNroVenta();
 
@@ -99,8 +115,9 @@ namespace Almacen.Clases.Venta
             string q = $@"UPDATE {Tabla} SET NroCliente = @NroCliente,
                                          FechaVenta = @FechaVenta,
                                          CodUsuarioCaja = @CodUsuarioCaja,
-                                         Total = @Total
-              
+                                         Total = @Total,
+                                         SubTotal = @SubTotal,
+                                         Descuento = @Descuento
                                              WHERE VentaID = @ID;";
             SqlCommand cmd = new SqlCommand(q);
             cmd.Parameters.Add("@NroCliente", SqlDbType.Int).Value = Cliente.ID;
@@ -108,6 +125,10 @@ namespace Almacen.Clases.Venta
             cmd.Parameters.Add("@CodUsuarioCaja", SqlDbType.VarChar).Value = Usuario.CodUsuario;
             cmd.Parameters.Add("@Total", SqlDbType.Decimal).Value = DBNull.Value;
             if (Total != null) cmd.Parameters["@Total"].Value = Total;
+            cmd.Parameters.Add("@SubTotal", SqlDbType.Decimal).Value = DBNull.Value;
+            if (Subtotal != null) cmd.Parameters["@Subtotal"].Value = Subtotal;
+            cmd.Parameters.Add("@Descuento", SqlDbType.Decimal).Value = DBNull.Value;
+            if (Descuento != null) cmd.Parameters["@Descuento"].Value = Descuento;
             cmd.Parameters.Add("@ID", SqlDbType.Int).Value = ID;
 
             cn.Ejecutar(cmd);

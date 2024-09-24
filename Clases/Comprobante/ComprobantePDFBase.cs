@@ -50,20 +50,26 @@ namespace NComprobantesPDF
         /// <summary> Encabezado estándar para comprobantes </summary>
         public string GetEncabezado()
         {
-            string logoPath = "~/Imagenes/logo.png";
+            // Obtener el directorio donde se está ejecutando la aplicación
+            string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            //C:\Users\Mutual de AMR\Desktop\NET\TP Integrador\Almacen\Imagenes\logo.png
+
+            // Construir la ruta al archivo
+            string logoPath = Path.Combine(appDirectory, "Content", "logo.png");
 
             string encabezado = $@"<tr>
-                                  <td>
-                                    <img class='LogoMutual' alt='LogoMutual' src='{logoPath}'/>
-                                  </td>
-                                  <td colspan='2'>
-                                    <p class='cabecera'>
-                                      <span class='resaltadocomprobante'>Sarkissian & Chamorro S.R.L.</span>
-                                      <br/>                                                
-                                      <span class='smallComprobante'>WhatsApp 341 388 0950 - 2000 Rosario - Santa Fe</span>
-                                    </p>
-                                  </td>
-                                </tr>";
+    <td>
+        <!-- Agrega atributos como width, height, alt, style, etc. -->
+        <img src='{logoPath}' alt='Logo Empresa' width='100' height='100' style='border: 1px solid #000; margin-right: 10px;'/>
+    </td>
+    <td colspan='2'>
+        <p class='cabecera'>
+            <span>Sarkissian & Chamorro S.R.L.</span>
+            <br/>
+            <span>WhatsApp 341 388 0950 - 2000 Rosario - Santa Fe</span>
+        </p>
+    </td>
+</tr>";
 
             return encabezado;
         }
@@ -79,28 +85,7 @@ namespace NComprobantesPDF
 
             return aviso;
         }
-
-        /// <summary> Mensaje para entorno de prueba </summary>
-        public string GetEntornoAviso(bool EsTabla)
-        {
-            if (EsTabla)
-            {
-                return @"<tr><td colspan='3'>
-                                   <div class='advertencia'>
-                                     Comprobante NO VÁLIDO
-                                     <br/>
-                                     Emitido desde ambiente de Prueba
-                                   </div>
-                                 </td></tr>";
-
-            }
-
-            return @"<div class='advertencia'>
-                      Comprobante NO VÁLIDO
-                      <br/>
-                      Emitido desde ambiente de Prueba
-                    </div>";
-        }
+       
 
         /// <summary> Fecha en footer estándar para comprobantes </summary>
         public string GetFechaComprobante()

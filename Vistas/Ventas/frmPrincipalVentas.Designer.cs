@@ -36,7 +36,7 @@
             dtpFecha = new DateTimePicker();
             groupBox1 = new GroupBox();
             button2 = new Button();
-            button1 = new Button();
+            btnEliminar = new Button();
             btnCierreParcial = new Button();
             btnArticulos = new Button();
             button3 = new Button();
@@ -131,7 +131,7 @@
             // groupBox1
             // 
             groupBox1.Controls.Add(button2);
-            groupBox1.Controls.Add(button1);
+            groupBox1.Controls.Add(btnEliminar);
             groupBox1.Controls.Add(btnCierreParcial);
             groupBox1.Controls.Add(btnArticulos);
             groupBox1.Controls.Add(button3);
@@ -156,14 +156,15 @@
             button2.Text = "Cuentas Corrientes";
             button2.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // btnEliminar
             // 
-            button1.Location = new Point(28, 282);
-            button1.Name = "button1";
-            button1.Size = new Size(109, 46);
-            button1.TabIndex = 6;
-            button1.Text = "Medios de Pago";
-            button1.UseVisualStyleBackColor = true;
+            btnEliminar.Location = new Point(28, 282);
+            btnEliminar.Name = "btnEliminar";
+            btnEliminar.Size = new Size(109, 46);
+            btnEliminar.TabIndex = 6;
+            btnEliminar.Text = "Eliminar Venta";
+            btnEliminar.UseVisualStyleBackColor = true;
+            btnEliminar.Click += btnEliminar_Click;
             // 
             // btnCierreParcial
             // 
@@ -314,7 +315,7 @@
         private Label label1;
         private TextBox txtTotal;
         private Button btnCerrarCaja;
-        private Button button1;
+        private Button btnEliminar;
         private Button button2;
         private GroupBox groupBoxGerencial;
         private ToolTip CustomToolTip;

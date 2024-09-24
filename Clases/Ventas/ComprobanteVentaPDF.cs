@@ -76,7 +76,7 @@ namespace NEntidadesFinancieras
 
     <div class='comprobante'>
         <div class='empresa'>
-            <strong>Nombre de la Empresa:</strong> <span>#EMPERESA#</span>
+            <strong>Nombre de la Empresa:</strong> <span>#EMPRESA#</span>
         </div>
         
         <div class='venta'>
@@ -102,7 +102,9 @@ namespace NEntidadesFinancieras
            </tbody>
         </table>                   
 <div class='total'>
-            <strong>Total:</strong> <span>$#TOTAL#</span>
+           <p> <strong>Subtotal:</strong> <span>$#SUBTOTAL#</span> </p>
+           <p> <strong>Descuento:</strong> <span>#DESCUENTO#</span> </p>
+           <p> <strong>Total:</strong> <span>$#TOTAL#</span> </p>
         </div>
 </div>
 </body>
@@ -122,6 +124,12 @@ namespace NEntidadesFinancieras
 
             cuerpoHTML = cuerpoHTML.Replace("#CLIENTE#", $"{_venta.Cliente.Denominacion}");
             
+            cuerpoHTML = cuerpoHTML.Replace("#SUBTOTAL#", $"{_venta.Subtotal:00.00}");
+
+
+            decimal desc = _venta.Descuento.HasValue ?  (_venta.Descuento.Value / 100) : 0;
+            cuerpoHTML = cuerpoHTML.Replace("#DESCUENTO#", $"{desc:0.#%}");
+
             cuerpoHTML = cuerpoHTML.Replace("#TOTAL#", $"{_venta.Total:00.00}");
 
             string detalleventa = ""; 

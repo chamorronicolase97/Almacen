@@ -9,6 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Imagenes\logo.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="IronPdf" Version="2024.9.3" />
     <PackageReference Include="iTextSharp" Version="5.5.13.4" />
     <PackageReference Include="itextsharp.pdfa" Version="5.5.13.4" />
@@ -83,6 +87,12 @@
 
   <ItemGroup>
     <Folder Include="Clases\Base\Comprobante\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Imagenes\logo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>
